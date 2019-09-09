@@ -9,7 +9,7 @@ class LoginBL
 {
     public function login($params,$idrol,$pwd){
         //$jwtauth = new JwtAuth();
-        $user = new User();
+        $user = new Usuario();
         $id=$user->idUsuario($params->username);
         $jwt = $jwtauth->signup($params->username,$pwd);
         $paramsjwt = json_decode((json_encode($jwt)));
@@ -23,7 +23,7 @@ class LoginBL
         );
     }
     public function existeUsuario($username,$pwd){
-        $user = new User;
+        $user = new Usuario;
         return $user->existeUsuario($username,$pwd);
     }
 

@@ -22,9 +22,8 @@ class LoginController extends Controller
         else{ //Si la validacion es exitosa
             $pwd=hash('sha256',$params->password);
             $login = new LoginBL;
-            if($login->existeUsuario($params->username,$pwd) == 1 
-             && $params->rol<4){
-                $data = $login->login($params,$params->rol,$pwd);    
+            if($login->existeUsuario($params->username,$pwd) == 1){
+                $data = $login->login($params->username,$pwd);    
             }
             else{    
                 $data=array(

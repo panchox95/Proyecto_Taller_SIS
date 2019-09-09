@@ -36,4 +36,19 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    protected $table= 'user';
+    public $timestamps = false;
+    public function saveUsuario($username,$pwd,$id_rol){
+        $this ->username=$username;
+        $this ->password=$pwd; 
+        $this ->id_rol=$id_rol; 
+        $this->save();
+    }
+    public function idUsuario($username){
+        return User::where('username', $username)->value('id_usuario');
+    }
+    public function existeUsuario($username,$pwd){
+        return  User::where(array('username'=>$username,'password'=>$pwd))->where('usuario.tx_eliminacion','=',null)->count();
+    }
 }
