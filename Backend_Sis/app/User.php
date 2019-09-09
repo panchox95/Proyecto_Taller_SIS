@@ -45,10 +45,16 @@ class User extends Authenticatable
         $this ->id_rol=$id_rol; 
         $this->save();
     }
-    public function idUsuario($username){
-        return User::where('username', $username)->value('id_usuario');
+    public function idUsuario($email){
+        return User::where('email', $email)->value('id_usuario');
     }
-    public function existeUsuario($username,$pwd){
-        return  User::where(array('username'=>$username,'password'=>$pwd))->where('usuario.tx_eliminacion','=',null)->count();
+    public function firstname($email){
+        return User::where('email', $email)->value('first_name');
+    }
+    public function lastname($email){
+        return User::where('email', $email)->value('last_name');
+    }
+    public function existeUsuario($email,$pwd){
+        return  User::where(array('email'=>$email,'password'=>$pwd))->count();
     }
 }

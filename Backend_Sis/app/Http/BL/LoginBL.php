@@ -10,21 +10,20 @@ class LoginBL
     public function login($params,$idrol,$pwd){
         //$jwtauth = new JwtAuth();
         $user = new Usuario();
-        $id=$user->idUsuario($params->username);
-        $jwt = $jwtauth->signup($params->username,$pwd);
-        $paramsjwt = json_decode((json_encode($jwt)));
-        $token = $paramsjwt->token;
-        $identity = $paramsjwt->identity;
+        $first_name=$user->firstname($params->email);
+        $last_name=$user->lastname($params->email);
+        //$jwt = $jwtauth->signup($params->username,$pwd);
+        //$paramsjwt = json_decode((json_encode($jwt)));
+        //$token = $paramsjwt->token;
+        //$identity = $paramsjwt->identity;
         return array('status'=>'SUCCESS',
                     'code'=>200,
-                    'message' =>'Bienvenido '.$nombre.' '.$apellido,
-                    'token'=>$token,
-                    'identity'=>$identity
+                    'message' =>'Bienvenido '.$first_name.' '.$last_name,
         );
     }
-    public function existeUsuario($username,$pwd){
+    public function existeUsuario($email,$pwd){
         $user = new Usuario;
-        return $user->existeUsuario($username,$pwd);
+        return $user->existeUsuario($email,$pwd);
     }
 
 }

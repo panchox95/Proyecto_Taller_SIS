@@ -12,18 +12,18 @@ class LoginController extends Controller
         $params_array  = json_decode(json_encode( $json), true ); //Parametros para la validacion
         $params = json_decode((json_encode($json))); //Parametros para el uso
         $validate = \Validator::make($params_array,[ // Validacion
-            'username'=>'required',
+            'email'=>'required',
             'password'=>'required'
         ]);
-
         if($validate->fails()){  //Si la validacion falla
             return response()-> json($validate->errors(),400);
         }
         else{ //Si la validacion es exitosa
-            $pwd=hash('sha256',$params->password);
+            //$pwd=hash('sha256',$params->password);
+            $pwd = $params->password;
             $login = new LoginBL;
-            if($login->existeUsuario($params->username,$pwd) == 1){
-                $data = $login->login($params->username,$pwd);    
+            if($login->existeUsuario($params->email,$pwd) == 1){
+                $data = $login->login($params->email,$pwd);    
             }
             else{    
                 $data=array(
