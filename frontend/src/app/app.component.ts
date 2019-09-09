@@ -11,6 +11,6 @@ export class AppComponent {
   addEmail(email){
     console.log(email.value);
     email.value='';
-    return 'app-register';
+    return false;
   }
 }

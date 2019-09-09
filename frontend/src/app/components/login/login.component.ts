@@ -1,4 +1,5 @@
 import { Component, OnInit} from '@angular/core';
+import { Route, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -7,10 +8,15 @@ import { Component, OnInit} from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() {
+  constructor(private _route: Route) {
+
   }
 
   ngOnInit() {
   }
 
+  addEmail(email){
+      console.log(email.value);
+      email.value='';
+  }
 }
