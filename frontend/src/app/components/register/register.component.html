@@ -4,27 +4,34 @@
         <h1>Registro</h1>
     </div>
 
-    <form (submit)="addEmail(email)">
+    <form #registerForm="ngForm" (ngSubmit)="onSubmit()" class="col-md-5">
         <div class="register">
             <div class="form-group">
+                <label>ID:</label>
+                <input type="text" #id_user="ngModel" [(ngModel)]="user.id_user" class="form-control" placeholder="ID">
+            </div>
+            <div class="form-group">
+                <label>Nombre:</label>
+                <input type="text" #first_name="ngModel" [(ngModel)]="user.first_name" class="form-control" placeholder="Nombre">
+            </div>
+            <div class="form-group">
+                <label>Apellido:</label>
+                <input type="text" #last_name="ngModel" [(ngModel)]="user.last_name" class="form-control" placeholder="Apellido">
+            </div>
+            <div class="form-group">
                 <label>Correo:</label>
-                <input type="text" #email class="form-control" placeholder="example@email.com">
+                <input type="text" #email="ngModel" [(ngModel)]="user.email" class="form-control" placeholder="example@email.com">
             </div>
             <div class="form-group">
                 <label>Contraseña:</label>
-                <input type="password" name="password" class="form-control" placeholder="*********">
+                <input type="password" #password="ngModel" [(ngModel)]="user.password" name="password" class="form-control" placeholder="*********">
             </div>
 
-            <div class="form-group">
-                <label>Confirmar Contraseña:</label>
-                <input type="password" name="password" class="form-control" placeholder="*********">
-            </div>
-
-            <button class="btn btn-success">Registrar</button>
+            <input type="submit" value="Registrarme" class="btn btn-success" />
         </div>
     </form>
 
     <br>
-    <a href="./app/login/login.component.html">Iniciar Sesión</a>
+    <a href="">Iniciar Sesión</a>
 
 </div>

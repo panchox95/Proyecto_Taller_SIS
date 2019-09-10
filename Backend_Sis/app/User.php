@@ -39,10 +39,11 @@ class User extends Authenticatable
 
     protected $table= 'user';
     public $timestamps = false;
-    public function saveUsuario($username,$pwd,$id_rol){
-        $this ->username=$username;
-        $this ->password=$pwd; 
-        $this ->id_rol=$id_rol; 
+    public function saveUsuario($params,$pwd){
+        $this->first_name=$params->first_name;
+        $this->last_name=$params->last_name; 
+        $this->email=$params->email;
+        $this->password=$pwd; 
         $this->save();
     }
     public function idUsuario($email){
