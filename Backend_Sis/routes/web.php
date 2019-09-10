@@ -15,3 +15,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/api/login','LoginController@login');
+Route::post('/api/registro','RegistroController@registro');
