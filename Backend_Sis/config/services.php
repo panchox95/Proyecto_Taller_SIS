@@ -39,5 +39,8 @@ return [
             'tolerance' => env('STRIPE_WEBHOOK_TOLERANCE', 300),
         ],
     ],
-
-];
+    'facebook' => [
+        'client_id' => '549682292239325',
+        'client_secret' => '1e9effe6bf8a9750097188b0f001d7d9',
+        'redirect'=> 'http://tallersis.com.devel/auth/facebook/callback'
+    ]
