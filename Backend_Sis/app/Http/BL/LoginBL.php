@@ -1,17 +1,15 @@
 <?php
-namespace App\BL;
+namespace App\Http\BL;
 use Illuminate\Database\Eloquent\Model;
 use App\User;
-use App\Persona;
-use App\Empresa;
 use App\Helpers\JwtAuth;
 class LoginBL 
 {
-    public function login($params,$idrol,$pwd){
+    public function login($email,$pwd){
         //$jwtauth = new JwtAuth();
-        $user = new Usuario();
-        $first_name=$user->firstname($params->email);
-        $last_name=$user->lastname($params->email);
+        $user = new User();
+        $first_name=$user->firstname($email);
+        $last_name=$user->lastname($email);
         //$jwt = $jwtauth->signup($params->username,$pwd);
         //$paramsjwt = json_decode((json_encode($jwt)));
         //$token = $paramsjwt->token;
@@ -22,7 +20,7 @@ class LoginBL
         );
     }
     public function existeUsuario($email,$pwd){
-        $user = new Usuario;
+        $user = new User;
         return $user->existeUsuario($email,$pwd);
     }
 

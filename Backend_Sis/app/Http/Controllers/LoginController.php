@@ -8,6 +8,7 @@ use App\Http\Requests;
 class LoginController extends Controller
 {
     public function login(Request $request){
+        
         $json = $request->all('json',null); //Recibimos el JSON enviado por el Frontend
         $params_array  = json_decode(json_encode( $json), true ); //Parametros para la validacion
         $params = json_decode((json_encode($json))); //Parametros para el uso

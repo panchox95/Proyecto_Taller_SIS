@@ -55,6 +55,6 @@ class User extends Authenticatable
         return User::where('email', $email)->value('last_name');
     }
     public function existeUsuario($email,$pwd){
-        return  User::where(array('email'=>$email,'password'=>$pwd))->count();
+        return  User::where(array('email'=>$email,'pass'=>$pwd))->count();
     }
 }
