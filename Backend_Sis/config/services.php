@@ -42,5 +42,11 @@ return [
     'facebook' => [
         'client_id' => '549682292239325',
         'client_secret' => '1e9effe6bf8a9750097188b0f001d7d9',
-        'redirect'=> 'http://tallersis.com.devel/auth/facebook/callback'
-    ]
+        'redirect'=> 'http://tallersis.com.devel/auth/facebook/callback',
+    ],
+    'google' => [
+        'client_id' => 'pmnshl6qpuh9mf77950m2e8s4hi48uib.apps.googleusercontent.com',
+        'client_secret' => 'nAtvq59Zsu9i4RSbp9cI_BPG',
+        'redirect' => 'http://http://localhost/Proyecto_Taller_SIS/Backend_Sis/public/social/callback/google',
+       ],
+    ];
