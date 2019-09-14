@@ -16,12 +16,21 @@
             <a href="#" class="navbar-brand">Domotica</a>
 
             <div class="navbar-nav rounded-right">
-                <ul class="nav navbar-nav">
+                <ul class="nav navbar-nav" *ngIf="!identity">
                     <li>
                         <a [routerLink]="['register']" class="navbar-brand">Registrate</a>
                     </li>
                     <li>
                         <a [routerLink]="['login']" class="navbar-brand">Inicio</a>
+                    </li>
+                </ul>
+
+                <ul class="nav navbar-nav" *ngIf="identity">
+                    <li>
+                        <a class="navbar-brand">{{identity.first_name+' '+identity.last_name}}</a>
+                    </li>
+                    <li>
+                        <a class="navbar-brand">Salir</a>
                     </li>
                 </ul>
 
