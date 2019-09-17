@@ -1,5 +1,5 @@
 import { Component, OnInit} from '@angular/core';
-import { Router, ActivatedRoute, Params} from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { User } from '../../models/user';
 import { UserService } from '../../services/user.service';
 
@@ -17,15 +17,16 @@ export class LoginComponent implements OnInit {
 
 
   constructor(
-      private _userService: UserService
+      private _userService: UserService,
+    private _route: ActivatedRoute,
+      private _router: Router,
   ) {
       this.user = new User(1,'pepe','salinas','pepe@gmail.com','pepe123');
   }
 
   ngOnInit() {
     console.log('sucessfully');
-    let user=this._userService.getIdentity();
-    console.log(user.first_name);
+    this.logout();
   }
 
   onSubmit(form){
@@ -56,5 +57,25 @@ export class LoginComponent implements OnInit {
     );
   }
 
+  logout(){
+
+      this._route.params.subscribe(params => {
+
+          let logout =+params['sure'];
+
+          if(logout==1){
+              localStorage.removeItem('identity');
+              localStorage.removeItem('token');
+
+              this.identity=null;
+              this.token=null;
+
+              //redireccion
+              this._router.navigate(['home']);
+          }
+
+      })
+
+  }
 
 }

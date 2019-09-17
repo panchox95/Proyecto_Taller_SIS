@@ -14,6 +14,11 @@
     <header id="header">
         <nav class="navbar navbar-dark bg-primary">
             <a href="#" class="navbar-brand">Domotica</a>
+            <ul class="nav navbar-nav">
+                <li>
+                    <a [routerLink]="['']" class="navbar-brand">Inicio</a>
+                </li>
+            </ul>
 
             <div class="navbar-nav rounded-right">
                 <ul class="nav navbar-nav" *ngIf="!identity">
@@ -21,7 +26,7 @@
                         <a [routerLink]="['register']" class="navbar-brand">Registrate</a>
                     </li>
                     <li>
-                        <a [routerLink]="['login']" class="navbar-brand">Inicio</a>
+                        <a [routerLink]="['login']" class="navbar-brand">Login</a>
                     </li>
                 </ul>
 
@@ -30,7 +35,7 @@
                         <a class="navbar-brand">{{identity.first_name+' '+identity.last_name}}</a>
                     </li>
                     <li>
-                        <a class="navbar-brand">Salir</a>
+                        <a [routerLink]="{'logout',1}" class="navbar-brand">Salir</a>
                     </li>
                 </ul>
 
