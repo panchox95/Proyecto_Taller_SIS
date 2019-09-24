@@ -16,3 +16,5 @@ Route::get('/', function () {
 });
 Route::get('/api/login','LoginController@login');
 Route::post('/api/registro','RegistroController@registro');
+Route::post('/api/producto','ProductoController@index');
+
