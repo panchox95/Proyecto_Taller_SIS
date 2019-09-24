@@ -15,4 +15,9 @@ class ProductoController extends Controller
             'status'=>'succes'
         ),200);
     }
+
+    public function show($id){
+        $producto= Product::find($id)->load('user');
+        return response()->json(array('producto'=> $producto,'status'=>'succes' ),200);
+    }
 }
