@@ -19,7 +19,8 @@ Route::post('/api/registro','RegistroController@registro');
 
 //Productos
 //Mostrar todos los productos
-Route::post('/api/producto','ProductoController@index');
+Route::get('/api/producto','ProductoController@index');
 //Mostrar uhn producto en especifico por el id
-Route::post('/api/producto','ProductoController@show');
-
+Route::get('/api/producto','ProductoController@show');
+//Agregar producto
+Route::post('/api/producto','ProductoController@store')->middleware('Jwt');
