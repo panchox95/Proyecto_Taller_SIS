@@ -35,6 +35,7 @@ class SocialAuthController extends Controller
 public function authAndRedirect($user){
     Auth::login($user);
 
-    return redirect()->to('/home#')
+    //Faltaba punto y coma
+    return redirect()->to('/home#');
 }
 }
