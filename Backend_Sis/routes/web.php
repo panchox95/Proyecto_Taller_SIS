@@ -17,7 +17,7 @@ Route::get('/', function () {
 Route::post('/api/login','LoginController@login');
 Route::post('/api/registro','RegistroController@registro');
 
-//Productos
+//PRODUCTOS
 //Mostrar todos los productos
 Route::get('/api/producto','ProductoController@index'); //RUTA JEFF
 //esta paginado revisar como se devuelve la paginacion para mostrar los datos, solo se muestral los objetos con estado activo
@@ -34,3 +34,21 @@ Route::put('/api/eliminarproducto/{id}','ProductosController@eliminarProducto');
 
 //modificar un producto 
 Route::put('/api/modificarproducto/{id}','ProductosController@modificarProducto');
+
+//OFERTAS
+//CREAR
+Route::post('/api/crearoferta/{id}','OfertassController@crearOferta');
+//BORRAR
+Route::put('/api/borraroferta/{id}','OfertassController@borrarOferta');
+//Modificar
+Route::put('/api/modificaroferta/{id}','OfertassController@modificarOferta');
+//Ver
+Route::get('/api/veroferta','OfertassController@verOferta');
+//Lista
+Route::get('/api/listaoferta','OfertassController@listaOferta');
+
+//PERFIL
+//Ver
+Route::post('/api/verperfil','PerfilController@verPerfil')->middleware('Jwt');
+//Modificar
+Route::post('/api/modificarperfil','PerfilController@modificarPerfil')->middleware('Jwt');

@@ -37,4 +37,7 @@ class Producto extends Model
         return Producto::where('id_producto',$id)
         ->update(["nombre"=> $params->nombre,"marca"=>$params->marca,"cantidad"=>$params->cantidad,"precio"=> $params->precio,"descripcion"=> $params->descripcion]);
     }
+    public function verOferta($id){
+        return  Producto::select('*')->where('id_producto','=',$id)->first();
+    }
 }

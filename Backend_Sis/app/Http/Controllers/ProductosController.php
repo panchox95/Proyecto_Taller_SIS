@@ -80,8 +80,9 @@ class ProductosController extends Controller
             $code = 400;
         }
         else{
+            $producto = new ProductoBL;
             if($producto->existeProductoID($id) == 1){
-                $producto = new ProductoBL;
+                
                 $code=200;
                 $data=$producto->modificarProducto($params,$id);
             }
@@ -95,5 +96,18 @@ class ProductosController extends Controller
         }
         return response()->json($data,$code);
     }
-
+    public function verProducto($id_producto){
+        $producto=new ProductoBl;
+        if($producto->existeProductoID($id_producto) == 1){
+            $data=$producto->verProducto($id_producto);
+            $code=200;
+        }else{
+            $data=array(
+                'mensaje'=>'Producto Inexistente',
+                'code'=>404,
+                'status'=>'ERROR',
+            );
+        }
+        return response()->json($data,$code);
+    }
 }

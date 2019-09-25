@@ -49,5 +49,9 @@ class ProductoBL
         return $data;
     }
 
-
+    public function verProducto($id_producto){
+        $producto = new Producto;
+        $data = $producto->verProducto($id_producto);
+        return $data;
+    }
 }
