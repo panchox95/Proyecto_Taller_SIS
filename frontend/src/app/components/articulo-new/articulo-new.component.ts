@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params} from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { Articulo } from '../../models/articulo';
-import {identity} from "rxjs/internal-compatibility";
+import { identity } from 'rxjs/internal-compatibility';
 
 @Component({
   selector: 'app-articulo-new',
