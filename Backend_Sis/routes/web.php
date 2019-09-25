@@ -14,13 +14,15 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/api/login','LoginController@login');
+Route::post('/api/login','LoginController@login');
 Route::post('/api/registro','RegistroController@registro');
 
 //Productos
 //Mostrar todos los productos
-Route::get('/api/producto','ProductoController@index');
+Route::get('/api/producto','ProductoController@index'); //RUTA JEFF
+Route::get('/api/listaproducto','ProductosController@listaProductos'); //RUTA PANCHO
 //Mostrar uhn producto en especifico por el id
 //Route::get('/api/producto','ProductoController@show');
 //Agregar producto
-Route::post('/api/producto','ProductoController@store');//->middleware('Jwt');
+Route::post('/api/producto','ProductoController@store');//->middleware('Jwt'); //RUTA JEFF
+Route::post('/api/crearproducto','ProductosController@crearProducto'); //RUTA PANCHO
