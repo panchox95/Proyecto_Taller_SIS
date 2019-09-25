@@ -44,6 +44,9 @@
                 <li>
                     <a [routerLink]="['']" ><span class="glyphicon glyphicon-home"></span> Inicio</a>
                 </li>
+                <li *ngIf="identity">
+                    <a [routerLink]="['crear-articulo']" ><span class="glyphicon glyphicon-book"></span> Añadir Articulo</a>
+                </li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right" *ngIf="!identity">

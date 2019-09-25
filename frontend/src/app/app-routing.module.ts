@@ -4,6 +4,9 @@ import { ModuleWithProviders} from '@angular/compiler/src/core';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { DefaultComponent } from './components/default/default.component';
+import { ArticuloNewComponent } from './components/articulo-new/articulo-new.component';
+import { ArticuloEditComponent } from './components/articulo-edit/articulo-edit.component';
+import { ArticuloDetailComponent } from './components/articulo-detail/articulo-detail.component';
 
 
 const appRoutes: Routes = [
@@ -13,6 +16,9 @@ const appRoutes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'logout/:sure',component: LoginComponent },
     { path: 'register', component: RegisterComponent },
+    { path: 'crear-articulo', component: ArticuloNewComponent },
+    { path: 'editar-articulo/:id',component: ArticuloEditComponent },
+    { path: 'articulo/:id', component: ArticuloDetailComponent },
     { path: '**', component: DefaultComponent },
 ];
 

@@ -8,13 +8,19 @@ import { RegisterComponent } from './components/register/register.component';
 import { routing, appRoutingProviders } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { DefaultComponent } from './components/default/default.component';
+import { ArticuloNewComponent } from './components/articulo-new/articulo-new.component';
+import { ArticuloEditComponent } from './components/articulo-edit/articulo-edit.component';
+import { ArticuloDetailComponent } from './components/articulo-detail/articulo-detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-      DefaultComponent
+      DefaultComponent,
+      ArticuloNewComponent,
+      ArticuloEditComponent,
+      ArticuloDetailComponent
   ],
   imports: [
       BrowserModule,
