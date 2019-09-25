@@ -19,6 +19,11 @@ class ProductoBL
         $producto = new Producto;
         return $producto->existeProducto($nombre,$marca);
     }
+    
+    public function existeProductoID($id){
+        $producto = new Producto;
+        return $producto->existeProductoID($id);
+    }
     public function listaProductos(){
         $producto = new Producto;
         $lista = $producto->listadoProductos();
@@ -30,5 +35,19 @@ class ProductoBL
         }
         return $data;
     }
+
+    public function eliminarProducto($id){
+        $producto = new Producto;
+        $producto->eliminarProducto($id);
+        return array('status' => 'SUCCESS','mensaje'=>'Producto Eliminado');
+    }
+
+    public function modificarProducto($params,$id){
+        $producto = new Producto;
+        $producto = $producto->modificarProducto($params,$id);
+        $data = array('status' => 'SUCCESS','mensaje'=>'Modificacion Exitosa');
+        return $data;
+    }
+
 
 }

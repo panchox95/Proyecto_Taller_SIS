@@ -44,20 +44,46 @@ class ProductosController extends Controller
         return response()->json($data,$code);
     }
 
-    public function eliminar(Request $request){
-        $json = $request->all('json',null); //Recibimos el JSON enviado por el Frontend
-        $params_array  = json_decode(json_encode( $json), true ); //Parametros para la validacion
-        $params = json_decode((json_encode($json))); //Parametros para el uso
-        $validate = \Validator::make($params_array,[ // Validacion
+    public function eliminarProducto($id){
+        $producto = new ProductoBL;
+        if($producto->existeProductoID($id) == 1){
             
-        ]);
-        if($validate->fails()){  //Si la validacion falla
-            return response()-> json($validate->errors(),400);
+            $data = $producto->eliminarProducto($id);  
         }
-        else{ //Si la validacion es exitosa
-            $producto = new ProductoBL;
-            if($producto->estadoProducto($params->estado) == 1){
-                $data = $producto->crearProducto($params);    
+        else{    
+            $data=array(
+                'mensaje'=>'El producto no existe',
+                'code'=>404,
+                'status'=>'ERROR',
+            );
+        }    
+        return $data;
+    }
+
+    public function modificarProducto($id,Request $request){
+        $json=$request->all('json',null);
+        $params_array  = json_decode(json_encode( $json), true );
+        
+        $params=json_decode((json_encode($json)));
+        //return $params_array;
+        //Validamos
+        $validate= \Validator::make(
+            $params_array,[
+                'nombre'=>'required',
+                'marca'=>'required',
+                'cantidad'=>'required',
+                'precio'=>'required',
+                'descripcion'=>'required',
+            ]);
+        if($validate->fails()){
+            $data = $validate->errors();
+            $code = 400;
+        }
+        else{
+            if($producto->existeProductoID($id) == 1){
+                $producto = new ProductoBL;
+                $code=200;
+                $data=$producto->modificarProducto($params,$id);
             }
             else{    
                 $data=array(
@@ -65,21 +91,9 @@ class ProductosController extends Controller
                     'code'=>404,
                     'status'=>'ERROR',
                 );
-            }        
+            }    
         }
-        return response()->json($data);
-    }
-
-    public function modificar(Request $request){
-        $json = $request->all('json',null); //Recibimos el JSON enviado por el Frontend
-        $params_array  = json_decode(json_encode( $json), true ); //Parametros para la validacion
-        $params = json_decode((json_encode($json))); //Parametros para el uso
-        $validate = \Validator::make($params_array,[ // Validacion
-            
-        ]);
-        if($validate->fails()){  //Si la validacion falla
-            return response()-> json($validate->errors(),400);
-        }
+        return response()->json($data,$code);
     }
 
 }
