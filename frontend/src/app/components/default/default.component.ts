@@ -27,5 +27,7 @@ export class DefaultComponent implements OnInit {
         console.log('default.component cargado satisfactoriamente');
     }
 
+    
+
 
 }

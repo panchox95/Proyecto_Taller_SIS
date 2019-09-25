@@ -31,9 +31,10 @@
         </nav>
         -->
 
-    <div class="navbar navbar-default">
+    <div class="navbar navbar-inverse">
         <div class="navbar-header">
             <a class="navbar-brand">
+                <span class="glyphicon glyphicon-globe"></span>
                 Domotica
             </a>
         </div>
@@ -41,16 +42,16 @@
         <div class="collapse navbar-collapse" id="menu">
             <ul class="nav navbar-nav">
                 <li>
-                    <a [routerLink]="['']" >Home</a>
+                    <a [routerLink]="['']" ><span class="glyphicon glyphicon-home"></span> Inicio</a>
                 </li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right" *ngIf="!identity">
                 <li>
-                    <a [routerLink]="['register']" >Register</a>
+                    <a [routerLink]="['register']" ><span class="glyphicon glyphicon-user glyphicon"></span> Registro</a>
                 </li>
                 <li>
-                    <a [routerLink]="['login']" >Login</a>
+                    <a [routerLink]="['login']" ><span class="glyphicon glyphicon-log-in"></span> Iniciar sesión</a>
                 </li>
             </ul>
 
