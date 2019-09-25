@@ -34,18 +34,20 @@ Route::put('/api/eliminarproducto/{id}','ProductosController@eliminarProducto');
 
 //modificar un producto 
 Route::put('/api/modificarproducto/{id}','ProductosController@modificarProducto');
+//Ver
+Route::get('/api/verproducto/{id}','ProductosController@verProducto');
 
 //OFERTAS
 //CREAR
-Route::post('/api/crearoferta/{id}','OfertassController@crearOferta');
+Route::post('/api/crearoferta/{id}','OfertasController@crearOferta');
 //BORRAR
-Route::put('/api/borraroferta/{id}','OfertassController@borrarOferta');
+Route::put('/api/borraroferta/{id}','OfertasController@borrarOferta');
 //Modificar
-Route::put('/api/modificaroferta/{id}','OfertassController@modificarOferta');
+Route::put('/api/modificaroferta/{id}','OfertasController@modificarOferta');
 //Ver
-Route::get('/api/veroferta','OfertassController@verOferta');
+Route::get('/api/veroferta/{id}','OfertasController@verOferta');
 //Lista
-Route::get('/api/listaoferta','OfertassController@listaOferta');
+Route::get('/api/listaoferta','OfertasController@listaOferta');
 
 //PERFIL
 //Ver
