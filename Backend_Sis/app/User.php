@@ -61,5 +61,7 @@ class User extends Authenticatable
     public function datosUsuario($email,$pwd){
         return User::where(array('email'=>$email,'password'=>$pwd))->first();
     }
-    
+    public function getIDUsuario($email){
+        return User::select('id_user')->where(array('email'=>$email))->first();
+    }
 }
