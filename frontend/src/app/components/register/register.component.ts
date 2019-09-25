@@ -24,7 +24,7 @@ export class RegisterComponent implements OnInit {
       private _userService: UserService
   ) {
 
-    this.user = new User(1,'','','','');
+    this.user = new User('','','','');
 
   }
 
@@ -32,16 +32,16 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(form){
-    // console.log(this.user);
+    console.log(this.user);
     // console.log(this._userService.pruebas());
       this._userService.register(this.user).subscribe(
           response => {
-
+            console.log(response);
             if(response.status=='success'){
               // vaciar el formulario
                 this.status = response.status;
 
-                this.user = new User(1,'','','','');
+                this.user = new User('','','','');
                 form.reset();
 
             } else{

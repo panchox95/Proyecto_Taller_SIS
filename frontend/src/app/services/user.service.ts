@@ -22,24 +22,27 @@ export class UserService {
     }
 
     register(user): Observable<any>{
+        
         let json=JSON.stringify(user);
-        let params='json'+json;
-        let headers= new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
+        console.log(json+ 'algo');
 
-        return this._http.post(this.url+'registro', params, { headers: headers });
+        let headers= new HttpHeaders().set('Content-Type', 'application/json');
+
+        return this._http.post(this.url+'registro', json, { headers: headers });
     }
 
     singup(user, gettoken=null): Observable<any>{
-
+        
         if(gettoken != null){
             user.gettoken='true';
         }
-
+        
         let json=JSON.stringify(user);
-        let params='json'+json;
-        let headers= new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
+        console.log(json);
+        
+        let headers= new HttpHeaders().set('Content-Type', 'application/json');
 
-        return this._http.post(this.url+'login', params, { headers: headers });
+        return this._http.post(this.url+'login', json, { headers: headers });
     }
 
     getIdentity(){
