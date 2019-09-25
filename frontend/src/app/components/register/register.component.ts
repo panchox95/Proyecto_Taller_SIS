@@ -20,7 +20,7 @@ export class RegisterComponent implements OnInit {
       private _router: Router,
       private _userService: UserService
   ) {
-    this.user = new User(1,'','','','');
+    this.user = new User('','','','');
   }
 
   ngOnInit() {
@@ -36,7 +36,7 @@ export class RegisterComponent implements OnInit {
               //vaciar el formulario
                 this.status = response.status;
 
-                this.user = new User(1,'','','','');
+                this.user = new User('','','','');
                 form.reset();
 
             }else{

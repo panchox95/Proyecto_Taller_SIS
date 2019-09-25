@@ -14,11 +14,6 @@
 
     <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)" class="col-md-5">
         <p>
-            <label>ID:</label>
-            <input type="text" name="id_user" #id_user="ngModel" [(ngModel)]="user.id_user" class="form-control" placeholder="ID" required/>
-
-        </p>
-        <p>
             <label>Nombre:</label>
             <input type="text" name="first_name" #first_name="ngModel" [(ngModel)]="user.first_name" class="form-control" placeholder="Nombre" required/>
             <span *ngIf="!first_name.valid && first_name.touched">
