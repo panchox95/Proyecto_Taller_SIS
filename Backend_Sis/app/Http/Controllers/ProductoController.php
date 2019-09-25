@@ -3,23 +3,23 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Producto;
 class ProductoController extends Controller
 {
     //mostrar
 
     public function index(){
-        $productos = Producto::all();
+        $producto = Producto::all();
         return response()->json(array(
-            'productos'=>$productos,
+            'producto'=>$producto,
             'status'=>'succes'
         ),200);
     }
-
-    public function show($id){
-        $producto= Product::find($id)->load('user');
-        return response()->json(array('producto'=> $producto,'status'=>'succes' ),200);
-    }
+//No funciona bien porsia
+    /*public function show($id){
+       $producto= Product::find($id);
+      return response()->json(array('producto'=> $producto,'status'=>'succes' ),200);
+    }*/
 
     public function store(Request $request){
 
@@ -35,8 +35,8 @@ class ProductoController extends Controller
       ]);
       if($validate->fails()){
               return response()-> json($validate->errors(),400);
-       }
 
+            }
 
        //Guardar
        $producto=new Producto();
@@ -44,7 +44,7 @@ class ProductoController extends Controller
        $producto->marca= $params->marca;
        $producto->cantidad= $params->cantidad;
        $producto->precio= $params->precio;
-       $producto->status= $params->status;
+       $producto->estado= $params->estado;
        $producto->save();
 
        $data=array(
@@ -52,6 +52,8 @@ class ProductoController extends Controller
         'status'=>'success',
         'code'=>200,
        );
+
+
        return response()->json($data,200);
 
    } // enclass
