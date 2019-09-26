@@ -1,11 +1,11 @@
 export class Articulo {
     constructor(
-        public id_articulo: number,
-        public title: string,
-        public description: string,
-        public price: number,
-        public status: string,
-        public createdAt: any,
-        public updatedAt: any
+        //public id_articulo: number,
+        public nombre: string,
+        public marca: string,
+        public cantidad: number,
+        public precio: number,
+        public descripcion: string,
+
     ){}
 }

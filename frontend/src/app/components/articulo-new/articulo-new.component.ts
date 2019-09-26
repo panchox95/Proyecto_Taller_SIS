@@ -3,12 +3,13 @@ import { Router, ActivatedRoute, Params} from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { Articulo } from '../../models/articulo';
 import { identity } from 'rxjs/internal-compatibility';
+import { ArticuloService } from '../../services/articulo.service';
 
 @Component({
   selector: 'app-articulo-new',
   templateUrl: './articulo-new.component.html',
   styleUrls: ['./articulo-new.component.css'],
-    providers: [UserService]
+    providers: [UserService, ArticuloService]
 })
 export class ArticuloNewComponent implements OnInit {
 
@@ -16,11 +17,13 @@ export class ArticuloNewComponent implements OnInit {
   public identity;
   public token;
   public articulo: Articulo;
+  public status_articulo: string;
 
   constructor(
       private _route: ActivatedRoute,
       private _router: Router,
-      private _userService: UserService
+      private _userService: UserService,
+      private _articuloService: ArticuloService
   ) {
     this.page_title='Crear nuevo articulo';
     this.identity=this._userService.getIdentity();
@@ -31,12 +34,32 @@ export class ArticuloNewComponent implements OnInit {
     if(this.identity==null){
       this._router.navigate(["/login"]);
     }else{
-      this.articulo=new Articulo(1,'','',1,'',null,null);
+      this.articulo=new Articulo('','',0,0,'');
     }
   }
 
   onSubmit(form){
-    console.log(this.articulo);
+    this._articuloService.create(this.token,this.articulo).subscribe(
+        response=>{
+
+          if(response.status=='success'){
+
+              this.articulo=response.articulo;
+              this.status_articulo='success';
+              this._router.navigate(['/home']);
+
+          }else{
+
+            this.status_articulo='error';
+
+          }
+
+
+        },error =>{
+          console.log(<any>error);
+          this.status_articulo='error';
+        }
+    );
   }
 
 }
