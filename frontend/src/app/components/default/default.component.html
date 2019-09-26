@@ -52,3 +52,20 @@
   </div>
 </div>
 
+<div class="loading" *ngIf="!articulo">
+  Cargando...
+</div>
+
+<div class="col-md-12" *ngIf="articulo">
+
+  <h2>{{title}}</h2>
+
+  <div *ngFor="let art of articulo">
+    {{art.nombre}}
+    {{art.marca}}
+    {{art.cantidad}}
+    {{art.precio}}
+    {{art.descripcion}}
+  </div>
+
+</div>

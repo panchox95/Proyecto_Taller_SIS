@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
 import { GLOBAL } from './global';
 import { Articulo } from '../models/articulo';
+import {headersToString} from "selenium-webdriver/http";
 
 
 @Injectable()
@@ -25,5 +26,10 @@ export class ArticuloService {
         let headers =new HttpHeaders().set('Content-Type','application/json').set('Authorization',token);
 
         return this._http.post(this.url+'crearproducto',json, {headers: headers});
+    }
+
+    getArticulos(): Observable<any>{
+        let headers =new HttpHeaders().set('Content-Type','application/json');
+        return this._http.get(this.url+'articulo', {headers: headers});
     }
 }
