@@ -18,9 +18,8 @@ class JwtMiddleware
         $jwtAuth = new JwtAuth();
         
         try{
-            $hash = $request->header('Authorization',null);
-            $aux = explode(' ',$hash);
-            $jwt = $aux[1];
+            $jwt = $request->header('Authorization',null);
+            
         }
         catch(\ErrorException $e){
             $data = "No existe un token";
