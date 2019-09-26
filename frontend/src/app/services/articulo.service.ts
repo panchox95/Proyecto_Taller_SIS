@@ -22,9 +22,8 @@ export class ArticuloService {
     create(token, articulo: Articulo): Observable<any>{
 
         let json=JSON.stringify(articulo);
-        let params ="json="+json;
-        let headers =new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded').set('Autorization',token);
+        let headers =new HttpHeaders().set('Content-Type','application/json').set('Autorization',token);
 
-        return this._http.post(this.url+'crearproducto',params, {headers: headers});
+        return this._http.post(this.url+'crearproducto',json, {headers: headers});
     }
 }
