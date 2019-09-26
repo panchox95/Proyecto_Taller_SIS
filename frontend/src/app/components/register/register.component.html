@@ -15,6 +15,7 @@
     <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)" class="col-md-5">
         <p>
             <label>Nombre:</label>
+            <
             <input type="text" name="first_name" #first_name="ngModel" [(ngModel)]="user.first_name" class="form-control" placeholder="Nombre" required/>
             <span *ngIf="!first_name.valid && first_name.touched">
                 El nombre es obligatorio
@@ -42,7 +43,9 @@
             </span>
         </p>
 
+
         <input type="submit" value="Registrarme" class="btn btn-primary" [disabled]="!registerForm.form.valid"/>
+
     </form>
 
 </div>

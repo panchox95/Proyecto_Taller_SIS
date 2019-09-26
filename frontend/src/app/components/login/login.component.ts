@@ -1,8 +1,11 @@
+// @ts-ignore
 import { Component, OnInit} from '@angular/core';
+// @ts-ignore
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { User } from '../../models/user';
 import { UserService } from '../../services/user.service';
 
+// @ts-ignore
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
