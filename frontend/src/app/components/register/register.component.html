@@ -4,18 +4,17 @@
         <h1>Registro</h1>
     </div>
 
-    <div class="alert alert-success" *ngIf="status == 'success' ">
+    <div class="alert alert-success" *ngIf="status == 'SUCCESS' ">
         El registro se ha completado satisfactoriamente, <a [routerLink]="['/login']">Identificate aquí</a>
     </div>
 
-    <div class="alert alert-danger" *ngIf="status == 'error' ">
+    <div class="alert alert-danger" *ngIf="status == 'ERROR' ">
         Ohhh Nooo!! Error en el registro
     </div>
 
     <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)" class="col-md-5">
         <p>
             <label>Nombre:</label>
-            <
             <input type="text" name="first_name" #first_name="ngModel" [(ngModel)]="user.first_name" class="form-control" placeholder="Nombre" required/>
             <span *ngIf="!first_name.valid && first_name.touched">
                 El nombre es obligatorio

@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
     private _route: ActivatedRoute,
       private _router: Router,
   ) {
-      this.user = new User('','','','');
+      this.user = new User('','','','','');
   }
 
   ngOnInit() {

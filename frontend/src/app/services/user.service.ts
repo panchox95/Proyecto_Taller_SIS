@@ -22,7 +22,7 @@ export class UserService {
     }
 
     register(user): Observable<any>{
-        
+
         let json=JSON.stringify(user);
         console.log(json+ 'algo');
 
@@ -31,15 +31,25 @@ export class UserService {
         return this._http.post(this.url+'registro', json, { headers: headers });
     }
 
+    update(user): Observable<any>{
+
+      let json=JSON.stringify(user);
+      console.log(json+ 'algo');
+
+      let headers= new HttpHeaders().set('Content-Type', 'application/json');
+
+      return this._http.post(this.url+'actualizacion', json, { headers: headers });
+    }
+
     singup(user, gettoken=null): Observable<any>{
-        
+
         if(gettoken != null){
             user.gettoken='true';
         }
-        
+
         let json=JSON.stringify(user);
         console.log(json);
-        
+
         let headers= new HttpHeaders().set('Content-Type', 'application/json');
 
         return this._http.post(this.url+'login', json, { headers: headers });

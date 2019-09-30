@@ -22,7 +22,7 @@ const appRoutes: Routes = [
     { path: 'crear-articulo', component: ArticuloNewComponent },
     { path: 'editar-articulo/:id',component: ArticuloEditComponent },
     { path: 'articulo/:id', component: ArticuloDetailComponent },
-    { path: 'perfil/:id', component: PerfilComponent },
+    { path: 'perfil', component: PerfilComponent },
     { path: '**', component: DefaultComponent },
 ];
 

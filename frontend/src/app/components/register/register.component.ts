@@ -24,7 +24,7 @@ export class RegisterComponent implements OnInit {
       private _userService: UserService
   ) {
 
-    this.user = new User('','','','');
+    this.user = new User('','','','','');
 
   }
 
@@ -37,15 +37,15 @@ export class RegisterComponent implements OnInit {
       this._userService.register(this.user).subscribe(
           response => {
             console.log(response);
-            if(response.status=='success'){
+            if(response.status=='SUCCESS'){
               // vaciar el formulario
                 this.status = response.status;
 
-                this.user = new User('','','','');
+                this.user = new User('','','','','');
                 form.reset();
 
             } else{
-              this.status = 'Error';
+              this.status = 'ERROR';
             }
           },
         // tslint:disable-next-line:no-shadowed-variable

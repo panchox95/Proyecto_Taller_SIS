@@ -5,12 +5,12 @@
     </div>
     <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)" class="col-md-5">
         <p>
-            <label>Email:</label>
-            <input type="email" name="email" #email="ngModel" [(ngModel)]="user.email" class="form-control" placeholder="example@email.com" required/>
-            <span *ngIf="!email.valid && email.touched">
+      <label>Email:</label>
+      <input type="email" name="email" #email="ngModel" [(ngModel)]="user.email" class="form-control" placeholder="example@email.com" required/>
+      <span *ngIf="!email.valid && email.touched">
                 El email no es valido
             </span>
-        </p>
+    </p>
 
         <p>
             <label>Contraseña:</label>
