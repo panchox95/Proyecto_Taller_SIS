@@ -32,25 +32,58 @@
   </a>
 </div>
 
-
-<div class="row">
-
-  <div class="col-sm-6 col-md-4">
-
-    <div class="thumbnail">
-        <H2>Promoción de Productos</H2>
-      <img src="../../../assets/img/producto.png" alt="...">
-      <div class="caption">
-        <h3>Producto: </h3>
-        <p>Descripción:</p>
-        <p><a href="#" class="btn btn-primary" role="button">Ver más</a> </p>
-
-
-      </div>
-
-    </div>
+<div class="container-fluid">
+  <div class="title">
+  <H2>Productos <span class="label label-success">Ofertas</span></H2>
   </div>
-</div>
+
+  <div class="row">
+  
+  <div class="col-xs-6 col-md-3">
+  <div class="thumbnail">
+  <img src="../../../assets/img/producto.png" alt="Boats at Phi Phi, Thailand">
+  <div class="caption">
+  <p>Etizzle shiznit fo shizzle sizzle augue hendrerizzle accumsizzle. Gizzle izzle est. Vivamizzle hizzle dolor, sure vitae, yippiyo id, ultrices izzle, sheezy.</p>
+  <p><a href="#" class="btn btn-primary" role="button">Ver</a></p>
+  </div>
+  </div>
+  </div>
+  
+  <div class="col-xs-6 col-md-3">
+  <div class="thumbnail">
+  <img src="../../../assets/img/producto.png" alt="Resort at Boracay, Philippines">
+  <div class="caption">
+  <p>Vestibulum ante pimpin' primizzle in shut the shizzle up orci luctizzle gangsta yo mamma posuere cubilia Break yo neck, yall; Mammasay mammasa mamma oo sa dolor.</p>
+  <p><a href="#" class="btn btn-primary" role="button">Ver</a></p>
+  </div>
+  </div>
+  </div>
+  
+  <div class="col-xs-6 col-md-3">
+  <div class="thumbnail">
+  <img src="../../../assets/img/producto.png" alt="Rob Roy Glacier near Wanaka, New Zealand">
+  <div class="caption">
+  <p>Integizzle faucibus. Pot pharetra blandit quizzle. Fizzle rutrizzle aliquizzle orci. Go to hizzle facilisis.</p>
+  <p><a href="#" class="btn btn-primary" role="button">Ver</a></p>
+  </div>
+  </div>
+  </div>
+  
+  <div class="col-xs-6 col-md-3">
+  <div class="thumbnail">
+  <img src="../../../assets/img/producto.png" alt="Views near Rob Roy Glacier">
+  <div class="caption">
+  <p>Lorizzle ipsizzle dolor sizzle amizzle, ma nizzle adipiscing pot. Izzle sapien velit, fizzle get down get down, suscipit quis, crackalackin vizzle, gangsta.</p>
+  <p><a href="#" class="btn btn-primary" role="button">Ver</a></p>
+  </div>
+  </div>
+  </div>
+  
+  
+  </div>
+  
+  </div>
+
 
 <div class="loading" *ngIf="!articulo">
   Cargando...
@@ -74,7 +107,7 @@
     <td>{{art.precio}}</td>
     <td>{{art.descripcion}}</td>
     <td>
-      <a [routerLink]="['editar-articulo', articulo.id]" class="btn btn-warning">Editar</a>
+     <!-- <a [routerLink]="['editar-articulo', articulo.id]" class="btn btn-warning">Editar</a>-->
       <a href="#" class="btn btn-danger">Eliminar</a>
     </td>
   </tr>
