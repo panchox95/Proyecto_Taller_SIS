@@ -16,6 +16,7 @@ import { ArticuloNewComponent } from './components/articulo-new/articulo-new.com
 import { ArticuloEditComponent } from './components/articulo-edit/articulo-edit.component';
 import { ArticuloDetailComponent } from './components/articulo-detail/articulo-detail.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
+import { OfertaDetailComponent } from './components/oferta-detail/oferta-detail.component';
 
 // @ts-ignore
 @NgModule({
@@ -27,7 +28,8 @@ import { PerfilComponent } from './components/perfil/perfil.component';
       ArticuloNewComponent,
       ArticuloEditComponent,
       ArticuloDetailComponent,
-      PerfilComponent
+      PerfilComponent,
+      OfertaDetailComponent
   ],
   imports: [
       BrowserModule,
