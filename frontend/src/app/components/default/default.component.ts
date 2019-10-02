@@ -16,8 +16,16 @@ export class DefaultComponent implements OnInit {
 
     public title: string;
     public articulo: Array<Articulo>;
+    public total;
+    public per_page;
+    public current_page;
+    public last_page;
+    public next_page_url;
+    public prev_page_url;
+    public rol;
 
-    constructor(
+
+  constructor(
         private _route: ActivatedRoute,
         private _router: Router,
         private _userService: UserService,
@@ -29,6 +37,41 @@ export class DefaultComponent implements OnInit {
 
     ngOnInit() {
         console.log('default.component cargado satisfactoriamente');
+        this._route.params.subscribe(
+          params =>{
+            let page = +params['page'];
+
+            // console.log(this.rol);
+            this._articuloService.getArticulos().subscribe(
+              response =>{
+                //console.log(response.users);
+                //  console.log(this.rol)
+
+
+                this.total = response.articulo.total;
+                this.per_page = response.articulo.per_page;
+                this.current_page = response.articulo.current_page;
+                this.last_page = response.articulo.last_page;
+                this.next_page_url = response.articulo.next_page_url;
+                this.prev_page_url = response.articulo.prev_page_url;
+                this.articulo = response.articulo.data;
+
+                if(page>this.last_page){
+                  console.log(page);
+                  console.log(this.last_page);
+                  this._router.navigate(['/lista',this.last_page]);
+                }
+              },
+              error => {
+                console.log(<any>error);
+              }
+            );
+
+          }
+
+        );
+
+        /*
         this._articuloService.getArticulos().subscribe(
           response=>{
               if(response.status=='success'){
@@ -39,10 +82,10 @@ export class DefaultComponent implements OnInit {
             error=>{
               console.log(error);
             }
-        );
+        );*/
     }
 
-    
+
 
 
 }
