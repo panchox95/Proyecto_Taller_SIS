@@ -60,7 +60,7 @@
 
             <ul class="nav navbar-nav" *ngIf="identity">
                 <li>
-                    <a href="#">{{identity.first_name+' '+identity.last_name}}</a>
+                    <a [routerLink]="['perfil']" >{{identity.last_name+' '+identity.last_name}}</a>
                 </li>
                 <li>
                     <a [routerLink]="['logout',1]" class="navbar-brand">

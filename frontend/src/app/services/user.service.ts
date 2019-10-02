@@ -17,54 +17,39 @@ export class UserService {
         this.url=GLOBAL.url;
     }
 
-    pruebas(){
-        return "Hola mundo";
-    }
-
     register(user): Observable<any>{
 
         let json=JSON.stringify(user);
-        console.log(json+ 'algo');
-
         let headers= new HttpHeaders().set('Content-Type', 'application/json');
-
         return this._http.post(this.url+'registro', json, { headers: headers });
     }
 
     update(user): Observable<any>{
 
       let json=JSON.stringify(user);
-      console.log(json+ 'algo');
-
       let headers= new HttpHeaders().set('Content-Type', 'application/json');
-
-      return this._http.post(this.url+'actualizacion', json, { headers: headers });
+      return this._http.post(this.url+'modificarperfil', json, { headers: headers });
     }
 
-    singup(user, gettoken=null): Observable<any>{
+    signup(user, gettoken=null): Observable<any>{
 
         if(gettoken != null){
             user.gettoken='true';
         }
-
         let json=JSON.stringify(user);
         console.log(json);
-
         let headers= new HttpHeaders().set('Content-Type', 'application/json');
-
         return this._http.post(this.url+'login', json, { headers: headers });
     }
 
     getIdentity(){
 
         let identity=JSON.parse(localStorage.getItem('identity'));
-
         if(identity != 'undefined'){
             this.identity=identity;
         }else{
             this.identity=null;
         }
-
         return this.identity;
 
     }
@@ -72,13 +57,16 @@ export class UserService {
     getToken(){
 
         let token=localStorage.getItem('token');
-
         if(token != 'undefined'){
             this.token=token;
         }else{
             this.token=null;
         }
-
         return this.token;
     }
+  getDatos(token): Observable<any>{
+    let headers = new HttpHeaders()
+      .set('Authorization','bearer '+token);
+    return this._http.get(this.url+'verperfil',{headers: headers})
+  }
 }

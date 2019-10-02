@@ -16,10 +16,6 @@ export class ArticuloService {
         this.url = GLOBAL.url;
     }
 
-    pruebas() {
-        return "Hola mundo";
-    }
-
     create(token, articulo: Articulo): Observable<any>{
 
         let json=JSON.stringify(articulo);
@@ -31,6 +27,25 @@ export class ArticuloService {
     getArticulos(page): Observable<any>{
         let headers =new HttpHeaders().set('Content-Type','application/json');
         //return this._http.get(this.url+'articulo', {headers: headers});
-        return this._http.get(this.url+'articulo'+'?page='+page,{headers: headers})
+        return this._http.get(this.url+'listaproducto'+'?page='+page,{headers: headers})
     }
+
+  getArticulo(id): Observable<any>{
+    let headers =new HttpHeaders().set('Content-Type','application/json');
+    return this._http.get(this.url+'verproducto/'+id,{headers: headers})
+  }
+  updateArticulo(articulo, id): Observable <any>{
+    let json=JSON.stringify(articulo);
+    let headers =new HttpHeaders().set('Content-Type','application/json');
+    console.log(headers);
+    return this._http.put(this.url+'update/'+id,json,{headers: headers});
+  }
+
+  deleteUsuario(id,json): Observable <any>{
+    let headers =new HttpHeaders().set('Content-Type','application/json');
+    json = '';
+    console.log(id);
+    console.log(headers);
+    return this._http.put(this.url+'delete/'+id,json,{headers: headers});
+  }
 }

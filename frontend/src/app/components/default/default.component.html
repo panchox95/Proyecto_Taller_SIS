@@ -45,7 +45,7 @@
             <div class="thumbnail">
             <img src="../../../assets/img/producto.png" alt="Boats at Phi Phi, Thailand">
             <div class="caption">
-            <p>Etizzle shiznit fo shizzle sizzle augue hendrerizzle accumsizzle. Gizzle izzle est. Vivamizzle hizzle dolor, sure vitae, yippiyo id, ultrices izzle, sheezy.</p>
+            <p>Prueba de subida al servidor.</p>
             <p><a [routerLink]="['oferta-detail']" class="btn btn-primary" role="button">Ver</a></p>
             </div>
             </div>
@@ -55,7 +55,7 @@
             <div class="thumbnail">
             <img src="../../../assets/img/producto.png" alt="Resort at Boracay, Philippines">
             <div class="caption">
-            <p>Vestibulum ante pimpin' primizzle in shut the shizzle up orci luctizzle gangsta yo mamma posuere cubilia Break yo neck, yall; Mammasay mammasa mamma oo sa dolor.</p>
+            <p>Cargado de datos en el servidor del mateo</p>
             <p><a href="#" class="btn btn-primary" role="button">Ver</a></p>
             </div>
             </div>
@@ -65,7 +65,7 @@
             <div class="thumbnail">
             <img src="../../../assets/img/producto.png" alt="Rob Roy Glacier near Wanaka, New Zealand">
             <div class="caption">
-            <p>Integizzle faucibus. Pot pharetra blandit quizzle. Fizzle rutrizzle aliquizzle orci. Go to hizzle facilisis.</p>
+            <p>Prueba prueba de subida para ver la correctitud de los datos al almacenaje de datos para asi ver correcioness.</p>
             <p><a href="#" class="btn btn-primary" role="button">Ver</a></p>
             </div>
             </div>
@@ -75,7 +75,7 @@
             <div class="thumbnail">
             <img src="../../../assets/img/producto.png" alt="Views near Rob Roy Glacier">
             <div class="caption">
-            <p>Lorizzle ipsizzle dolor sizzle amizzle, ma nizzle adipiscing pot. Izzle sapien velit, fizzle get down get down, suscipit quis, crackalackin vizzle, gangsta.</p>
+            <p>Mas pruebas de subida asadadasdas asdasdad sadsdasdsd  asd sd ads a sd asdasdas dasd asdasdasd asd.</p>
             <p><a href="#" class="btn btn-primary" role="button">Ver</a></p>
             </div>
             </div>
@@ -93,7 +93,7 @@
 
 
 
-<div class="loading" *ngIf="!articulo">
+<div class="loading" *ngIf="!title">
   Cargando...
 </div>
 
@@ -120,6 +120,12 @@
     </td>
   </tr>
 </table>
+  <a type="button"  value="Anterior" [routerLink]="['/listaproducto',current_page-1]" class="btn btn-success" *ngIf="prev_page_url">
+    Anterior
+  </a>
+  <a type="button"  value="Siguiente" [routerLink]="['/listaproducto',current_page+1]" class="btn btn-success" *ngIf="next_page_url">
+    Siguiente
+  </a>
   <p class="pull-right">
     {{current_page}}/{{last_page}}
   </p>

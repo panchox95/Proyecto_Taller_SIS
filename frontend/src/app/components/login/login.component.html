@@ -3,6 +3,15 @@
     <div class="title-login">
         <h1>Inicio de Sesión</h1>
     </div>
+  <div class="alert alert-success" *ngIf="status == 'SUCCESS'">
+    Usuario Aceptado
+  </div>
+  <div class="alert alert-danger" *ngIf="status == 'ERROR'">
+    Usuario o Contraseña Incorrectos
+  </div>
+  <div class="alert alert-danger" *ngIf="status == 'FALTAN'">
+    Llenar Todos Los Campos,
+  </div>
     <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)" class="col-md-5">
         <p>
       <label>Email:</label>
@@ -20,7 +29,7 @@
             </span>
         </p>
 
-        <input type="submit" value="Entrar" class="btn btn-primary" [disabled]="!loginForm.form.valid" />
+        <input type="submit" value="Entrar" class="btn btn-primary"  />
     </form>
 
 </div>

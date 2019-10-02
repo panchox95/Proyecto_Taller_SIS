@@ -13,6 +13,7 @@ export class AppComponent implements OnInit, DoCheck{
 
   public identity;
   public token;
+  public nombre; apellido;
 
   constructor(
     // tslint:disable-next-line:variable-name
@@ -27,6 +28,17 @@ export class AppComponent implements OnInit, DoCheck{
   ngOnInit(){
 
     console.log('app.component cargado');
+    if(this.token != null){
+      this._userService.getDatos(this.token).subscribe(
+        response =>{
+          this.nombre = response.datos.rol;
+          this.apellido = response.datos.username;
+          //console.log(this.rol);
+        },
+        error => {
+          console.log(<any>error);
+        }
+      );}
 
   }
 

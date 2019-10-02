@@ -5,12 +5,17 @@
     </div>
 
     <div class="alert alert-success" *ngIf="status == 'SUCCESS' ">
-        El registro se ha completado satisfactoriamente, <a [routerLink]="['/login']">Identificate aquí</a>
+        El registro se ha completado satisfactoriamente,
+      <a [routerLink]="['/login']">Identificate aquí</a>
     </div>
 
     <div class="alert alert-danger" *ngIf="status == 'ERROR' ">
         Ohhh Nooo!! Error en el registro
     </div>
+
+  <div class="alert alert-danger" *ngIf="status == 'FALTAN'">
+    Llenar Todos Los Campos,
+  </div>
 
     <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)" class="col-md-5">
         <p>

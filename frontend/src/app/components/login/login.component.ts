@@ -29,35 +29,28 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('sucessfully');
+    console.log('login.component cargado correctamente!!');
     this.logout();
   }
 
   onSubmit(form){
-    console.log(this.user);
-    this._userService.singup(this.user).subscribe(
+    this._userService.signup(this.user).subscribe(
       response => {
-        //token
-        this.token=response;
-        localStorage.setItem('token',this.token);
-
-        //Objeto Ususario identificado
-          this._userService.singup(this.user, true).subscribe(
-              response => {
-                  //token
-                  this.identity=response;
-                  localStorage.setItem('identity', JSON.stringify(this.identity));
-
-              },
-              error => {
-                  console.log(<any>error);
-              }
-          )
-
-      },
-        error => {
-        console.log(<any>error);
+        //Token
+        console.log(response);
+        console.log (response.status);
+        if(response.status != 'ERROR'){
+          this.status = 'SUCCESS';
+          this.token = response.token;
+          sessionStorage.setItem('token', this.token);
+          this._router.navigate(['']);
+        } else{
+          this.status = 'ERROR';
         }
+      },
+      error => {
+        console.log(<any> error);
+      }
     );
   }
 
