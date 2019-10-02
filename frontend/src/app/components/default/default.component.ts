@@ -74,7 +74,7 @@ export class DefaultComponent implements OnInit {
         /*
         this._articuloService.getArticulos().subscribe(
           response=>{
-              if(response.status=='success'){
+              if(response.status=='SUCCESS'){
                   this.articulo=response.articulo;
               }
               console.log(response);
