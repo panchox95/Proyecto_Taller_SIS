@@ -4,9 +4,9 @@ import { ArticuloService } from 'src/app/services/articulo.service';
 import { Articulo} from '../../models/articulo'
 import { Response } from 'selenium-webdriver/http';
 @Component({
-  selector: 'app-usuario-edit',
-  templateUrl: '../usuario-new/usuario-new.component.html',
-  styleUrls: ['../usuario-new/usuario-new.component.css'],
+ selector: 'app-usuario-edit',
+  templateUrl: '../articulo-new/articulo-new.component.html',
+  styleUrls: ['../articulo-new/articulo-new.component.css'],
   providers: [ArticuloService]
 })
 export class ArticuloEditComponent implements OnInit {
