@@ -51,6 +51,11 @@ Route::get('/api/listaoferta','OfertasController@listaOferta');
 
 //PERFIL
 //Ver
-Route::post('/api/verperfil','PerfilController@verPerfil')->middleware('Jwt');
+Route::get('/api/verperfil','PerfilController@verPerfil')->middleware('Jwt');
 //Modificar
-Route::post('/api/modificarperfil','PerfilController@modificarPerfil')->middleware('Jwt');
+Route::put('/api/modificarperfil','PerfilController@modificarPerfil')->middleware('Jwt');
+
+//Ver Foto
+Route::get('/api/mostrarfoto','PerfilController@mostrarFoto')->middleware('Jwt');
+//Subir Foto
+Route::put('/api/subitfoto','PerfilController@subitFoto')->middleware('Jwt');
