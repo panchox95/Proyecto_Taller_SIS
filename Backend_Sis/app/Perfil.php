@@ -13,10 +13,16 @@ class Perfil extends Model
         $this->save();
     }
     public function modificarPerfil($params,$id){
-        return Producto::where('id_producto',$id)
+        return Perfil::where('id_perfil',$id)
         ->update(["telefono"=> $params->telefono,"direccion"=>$params->direccion,"foto"=>$params->foto,"tarjetacredito"=> $params->tarjetacredito,"zipcode"=> $params->zipcode]);
     }
     public function verPerfil($id){
-        return Producto::where('id_producto',$id)->first;
+        return Perfil::where('id_perfil',$id)->first;
+    }
+    public function subirFoto($id,$name){
+        return Perfil::where('id_perfil',$id)->update(["foto"=> $name]);
+    }
+    public function mostrarFoto($id){
+        return Perfil::select('foto')->where('id_perfil',$id);
     }
 }
