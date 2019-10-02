@@ -1,4 +1,3 @@
 export var GLOBAL={
-    url: 'http://localhost/Proyecto_Taller_SIS/Backend_Sis/public/api/'
-    //url: 'http://tallersis.com.devel/api/'
+    url: 'http://127.0.0.1:8000/api/'
 };

@@ -42,7 +42,7 @@ export class DefaultComponent implements OnInit {
             let page = +params['page'];
 
             // console.log(this.rol);
-            this._articuloService.getArticulos().subscribe(
+            this._articuloService.getArticulos(page).subscribe(
               response =>{
                 //console.log(response.users);
                 //  console.log(this.rol)
@@ -59,7 +59,7 @@ export class DefaultComponent implements OnInit {
                 if(page>this.last_page){
                   console.log(page);
                   console.log(this.last_page);
-                  this._router.navigate(['/lista',this.last_page]);
+                  this._router.navigate(['listaproducto',this.last_page]);
                 }
               },
               error => {
