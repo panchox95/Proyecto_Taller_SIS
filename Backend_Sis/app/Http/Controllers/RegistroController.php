@@ -22,7 +22,7 @@ class RegistroController extends Controller
                 'first_name'=>'required',
                 'last_name'=>'required',
                 'email'=>'required',
-                'password'=>'required',
+                'password'=>'alpha_num',
             ]);
         if($validate->fails()){
             $data = $validate->errors();

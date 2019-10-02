@@ -23,5 +23,21 @@ class LoginBL
         $user = new User;
         return $user->existeUsuario($email,$pwd);
     }
-
+    public function existeCorreo($email){
+        $user = new User;
+        return $user->existeCorreo($email);
+    }
+    public function errorIntentoUsuario($email){
+        $user = new User;
+        $intentos = $user->intentoUsuario($email)+1;
+        $user->errorIntentoUsuario($email,$intento);
+        return array(
+            'mensaje'=>'Contraseña incorrecta',
+            'code'=>404,
+            'status'=>'ERROR');
+    }
+    public function intentoUsuario($email){
+        $user = new User;
+        return $user->intentoUsuario($email);
+    }
 }

@@ -64,4 +64,13 @@ class User extends Authenticatable
     public function getIDUsuario($email){
         return User::select('id_user')->where(array('email'=>$email))->first();
     }
+    public function existeCorreo($email,$intento){
+        return  User::where(array('email'=>$email))->count();
+    }
+    public function errorIntentoUsuario($email){
+        return  User::where(array('email'=>$email))->update(["intento"=> $intento]);
+    }
+    public function intentoUsuario($email){
+        return  User::select('intento')->where(array('email'=>$email))->first();
+    }
 }
