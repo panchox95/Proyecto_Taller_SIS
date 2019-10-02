@@ -3,6 +3,14 @@
     <h2>Perfil</h2>
   </div>
 
+  <div class="alert alert-success" *ngIf="status == 'SUCCESS' ">
+    El Cambio se ha completado satisfactoriamente
+  </div>
+
+  <div class="alert alert-danger" *ngIf="status == 'ERROR' ">
+    Ohhh Nooo!! Error en el cambio
+  </div>
+
   <form #profileForm="ngForm" (ngSubmit)="onSubmit(profileForm)" class="col-md-5">
 
     <div class="card">
