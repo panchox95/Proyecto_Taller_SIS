@@ -1,8 +1,11 @@
+// @ts-ignore
 import { Component, OnInit} from '@angular/core';
-import { Router, ActivatedRoute, Params} from '@angular/router';
+// @ts-ignore
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { User } from '../../models/user';
 import { UserService } from '../../services/user.service';
 
+// @ts-ignore
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -14,47 +17,62 @@ export class LoginComponent implements OnInit {
   public user: User;
   public token;
   public identity;
+  public status: string;
 
 
   constructor(
-      private _userService: UserService
+      private _userService: UserService,
+    private _route: ActivatedRoute,
+      private _router: Router,
   ) {
-      this.user = new User(1,'pepe','salinas','pepe@gmail.com','pepe123');
+      this.user = new User('','','','','');
   }
 
   ngOnInit() {
-    console.log('sucessfully');
-    let user=this._userService.getIdentity();
-    console.log(user.first_name);
+    console.log('login.component cargado correctamente!!');
+    this.logout();
   }
 
   onSubmit(form){
-    console.log(this.user);
-    this._userService.singup(this.user).subscribe(
+    this._userService.signup(this.user).subscribe(
       response => {
-        //token
-        this.token=response;
-        localStorage.setItem('token',this.token);
-
-        //Objeto Ususario identificado
-          this._userService.singup(this.user, true).subscribe(
-              response => {
-                  //token
-                  this.identity=response;
-                  localStorage.setItem('identity', JSON.stringify(this.identity));
-
-              },
-              error => {
-                  console.log(<any>error);
-              }
-          )
-
-      },
-        error => {
-        console.log(<any>error);
+        //Token
+        console.log(response);
+        console.log (response.status);
+        if(response.status != 'ERROR'){
+          this.status = 'SUCCESS';
+          this.token = response.token;
+          sessionStorage.setItem('token', this.token);
+          this._router.navigate(['']);
+        } else{
+          this.status = 'ERROR';
         }
+      },
+      error => {
+        console.log(<any> error);
+      }
     );
   }
 
+  logout(){
+
+      this._route.params.subscribe(params => {
+
+          let logout =+params['sure'];
+
+          if(logout==1){
+              localStorage.removeItem('identity');
+              localStorage.removeItem('token');
+
+              this.identity=null;
+              this.token=null;
+
+              //redireccion
+              this._router.navigate(['home']);
+          }
+
+      })
+
+  }
 
 }

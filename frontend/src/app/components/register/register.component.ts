@@ -16,35 +16,41 @@ export class RegisterComponent implements OnInit {
   public status: string;
 
   constructor(
+    // tslint:disable-next-line:variable-name
       private _route: ActivatedRoute,
+      // tslint:disable-next-line:variable-name
       private _router: Router,
+      // tslint:disable-next-line:variable-name
       private _userService: UserService
   ) {
-    this.user = new User(1,'pepe','salinas','pepe@gmail.com','pepe123');
+
+    this.user = new User('','','','','');
+
   }
 
   ngOnInit() {
   }
 
   onSubmit(form){
-    //console.log(this.user);
-    //console.log(this._userService.pruebas());
+    console.log(this.user);
+    // console.log(this._userService.pruebas());
       this._userService.register(this.user).subscribe(
           response => {
-
-            if(response.status=='success'){
-              //vaciar el formulario
+            console.log(response);
+            if(response.status=='SUCCESS'){
+              // vaciar el formulario
                 this.status = response.status;
 
-                this.user = new User(1,'pepe','salinas','pepe@gmail.com','pepe123');
+                this.user = new User('','','','','');
                 form.reset();
 
-            }else{
-              this.status='Error';
+            } else{
+              this.status = 'ERROR';
             }
           },
+        // tslint:disable-next-line:no-shadowed-variable
           error => {
-            console.log(<any>error);
+            console.log(<any> error);
           }
       );
   }

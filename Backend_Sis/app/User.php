@@ -46,6 +46,9 @@ class User extends Authenticatable
         $this->password=$pwd; 
         $this->save();
     }
+    public function existeUsuario($email,$pwd){
+        return  User::where(array('email'=>$email,'password'=>$pwd))->count();
+    }
     public function idUsuario($email){
         return User::where('email', $email)->value('id_usuario');
     }
@@ -55,7 +58,19 @@ class User extends Authenticatable
     public function lastname($email){
         return User::where('email', $email)->value('last_name');
     }
-    public function existeUsuario($email,$pwd){
-        return  User::where(array('email'=>$email,'pass'=>$pwd))->count();
+    public function datosUsuario($email,$pwd){
+        return User::where(array('email'=>$email,'password'=>$pwd))->first();
+    }
+    public function getIDUsuario($email){
+        return User::select('id_user')->where(array('email'=>$email))->first();
+    }
+    public function existeCorreo($email,$intento){
+        return  User::where(array('email'=>$email))->count();
+    }
+    public function errorIntentoUsuario($email){
+        return  User::where(array('email'=>$email))->update(["intento"=> $intento]);
+    }
+    public function intentoUsuario($email){
+        return  User::select('intento')->where(array('email'=>$email))->first();
     }
 }
