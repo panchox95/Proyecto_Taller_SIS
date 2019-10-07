@@ -11,6 +11,7 @@ class LoginBL
         $first_name=$user->firstname($email);
         $last_name=$user->lastname($email);
         $jwt = $jwtauth->signup($email,$pwd);
+        $user->updatetime($email,time());
         //$paramsjwt = json_decode((json_encode($jwt)));
         //$token = $paramsjwt->token;
         //$identity = $paramsjwt->identity;
@@ -29,8 +30,9 @@ class LoginBL
     }
     public function errorIntentoUsuario($email){
         $user = new User;
-        $intentos = $user->intentoUsuario($email)+1;
-        $user->errorIntentoUsuario($email,$intento);
+        $intentos = $user->intentoUsuario($email);
+        $user->errorIntentoUsuario($email,$intentos->intento+1);
+        $user->updatetime($email,time());
         return array(
             'mensaje'=>'Contraseña incorrecta',
             'code'=>404,
@@ -38,6 +40,16 @@ class LoginBL
     }
     public function intentoUsuario($email){
         $user = new User;
-        return $user->intentoUsuario($email);
+        $data = $user->intentoUsuario($email);
+        return $data->intento;
+    }
+    public function checktime($email){
+        $user = new User;
+        $data = $user->checktime($email);
+        return $data->ultimo_intento;
+    }
+    public function resettime($email){
+        $user = new User;
+        return $user->resettime($email);
     }
 }

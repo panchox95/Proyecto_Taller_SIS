@@ -48,13 +48,13 @@ export class DefaultComponent implements OnInit {
                 //  console.log(this.rol)
 
 
-                this.total = response.articulo.total;
-                this.per_page = response.articulo.per_page;
-                this.current_page = response.articulo.current_page;
-                this.last_page = response.articulo.last_page;
-                this.next_page_url = response.articulo.next_page_url;
-                this.prev_page_url = response.articulo.prev_page_url;
-                this.articulo = response.articulo.data;
+                this.total = response.productos.total;
+                this.per_page = response.productos.per_page;
+                this.current_page = response.productos.current_page;
+                this.last_page = response.productos.last_page;
+                this.next_page_url = response.productos.next_page_url;
+                this.prev_page_url = response.productos.prev_page_url;
+                this.articulo = response.productos.data;
 
                 if(page>this.last_page){
                   console.log(page);

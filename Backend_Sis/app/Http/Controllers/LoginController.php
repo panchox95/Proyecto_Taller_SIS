@@ -23,30 +23,37 @@ class LoginController extends Controller
             $pwd=hash('sha256',$params->password);
             //$pwd = $params->password;
             $login = new LoginBL;
-            if($login->intentoUsuario($params->email)==3){
-                $data=array(
-                    'mensaje'=>'Numero de intentos superado',
-                    'code'=>410,
-                    'status'=>'ERROR',
-                );
-            }else{
-                if($login->existeCorreo($params->email)==1 && $login->existeUsuario($params->email,$pwd) == 0){
-                    $data=$login->errorIntentoUsuario($params->email);
-                }else{
-                    if($login->existeUsuario($params->email,$pwd) == 1){
-                        $data = $login->login($params->email,$pwd);        
+            if($login->existeCorreo($params->email)==1){
+                if($login->checktime($params->email)+60<time()){
+                    $login->resettime($params->email);
+                }
+                if($login->intentoUsuario($params->email)==3){
+                    $data=array(
+                        'reset at'=>$login->checktime($params->email)+60,
+                        'time at'=>time(),
+                        'mensaje'=>'Numero de intentos superado',
+                        'code'=>410,
+                        'status'=>'ERROR',
+                    );
+                }
+                else{
+                    if($login->existeUsuario($params->email,$pwd) == 0){
+                        $data=$login->errorIntentoUsuario($params->email);
                     }
-                    else{    
-                        $data=array(
-                            'mensaje'=>'Usuario o password erroneo',
-                            'code'=>404,
-                            'status'=>'ERROR',
-                        );
-                    }        
+                    else{
+                        $data = $login->login($params->email,$pwd);        
+                        $login->resettime($params->email);
+                    }
                 }
             }
+            else{
+                $data=array(
+                    'mensaje'=>'Correo no encontrado',
+                    'code'=>404,
+                    'status'=>'ERROR',
+                );
+            }
         }
-            
         return response()->json($data);
     }
 }
