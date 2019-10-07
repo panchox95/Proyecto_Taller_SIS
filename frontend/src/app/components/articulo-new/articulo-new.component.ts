@@ -42,22 +42,22 @@ export class ArticuloNewComponent implements OnInit {
     this._articuloService.create(this.token,this.articulo).subscribe(
         response=>{
 
-          if(response.status=='success'){
+          if(response.status=='SUCCESS'){
 
               this.articulo=response.articulo;
-              this.status_articulo='success';
+              this.status_articulo='SUCCESS';
               this._router.navigate(['/home']);
 
           }else{
 
-            this.status_articulo='error';
+            this.status_articulo='ERROR';
 
           }
 
 
         },error =>{
           console.log(<any>error);
-          this.status_articulo='error';
+          this.status_articulo='ERROR';
         }
     );
   }

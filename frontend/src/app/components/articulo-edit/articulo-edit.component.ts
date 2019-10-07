@@ -3,14 +3,18 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ArticuloService } from 'src/app/services/articulo.service';
 import { Articulo} from '../../models/articulo'
 import { Response } from 'selenium-webdriver/http';
+import { User } from '../../models/user';
+import { UserService } from '../../services/user.service';
+import { error } from 'selenium-webdriver';
+
 @Component({
  selector: 'app-usuario-edit',
   templateUrl: '../articulo-new/articulo-new.component.html',
   styleUrls: ['../articulo-new/articulo-new.component.css'],
-  providers: [ArticuloService]
+  providers: [UserService, ArticuloService]
 })
 export class ArticuloEditComponent implements OnInit {
-  title: string;
+  public page_title: string;
   public articulo: Articulo;
   public status_articulo: string;
   public nombre;
@@ -37,7 +41,7 @@ export class ArticuloEditComponent implements OnInit {
       }
     );
   }
-  getArticulo(id){
+  /*getArticulo(id){
     this._articuloService.getArticulo(id).subscribe(
       Response =>{
         if(Response.status == 'SUCCESS'){
@@ -57,6 +61,25 @@ export class ArticuloEditComponent implements OnInit {
 
       }
     );
+  }*/
+  getArticulo(){
+    this._route.params.subscribe(params => {
+      let id = +params['id'];
+
+      this._articuloService.getProducto(id).subscribe(
+        response => {
+          if(response=='SUCCESS'){
+            this.articulo=response.articulo;
+            this.page_title = 'Editar: ' + this.articulo.nombre;
+          } else{
+            this._router.navigate(['home']);
+          }
+        },
+        error => {
+          console.log(<any>error);
+        }
+      );
+    });
   }
   onSubmit(form){
 
@@ -68,10 +91,13 @@ export class ArticuloEditComponent implements OnInit {
           this.status_articulo = 'SUCCESS';
           console.log(this.articulo);
           this._router.navigate(['/usuario',this.id]);
+        }else{
+          this.status_articulo='ERROR';
         }
       },
       error =>{
-        console.log(<any>error)
+        console.log(<any>error);
+        this.status_articulo='ERROR';
       }
     );
 

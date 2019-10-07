@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
 import { GLOBAL } from './global';
 import { Articulo } from '../models/articulo';
-import {headersToString} from "selenium-webdriver/http";
+import { headersToString } from 'selenium-webdriver/http';
 
 
 @Injectable()
@@ -35,6 +35,11 @@ export class ArticuloService {
     let headers =new HttpHeaders().set('Content-Type','application/json');
     return this._http.get(this.url+'verproducto/'+id,{headers: headers})
   }
+
+  getProducto(id): Observable<any> {
+    return this._http.get(this.url + 'articulos/' + id);
+  }
+
   updateArticulo(articulo, id): Observable <any>{
     let json=JSON.stringify(articulo);
     let headers =new HttpHeaders().set('Content-Type','application/json');

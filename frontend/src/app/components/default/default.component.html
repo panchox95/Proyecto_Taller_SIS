@@ -109,7 +109,7 @@
     <th>Descripcion</th>
   </tr>
   <tr *ngFor="let art of articulo">
-    <td>{{art.nombre}}</td>
+    <td class="col-md-7"><a [routerLink]="['/articulo', articulo.id]" >{{art.nombre}}</a></td>
     <td>{{art.marca}}</td>
     <td>{{art.cantidad}}</td>
     <td>{{art.precio}}</td>
