@@ -41,14 +41,14 @@ export class ArticuloEditComponent implements OnInit {
       }
     );
   }
-  /*getArticulo(id){
+  getArticulo(id){
     this._articuloService.getArticulo(id).subscribe(
       Response =>{
         if(Response.status == 'SUCCESS'){
           // console.log(Response.user[0]);
           this.articulo = Response.articulo[0];
 
-          this.title = 'Editar '+Response.articulo[0].nombre+' '+Response.articulo[0].marca+' ' +
+          this.page_title = 'Editar '+Response.articulo[0].nombre+' '+Response.articulo[0].marca+' ' +
             ''+Response.articulo[0].cantidad+' '+Response.articulo[0].precio+''+Response.articulo[0].descripcion
             ;
         }
@@ -61,8 +61,8 @@ export class ArticuloEditComponent implements OnInit {
 
       }
     );
-  }*/
-  getArticulo(){
+  }
+  /*getArticulo(){
     this._route.params.subscribe(params => {
       let id = +params['id'];
 
@@ -80,7 +80,7 @@ export class ArticuloEditComponent implements OnInit {
         }
       );
     });
-  }
+  }*/
   onSubmit(form){
 
     this._articuloService.updateArticulo(this.articulo,this.id).subscribe(
