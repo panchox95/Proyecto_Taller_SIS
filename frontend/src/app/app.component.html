@@ -58,12 +58,12 @@
                 </li>
             </ul>
 
-            <ul class="nav navbar-nav" *ngIf="identity">
+            <ul class="nav navbar-nav navbar-right" *ngIf="identity">
                 <li>
-                    <a [routerLink]="['perfil']" >{{identity.last_name+' '+identity.last_name}}</a>
+                    <a [routerLink]="['perfil']" >{{identity.message}}</a>
                 </li>
                 <li>
-                    <a [routerLink]="['logout',1]" class="navbar-brand">
+                    <a [routerLink]="['logout',1]">
                         Salir
                         <span class="glyphicon glyphicon-log-out"></span>
                     </a>
