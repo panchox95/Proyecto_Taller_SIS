@@ -10,6 +10,7 @@ import { DefaultComponent } from './components/default/default.component';
 import { ArticuloNewComponent } from './components/articulo-new/articulo-new.component';
 import { ArticuloEditComponent } from './components/articulo-edit/articulo-edit.component';
 import { ArticuloDetailComponent } from './components/articulo-detail/articulo-detail.component';
+import { ArticuloListComponent } from './components/articulo-list/articulo-list.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
 
 const appRoutes: Routes = [
@@ -20,6 +21,7 @@ const appRoutes: Routes = [
     { path: 'logout/:sure',component: LoginComponent },
     { path: 'register', component: RegisterComponent },
     { path: 'crear-articulo', component: ArticuloNewComponent },
+    { path: 'lista-articulo', component: ArticuloListComponent },
     { path: 'editar-articulo/:id',component: ArticuloEditComponent },
     { path: 'articulo/:id', component: ArticuloDetailComponent },
     { path: 'perfil', component: PerfilComponent },
