@@ -1,8 +1,8 @@
 <div class="container">
 
-    <div class="title-login">
-        <h1>Inicio de Sesión</h1>
-    </div>
+  <div class="title-login">
+    <h1>Inicio de Sesión</h1>
+  </div>
   <div class="alert alert-success" *ngIf="status == 'SUCCESS'">
     Usuario Aceptado
   </div>
@@ -12,24 +12,26 @@
   <div class="alert alert-danger" *ngIf="status == 'FALTAN'">
     Llenar Todos Los Campos,
   </div>
-    <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)" class="col-md-5">
-        <p>
+
+  <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)" class="col-md-5">
+    <p>
       <label>Email:</label>
       <input type="email" name="email" #email="ngModel" [(ngModel)]="user.email" class="form-control" placeholder="example@email.com" required/>
       <span *ngIf="!email.valid && email.touched">
-                El email no es valido
-            </span>
+        El email no es valido
+      </span>
     </p>
 
-        <p>
-            <label>Contraseña:</label>
-            <input type="password" name="password" #password="ngModel" [(ngModel)]="user.password" class="form-control" placeholder="*********" required/>
-            <span *ngIf="!password.valid && password.touched">
-                La contraseña no es valida
-            </span>
-        </p>
+    <p>
+      <label>Contraseña:</label>
+      <input type="password" name="password" #password="ngModel" [(ngModel)]="user.password" class="form-control" placeholder="*********" required/>
+      <span *ngIf="!password.valid && password.touched">
+        La contraseña no es valida
+      </span>
+    </p>
 
-        <input type="submit" value="Entrar" class="btn btn-primary"  />
+    <input type="submit" value="Entrar" class="btn btn-primary" [disabled]="!loginForm.form.valid" />
+    
     </form>
 
 </div>

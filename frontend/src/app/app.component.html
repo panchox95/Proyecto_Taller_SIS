@@ -47,6 +47,9 @@
                 <li *ngIf="identity">
                     <a [routerLink]="['crear-articulo']" ><span class="glyphicon glyphicon-book"></span> Añadir Articulo</a>
                 </li>
+                <li *ngIf="identity">
+                    <a [routerLink]="['lista-articulo']" ><span class="glyphicon glyphicon-book"></span> Articulos </a>
+                </li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right" *ngIf="!identity">
@@ -58,12 +61,12 @@
                 </li>
             </ul>
 
-            <ul class="nav navbar-nav" *ngIf="identity">
+            <ul class="nav navbar-nav navbar-right" *ngIf="identity">
                 <li>
-                    <a [routerLink]="['perfil']" >{{identity.last_name+' '+identity.last_name}}</a>
+                    <a [routerLink]="['perfil']" >{{identity.message}}</a>
                 </li>
                 <li>
-                    <a [routerLink]="['logout',1]" class="navbar-brand">
+                    <a [routerLink]="['logout',1]">
                         Salir
                         <span class="glyphicon glyphicon-log-out"></span>
                     </a>
