@@ -15,7 +15,7 @@ class LoginBL
         //$paramsjwt = json_decode((json_encode($jwt)));
         //$token = $paramsjwt->token;
         //$identity = $paramsjwt->identity;
-        $rol=getRol($email);
+        $rol=$user->getrol($email);
         return array('status'=>'SUCCESS',
                     'code'=>200,
                     'message' =>'Bienvenido '.$first_name.' '.$last_name,'token'=>$jwt,'rol'=>$rol
