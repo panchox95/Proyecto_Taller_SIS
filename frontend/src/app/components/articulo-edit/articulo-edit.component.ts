@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ArticuloService } from 'src/app/services/articulo.service';
-import { Articulo} from '../../models/articulo'
+import { Articulo } from '../../models/articulo'
 import { Response } from 'selenium-webdriver/http';
 import { User } from '../../models/user';
 import { UserService } from '../../services/user.service';
@@ -14,92 +14,67 @@ import { error } from 'selenium-webdriver';
   providers: [UserService, ArticuloService]
 })
 export class ArticuloEditComponent implements OnInit {
+
   public page_title: string;
   public articulo: Articulo;
-  public status_articulo: string;
-  public nombre;
-  public marca;
-  public cantidad;
-  public precio;
-  public descripcion;
-  public edit;
-  public id;
   public token;
-  // @ts-ignore
+  public status_articulo;
+
   constructor(
     private _route: ActivatedRoute,
     private _router: Router,
+    private _userService: UserService,
     private _articuloService: ArticuloService
-  ) {}
+) {
+  this.token=this._userService.getToken();
+  this.page_title='Editar Articulo';
+  }
+
   ngOnInit() {
-    this.edit=true;
-    this._route.params.subscribe(
-      params =>{
-        let id = +params['id.articulo'];
-        this.id =id;
-        this.getArticulo(id);
-      }
-    );
-  }
-  getArticulo(id){
-    this._articuloService.getArticulo(id).subscribe(
-      Response =>{
-        if(Response.status == 'SUCCESS'){
-          // console.log(Response.user[0]);
-          this.articulo = Response.articulo[0];
-
-          this.page_title = 'Editar '+Response.articulo[0].nombre+' '+Response.articulo[0].marca+' ' +
-            ''+Response.articulo[0].cantidad+' '+Response.articulo[0].precio+''+Response.articulo[0].descripcion
-            ;
-        }
-        else{
-          this._router.navigate(['']);
-        }
-      },
-      error => {
-        console.log(<any>error);
-
-      }
-    );
-  }
-  /*getArticulo(){
     this._route.params.subscribe(params => {
-      let id = +params['id'];
+      let id = +params['id_producto'];
+      this.getArticulo(id);
+    });
+  }
 
-      this._articuloService.getProducto(id).subscribe(
+  getArticulo(id){
+    
+      this._articuloService.getArticulo(id).subscribe(
         response => {
-          if(response=='SUCCESS'){
-            this.articulo=response.articulo;
-            this.page_title = 'Editar: ' + this.articulo.nombre;
+          console.log('Resultado: ', response.data);
+
+          if(response.status =='SUCCESS'){
+            this.articulo=response.data;
           } else{
             this._router.navigate(['home']);
           }
+          
         },
         error => {
           console.log(<any>error);
         }
       );
-    });
-  }*/
+    
+  }
+
   onSubmit(form){
-
-    this._articuloService.updateArticulo(this.articulo,this.id).subscribe(
-
-      response =>{
-        console.log(response);
-        if(response.status == 'SUCCESS'){
-          this.status_articulo = 'SUCCESS';
-          console.log(this.articulo);
-          this._router.navigate(['/usuario',this.id]);
-        }else{
+    console.log('ide: ', this.articulo.id_producto);
+    this._articuloService.updateArticulo(this.token, this.articulo, this.articulo.id_producto).subscribe(
+      response => {
+        console.log('editado: ', response);
+        if(response.status =='SUCCESS'){
+          this.status_articulo='SUCCESS';
+          this.articulo=response.articulo;
+          //this._router.navigate(['/articulo', this.articulo.id_producto]);
+        } else{
           this.status_articulo='ERROR';
+          //this._router.navigate(['home']);
         }
       },
-      error =>{
+      error => {
         console.log(<any>error);
-        this.status_articulo='ERROR';
       }
     );
-
   }
+
 }

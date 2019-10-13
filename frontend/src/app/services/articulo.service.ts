@@ -40,11 +40,10 @@ export class ArticuloService {
     return this._http.get(this.url + 'articulos/' + id);
   }
 
-  updateArticulo(articulo, id): Observable <any>{
+  updateArticulo(token, articulo, id): Observable <any>{
     let json=JSON.stringify(articulo);
-    let headers =new HttpHeaders().set('Content-Type','application/json');
-    console.log(headers);
-    return this._http.put(this.url+'update/'+id,json,{headers: headers});
+    let headers =new HttpHeaders().set('Content-Type','application/json').set('Authorization',token);
+    return this._http.put(this.url+'modificarproducto/'+id, json, { headers: headers});
   }
 
   deleteUsuario(id,json): Observable <any>{
