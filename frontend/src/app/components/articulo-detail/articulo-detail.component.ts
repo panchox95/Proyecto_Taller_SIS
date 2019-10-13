@@ -35,12 +35,14 @@ export class ArticuloDetailComponent implements OnInit {
 
       this._articuloService.getArticulo(id).subscribe(
         response => {
-          if(response=='SUCCESS'){
-            console.log(response);
-            this.articulo=response.articulo;
+          console.log('Resultado: ', response.data);
+
+          if(response.status =='SUCCESS'){
+            this.articulo=response.data;
           } else{
             this._router.navigate(['home']);
           }
+          
         },
         error => {
           console.log(<any>error);

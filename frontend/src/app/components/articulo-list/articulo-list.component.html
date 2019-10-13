@@ -28,12 +28,13 @@
             </thead>
             <tbody>
                 <tr *ngFor="let art of articulo">
-                <th><a [routerLink]="['/articulo', art.id_producto]" >{{art.nombre}}</a></th>
+                <th>{{art.nombre}}</th>
                 <td>{{art.marca}}</td>
                 <td>{{art.cantidad}}</td>
                 <td>{{art.precio}}</td>
                 <td>{{art.descripcion}}</td>
                 <td>
+                    <a [routerLink]="['/articulo', art.id_producto]" class="btn btn-info">Ver</a>
                     <a [routerLink]="['editar-articulo', articulo.id_producto]" class="btn btn-warning">Editar</a>
                     <a href="#" class="btn btn-danger">Eliminar</a>
                 </td>

@@ -13,8 +13,8 @@
         Ohhh Nooo!! Error en el registro
     </div>
 
-  <div class="alert alert-danger" *ngIf="status == 'FALTAN'">
-    Llenar Todos Los Campos,
+  <div class="alert alert-danger" *ngIf="status == '400' ">
+    El email debe ser valido y la contraseña mayor a 8 caracteres y menor a 25 y con un numero
   </div>
 
     <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)" class="col-md-5">
