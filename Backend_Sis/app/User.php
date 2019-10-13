@@ -83,4 +83,7 @@ class User extends Authenticatable
     public function updatetime($email,$time){
         return  User::where(array('email'=>$email))->update(["ultimo_intento"=>$time]);
     }
+    public function getRol($email){
+        return  User::where('email', $email)->value('rol');
+    }
 }
