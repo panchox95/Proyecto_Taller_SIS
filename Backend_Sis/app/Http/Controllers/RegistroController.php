@@ -80,20 +80,29 @@ class RegistroController extends Controller
                         $data=$registro->registro($params); 
                     }
                     else{
-                        $data='La contraseña debe tener una letra mayuscula';
                         $code=400;
+                        $data=array(
+                            'status'=>'ERROR',
+                            'code' => 400,
+                            'message' => 'La contraseña necesita por lo menos una letra mayuscula');
                     }
                     
                 }
                 else{
-                    $data='La contraseña no tiene letras';
                     $code=400;
+                    $data=array(
+                        'status'=>'ERROR',
+                        'code' => 400,
+                        'message' => 'La contraseña necesita por lo menos una letra');
                 }
                 
             }
             else{
-                $data='La contraseña no tiene numeros';
                 $code=400;
+                $data=array(
+                    'status'=>'ERROR',
+                    'code' => 400,
+                    'message' => 'La contraseña necesita por lo menos un numero');
             }
             
         }
