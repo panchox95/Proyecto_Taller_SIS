@@ -33,7 +33,7 @@ export class ArticuloService {
 
   getArticulo(id): Observable<any>{
     let headers =new HttpHeaders().set('Content-Type','application/json');
-    return this._http.get(this.url+'verproducto/'+id,{headers: headers})
+    return this._http.get(this.url+'verproducto/'+id,{ headers: headers})
   }
 
   getProducto(id): Observable<any> {

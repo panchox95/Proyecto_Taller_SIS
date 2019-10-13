@@ -35,7 +35,7 @@ export class ArticuloEditComponent implements OnInit {
     this.edit=true;
     this._route.params.subscribe(
       params =>{
-        let id = +params['id'];
+        let id = +params['id.articulo'];
         this.id =id;
         this.getArticulo(id);
       }

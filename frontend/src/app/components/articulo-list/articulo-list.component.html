@@ -2,39 +2,56 @@
         Cargando...
 </div>
 
-<div class="col-md-12">
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th scope="col">Nombre</th>
-                <th scope="col">Marca</th>
-                <th scope="col">Cantidad</th>
-                <th scope="col">Precio</th>
-                <th scope="col">Descripcion</th>
-                <th scope="col">Opciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let art of articulo">
-            <th>{{art.nombre}}</th>
-            <td>{{art.marca}}</td>
-            <td>{{art.cantidad}}</td>
-            <td>{{art.precio}}</td>
-            <td>{{art.descripcion}}</td>
-            <td>
-                <a [routerLink]="['editar-articulo', articulo.id_producto]" class="btn btn-warning">Editar</a>
-                <a href="#" class="btn btn-danger">Eliminar</a>
-            </td>
-          </tr>
-        </tbody>
-    </table>
-    <a type="button"  value="Anterior" [routerLink]="['/listaproducto',current_page-1]" class="btn btn-success" *ngIf="prev_page_url">
-        Anterior
-    </a>
-    <a type="button"  value="Siguiente" [routerLink]="['/listaproducto',current_page+1]" class="btn btn-success" *ngIf="next_page_url">
-        Siguiente
-    </a>
-    <p class="pull-right">
-        {{current_page}}/{{last_page}}
-    </p>
+<div class="container">
+
+    <form #searchForm="ngForm" (ngSubmit)="onSubmit(searchForm)" class="col-md-5">
+        <div class="form-group">
+            <div class="input-group">
+                <input type="text" class="form-control" name="searchText" placeholder="Buscar...">
+                <span class="input-group-btn"><button type="submit" class="btn btn-primary" data-balloon-length="medium" data-balloon="Búsqueda por Nombre, Marca o Precio" data-balloon-pos="right">Buscar</button></span>
+            </div>
+        </div>
+    </form>
+    
+
+    <div class="col-md-12">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Marca</th>
+                    <th scope="col">Cantidad</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">Descripcion</th>
+                    <th scope="col">Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let art of articulo">
+                <th><a [routerLink]="['/articulo', art.id_producto]" >{{art.nombre}}</a></th>
+                <td>{{art.marca}}</td>
+                <td>{{art.cantidad}}</td>
+                <td>{{art.precio}}</td>
+                <td>{{art.descripcion}}</td>
+                <td>
+                    <a [routerLink]="['editar-articulo', articulo.id_producto]" class="btn btn-warning">Editar</a>
+                    <a href="#" class="btn btn-danger">Eliminar</a>
+                </td>
+                </tr>
+            </tbody>
+        </table>
+        <a type="button"  value="Anterior" [routerLink]="['/listaproducto',current_page-1]" class="btn btn-success" *ngIf="prev_page_url">
+            Anterior
+        </a>
+        <a type="button"  value="Siguiente" [routerLink]="['/listaproducto',current_page+1]" class="btn btn-success" *ngIf="next_page_url">
+            Siguiente
+        </a>
+        <p class="pull-right">
+            {{current_page}}/{{last_page}}
+        </p>
+    </div>
+
 </div>
+
+
+

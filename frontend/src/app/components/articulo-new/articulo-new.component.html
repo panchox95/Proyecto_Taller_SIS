@@ -2,11 +2,11 @@
     <h2>{{page_title}}</h2>
 
     <div class="alert alert-success" *ngIf="status_articulo=='SUCCESS'">
-        El articulo se guardo correctamente, bien bonito
+        El articulo se guardo correctamente
     </div>
 
     <div class="alert alert-danger" *ngIf="status_articulo=='ERROR'">
-        El articulo se guardo, intentalo de nuevo
+        El articulo no se guardo, intentalo de nuevo
     </div>
 
     <form #articuloNew="ngForm" (ngSubmit)="onSubmit(articuloNew)" class="col-md-5">
