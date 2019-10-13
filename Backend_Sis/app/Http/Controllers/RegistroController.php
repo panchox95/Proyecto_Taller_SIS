@@ -17,16 +17,68 @@ class RegistroController extends Controller
         $params=json_decode((json_encode($json)));
         //return $params_array;
         //Validamos
-        $validate= \Validator::make(
+        $validate=false;
+        $validate1= \Validator::make(
             $params_array,[
-                'first_name'=>'required|alpha',
-                'last_name'=>'required|alpha',
-                'email'=>'required|email',
-                'password'=>'required|digits_between:8,25',
-            ]);
-        if($validate->fails()){
-            $data = $validate->errors();
-            $code = 400;
+                'password'=>'digits_between:8,25',
+            ]
+        );
+        $validate2= \Validator::make(
+            $params_array,[
+                'email'=>'email',
+            ]
+        );
+        $validate3= \Validator::make(
+            $params_array,[
+                'last_name'=>'alpha',
+            ]
+        );
+        $validate4= \Validator::make(
+            $params_array,[
+                'first_name'=>'alpha',
+            ]
+        );
+        $validate5= \Validator::make(
+            $params_array,[
+                'first_name'=>'required',
+                'last_name'=>'required',
+                'email'=>'required',
+                'password'=>'required',
+            ]
+        );
+        $message='';
+        if($validate1->fails()){
+            $validate=true;
+            
+            $message=$message.' La contraseña debe tener entre 8 y 25 caracteres';
+        }
+        if($validate2->fails()){
+            $validate=true;
+            
+            $message=$message.' El campo correo debe ser un correo';
+        }
+        if($validate3->fails()){
+            $validate=true;
+            
+            $message=$message.' El campo nombre debe tener solo letras';
+        }
+        if($validate4->fails()){
+            $validate=true;
+           
+            $message=$message.' El campo apellido debe tener solo letras';
+        }
+        if($validate5->fails()){
+            $validate=true;
+            
+            $message=$message.' Se deben llenar todos los campos';
+        }
+        if($validate){
+            $data=array(
+                'status'=>'ERROR',
+                'code' => 400,
+                'message' => $message);
+            $code=400;
+            return response()->json($data,$code);
         }
         else{
             $pass=$params->password;
