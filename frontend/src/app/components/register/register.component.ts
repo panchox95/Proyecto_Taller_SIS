@@ -36,7 +36,7 @@ export class RegisterComponent implements OnInit {
     // console.log(this._userService.pruebas());
       this._userService.register(this.user).subscribe(
           response => {
-            console.log(response);
+            
             if(response.status=='SUCCESS'){
               // vaciar el formulario
                 this.status = response.status;
@@ -51,6 +51,9 @@ export class RegisterComponent implements OnInit {
         // tslint:disable-next-line:no-shadowed-variable
           error => {
             console.log(<any> error);
+            this.status=error.status;
+            form.reset();
+            console.log('resultado: ', error.status);
           }
       );
   }

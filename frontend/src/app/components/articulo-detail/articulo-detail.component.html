@@ -1,16 +1,34 @@
-<h2>Detalle</h2>
-<div class="col-md-12">
-    <h1>{{producto.nombre}}</h1>
-    <p>
-        {{articulo.marca}}
-    </p>
-    <p>
-        {{articulo.cantidad}}
-    </p>
-    <p>
-        {{articulo.precio}} $
-    </p>
-    <p>
-        {{art.descripcion}}
-    </p>
+<div class="container">
+    <h1>Detalle:</h1><br>
+    
+    <div class="col-md-7">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">{{articulo.nombre}}</th>
+                </tr>
+                <tr>
+                    <th scope="col">Marca</th>
+                    <th scope="col">{{articulo.marca}}</th>
+                </tr>
+                <tr>
+                    <th scope="col">Cantidad</th>
+                    <th scope="col">{{articulo.cantidad}}</th>
+                </tr>
+                <tr>
+                    <th scope="col">Precio</th>
+                    <th scope="col">{{articulo.precio}} $</th>
+                </tr>
+                <tr>
+                    <th scope="col">Descripción</th>
+                    <th scope="col">{{articulo.descripcion}}</th>
+                </tr>
+                <tr>
+                    <th scope="col">Estado</th>
+                    <th scope="col">{{articulo.estado}}</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
 </div>
