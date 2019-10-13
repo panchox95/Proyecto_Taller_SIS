@@ -19,14 +19,11 @@ Route::post('/api/registro','RegistroController@registro');
 
 //PRODUCTOS
 //Mostrar todos los productos
-Route::get('/api/producto','ProductoController@index'); //RUTA JEFF
-//esta paginado revisar como se devuelve la paginacion para mostrar los datos, solo se muestral los objetos con estado activo
-Route::get('/api/listaproducto','ProductosController@listaProductos'); //RUTA PANCHO
+Route::get('/api/listaproducto','ProductosController@listaProductos'); 
 //Mostrar uhn producto en especifico por el id
 //Route::get('/api/producto','ProductoController@show');
 //Agregar producto
-Route::post('/api/producto','ProductoController@store');//->middleware('Jwt'); //RUTA JEFF
-Route::post('/api/crearproducto','ProductosController@crearProducto'); //RUTA PANCHO
+Route::post('/api/crearproducto','ProductosController@crearProducto'); 
 
 //Eliminar un producto (Solo se cambia el estado de activo a borrado)
 
