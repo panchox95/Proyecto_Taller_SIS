@@ -9,6 +9,7 @@ create table user(
     password varchar(255),
     intento int,
     ultimo_intento int,
+    rol varchar(255),
     primary key(id_user)
 );
 create table perfil(

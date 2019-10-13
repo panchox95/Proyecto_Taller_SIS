@@ -18,11 +18,6 @@ class RegistroController extends Controller
         //return $params_array;
         //Validamos
         $validate=false;
-        $validate1= \Validator::make(
-            $params_array,[
-                'password'=>'digits_between:8,25',
-            ]
-        );
         $validate2= \Validator::make(
             $params_array,[
                 'email'=>'email',
@@ -47,29 +42,24 @@ class RegistroController extends Controller
             ]
         );
         $message='';
-        if($validate1->fails()){
-            $validate=true;
-            
-            $message=$message.' La contraseña debe tener entre 8 y 25 caracteres';
+        if(strlen ( $params->password )<7 || strlen ( $params->password )>26){
+            $validate=true;     
+            $message=$message.' La clave debe tener entre 8 y 25 caracteres';
         }
         if($validate2->fails()){
-            $validate=true;
-            
+            $validate=true;      
             $message=$message.' El campo correo debe ser un correo';
         }
         if($validate3->fails()){
-            $validate=true;
-            
+            $validate=true;  
             $message=$message.' El campo nombre debe tener solo letras';
         }
         if($validate4->fails()){
             $validate=true;
-           
             $message=$message.' El campo apellido debe tener solo letras';
         }
         if($validate5->fails()){
             $validate=true;
-            
             $message=$message.' Se deben llenar todos los campos';
         }
         if($validate){
@@ -82,14 +72,37 @@ class RegistroController extends Controller
         }
         else{
             $pass=$params->password;
-            if(str_contains($pass, '1') || str_contains($pass, '2') || str_contains($pass, '3') || str_contains($pass, '4') || str_contains($pass, '5') || str_contains($pass, '6') || str_contains($pass, '7') || str_contains($pass, '8') || str_contains($pass, '9') || str_contains($pass, '0') ){
-                $registro= new RegistroBL;
-                $code=200;
-                $data=$registro->registro($params);      
+            if(1 === preg_match('~[0-9]~', $pass)){
+                if(1 === preg_match('~[a-z]~', $pass)){
+                    if(1 === preg_match('~[A-Z]~', $pass)){
+                        $registro= new RegistroBL;
+                        $code=200;
+                        $data=$registro->registro($params); 
+                    }
+                    else{
+                        $code=400;
+                        $data=array(
+                            'status'=>'ERROR',
+                            'code' => 400,
+                            'message' => 'La contraseña necesita por lo menos una letra mayuscula');
+                    }
+                    
+                }
+                else{
+                    $code=400;
+                    $data=array(
+                        'status'=>'ERROR',
+                        'code' => 400,
+                        'message' => 'La contraseña necesita por lo menos una letra');
+                }
+                
             }
             else{
-                $data='La contraseña no tiene numeros';
                 $code=400;
+                $data=array(
+                    'status'=>'ERROR',
+                    'code' => 400,
+                    'message' => 'La contraseña necesita por lo menos un numero');
             }
             
         }
