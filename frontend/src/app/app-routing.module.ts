@@ -22,7 +22,7 @@ const appRoutes: Routes = [
     { path: 'register', component: RegisterComponent },
     { path: 'crear-articulo', component: ArticuloNewComponent },
     { path: 'lista-articulo', component: ArticuloListComponent },
-    { path: 'editar-articulo/:id',component: ArticuloEditComponent },
+    { path: 'editar-articulo/:id_producto',component: ArticuloEditComponent },
     { path: 'articulo/:id_producto', component: ArticuloDetailComponent },
     { path: 'perfil', component: PerfilComponent },
     { path: '**', component: DefaultComponent },

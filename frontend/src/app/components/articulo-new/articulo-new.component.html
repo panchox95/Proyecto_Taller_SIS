@@ -1,57 +1,60 @@
-<div class="col-md-12" *ngIf="page_title">
-    <h2>{{page_title}}</h2>
-
-    <div class="alert alert-success" *ngIf="status_articulo=='SUCCESS'">
-        El articulo se guardo correctamente
+<div class="container">
+    <div class="col-md-12" *ngIf="page_title">
+        <h2>{{page_title}}</h2>
+            
+        <div class="alert alert-success" *ngIf="status_articulo=='SUCCESS'">
+            El articulo se guardo correctamente
+        </div>
+            
+        <div class="alert alert-danger" *ngIf="status_articulo=='ERROR'">
+            El articulo no se guardo, intentalo de nuevo
+        </div>
+            
+        <form #articuloNew="ngForm" (ngSubmit)="onSubmit(articuloNew)" class="col-md-5">
+            
+            <p>
+                <label>Nombre</label>
+                <input type="text" name="nombre" #nombre="ngModel" [(ngModel)]="articulo.nombre" class="form-control" required/>
+                <span *ngIf="!nombre.valid && nombre.touched">
+                    El nombre no es valido
+                </span>
+            </p>
+            
+            <p>
+                <label>Marca</label>
+                <input type="text" name="marca" #marca="ngModel" [(ngModel)]="articulo.marca" class="form-control" required/>
+                <span *ngIf="!marca.valid && marca.touched">
+                    La marca no es valido
+                </span>
+            </p>
+            
+            <p>
+                <label>Cantidad</label>
+                <input type="number" name="cantidad" #cantidad="ngModel" [(ngModel)]="articulo.cantidad" class="form-control" required/>
+                <span *ngIf="!cantidad.valid && cantidad.touched">
+                    La cantidad no es valido
+                </span>
+            </p>
+            
+            <p>
+                <label>Precio</label>
+                <input type="number" name="precio" #precio="ngModel" [(ngModel)]="articulo.precio" class="form-control" required/>
+                <span *ngIf="!precio.valid && precio.touched">
+                    El precio no es valido
+                </span>
+            </p>
+            
+            <p>
+                <label>Descripcion</label>
+                <textarea name="descripcion" #descripcion="ngModel" [(ngModel)]="articulo.descripcion" class="form-control" required></textarea>
+                <span *ngIf="!descripcion.valid && descripcion.touched">
+                    La descripcion no es valida
+                </span>
+            </p>
+            
+            <input type="submit" value="Guardar" class="btn btn-success" [disabled]="!articuloNew.form.valid">
+            
+        </form>
     </div>
-
-    <div class="alert alert-danger" *ngIf="status_articulo=='ERROR'">
-        El articulo no se guardo, intentalo de nuevo
-    </div>
-
-    <form #articuloNew="ngForm" (ngSubmit)="onSubmit(articuloNew)" class="col-md-5">
-
-        <p>
-            <label>Nombre</label>
-            <input type="text" name="nombre" #nombre="ngModel" [(ngModel)]="articulo.nombre" class="form-control" required/>
-            <span *ngIf="!nombre.valid && nombre.touched">
-                El nombre no es valido
-            </span>
-        </p>
-
-        <p>
-            <label>Marca</label>
-            <input type="text" name="marca" #marca="ngModel" [(ngModel)]="articulo.marca" class="form-control" required/>
-            <span *ngIf="!marca.valid && marca.touched">
-                La marca no es valido
-            </span>
-        </p>
-
-        <p>
-            <label>Cantidad</label>
-            <input type="number" name="cantidad" #cantidad="ngModel" [(ngModel)]="articulo.cantidad" class="form-control" required/>
-            <span *ngIf="!cantidad.valid && cantidad.touched">
-                La cantidad no es valido
-            </span>
-        </p>
-
-        <p>
-            <label>Precio</label>
-            <input type="number" name="precio" #precio="ngModel" [(ngModel)]="articulo.precio" class="form-control" required/>
-            <span *ngIf="!precio.valid && precio.touched">
-                El precio no es valido
-            </span>
-        </p>
-
-        <p>
-            <label>Descripcion</label>
-            <textarea name="descripcion" #descripcion="ngModel" [(ngModel)]="articulo.descripcion" class="form-control" required></textarea>
-            <span *ngIf="!descripcion.valid && descripcion.touched">
-                La descripcion no es valida
-            </span>
-        </p>
-
-        <input type="submit" value="Guardar" class="btn btn-success" [disabled]="!articuloNew.form.valid">
-
-    </form>
 </div>
+
