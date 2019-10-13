@@ -44,6 +44,7 @@ class User extends Authenticatable
         $this->last_name=$params->last_name; 
         $this->email=$params->email;
         $this->password=$pwd; 
+        $this->rol='Usuario';
         $this->save();
     }
     public function existeUsuario($email,$pwd){
