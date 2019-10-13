@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
   public user: User;
   public token;
   public identity;
+  public rol;
   public status: string;
 
 
@@ -36,12 +37,23 @@ export class LoginComponent implements OnInit {
 
   onSubmit(form){
     console.log(this.user);
-    console.log('estados: ', this.status);
+    console.log('estado: ', this.status);
     this._userService.signup(this.user).subscribe(
       response => {
         // Token
         // console.log(response);
-        // console.log (response.status);
+        console.log('response rol: ',response);
+        
+        if(response.rol == 'Admin'){
+          this.rol=response.rol;
+          localStorage.setItem('rol', this.rol);
+          sessionStorage.setItem('rol', this.rol);
+          console.log ('rol admin?: ', this.rol);
+        } else {
+          // this.rol.delete();
+        }
+
+        console.log ('rol: ', this.rol);
 
         if(response.status != 'ERROR'){
           this.status = 'SUCCESS';
@@ -122,9 +134,11 @@ export class LoginComponent implements OnInit {
           if(logout==1){
               localStorage.removeItem('identity');
               localStorage.removeItem('token');
+              localStorage.removeItem('rol');
 
               this.identity=null;
               this.token=null;
+              this.rol=null;
 
               //redireccion
               this._router.navigate(['home']);

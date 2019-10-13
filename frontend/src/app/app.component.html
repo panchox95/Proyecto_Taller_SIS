@@ -47,10 +47,11 @@
                 <li *ngIf="identity">
                     <a [routerLink]="['crear-articulo']" ><span class="glyphicon glyphicon-book"></span> Añadir Articulo</a>
                 </li>
-                <li *ngIf="identity">
+                <li *ngIf="rol">
                     <a [routerLink]="['lista-articulo']" ><span class="glyphicon glyphicon-book"></span> Articulos </a>
                 </li>
             </ul>
+
 
             <ul class="nav navbar-nav navbar-right" *ngIf="!identity">
                 <li>

@@ -10,6 +10,7 @@ export class UserService {
     public url: string;
     public identity;
     public token;
+    public rol;
 
     constructor(
         public _http: HttpClient
@@ -63,6 +64,17 @@ export class UserService {
             this.token=null;
         }
         return this.token;
+    }
+
+    getRol(){
+
+        let rol =localStorage.getItem('rol');
+        if(rol != 'undefined'){
+            this.rol=rol;
+        }else{
+            this.rol=null;
+        }
+        return this.rol;
     }
 
     getDatos(token): Observable<any>{
