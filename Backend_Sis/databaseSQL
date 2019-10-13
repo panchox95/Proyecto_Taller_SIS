@@ -99,3 +99,10 @@ create table categoriaservicio(
     foreign key(id_servicio) references servicio (id_servicio),
     primary key(id_categoria,id_servicio)
 );
+insert into categoria values(default,'Equipo'),
+(default,'Modulo'),
+(default,'Hogar'),
+(default,'Conexion'),
+(default,'Sensor'),
+(default,'Cable'),
+(default,'Instalacion');
