@@ -35,7 +35,7 @@ class PerfilController extends Controller
             return $data;
         }
         else{
-            return array('status' => 'ERROR','mensaje'=>'No existe archivo');;
+            return array('status' => 'ERROR','message'=>'No existe archivo');;
         }
     }
     public function mostrarFoto(Request $request){

@@ -28,11 +28,11 @@ class ProductoBL
         $producto = new Producto;
         $lista = $producto->listadoProductos();
         if(\is_object($lista)){
-            $data = array('status' => 'SUCCESS','mensaje'=>'lista de productos','productos'=>$lista);
+            $data = array('status' => 'SUCCESS','message'=>'lista de productos','productos'=>$lista);
         }
         else{
             $data=array(
-                'mensaje'=>'Producto Inexistente',
+                'message'=>'Producto Inexistente',
                 'code'=>404,
                 'status'=>'ERROR',);
         }
@@ -42,19 +42,19 @@ class ProductoBL
     public function eliminarProducto($id){
         $producto = new Producto;
         $producto->eliminarProducto($id);
-        return array('status' => 'SUCCESS','mensaje'=>'Producto Eliminado');
+        return array('status' => 'SUCCESS','message'=>'Producto Eliminado');
     }
 
     public function modificarProducto($params,$id){
         $producto = new Producto;
         $producto = $producto->modificarProducto($params,$id);
-        $data = array('status' => 'SUCCESS','mensaje'=>'Modificacion Exitosa');
+        $data = array('status' => 'SUCCESS','message'=>'Modificacion Exitosa');
         return $data;
     }
 
     public function verProducto($id_producto){
         $producto = new Producto;
-        $data = array('status' => 'SUCCESS','mensaje'=>'Producto','data'=>$producto->verProducto($id_producto));
+        $data = array('status' => 'SUCCESS','message'=>'Producto','data'=>$producto->verProducto($id_producto));
 
         return $data;
     }

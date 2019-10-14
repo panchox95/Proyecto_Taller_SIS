@@ -35,7 +35,7 @@ class LoginBL
         $user->errorIntentoUsuario($email,$intentos->intento+1);
         $user->updatetime($email,time());
         return array(
-            'mensaje'=>'Contraseña incorrecta',
+            'message'=>'Contraseña incorrecta',
             'code'=>404,
             'status'=>'ERROR');
     }

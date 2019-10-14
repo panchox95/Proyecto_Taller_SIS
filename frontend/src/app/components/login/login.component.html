@@ -7,7 +7,7 @@
       Usuario Aceptado
     </div>
     <div class="alert alert-danger" *ngIf="status == 'ERROR'">
-      Usuario o Contraseña Incorrectos
+      {{message}}
     </div>
     <div class="alert alert-danger" *ngIf="status == 'FALTAN'">
       Llenar Todos Los Campos,

@@ -106,6 +106,6 @@ class RegistroController extends Controller
             }
 
         }
-        return response()->json($data,$code);
+        return $data;
     }
 }

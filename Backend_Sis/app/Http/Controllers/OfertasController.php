@@ -21,7 +21,7 @@ class OfertasController extends Controller
             $data=$oferta->crearOferta($params,$id_producto);
         }else{
             $data=array(
-                'mensaje'=>'Producto Inexistente',
+                'message'=>'Producto Inexistente',
                 'code'=>404,
                 'status'=>'ERROR',
             );
@@ -34,7 +34,7 @@ class OfertasController extends Controller
             $data=$oferta->borrarOferta($id_producto);
         }else{
             $data=array(
-                'mensaje'=>'Producto Inexistente',
+                'message'=>'Producto Inexistente',
                 'code'=>404,
                 'status'=>'ERROR',
             );
@@ -66,7 +66,7 @@ class OfertasController extends Controller
             }
             else{    
                 $data=array(
-                    'mensaje'=>'El producto no existe',
+                    'message'=>'El producto no existe',
                     'code'=>404,
                     'status'=>'ERROR',
                 );
@@ -82,7 +82,7 @@ class OfertasController extends Controller
             $code=200;
         }else{
             $data=array(
-                'mensaje'=>'Producto Inexistente',
+                'message'=>'Producto Inexistente',
                 'code'=>404,
                 'status'=>'ERROR',
             );

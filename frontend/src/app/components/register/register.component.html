@@ -10,12 +10,10 @@
         </div>
     
         <div class="alert alert-danger" *ngIf="status == 'ERROR' ">
-            Ohhh Nooo!! Error en el registro
+            {{message}}
         </div>
     
-      <div class="alert alert-danger" *ngIf="status == '400' ">
-        El email debe ser valido y la contraseña mayor a 8 caracteres y menor a 25 y con un numero
-      </div>
+      
     
         <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)" class="col-md-5">
             <p>

@@ -14,7 +14,7 @@ export class RegisterComponent implements OnInit {
 
   public user: User;
   public status: string;
-
+  public message: string;
   constructor(
     // tslint:disable-next-line:variable-name
       private _route: ActivatedRoute,
@@ -35,7 +35,10 @@ export class RegisterComponent implements OnInit {
     console.log(this.user);
     // console.log(this._userService.pruebas());
       this._userService.register(this.user).subscribe(
+
           response => {
+            this.message = response.message;
+            console.log(response);
             
             if(response.status=='SUCCESS'){
               // vaciar el formulario
@@ -50,10 +53,11 @@ export class RegisterComponent implements OnInit {
           },
         // tslint:disable-next-line:no-shadowed-variable
           error => {
+            this.message = error.error.message;
             console.log(<any> error);
-            this.status=error.status;
+            this.status='ERROR';
             form.reset();
-            console.log('resultado: ', error.status);
+            console.log('resultado: ', error.error.message);
           }
       );
   }

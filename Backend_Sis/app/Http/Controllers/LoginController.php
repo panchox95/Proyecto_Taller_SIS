@@ -33,7 +33,7 @@ class LoginController extends Controller
                     $data=array(
                         'reset at'=>$login->checktime($params->email)+60,
                         'time at'=>time(),
-                        'mensaje'=>'Numero de intentos superado',
+                        'message'=>'Numero de intentos superado',
                         'code'=>410,
                         'status'=>'ERROR',
                     );
@@ -52,7 +52,7 @@ class LoginController extends Controller
             }
             else{
                 $data=array(
-                    'mensaje'=>'Correo no encontrado',
+                    'message'=>'Correo no encontrado',
                     'code'=>404,
                     'status'=>'ERROR',
                 );

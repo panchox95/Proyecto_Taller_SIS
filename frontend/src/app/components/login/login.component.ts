@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
   public identity;
   public rol;
   public status: string;
+  public message: string;
 
 
   constructor(
@@ -43,7 +44,7 @@ export class LoginComponent implements OnInit {
         // Token
         // console.log(response);
         console.log('response rol: ',response);
-        
+        this.message = response.message;
         if(response.rol == 'Admin'){
           this.rol=response.rol;
           localStorage.setItem('rol', this.rol);
@@ -58,6 +59,8 @@ export class LoginComponent implements OnInit {
         if(response.status != 'ERROR'){
           this.status = 'SUCCESS';
           this.token = response.token;
+          
+          console.log ('message: ', this.message);
           localStorage.setItem('token', this.token);
           sessionStorage.setItem('token', this.token);
 

@@ -28,7 +28,7 @@ class ProductosController extends Controller
             }
             else{    
                 $data=array(
-                    'mensaje'=>'El producto ya existe',
+                    'message'=>'El producto ya existe',
                     'code'=>404,
                     'status'=>'ERROR',
                 );

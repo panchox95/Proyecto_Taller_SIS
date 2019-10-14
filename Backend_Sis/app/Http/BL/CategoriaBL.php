@@ -11,11 +11,11 @@ class CategoriaBL
         //return $lista;
         if(\is_object($lista)){
             
-            $data = array('status' => 'SUCCESS','mensaje'=>'lista de categorias','categoria'=>$lista);
+            $data = array('status' => 'SUCCESS','message'=>'lista de categorias','categoria'=>$lista);
         }
         else{
              $data=array(
-                'mensaje'=>'No existe Categorias',
+                'message'=>'No existe Categorias',
                 'code'=>404,
                 'status'=>'ERROR',);
         }

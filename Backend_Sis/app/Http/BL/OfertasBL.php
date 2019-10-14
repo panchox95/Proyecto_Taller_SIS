@@ -16,17 +16,17 @@ class OfertasBL
     public function borrarOferta($id_producto){
         $oferta = new Oferta;
         $oferta->eliminarOferta($id_producto);
-        return array('status' => 'SUCCESS','mensaje'=>'Producto Eliminado');
+        return array('status' => 'SUCCESS','message'=>'Producto Eliminado');
     }
     public function modificarOferta($params,$id){
         $oferta = new Oferta;
         $oferta = $oferta->modificarOferta($params,$id);
-        $data = array('status' => 'SUCCESS','mensaje'=>'Modificacion Exitosa');
+        $data = array('status' => 'SUCCESS','message'=>'Modificacion Exitosa');
         return $data;
     }
     public function verOferta($id){
         $oferta = new Oferta;
-        $data =  array('status' => 'SUCCESS','mensaje'=>'Oferta '.$id,'data'=>$oferta->verOferta($id));
+        $data =  array('status' => 'SUCCESS','message'=>'Oferta '.$id,'data'=>$oferta->verOferta($id));
 
         return $data;
     }
@@ -34,10 +34,10 @@ class OfertasBL
         $oferta = new Oferta;
         $lista = $oferta->listaOferta();
         if(\is_object($lista)){
-            $data = array('status' => 'SUCCESS','mensaje'=>'lista de productos','productos'=>$lista);
+            $data = array('status' => 'SUCCESS','message'=>'lista de productos','productos'=>$lista);
         }
         else{
-            $data = array('status' => 'SUCCESS','mensaje'=>'No Hay Datos');
+            $data = array('status' => 'SUCCESS','message'=>'No Hay Datos');
         }
         return $data;
     }
