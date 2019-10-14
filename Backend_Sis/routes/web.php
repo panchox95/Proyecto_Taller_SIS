@@ -33,6 +33,9 @@ Route::put('/api/eliminarproducto/{id}','ProductosController@eliminarProducto')-
 //modificar un producto 
 Route::put('/api/modificarproducto/{id}','ProductosController@modificarProducto')->middleware('Jwt')->middleware('admin');
 
+//Busqueda
+Route::post('/api/busquedanombre','ProductosController@busquedaNombre');
+
 
 //Ver
 Route::get('/api/verproducto/{id}','ProductosController@verProducto');

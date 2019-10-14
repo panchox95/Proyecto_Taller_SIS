@@ -17,6 +17,7 @@ class ProductosController extends Controller
             'cantidad'=>'required',
             'precio'=>'required',
             'descripcion'=>'required',
+            'categoria'=>'required'
         ]);
         if($validate->fails()){  //Si la validacion falla
             return response()-> json($validate->errors(),400);
@@ -34,7 +35,7 @@ class ProductosController extends Controller
                 );
             }        
         }
-        return response()->json($data);
+        return $data;
     }
 
     public function listaProductos(){
@@ -109,5 +110,21 @@ class ProductosController extends Controller
             );
         }
         return response()->json($data,$code);
+    }
+    public function busquedaNombre(Request $request){
+        $json=$request->all('json',null);
+        $params_array  = json_decode(json_encode( $json), true );
+        
+        $params=json_decode((json_encode($json)));
+        //Validamos
+        $validate= \Validator::make(
+            $params_array,[
+                'nombre'=>'required',
+            ]);
+        $producto=new ProductoBl;
+        $data = $producto->busquedaNombre($params);
+        return $data;
+
+        
     }
 }
