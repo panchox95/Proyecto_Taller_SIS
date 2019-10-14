@@ -26,6 +26,7 @@ const appRoutes: Routes = [
     { path: 'articulo/:id_producto', component: ArticuloDetailComponent },
     { path: 'perfil', component: PerfilComponent },
     { path: '**', component: DefaultComponent },
+    {path:'listaproducto/:page',component:ArticuloListComponent},
 ];
 
 export const appRoutingProviders: any[] = [];

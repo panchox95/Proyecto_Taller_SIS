@@ -64,17 +64,10 @@ class ProductoBL
         $producto = new Producto;
         $dataproducto=$producto->busquedaNombre($params->nombre);
         if($dataproducto->isEmpty()){
-            $dataproducto=$producto->busquedaMarca($params->nombre);
-            if($dataproducto->isEmpty()){
                 $data=array(
                     'message'=>'Producto Inexistente',
                     'code'=>404,
-                    'status'=>'ERROR',);
-            }
-            else{
-                $data = array('status' => 'SUCCESS','message'=>'Producto','data'=>$dataproducto,'tipo'=>'marca');
-            }
-            
+                    'status'=>'ERROR',);    
         }
         else{
             $data = array('status' => 'SUCCESS','message'=>'Producto','data'=>$dataproducto,'tipo'=>'nombre');
