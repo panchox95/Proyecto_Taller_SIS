@@ -3,14 +3,14 @@ namespace App\Http\BL;
 use Illuminate\Database\Eloquent\Model;
 use App\Oferta;
 use App\Helpers\JwtAuth;
-class OfertasBL 
+class OfertasBL
 {
     public function crearOferta($params,$id_producto){
         $oferta = new Oferta;
         $oferta->saveOferta($params,$id_producto);
         return array('status'=>'SUCCESS',
-                    'code'=>200,
-                    'message' =>'Creado '.$params->nombre.' '.$params->marca,
+            'code'=>200,
+            'message' =>'Creado '.$params->nombre.' '.$params->marca,
         );
     }
     public function borrarOferta($id_producto){
