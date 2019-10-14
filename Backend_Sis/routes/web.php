@@ -23,23 +23,17 @@ Route::get('/api/listaproducto','ProductosController@listaProductos');
 //Mostrar uhn producto en especifico por el id
 //Route::get('/api/producto','ProductoController@show');
 //Agregar producto
-<<<<<<< HEAD
 Route::post('/api/crearproducto','ProductosController@crearProducto')->middleware('Jwt')->middleware('admin');
-=======
-Route::post('/api/crearproducto','ProductosController@crearProducto');
->>>>>>> DevSprint3
+
 
 //Eliminar un producto (Solo se cambia el estado de activo a borrado)
 
 Route::put('/api/eliminarproducto/{id}','ProductosController@eliminarProducto')->middleware('Jwt')->middleware('admin');
 
-<<<<<<< HEAD
 //modificar un producto 
 Route::put('/api/modificarproducto/{id}','ProductosController@modificarProducto')->middleware('Jwt')->middleware('admin');
-=======
-//modificar un producto
-Route::put('/api/modificarproducto/{id}','ProductosController@modificarProducto');
->>>>>>> DevSprint3
+
+
 //Ver
 Route::get('/api/verproducto/{id}','ProductosController@verProducto');
 
@@ -65,12 +59,9 @@ Route::put('/api/modificarperfil','PerfilController@modificarPerfil')->middlewar
 Route::get('/api/mostrarfoto','PerfilController@mostrarFoto')->middleware('Jwt');
 //Subir Foto
 Route::put('/api/subitfoto','PerfilController@subitFoto')->middleware('Jwt');
-<<<<<<< HEAD
 
 
 //CATEGORIAS
 
 //Lista
 Route::get('/api/listacategoria','CategoriaController@listaCategoria');
-=======
->>>>>>> DevSprint3
