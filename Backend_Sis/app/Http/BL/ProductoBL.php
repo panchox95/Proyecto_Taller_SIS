@@ -3,23 +3,23 @@ namespace App\Http\BL;
 use Illuminate\Database\Eloquent\Model;
 use App\Producto;
 use App\Helpers\JwtAuth;
-class ProductoBL 
+class ProductoBL
 {
     public function crearProducto($params){
-        
+
         $producto = new Producto;
         $producto->saveProducto($params);
-        
+
         return array('status'=>'SUCCESS',
-                    'code'=>200,
-                    'message' =>'Creado '.$params->nombre.' '.$params->marca,
+            'code'=>200,
+            'message' =>'Creado '.$params->nombre.' '.$params->marca,
         );
     }
     public function existeProducto($nombre,$marca){
         $producto = new Producto;
         return $producto->existeProducto($nombre,$marca);
     }
-    
+
     public function existeProductoID($id){
         $producto = new Producto;
         return $producto->existeProductoID($id);
@@ -31,7 +31,10 @@ class ProductoBL
             $data = array('status' => 'SUCCESS','mensaje'=>'lista de productos','productos'=>$lista);
         }
         else{
-            $data = 'No Hay Datos';
+            $data=array(
+                'mensaje'=>'Producto Inexistente',
+                'code'=>404,
+                'status'=>'ERROR',);
         }
         return $data;
     }
@@ -51,7 +54,8 @@ class ProductoBL
 
     public function verProducto($id_producto){
         $producto = new Producto;
-        $data = $producto->verProducto($id_producto);
+        $data = array('status' => 'SUCCESS','mensaje'=>'Producto','data'=>$producto->verProducto($id_producto));
+
         return $data;
     }
 }

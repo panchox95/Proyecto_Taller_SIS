@@ -31,15 +31,18 @@ export class ArticuloDetailComponent implements OnInit {
 
   getArticulo(){
     this._route.params.subscribe(params => {
-      let id = +params['id'];
+      let id = +params['id_producto'];
 
-      this._articuloService.getProducto(id).subscribe(
+      this._articuloService.getArticulo(id).subscribe(
         response => {
-          if(response=='SUCCESS'){
-            this.articulo=response.articulo;
+          console.log('Resultado: ', response.data);
+
+          if(response.status =='SUCCESS'){
+            this.articulo=response.data;
           } else{
             this._router.navigate(['home']);
           }
+          
         },
         error => {
           console.log(<any>error);

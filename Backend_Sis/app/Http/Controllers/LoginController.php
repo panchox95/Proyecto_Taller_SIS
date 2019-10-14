@@ -27,7 +27,9 @@ class LoginController extends Controller
                 if($login->checktime($params->email)+60<time()){
                     $login->resettime($params->email);
                 }
+
                 if($login->intentoUsuario($params->email)==3){
+
                     $data=array(
                         'reset at'=>$login->checktime($params->email)+60,
                         'time at'=>time(),
@@ -36,12 +38,14 @@ class LoginController extends Controller
                         'status'=>'ERROR',
                     );
                 }
+
+
                 else{
                     if($login->existeUsuario($params->email,$pwd) == 0){
                         $data=$login->errorIntentoUsuario($params->email);
                     }
                     else{
-                        $data = $login->login($params->email,$pwd);        
+                        $data = $login->login($params->email,$pwd);
                         $login->resettime($params->email);
                     }
                 }

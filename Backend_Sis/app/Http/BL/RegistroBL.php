@@ -4,15 +4,15 @@ use Illuminate\Database\Eloquent\Model;
 use App\User;
 use App\Perfil;
 use App\Helpers\JwtAuth;
-class RegistroBL 
+class RegistroBL
 {
     public function registro($params){
         //Instanciamos Clases
-        $user = new User();    
+        $user = new User();
         $perfil = new Perfil();
         //Comprobar si Existe el Usuario
         $pwd = hash('sha256',$params->password);
-        if($user->existeUsuario($params->email,$pwd) == 0){
+        if($user->existeCorreo($params->email) == 0){
             //Guardar
             $user->saveUsuario($params,$pwd);
             $id=$user->getIDUsuario($params->email);

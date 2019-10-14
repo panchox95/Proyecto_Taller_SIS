@@ -41,9 +41,10 @@ class User extends Authenticatable
     public $timestamps = false;
     public function saveUsuario($params,$pwd){
         $this->first_name=$params->first_name;
-        $this->last_name=$params->last_name; 
+        $this->last_name=$params->last_name;
         $this->email=$params->email;
-        $this->password=$pwd; 
+        $this->password=$pwd;
+        $this->rol='Usuario';
         $this->save();
     }
     public function existeUsuario($email,$pwd){
@@ -82,5 +83,8 @@ class User extends Authenticatable
     }
     public function updatetime($email,$time){
         return  User::where(array('email'=>$email))->update(["ultimo_intento"=>$time]);
+    }
+    public function getrol($email){
+        return  User::where('email', $email)->value('rol');
     }
 }

@@ -37,7 +37,7 @@ export class PerfilComponent implements OnInit {
         if(response.status=='SUCCESS'){
           // vaciar el formulario
           this.status = response.status;
-
+          console.log(this.status);
           this.user = new User('','','','','');
           form.reset();
 

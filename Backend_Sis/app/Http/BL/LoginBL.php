@@ -3,7 +3,7 @@ namespace App\Http\BL;
 use Illuminate\Database\Eloquent\Model;
 use App\User;
 use App\Helpers\JwtAuth;
-class LoginBL 
+class LoginBL
 {
     public function login($email,$pwd){
         $jwtauth = new JwtAuth();
@@ -15,9 +15,10 @@ class LoginBL
         //$paramsjwt = json_decode((json_encode($jwt)));
         //$token = $paramsjwt->token;
         //$identity = $paramsjwt->identity;
+        $rol=$user->getrol($email);
         return array('status'=>'SUCCESS',
-                    'code'=>200,
-                    'message' =>'Bienvenido '.$first_name.' '.$last_name,'token'=>$jwt,
+            'code'=>200,
+            'message' =>'Bienvenido '.$first_name.' '.$last_name,'token'=>$jwt,'rol'=>$rol
         );
     }
     public function existeUsuario($email,$pwd){

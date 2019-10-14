@@ -11,11 +11,11 @@ class Producto extends Model
     public $timestamps = false;
     public function saveProducto($params){
         $this->nombre=$params->nombre;
-        $this->marca=$params->marca; 
+        $this->marca=$params->marca;
         $this->cantidad=$params->cantidad;
         $this->precio=$params->precio;
         $this->descripcion=$params->descripcion;
-        $this->estado='activo'; 
+        $this->estado='activo';
         $this->save();
     }
     public function existeProducto($nombre,$marca){
@@ -26,18 +26,18 @@ class Producto extends Model
     }
     public function listadoProductos(){
         return $productos = Producto::select('*')
-                            ->where('producto.estado','=','activo')
-                            ->paginate(5);               
+            ->where('producto.estado','=','activo')
+            ->paginate(5);
     }
     public function eliminarProducto($id){
         return Producto::where('id_producto',$id)
-        ->update(["estado"=> 'borrado']);
+            ->update(["estado"=> 'borrado']);
     }
     public function modificarProducto($params,$id){
         return Producto::where('id_producto',$id)
-        ->update(["nombre"=> $params->nombre,"marca"=>$params->marca,"cantidad"=>$params->cantidad,"precio"=> $params->precio,"descripcion"=> $params->descripcion]);
+            ->update(["nombre"=> $params->nombre,"marca"=>$params->marca,"cantidad"=>$params->cantidad,"precio"=> $params->precio,"descripcion"=> $params->descripcion]);
     }
-    public function verOferta($id){
+    public function verProducto($id){
         return  Producto::select('*')->where('id_producto','=',$id)->first();
     }
 }

@@ -32,13 +32,10 @@ class SocialAuthController extends Controller
             return $this->authAndRedirect($user);
         }
     }
-public function authAndRedirect($user){
-    Auth::login($user);
+    public function authAndRedirect($user){
+        Auth::login($user);
 
-<<<<<<< HEAD
-=======
-    //Faltaba punto y coma
->>>>>>> DevSprint2
-    return redirect()->to('/home#');
-}
+        //Faltaba punto y coma
+        return redirect()->to('/home#');
+    }
 }

@@ -10,6 +10,7 @@ export class UserService {
     public url: string;
     public identity;
     public token;
+    public rol;
 
     constructor(
         public _http: HttpClient
@@ -44,7 +45,7 @@ export class UserService {
 
     getIdentity(){
 
-        let identity=JSON.parse(localStorage.getItem('identity'));
+        let identity = JSON.parse(localStorage.getItem('identity'));
         if(identity != 'undefined'){
             this.identity=identity;
         }else{
@@ -56,7 +57,7 @@ export class UserService {
 
     getToken(){
 
-        let token=localStorage.getItem('token');
+        let token =localStorage.getItem('token');
         if(token != 'undefined'){
             this.token=token;
         }else{
@@ -64,9 +65,21 @@ export class UserService {
         }
         return this.token;
     }
-  getDatos(token): Observable<any>{
-    let headers = new HttpHeaders()
-      .set('Authorization','bearer '+token);
-    return this._http.get(this.url+'verperfil',{headers: headers})
-  }
+
+    getRol(){
+
+        let rol =localStorage.getItem('rol');
+        if(rol != 'undefined'){
+            this.rol=rol;
+        }else{
+            this.rol=null;
+        }
+        return this.rol;
+    }
+
+    getDatos(token): Observable<any>{
+        let headers = new HttpHeaders()
+        .set('Authorization','bearer '+token);
+        return this._http.get(this.url+'verperfil',{headers: headers})
+    }
 }

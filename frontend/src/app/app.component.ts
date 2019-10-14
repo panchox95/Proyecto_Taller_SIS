@@ -13,6 +13,7 @@ export class AppComponent implements OnInit, DoCheck{
 
   public identity;
   public token;
+  public rol;
   public nombre; apellido;
 
   constructor(
@@ -22,6 +23,7 @@ export class AppComponent implements OnInit, DoCheck{
 
     this.identity=this._userService.getIdentity();
     this.token=this._userService.getToken();
+    this.rol=this._userService.getRol();
 
   }
 
@@ -47,6 +49,7 @@ export class AppComponent implements OnInit, DoCheck{
   ngDoCheck() {
     this.identity=this._userService.getIdentity();
     this.token=this._userService.getToken();
+    this.rol=this._userService.getRol();
 
   }
 
