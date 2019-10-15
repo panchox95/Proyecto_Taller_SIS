@@ -87,4 +87,8 @@ class User extends Authenticatable
     public function getrol($email){
         return  User::where('email', $email)->value('rol');
     }
+    public function modificarPerfil($params,$id){
+        return Perfil::where('id_perfil',$id)
+        ->update(["fist_name"=> $params->fist_name,"last_name"=>$params->last_name,"email"=>$params->email]);
+    }
 }

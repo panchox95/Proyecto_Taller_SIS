@@ -1,0 +1,60 @@
+<div class="container">
+    <div class="col-md-12" *ngIf="page_title">
+        <h2>{{page_title}}</h2>
+            
+        <div class="alert alert-success" *ngIf="status_articulo=='SUCCESS'">
+            El perfil se actualizo correctamente
+        </div>
+            
+        <div class="alert alert-danger" *ngIf="status_articulo=='ERROR'">
+            {{message}}
+        </div>
+            
+        <form #perfiledit="ngForm" (ngSubmit)="onSubmit(perfiledit)" class="col-md-5">
+            
+            <p>
+                <label>Nombre</label>
+                <input type="text" name="nombre" #nombre="ngModel" [(ngModel)]="user.first_name" class="form-control" required/>
+                <span *ngIf="!nombre.valid && nombre.touched">
+                    El nombre no es valido
+                </span>
+            </p>
+            <p>
+                <label>Apellido</label>
+                <input type="text" name="nombre" #nombre="ngModel" [(ngModel)]="user.last_name" class="form-control" required/>
+                <span *ngIf="!nombre.valid && nombre.touched">
+                    El apellido no es valido
+                </span>
+            </p>
+            <p>
+                <label>Correo</label>
+                <input type="text" name="marca" #marca="ngModel" [(ngModel)]="user.email" class="form-control" required/>
+                <span *ngIf="!marca.valid && marca.touched">
+                    La correo no es valido
+                </span>
+            </p>
+            
+            <p>
+                <label>Telefono</label>
+                <input type="number" name="cantidad" #cantidad="ngModel" [(ngModel)]="perfil.telefono" class="form-control" required/>
+                <span *ngIf="!cantidad.valid && cantidad.touched">
+                    La Telefono no es valido
+                </span>
+            </p>
+            
+            <p>
+                <label>Direccion</label>
+                <input type="text" name="precio" #precio="ngModel" [(ngModel)]="perfil.direccion" class="form-control" required/>
+                <span *ngIf="!precio.valid && precio.touched">
+                    El Direccion no es valido
+                </span>
+            </p>
+            
+            
+            
+            <input type="submit" value="Guardar" class="btn btn-success">
+            
+        </form>
+    </div>
+</div>
+

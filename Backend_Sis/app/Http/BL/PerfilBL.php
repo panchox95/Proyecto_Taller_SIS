@@ -2,6 +2,7 @@
 namespace App\Http\BL;
 use Illuminate\Database\Eloquent\Model;
 use App\Perfil;
+use App\User;
 use App\Helpers\JwtAuth;
 class PerfilBL 
 {
@@ -14,8 +15,10 @@ class PerfilBL
     }
     public function modificarPerfil($decoded,$params){
         $perfil = new Perfil;
+        $user = new User;
         $id = $decoded->id_user;
         $perfil->modificarPerfil($params,$id);
+        $user->modificarPerfil($params->user,$id);
         $data = array('status' => 'SUCCESS','message'=>'Modificacion Exitosa');
         return $data;
     }

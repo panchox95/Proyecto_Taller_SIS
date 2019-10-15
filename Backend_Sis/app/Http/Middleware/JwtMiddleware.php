@@ -19,28 +19,45 @@ class JwtMiddleware
         
         try{
             $jwt = $request->header('Authorization',null);
-            
-        }
-        catch(\ErrorException $e){
-            $data = "No existe un token";
-            $code = 404;
-            return response()->json($data,$code);
-        }
-        $checkToken = $jwtAuth->checkToken($jwt);
-        //return $checkToken;
-        if($checkToken){
+            $checkToken = $jwtAuth->checkToken($jwt);
+            //return $checkToken;
+            if($checkToken){
             $decoded = $jwtAuth->decode($jwt);
             if($decoded->exp > time()){
               return $next($request);
             }else{
-              $data = "Token Expirado";
+                $data=array(
+                    'status'=>'ERROR',
+                    'code' => 400,
+                    'message' => 'Token Expirado');
                 $code = 403;
            }
         }
         else{
-            $data = "Token Invalido";
+            $data=array(
+                'status'=>'ERROR',
+                'code' => 400,
+                'message' => 'Token Invalido');
             $code = 403;
         }
         return response()->json($data,$code);
+        }
+        catch(\ErrorException $e){
+            $data=array(
+                'status'=>'ERROR',
+                'code' => 400,
+                'message' => 'No existe un token');
+            $code = 404;
+            return response()->json($data,$code);
+        }
+        catch(\UnexpectedValueException $e){
+            $data=array(
+                'status'=>'ERROR',
+                'code' => 400,
+                'message' => 'No existe un token');
+            $code = 404;
+            return response()->json($data,$code);
+        }
+        
     }
 }

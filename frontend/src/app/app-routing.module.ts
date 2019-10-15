@@ -12,6 +12,7 @@ import { ArticuloEditComponent } from './components/articulo-edit/articulo-edit.
 import { ArticuloDetailComponent } from './components/articulo-detail/articulo-detail.component';
 import { ArticuloListComponent } from './components/articulo-list/articulo-list.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
+import { PerfilEditComponent } from './components/perfil-edit/perfil-edit.component';
 
 const appRoutes: Routes = [
     { path: '', component: DefaultComponent },
@@ -25,8 +26,14 @@ const appRoutes: Routes = [
     { path: 'editar-articulo/:id_producto',component: ArticuloEditComponent },
     { path: 'articulo/:id_producto', component: ArticuloDetailComponent },
     { path: 'perfil', component: PerfilComponent },
+    { path: 'listaproducto/:page',component:ArticuloListComponent},
+    { path: 'editar-perfil',component: PerfilEditComponent},
+
+
+
+    // Este siempre tiene q ser el ultimo
     { path: '**', component: DefaultComponent },
-    {path:'listaproducto/:page',component:ArticuloListComponent},
+    
 ];
 
 export const appRoutingProviders: any[] = [];

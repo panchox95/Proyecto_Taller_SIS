@@ -5,34 +5,36 @@ import { Perfil } from '../../models/perfil';
 import { UserService } from '../../services/user.service';
 import { PerfilService } from '../../services/perfil.service';
 @Component({
-  selector: 'app-perfil',
-  templateUrl: './perfil.component.html',
-  styleUrls: ['./perfil.component.css'],
+  selector: 'app-perfil-edit',
+  templateUrl: './perfil-edit.component.html',
+  styleUrls: ['./perfil-edit.component.css'],
   providers: [UserService,PerfilService]
 })
-export class PerfilComponent implements OnInit {
-
+export class PerfilEditComponent implements OnInit {
   public perfil: Perfil;
   public status: string;
   public user: User;
   public token: string;
   public rol: string;
+  public page_title:string;
   constructor(
-    // tslint:disable-next-line:variable-name
+    
     private _route: ActivatedRoute,
-    // tslint:disable-next-line:variable-name
+    
     private _router: Router,
-    // tslint:disable-next-line:variable-name
-    private _userService: UserService
-  ) {
+    
+    private _userService: UserService,
 
+    private _perfilService: PerfilService,
+  ) {
     
     this.user = new User('','','','','');
     this.perfil = new Perfil('','','','','',this.user);
     this.token = this._userService.getToken();
     this.rol = this._userService.getRol();
+    this.page_title = "Edicion";
+   }
 
-  }
   ngOnInit() {
     console.log(this.perfil);
     // console.log(this._userService.pruebas());
@@ -40,9 +42,9 @@ export class PerfilComponent implements OnInit {
       response => {
         console.log(response);
         if(response.status=='SUCCESS'){
-          this.user.email=response.data.email;
-          this.user.first_name=response.data.first_name;
-          this.user.last_name=response.data.last_name;
+          this.perfil.user.email=response.data.email;
+          this.perfil.user.first_name=response.data.first_name;
+          this.perfil.user.last_name=response.data.last_name;
           this.perfil.direccion=response.data.direccion;
           this.perfil.telefono=response.data.telefono;
 
@@ -50,13 +52,32 @@ export class PerfilComponent implements OnInit {
           this.status = 'ERROR';
         }
       },
-      // tslint:disable-next-line:no-shadowed-variable
+  
       error => {
         console.log(<any> error);
       }
     );
+
   }
-  
-  
+  onSubmit(form){
+    console.log(JSON.stringify(this.perfil));
+    
+
+    this._perfilService.update(this.token,this.perfil).subscribe(
+      response => {
+        console.log('editado: ', response);
+        if(response.status =='SUCCESS'){
+          
+          //this._router.navigate(['/articulo', this.articulo.id_producto]);
+        } else{
+          
+          //this._router.navigate(['home']);
+        }
+      },
+      error => {
+        console.log(<any>error);
+      }
+    );
+  }
 
 }

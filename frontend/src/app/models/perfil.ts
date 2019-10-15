@@ -1,3 +1,4 @@
+import { User } from './user';
 export class Perfil {
     constructor(
         //public id_user: number,
@@ -5,6 +6,7 @@ export class Perfil {
         public direccion: string,
         public foto: string,
         public tarjeta: string,
-      public zipcode: string
+      public zipcode: string,
+      public user: User
     ){}
 }

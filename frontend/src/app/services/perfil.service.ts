@@ -18,12 +18,13 @@ export class PerfilService {
         this.url=GLOBAL.url;
     }
 
-    update(perfil,token): Observable<any>{
+    update(token,perfil): Observable<any>{
 
       let json=JSON.stringify(perfil);
+
       let headers= new HttpHeaders().set('Content-Type', 'application/json')
       .set('Authorization',token);
-      return this._http.post(this.url+'modificarperfil', json, { headers: headers });
+      return this._http.put(this.url+'modificarperfil', json, { headers: headers });
     }
 
     

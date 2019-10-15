@@ -50,19 +50,19 @@ class JwtAuth{
         $auth = false;
         try{
             $decoded=JWT::decode($jwt,$this->key,array('HS256'));
-            
+            if(is_object($decoded) && isset($decoded->id_user)){
+                //echo $decoded->id_user;
+                $auth=true;
+            }
             
         }
         catch(\UnexpectedValueException $e){
-            echo 'Unexpected Value Exception';
+            //echo 'Unexpected Value Exception';
         }
         catch(\DomainException $e){
-            echo 'Domain Exception';
+            //echo 'Domain Exception';
         }
-        if(is_object($decoded) && isset($decoded->id_user)){
-            //echo $decoded->id_user;
-            $auth=true;
-        }
+        
         return $auth;
     }
 }
