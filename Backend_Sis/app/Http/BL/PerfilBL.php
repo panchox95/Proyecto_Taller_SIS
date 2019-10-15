@@ -8,8 +8,8 @@ class PerfilBL
     public function verPerfil($decoded){
         $perfil = new Perfil;
         $id = $decoded->id_user;
-        $perfildata= $perfil->verPerfil($params,$id);
-        $data = array('status' => 'SUCCESS','message'=>'Modificacion Exitosa','data'=>$perfildata);
+        $perfildata= $perfil->verPerfil($id);
+        $data = array('status' => 'SUCCESS','message'=>'Perfil','data'=>$perfildata);
         return $data;
     }
     public function modificarPerfil($decoded,$params){

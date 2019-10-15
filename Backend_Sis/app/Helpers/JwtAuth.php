@@ -49,7 +49,9 @@ class JwtAuth{
     public function checkToken($jwt,$getIdentity=false){
         $auth = false;
         try{
-            $this->decode($jwt);
+            $decoded=JWT::decode($jwt,$this->key,array('HS256'));
+            
+            
         }
         catch(\UnexpectedValueException $e){
             echo 'Unexpected Value Exception';
@@ -57,11 +59,9 @@ class JwtAuth{
         catch(\DomainException $e){
             echo 'Domain Exception';
         }
-        if(id_object($decoded && isset($decoded->id_user))){
+        if(is_object($decoded) && isset($decoded->id_user)){
+            //echo $decoded->id_user;
             $auth=true;
-        }
-        if($getIdentity){
-            return $decoded;
         }
         return $auth;
     }

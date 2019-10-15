@@ -12,7 +12,7 @@ class Oferta extends Model
     public function saveOferta($params,$id_producto){
         $this->id_producto=$id_producto;
         $this->descripcion=$params->descripcion; 
-        $this->precio=$params->precio;
+        $this->descuento=$params->descuento;
         $this->estado='activo'; 
         $this->save();
     }

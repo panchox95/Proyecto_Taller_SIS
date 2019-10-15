@@ -1,18 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { User } from '../../models/user';
+import { Perfil } from '../../models/perfil';
 import { UserService } from '../../services/user.service';
+import { PerfilService } from '../../services/perfil.service';
 @Component({
   selector: 'app-perfil',
   templateUrl: './perfil.component.html',
   styleUrls: ['./perfil.component.css'],
-  providers: [UserService]
+  providers: [UserService,PerfilService]
 })
 export class PerfilComponent implements OnInit {
 
-  public user: User;
+  public perfil: Perfil;
   public status: string;
-
+  public user: User;
+  public token: string;
+  public rol: string;
   constructor(
     // tslint:disable-next-line:variable-name
     private _route: ActivatedRoute,
@@ -22,24 +26,24 @@ export class PerfilComponent implements OnInit {
     private _userService: UserService
   ) {
 
+    this.perfil = new Perfil('','','','','');
     this.user = new User('','','','','');
+    this.token = this._userService.getToken();
+    this.rol = this._userService.getRol();
 
   }
   ngOnInit() {
-  }
-
-  onSubmit(form){
-    console.log(this.user);
+    console.log(this.perfil);
     // console.log(this._userService.pruebas());
-    this._userService.update(this.user).subscribe(
+    this._userService.getDatos(this.token).subscribe(
       response => {
         console.log(response);
         if(response.status=='SUCCESS'){
-          // vaciar el formulario
-          this.status = response.status;
-          console.log(this.status);
-          this.user = new User('','','','','');
-          form.reset();
+          this.user.email=response.data.email;
+          this.user.first_name=response.data.first_name;
+          this.user.last_name=response.data.last_name;
+          this.perfil.direccion=response.data.direccion;
+          this.perfil.telefono=response.data.telefono;
 
         } else{
           this.status = 'ERROR';
@@ -50,6 +54,10 @@ export class PerfilComponent implements OnInit {
         console.log(<any> error);
       }
     );
+  }
+
+  onSubmit(form){
+    
   }
 
 }

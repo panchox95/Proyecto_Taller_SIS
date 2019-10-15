@@ -15,7 +15,7 @@ class OfertasController extends Controller
         $params_array  = json_decode(json_encode( $json), true ); //Parametros para la validacion
         $validate = \Validator::make($params_array,[ // Validacion
             'descripcion'=>'required',
-            'precio'=>'required'
+            'descuento'=>'required'
         ]);
         if($producto->existeProductoID($id_producto) == 1){
             $data=$oferta->crearOferta($params,$id_producto);

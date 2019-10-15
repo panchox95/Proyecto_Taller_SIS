@@ -17,7 +17,11 @@ class Perfil extends Model
         ->update(["telefono"=> $params->telefono,"direccion"=>$params->direccion,"foto"=>$params->foto,"tarjetacredito"=> $params->tarjetacredito,"zipcode"=> $params->zipcode]);
     }
     public function verPerfil($id){
-        return Perfil::where('id_perfil',$id)->first;
+       // return Perfil::where('id_perfil',$id)->first();
+       return $users = Perfil::join('user', 'perfil.id_user', '=', 'user.id_user')
+                            ->select('perfil.telefono', 'perfil.direccion', 'perfil.foto', 'user.first_name','user.last_name','user.email')
+                            ->where('perfil.id_user', '=', $id)
+                            ->first();
     }
     public function subirFoto($id,$name){
         return Perfil::where('id_perfil',$id)->update(["foto"=> $name]);

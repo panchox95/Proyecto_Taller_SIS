@@ -3,13 +3,15 @@
 namespace App\Http\Controllers;
 use App\Http\BL\PerfilBL;
 use Illuminate\Http\Request;
+use App\Helpers\JwtAuth;
 
 class PerfilController extends Controller
 {
     public function verPerfil(Request $request){
         $perfil = new PerfilBL;
+        $jwtAuth = new JwtAuth();
         $jwt = $request->header('Authorization',null);
-        $decoded = $jwtAuth->decoded($jwt);
+        $decoded = $jwtAuth->decode($jwt);
         $data = $perfil->verPerfil($decoded);
         return $data;
     }

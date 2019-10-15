@@ -27,8 +27,9 @@ class JwtMiddleware
             return response()->json($data,$code);
         }
         $checkToken = $jwtAuth->checkToken($jwt);
+        //return $checkToken;
         if($checkToken){
-            $decoded = $jwtAuth->decoded($jwt);
+            $decoded = $jwtAuth->decode($jwt);
             if($decoded->exp > time()){
               return $next($request);
             }else{

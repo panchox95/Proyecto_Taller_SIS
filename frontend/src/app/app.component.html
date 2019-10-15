@@ -64,7 +64,7 @@
 
             <ul class="nav navbar-nav navbar-right" *ngIf="identity">
                 <li>
-                    <a [routerLink]="['perfil']" >{{identity.message}}</a>
+                    <a [routerLink]="['perfil']" >{{first_name}} {{last_name}}</a>
                 </li>
                 <li>
                     <a [routerLink]="['logout',1]">

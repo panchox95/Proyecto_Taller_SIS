@@ -1,66 +1,17 @@
 <div class="container">
-  <div class="title-perfil">
-    <h2>Perfil</h2>
+  <h1>Perfil: {{user.first_name}} {{user.last_name}}</h1><br>
+  <div class="col-md-7">
+      <table class="table table-striped">
+          <thead>
+              <tr>
+                  <th scope="col">Telefono</th>
+                  <th scope="col">{{perfil.telefono}}</th>
+              </tr>
+              <tr>
+                  <th scope="col">Direccion</th>
+                  <th scope="col">{{perfil.direccion}}</th>
+              </tr>
+          </thead>
+      </table>
   </div>
-
-  <div class="alert alert-success" *ngIf="status == 'SUCCESS' ">
-    El Cambio se ha completado satisfactoriamente
-  </div>
-
-  <div class="alert alert-danger" *ngIf="status == 'ERROR' ">
-    Ohhh Nooo!! Error en el cambio
-  </div>
-
-  <form #profileForm="ngForm" (ngSubmit)="onSubmit(profileForm)" class="col-md-5">
-
-    <div class="card">
-      <img  class="img-circle" src="https://www.whatsappprofiledpimages.com/wp-content/uploads/2018/07/cool-profile-pictures10-300x224.jpg" width="150px" height="150px">
-      <input type="file" name="profile_image"  class="form-control" >
-    </div>
-
-    <p>
-      <label>Nombre:</label>
-      <input type="text" name="first_name" #first_name="ngModel" [(ngModel)]="user.first_name" class="form-control" placeholder="{{user.first_name}}" >
-    </p>
-
-    <p>
-      <label>Apellido:</label>
-      <input type="text" name="last_name" #last_name="ngModel" [(ngModel)]="user.last_name" class="form-control" placeholder="{{user.last_name}}" >
-    </p>
-
-    <p>
-      <label>Email:</label>
-      <input type="email" name="email" #email="ngModel" [(ngModel)]="user.email" class="form-control" placeholder="{{user.email}}" >
-    </p>
-
-    <!--
-    <p>
-      <label>Password:</label>
-      <input type="password" name="password" #password="ngModel" [(ngModel)]="user.password" class="form-control" placeholder="********" required/>
-      <span *ngIf="!password.valid && password.touched">
-                La contrasena no es valida
-      </span>
-    </p>
-
-    <p>
-      <label>Nuevo Password:</label>
-      <input type="password" name="password_new" #password_new="ngModel" [(ngModel)]="user.password" class="form-control" placeholder="********" required/>
-      <span *ngIf="!password_new.valid && password_new.touched">
-                La contrasena no es valida
-      </span>
-    </p>
-
-    <p>
-      <label>Confirmar Nuevo Password:</label>
-      <input type="password" name="password_new2" #password_new2="ngModel" [(ngModel)]="user.password" class="form-control" placeholder="********" required/>
-      <span *ngIf="!password_new2.valid && password_new2.touched">
-                La contrasena no es valida
-      </span>
-    </p>
-    -->
-
-    <input type="submit" value="Actualizar Datos" class="btn btn-warning" />
-
-  </form>
-
 </div>

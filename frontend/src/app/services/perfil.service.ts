@@ -2,11 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
 import { GLOBAL } from './global';
-import { User } from '../models/user';
+import { Perfil } from '../models/perfil';
 
 
 @Injectable()
-export class UserService {
+export class PerfilService {
     public url: string;
     public identity;
     public token;
@@ -18,30 +18,15 @@ export class UserService {
         this.url=GLOBAL.url;
     }
 
-    register(user): Observable<any>{
+    update(perfil,token): Observable<any>{
 
-        let json=JSON.stringify(user);
-        let headers= new HttpHeaders().set('Content-Type', 'application/json');
-        return this._http.post(this.url+'registro', json, { headers: headers });
-    }
-
-    update(user): Observable<any>{
-
-      let json=JSON.stringify(user);
-      let headers= new HttpHeaders().set('Content-Type', 'application/json');
+      let json=JSON.stringify(perfil);
+      let headers= new HttpHeaders().set('Content-Type', 'application/json')
+      .set('Authorization',token);
       return this._http.post(this.url+'modificarperfil', json, { headers: headers });
     }
 
-    signup(user, gettoken=null): Observable<any>{
-
-        if(gettoken != null){
-            user.gettoken='true';
-        }
-        let json=JSON.stringify(user);
-        console.log(json);
-        let headers= new HttpHeaders().set('Content-Type', 'application/json');
-        return this._http.post(this.url+'login', json, { headers: headers });
-    }
+    
 
     getIdentity(){
 
