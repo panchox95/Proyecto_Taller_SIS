@@ -13,8 +13,8 @@ class Perfil extends Model
         $this->save();
     }
     public function modificarPerfil($params,$id){
-        return Perfil::where('id_perfil',$id)
-        ->update(["telefono"=> $params->telefono,"direccion"=>$params->direccion,"foto"=>$params->foto,"tarjetacredito"=> $params->tarjetacredito,"zipcode"=> $params->zipcode]);
+        return Perfil::where('id_user',$id)
+        ->update(["telefono"=> $params['telefono'],"direccion"=>$params['direccion'],"foto"=>$params['foto'],"tarjeta"=> $params['tarjeta'],"zipcode"=> $params['zipcode']]);
     }
     public function verPerfil($id){
        // return Perfil::where('id_perfil',$id)->first();
@@ -24,7 +24,7 @@ class Perfil extends Model
                             ->first();
     }
     public function subirFoto($id,$name){
-        return Perfil::where('id_perfil',$id)->update(["foto"=> $name]);
+        return Perfil::where('id_user',$id)->update(["foto"=> $name]);
     }
     public function mostrarFoto($id){
         return Perfil::select('foto')->where('id_perfil',$id);

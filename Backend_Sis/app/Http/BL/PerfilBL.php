@@ -13,12 +13,12 @@ class PerfilBL
         $data = array('status' => 'SUCCESS','message'=>'Perfil','data'=>$perfildata);
         return $data;
     }
-    public function modificarPerfil($decoded,$params){
+    public function modificarPerfil($decoded,$params,$userparams){
         $perfil = new Perfil;
         $user = new User;
         $id = $decoded->id_user;
         $perfil->modificarPerfil($params,$id);
-        $user->modificarPerfil($params->user,$id);
+        $user->modificarPerfil($userparams,$id);
         $data = array('status' => 'SUCCESS','message'=>'Modificacion Exitosa');
         return $data;
     }

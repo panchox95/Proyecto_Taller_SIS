@@ -19,28 +19,30 @@ class PerfilController extends Controller
         $perfil = new PerfilBL;
         $jwt = $request->header('Authorization',null);
         $jwtAuth = new JwtAuth();
-        $input = $request->only(['user']);
-        $json = $request->all('json',null); //Recibimos el JSON enviado por el Frontend
-        $params = json_decode((json_encode($json))); //Parametros para el uso
-        $params_array  = json_decode(json_encode( $json), true );
-        $params_array_user  = json_decode(json_encode( $input), true );
-        $paramsuser = json_decode((json_encode($input)));
+        //$input = $request->only(['user']);
+        //$json = $request->all('json',null); //Recibimos el JSON enviado por el Frontend
+        $params=$request->toArray();
+        //$params = json_decode((json_encode($json))); //Parametros para el uso
+        //$params_array  = json_decode(json_encode( $json), true );
+        //$params_array_user  = json_decode(json_encode( $input), true );
+        //$paramsuser = json_decode((json_encode($input)));
        // $params_user  = json_decode(json_encode( $json->user), true );
-        return $params->direccion;
+       $user = $params['user'];
+        //return $user['first_name'];
         $validate=false;
         $validate4= \Validator::make(
-            $params_array,[
+            $params,[
                 'telfono'=>'number',
             ]
         );
         $validate5= \Validator::make(
-            $params_array,[
+            $params,[
                 'telefono'=>'required',
                 'direccion'=>'required',
             ]
         );
         $validate6= \Validator::make(
-            $params_array_user,[
+            $user,[
                 'first_name'=>'required',
                 'last_name'=>'required',
                 'email'=>'required',
@@ -66,8 +68,8 @@ class PerfilController extends Controller
             return response()->json($data,$code);
         }
         else{
-            $decoded = $jwtAuth->decoded($jwt);
-            $data = $perfil->modificarPerfil($decoded,$params);
+            $decoded = $jwtAuth->decode($jwt);
+            $data = $perfil->modificarPerfil($decoded,$params,$user);
             return $data;
         }
         
