@@ -19,7 +19,7 @@ class AdminMiddleware
         $jwtAuth = new JwtAuth();
         $user = new User();
         $jwt = $request->header('Authorization',null);
-        $decoded = $jwtAuth->decoded($jwt);
+        $decoded = $jwtAuth->decode($jwt);
         $rol=$user->getrol($decoded->email);
         if($rol=='Admin'){
             return $next($request);
