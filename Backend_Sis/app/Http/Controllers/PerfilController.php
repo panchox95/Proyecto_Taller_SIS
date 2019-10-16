@@ -79,7 +79,7 @@ class PerfilController extends Controller
 
 
     public function subirFoto(Request $request){
-        $file=$request->file('photo');
+        $file=$request->file('keys');
         //return gettype($file);
         $jwtAuth = new JwtAuth();
         $jwt = $request->header('Authorization',null);
