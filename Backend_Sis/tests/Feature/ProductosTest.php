@@ -19,4 +19,19 @@ class ProductosTest extends TestCase
 
         $response->assertStatus(200);
     }
+
+    public function test_lista_productos()
+    {
+        $response = $this->get('/api/listaproducto');
+
+        $response->assertStatus(200);
+        $response->json(200);
+
+    }
+
+
+   
+
+
+
 }
