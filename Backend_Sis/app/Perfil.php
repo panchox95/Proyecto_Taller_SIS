@@ -27,6 +27,6 @@ class Perfil extends Model
         return Perfil::where('id_user',$id)->update(["foto"=> $name]);
     }
     public function mostrarFoto($id){
-        return Perfil::select('foto')->where('id_perfil',$id);
+        return Perfil::select('foto')->where('id_perfil', '=',$id);
     }
 }

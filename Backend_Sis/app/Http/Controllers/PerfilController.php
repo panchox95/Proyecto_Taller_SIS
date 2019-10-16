@@ -6,6 +6,7 @@ use App\Http\BL\LoginBL;
 use Illuminate\Http\Request;
 use App\Helpers\JwtAuth;
 use Image;
+use Illuminate\Http\UploadedFile;
 class PerfilController extends Controller
 {
     public function verPerfil(Request $request){
@@ -79,10 +80,9 @@ class PerfilController extends Controller
 
 
     public function subirFoto(Request $request){
-       // $file=$request->file('photo');
-       // $file=Input::get('photo');
+      // $file=$request->all();
         $file = $request->photo;
-        //echo gettype($file);
+
         $jwtAuth = new JwtAuth();
         $jwt = $request->header('Authorization',null);
         $decoded = $jwtAuth->decode($jwt);
@@ -96,6 +96,7 @@ class PerfilController extends Controller
         $image->save($path);
         $perfil = new PerfilBL;
         $data=$perfil->subirFoto($decoded,$url);
+        return '<img src="'.$url.'" />';
         $data=array(
             'status'=>'SUCCESS',
             'code' => 200,
@@ -105,9 +106,16 @@ class PerfilController extends Controller
     }
     public function mostrarFoto(Request $request){
         $jwt = $request->header('Authorization',null);
+        $jwtAuth = new JwtAuth();
         $perfil = new PerfilBL;
-        $decoded = $jwtAuth->decoded($jwt);
-        $data=$perfil->mostrarFoto($decoded);
+        $decoded = $jwtAuth->decode($jwt);
+        $url=$perfil->mostrarFoto($decoded);
+        //$contents = Storage::get($url);
+        $data=array(
+            'status'=>'SUCCESS',
+            'code' => 200,
+            'message' => $url);
+        $code=200;
         return $data;
         
     }

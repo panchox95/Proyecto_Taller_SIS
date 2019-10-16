@@ -30,10 +30,10 @@ export class PerfilService {
         let fd = new FormData();
         fd.append('photo',foto);
         fd.append('_token', '{{ csrf_token() }}');
-        fd.append('_method', 'PATCH');
+        fd.append('_method', 'PUT');
         console.log(fd);
-        let headers= new HttpHeaders().set('Authorization',token).set('Content-Type','multipart/form-data');
-        return this._http.post(this.url+'subirfoto',foto, { headers: headers });
+        let headers= new HttpHeaders().set('Authorization',token);
+        return this._http.post(this.url+'subirfoto',fd, { headers: headers });
       }
     
 

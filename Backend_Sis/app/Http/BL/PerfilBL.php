@@ -32,8 +32,8 @@ class PerfilBL
     public function mostrarFoto($decoded){
         $perfil = new Perfil;
         $id = $decoded->id_user;
-        $data=$perfil->mostrarFoto($id);
-        return array('status' => 'SUCCESS','data'=>$data);
+        $data=$perfil->verPerfil($id);
+        return $data;
         
     }
 }

@@ -3,7 +3,8 @@
   <div class="col-md-7">
         <p class="pull-right">
                 <tr>
-                        <th><form #imageForm="ngForm" (ngSubmit)="onSubmit(photo)" class="col-md-12">
+                    <th><img src="../../../../../Backend_Sis/databaseSCHEMA.png" ></th>
+                        <th><form #imageForm="ngForm" (ngSubmit)="onSubmit(photo)" class="col-md-12" enctype="multipart/form-data">
                             <input type="file" (change)="onFileSelected($event)" name="photo" id="photo" accept="photo/png" />
                             <input type="submit" value="Subir" />
                         </form></th>
