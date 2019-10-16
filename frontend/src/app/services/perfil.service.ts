@@ -29,10 +29,11 @@ export class PerfilService {
     subirfoto(token,foto): Observable<any>{
         let fd = new FormData();
         fd.append('photo',foto);
+        fd.append('_token', '{{ csrf_token() }}');
+        fd.append('_method', 'PATCH');
         console.log(fd);
-        let headers= new HttpHeaders().set('Content-Type', 'application/json')
-        .set('Authorization',token);
-        return this._http.post(this.url+'subirfoto',fd);
+        let headers= new HttpHeaders().set('Authorization',token).set('Content-Type','multipart/form-data');
+        return this._http.post(this.url+'subirfoto',foto, { headers: headers });
       }
     
 
