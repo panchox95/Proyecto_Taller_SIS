@@ -2,12 +2,16 @@
 import {Component, OnInit, DoCheck} from '@angular/core';
 import { UserService } from './services/user.service';
 import { PerfilService } from './services/perfil.service';
+import { Articulo } from './models/articulo';
+import { ArticuloService } from './services/articulo.service';
+import { Router, ActivatedRoute, Params} from '@angular/router';
+
 // @ts-ignore
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-    providers: [UserService,PerfilService]
+    providers: [UserService,PerfilService, ArticuloService]
 })
 export class AppComponent implements OnInit, DoCheck{
 
@@ -16,15 +20,20 @@ export class AppComponent implements OnInit, DoCheck{
   public rol;
   public first_name; 
   public last_name;
+  public nombre; apellido;
+  public articulo: Articulo;
 
   constructor(
     // tslint:disable-next-line:variable-name
-      private _userService: UserService
+      private _userService: UserService,
+      private _articuloService: ArticuloService,
+      private _route: ActivatedRoute,
+      private _router: Router,
   ){
     this.identity=this._userService.getIdentity();
     this.token=this._userService.getToken();
     this.rol=this._userService.getRol();
-
+    this.articulo = new Articulo(0,'','',0,0,'');
   }
 
   ngOnInit(){
@@ -36,7 +45,7 @@ export class AppComponent implements OnInit, DoCheck{
           //console.log(response.data.first_name+' esto');
           this.first_name = response.data.first_name;
           this.last_name = response.data.last_name;
-          //console.log(this.rol);
+          console.log('bienvenido: ', this.first_name);
         },
         error => {
           console.log(<any>error);
@@ -45,8 +54,6 @@ export class AppComponent implements OnInit, DoCheck{
 
   }
 
-
-
   ngDoCheck() {
     this.identity=this._userService.getIdentity();
     this.token=this._userService.getToken();
@@ -54,5 +61,22 @@ export class AppComponent implements OnInit, DoCheck{
 
   }
 
+  onSubmit(form){
+    this._articuloService.findArticulo(this.articulo).subscribe(
+      response =>{
+        console.log('busqueda: ', response.data);
+        if(response.status =='SUCCESS'){
+          this.articulo=response.data;
+          this._router.navigate(['listaproductoo/',this.articulo]);
+        } else{
+          
+        }
+      },
+      error =>{
+        console.log(<any> error);
+      }
+
+    );
+  }
 
 }

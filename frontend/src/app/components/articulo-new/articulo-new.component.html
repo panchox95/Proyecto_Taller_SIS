@@ -35,6 +35,14 @@
                         La cantidad no es valido
                     </span>
                 </p>
+
+                <p>
+                        <label>Categoria</label>
+                        <input type="number" name="categoria" #categoria="ngModel" [(ngModel)]="articulo.categoria" class="form-control" required/>
+                        <span *ngIf="!categoria.valid && categoria.touched">
+                            La categoria no es valido
+                        </span>
+                    </p>
                 
                 <p>
                     <label>Precio</label>

@@ -36,14 +36,21 @@ export class ArticuloService {
     return this._http.get(this.url+'verproducto/'+id,{ headers: headers})
   }
 
-  getProducto(id): Observable<any> {
-    return this._http.get(this.url + 'articulos/' + id);
+  findArticulo(articulo: Articulo): Observable<any> {
+    let json=JSON.stringify(articulo);
+    let headers =new HttpHeaders().set('Content-Type','application/json');
+    return this._http.post(this.url+'busquedanombre', json, {headers: headers});
   }
 
   updateArticulo(token, articulo, id): Observable <any>{
     let json=JSON.stringify(articulo);
     let headers =new HttpHeaders().set('Content-Type','application/json').set('Authorization',token);
     return this._http.put(this.url+'modificarproducto/'+id, json, { headers: headers});
+  }
+
+  deleteArticulo(token, id): Observable <any>{
+    let headers =new HttpHeaders().set('Content-Type','application/json').set('Authorization',token);
+    return this._http.put(this.url+'eliminarproducto/'+id, { headers: headers});
   }
 
   deleteUsuario(id,json): Observable <any>{

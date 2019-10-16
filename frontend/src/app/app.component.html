@@ -50,6 +50,14 @@
                 <li *ngIf="rol">
                     <a [routerLink]="['lista-articulo']" ><span class="glyphicon glyphicon-book"></span> Articulos </a>
                 </li>
+                <li>
+                    <form #searchForm="ngForm" (ngSubmit)="onSubmit(searchForm)" class="col-md-12">
+                        <div style="margin-top: 10px;">
+                            <input type="text" name="nombre" #nombre="ngModel" [(ngModel)]="articulo.nombre" placeholder="Buscar..." style="width: 200px; border-radius: 5px;">
+                            <button class="btn btn-primary" style="border-radius: 15px;">Buscar</button>
+                        </div>
+                    </form>
+                </li>
             </ul>
 
 
@@ -64,7 +72,7 @@
 
             <ul class="nav navbar-nav navbar-right" *ngIf="identity">
                 <li>
-                    <a [routerLink]="['perfil']" >{{first_name}} {{last_name}}</a>
+                    <a [routerLink]="['perfil']" >{{first_name}}+{{last_name}}}</a>
                 </li>
                 <li>
                     <a [routerLink]="['logout',1]">

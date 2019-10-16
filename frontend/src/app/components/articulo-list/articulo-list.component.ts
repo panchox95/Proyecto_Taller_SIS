@@ -23,6 +23,7 @@ export class ArticuloListComponent implements OnInit {
   public next_page_url;
   public prev_page_url;
   public rol;
+  public token;
 
 
   constructor(
@@ -32,44 +33,12 @@ export class ArticuloListComponent implements OnInit {
         private _articuloService: ArticuloService
     ) {
         this.title='Inicio';
-
+        this.token=_userService.getToken();
     }
 
     ngOnInit() {
         console.log('default.component cargado satisfactoriamente');
-        this._route.params.subscribe(
-          params =>{
-            let page = +params['page'];
-
-            // console.log(this.rol);
-            this._articuloService.getArticulos(page).subscribe(
-              response =>{
-                //console.log(response.users);
-                //  console.log(this.rol)
-
-
-                this.total = response.productos.total;
-                this.per_page = response.productos.per_page;
-                this.current_page = response.productos.current_page;
-                this.last_page = response.productos.last_page;
-                this.next_page_url = response.productos.next_page_url;
-                this.prev_page_url = response.productos.prev_page_url;
-                this.articulo = response.productos.data;
-
-                if(page>this.last_page){
-                  console.log(page);
-                  console.log(this.last_page);
-                  this._router.navigate(['listaproducto',this.last_page]);
-                }
-              },
-              error => {
-                console.log(<any>error);
-              }
-            );
-
-          }
-
-        );
+        this.getArticulos();
 
         /*
         this._articuloService.getArticulos().subscribe(
@@ -83,6 +52,55 @@ export class ArticuloListComponent implements OnInit {
               console.log(error);
             }
         );*/
+    }
+
+    getArticulos(){
+      this._route.params.subscribe(
+        params =>{
+          let page = +params['page'];
+
+          // console.log(this.rol);
+          this._articuloService.getArticulos(page).subscribe(
+            response =>{
+              //console.log(response.users);
+              //  console.log(this.rol)
+
+
+              this.total = response.productos.total;
+              this.per_page = response.productos.per_page;
+              this.current_page = response.productos.current_page;
+              this.last_page = response.productos.last_page;
+              this.next_page_url = response.productos.next_page_url;
+              this.prev_page_url = response.productos.prev_page_url;
+              this.articulo = response.productos.data;
+
+              if(page>this.last_page){
+                console.log(page);
+                console.log(this.last_page);
+                this._router.navigate(['listaproducto',this.last_page]);
+              }
+            },
+            error => {
+              console.log(<any>error);
+            }
+          );
+
+        }
+
+      );
+    }
+
+    deleteArticulo(id){
+      this._articuloService.deleteArticulo(this.token, id).subscribe(
+        response =>{
+          // this._router.navigate['home'];
+          this.getArticulos();
+        },
+        error =>{
+          console.log(<any>error);
+          
+        }
+      );
     }
 
 }
