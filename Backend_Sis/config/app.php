@@ -162,6 +162,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
        // Laravel\Socialite\SocialiteServiceProvider::class,
+       Intervention\Image\ImageServiceProvider::class,
 
 
         /*
@@ -228,6 +229,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
        // 'Socialite' => Laravel\Socialite\Facades\Socialite::class,
        'JwtAuth'=> App\Helpers\JwtAuth::class,
+       'Image' => Intervention\Image\Facades\Image::class,
 
     ],
 

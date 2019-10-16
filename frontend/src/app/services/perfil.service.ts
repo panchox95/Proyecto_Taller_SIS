@@ -26,7 +26,14 @@ export class PerfilService {
       .set('Authorization',token);
       return this._http.put(this.url+'modificarperfil', json, { headers: headers });
     }
-
+    subirfoto(token,foto): Observable<any>{
+        let fd = new FormData();
+        fd.append('photo',foto);
+        console.log(fd);
+        let headers= new HttpHeaders().set('Content-Type', 'application/json')
+        .set('Authorization',token);
+        return this._http.post(this.url+'subirfoto',fd, { headers: headers });
+      }
     
 
     getIdentity(){

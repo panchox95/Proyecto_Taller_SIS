@@ -3,7 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use App\Producto;
+use App\Categoria;
 class SQLMiddleware
 {
     /**
@@ -15,9 +15,9 @@ class SQLMiddleware
      */
     public function handle($request, Closure $next)
     {
-        $producto = new Producto;
+        $categoria = new Categoria;
         try{
-            $producto->listadoProductos();
+            $categoria->listaCategoria();
         }
         catch(\PDOException $e){
             return response()->json(['CODE'=>404,'MESSAGE'=>'No Hay Conexion'],404);
