@@ -61,7 +61,7 @@ Route::put('/api/modificarperfil','PerfilController@modificarPerfil')->middlewar
 //Ver Foto
 Route::get('/api/mostrarfoto','PerfilController@mostrarFoto')->middleware('Jwt');
 //Subir Foto
-Route::put('/api/subitfoto','PerfilController@subitFoto')->middleware('Jwt');
+Route::post('/api/subirfoto','PerfilController@subirFoto')->middleware('Jwt');
 
 
 //CATEGORIAS

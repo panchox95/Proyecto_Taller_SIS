@@ -68,10 +68,10 @@ export class PerfilEditComponent implements OnInit {
         console.log('editado: ', response);
         if(response.status =='SUCCESS'){
           
-          //this._router.navigate(['/articulo', this.articulo.id_producto]);
+          this._router.navigate(['']);
         } else{
           
-          //this._router.navigate(['home']);
+          this._router.navigate(['/editar-perfil']);
         }
       },
       error => {

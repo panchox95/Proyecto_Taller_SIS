@@ -53,4 +53,10 @@ class LoginBL
         $user = new User;
         return $user->resettime($email);
     }
+    public function name($email){
+        $user = new User;
+        $first_name=$user->firstname($email);
+        $last_name=$user->lastname($email);
+        return $first_name.$last_name;
+    }
 }

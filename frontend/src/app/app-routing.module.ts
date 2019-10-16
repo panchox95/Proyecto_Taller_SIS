@@ -28,7 +28,7 @@ const appRoutes: Routes = [
     { path: 'perfil', component: PerfilComponent },
     { path: 'listaproducto/:page',component:ArticuloListComponent},
     { path: 'editar-perfil',component: PerfilEditComponent},
-
+    { path: 'uploadimage',component: PerfilComponent},
 
 
     // Este siempre tiene q ser el ultimo

@@ -22,10 +22,10 @@ class PerfilBL
         $data = array('status' => 'SUCCESS','message'=>'Modificacion Exitosa');
         return $data;
     }
-    public function subirFoto($decoded,$name){
+    public function subirFoto($decoded,$path){
         $perfil = new Perfil;
         $id = $decoded->id_user;
-        $perfil->subirFoto($id,$name);
+        $perfil->subirFoto($id,$path);
         return array('status' => 'SUCCESS','message'=>'Foto actualizada');
 
     }

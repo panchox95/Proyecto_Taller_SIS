@@ -1,6 +1,14 @@
 <div class="container">
   <h1>Perfil: {{user.first_name}} {{user.last_name}}</h1><br>
   <div class="col-md-7">
+        <p class="pull-right">
+                <tr>
+                        <th><form #imageForm="ngForm" (ngSubmit)="onSubmit(imageForm)" class="col-md-12">
+                            <input type="file" (change)="onFileSelected($event)" name="image" id="image" accept="image/png" />
+                            <input type="submit" value="Subir" />
+                        </form></th>
+                </tr>
+ </p>
       <table class="table table-striped">
           <thead>
               <tr>
@@ -11,8 +19,12 @@
                   <th scope="col">Direccion</th>
                   <th scope="col">{{perfil.direccion}}</th>
               </tr>
+             <p class="pull-right"> 
           </thead>
+         
+        
       </table>
+    
       <a [routerLink]="['/editar-perfil']" class="btn btn-warning">Editar</a>
   </div>
 </div>

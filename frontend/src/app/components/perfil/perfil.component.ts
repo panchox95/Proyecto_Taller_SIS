@@ -17,13 +17,17 @@ export class PerfilComponent implements OnInit {
   public user: User;
   public token: string;
   public rol: string;
+  public selectedFile: File =null;
   constructor(
     // tslint:disable-next-line:variable-name
     private _route: ActivatedRoute,
     // tslint:disable-next-line:variable-name
     private _router: Router,
     // tslint:disable-next-line:variable-name
-    private _userService: UserService
+    private _userService: UserService,
+
+    private _perfilService: PerfilService,
+    
   ) {
 
     
@@ -31,6 +35,11 @@ export class PerfilComponent implements OnInit {
     this.perfil = new Perfil('','','','','',this.user);
     this.token = this._userService.getToken();
     this.rol = this._userService.getRol();
+
+  }
+  onFileSelected(event){
+    console.log(event);
+    this.selectedFile = <File> event.target.files[0];
 
   }
   ngOnInit() {
@@ -53,6 +62,23 @@ export class PerfilComponent implements OnInit {
       // tslint:disable-next-line:no-shadowed-variable
       error => {
         console.log(<any> error);
+      }
+    );
+  }
+  onSubmit(form){
+    this._perfilService.subirfoto(this.token,this.selectedFile).subscribe(
+      response => {
+        console.log('Imagen: ', response);
+        if(response.status =='SUCCESS'){
+          
+          this._router.navigate(['']);
+        } else{
+          
+          this._router.navigate(['/perfil']);
+        }
+      },
+      error => {
+        console.log(<any>error);
       }
     );
   }

@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 use App\Http\BL\PerfilBL;
+use App\Http\BL\LoginBL;
 use Illuminate\Http\Request;
 use App\Helpers\JwtAuth;
-
+use Image;
 class PerfilController extends Controller
 {
     public function verPerfil(Request $request){
@@ -78,19 +79,27 @@ class PerfilController extends Controller
 
 
     public function subirFoto(Request $request){
-        if($request->hasFile('foto')){
-            $file=$request->file('foto');
-            $jwt = $request->header('Authorization',null);
-            $name = time().$file->getClientOriginalName();
-            $file->move(public_path().'/images/'.$name);
-            $perfil = new PerfilBL;
-            $decoded = $jwtAuth->decoded($jwt);
-            $data=$perfil->subriFoto($decoded,$name);
-            return $data;
-        }
-        else{
-            return array('status' => 'ERROR','message'=>'No existe archivo');;
-        }
+        $file=$request->file('photo');
+        //return gettype($file);
+        $jwtAuth = new JwtAuth();
+        $jwt = $request->header('Authorization',null);
+        $decoded = $jwtAuth->decode($jwt);
+        $user = new LoginBL();
+        $name =$user->name($decoded->email);
+        $nombre = $name.time();
+        
+        $path = public_path('uploads/'.$nombre.'.png');
+        $url = '/uploads/'.$nombre;
+        $image = Image::make( $file->getRealPath() );
+        $image->save($path);
+        $perfil = new PerfilBL;
+        $data=$perfil->subirFoto($decoded,$url);
+        $data=array(
+            'status'=>'SUCCESS',
+            'code' => 200,
+            'message' => $url);
+        $code=200;
+        return response()->json($data,$code);
     }
     public function mostrarFoto(Request $request){
         $jwt = $request->header('Authorization',null);
