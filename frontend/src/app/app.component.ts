@@ -22,6 +22,12 @@ export class AppComponent implements OnInit, DoCheck{
   public last_name;
   public nombre; apellido;
   public articulo: Articulo;
+  public total;
+  public per_page;
+  public current_page;
+  public last_page;
+  public next_page_url;
+  public prev_page_url;
 
   constructor(
     // tslint:disable-next-line:variable-name
@@ -66,8 +72,15 @@ export class AppComponent implements OnInit, DoCheck{
       response =>{
         console.log('busqueda: ', response.data);
         if(response.status =='SUCCESS'){
-          this.articulo=response.data;
-          this._router.navigate(['listaproductoo/',this.articulo]);
+          // this.articulo=response.data;
+          this.total = response.data.total;
+            this.per_page = response.data.per_page;
+            this.current_page = response.data.current_page;
+            this.last_page = response.data.last_page;
+            this.next_page_url = response.data.next_page_url;
+            this.prev_page_url = response.data.prev_page_url;
+            this.articulo = response.data;
+            this._router.navigate(['listaproductoo/',this.last_page]);
         } else{
           
         }
@@ -77,6 +90,42 @@ export class AppComponent implements OnInit, DoCheck{
       }
 
     );
+
+    /*this._route.params.subscribe(
+      params =>{
+        let page = +params['current_page'];
+        console.log('pagina:', page);
+        
+        this._articuloService.findArticulo(this.articulo).subscribe(
+          response =>{
+            //console.log(response.users);
+            //  console.log(this.rol)
+
+            console.log(response.articulo.total);
+            
+            this.total = response.articulo.total;
+            this.per_page = response.articulo.per_page;
+            this.current_page = response.articulo.current_page;
+            this.last_page = response.articulo.last_page;
+            this.next_page_url = response.articulo.next_page_url;
+            this.prev_page_url = response.articulo.prev_page_url;
+            this.articulo = response.articulo.data;
+
+            if(page>this.last_page){
+              console.log(page);
+              console.log(this.last_page);
+              this._router.navigate(['listaproducto',this.last_page]);
+            }
+          },
+          error => {
+            console.log(<any>error);
+          }
+        );
+      },
+      error => {
+
+      }
+    );*/
   }
 
 }
