@@ -26,11 +26,21 @@ class ProductosTest extends TestCase
 
         $response->assertStatus(200);
         $response->json(200);
+    }
+
+
+    public function testAgregarProductoSinSerADmi(){
+        $this->post('/api/crearproducto', [
+            'nombre'=>'Lehe',
+            'marca'=>'Pil',
+            'cantidad'=>'2',
+            'precio'=>'3',
+            'descripcion'=>'Buena',
+        ])->assertStatus(403);
 
     }
 
 
-   
 
 
 
