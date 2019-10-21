@@ -19,6 +19,7 @@ import { PerfilComponent } from './components/perfil/perfil.component';
 import { OfertaDetailComponent } from './components/oferta-detail/oferta-detail.component';
 import { ArticuloListComponent } from './components/articulo-list/articulo-list.component';
 import { PerfilEditComponent } from './components/perfil-edit/perfil-edit.component';
+import { ArticuloBusquedaComponent } from './components/articulo-busqueda/articulo-busqueda.component';
 
 // @ts-ignore
 @NgModule({
@@ -33,7 +34,8 @@ import { PerfilEditComponent } from './components/perfil-edit/perfil-edit.compon
       PerfilComponent,
       OfertaDetailComponent,
       ArticuloListComponent,
-      PerfilEditComponent
+      PerfilEditComponent,
+      ArticuloBusquedaComponent
   ],
   imports: [
       BrowserModule,

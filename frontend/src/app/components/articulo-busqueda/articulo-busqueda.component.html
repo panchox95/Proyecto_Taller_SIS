@@ -1,0 +1,37 @@
+<div class="container">  
+<form #searchForm="ngForm" (ngSubmit)="onSubmit(searchForm)" class="col-md-12">
+        <div class="form-group">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="nombre" #nombre="ngModel" [(ngModel)]="articulo.nombre" placeholder="Buscar...">
+                    <span class="input-group-btn"><button type="submit" class="btn btn-primary" data-balloon-length="medium" data-balloon="Búsqueda por Nickname, CI o Carrera" data-balloon-pos="right">Buscar</button></span>
+                </div>
+        </div>
+</form>
+
+  
+
+        <div class="col-md-12">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Marca</th>
+                        <th scope="col">Cantidad</th>
+                        <th scope="col">Precio</th>
+                        <th scope="col">Descripcion</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let art of articulo">
+                    <th>{{art.nombre}}</th>
+                    <td>{{art.marca}}</td>
+                    <td>{{art.cantidad}}</td>
+                    <td>{{art.precio}}</td>
+                    <td>{{art.descripcion}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    
+</div>
+

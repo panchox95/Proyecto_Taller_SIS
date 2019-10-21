@@ -13,6 +13,7 @@ import { ArticuloDetailComponent } from './components/articulo-detail/articulo-d
 import { ArticuloListComponent } from './components/articulo-list/articulo-list.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { PerfilEditComponent } from './components/perfil-edit/perfil-edit.component';
+import { ArticuloBusquedaComponent } from './components/articulo-busqueda/articulo-busqueda.component';
 
 const appRoutes: Routes = [
     { path: '', component: DefaultComponent },
@@ -29,6 +30,8 @@ const appRoutes: Routes = [
     { path: 'listaproducto/:page',component:ArticuloListComponent},
     { path: 'editar-perfil',component: PerfilEditComponent},
     { path: 'uploadimage',component: PerfilComponent},
+    { path: 'busqueda-articulo', component: ArticuloBusquedaComponent },
+    { path: 'busqueda', component: ArticuloBusquedaComponent },
 
 
     // Este siempre tiene q ser el ultimo
