@@ -14,6 +14,7 @@ import { ArticuloListComponent } from './components/articulo-list/articulo-list.
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { PerfilEditComponent } from './components/perfil-edit/perfil-edit.component';
 import { ArticuloBusquedaComponent } from './components/articulo-busqueda/articulo-busqueda.component';
+import { OfertaNewComponent } from './components/oferta-new/oferta-new.component';
 
 const appRoutes: Routes = [
     { path: '', component: DefaultComponent },
@@ -32,6 +33,7 @@ const appRoutes: Routes = [
     { path: 'uploadimage',component: PerfilComponent},
     { path: 'busqueda-articulo', component: ArticuloBusquedaComponent },
     { path: 'busqueda', component: ArticuloBusquedaComponent },
+    { path: 'oferta/:id_producto', component: OfertaNewComponent },
 
 
     // Este siempre tiene q ser el ultimo

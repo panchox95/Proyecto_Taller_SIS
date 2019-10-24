@@ -9,7 +9,7 @@ import { ArticuloService } from '../../services/articulo.service';
   selector: 'app-articulo-new',
   templateUrl: './articulo-new.component.html',
   styleUrls: ['./articulo-new.component.css'],
-    providers: [UserService, ArticuloService]
+  providers: [UserService, ArticuloService]
 })
 export class ArticuloNewComponent implements OnInit {
 

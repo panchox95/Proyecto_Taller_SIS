@@ -1,0 +1,59 @@
+<div class="container">
+        <div class="col-md-12" >
+            <h2>{{page_title}}</h2>
+
+            <div class="alert alert-success" *ngIf="status_articulo=='SUCCESS'">
+                La oferta se guardo correctamente
+            </div>
+                    
+            <div class="alert alert-danger" *ngIf="status_articulo=='ERROR'">
+                La oferta no se guardo, intentalo de nuevo
+            </div>
+
+            <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">Nombre:</th>
+                        <th scope="col">{{articulo.nombre}}</th>
+                    </tr>
+                    <tr>
+                        <th scope="col">Marca:</th>
+                        <th scope="col">{{articulo.marca}}</th>
+                    </tr>
+                    <tr>
+                        <th scope="col">Precio:</th>
+                        <th scope="col">{{articulo.precio}} $</th>
+                    </tr>
+                    <tr>
+                        <th scope="col">Cantidad:</th>
+                        <th scope="col">{{articulo.cantidad}} unidades</th>
+                    </tr>
+                </thead>
+            </table>
+                
+            <form #ofertaproductoNew="ngForm" (ngSubmit)="onSubmit(ofertaproductoNew)" class="col-md-5">
+                
+                <p>
+                    <label>Descripcion:</label>
+                    <textarea name="descripcion" #descripcion="ngModel" [(ngModel)]="ofertaproducto.descripcion" class="form-control" required></textarea>
+                    <span *ngIf="!descripcion.valid && descripcion.touched">
+                        La descripcion no es valida
+                    </span>
+                </p>
+
+                <p>
+                    <label>Descuento % :</label>
+                    <input type="number" name="descuento" #descuento="ngModel" [(ngModel)]="ofertaproducto.descuento" class="form-control" required/>
+                    <span *ngIf="!descuento.valid && descuento.touched">
+                        El descuento no es valido
+                    </span>
+                </p>
+                    
+                <input type="submit" value="Guardar" class="btn btn-success" [disabled]="!ofertaproductoNew.form.valid">
+                    
+            </form>
+
+        </div>
+    </div>
+    
+    
