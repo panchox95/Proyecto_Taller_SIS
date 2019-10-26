@@ -10,7 +10,7 @@ class OfertasBL
         $oferta->saveOferta($params,$id_producto);
         return array('status'=>'SUCCESS',
             'code'=>200,
-            'message' =>'Creado '.$params->nombre.' '.$params->marca,
+            'message' =>'Oferta Creada',
         );
     }
     public function borrarOferta($id_producto){
