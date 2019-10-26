@@ -6,13 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Oferta extends Model
 {
-    protected $table ="oferta";
+    protected $table ="ofertaproducto";
 
     public $timestamps = false;
     public function saveOferta($params,$id_producto){
         $this->id_producto=$id_producto;
         $this->descripcion=$params->descripcion; 
-        $this->descuento=$params->descuento;
+        $this->descuento=$params->descuento/100;
         $this->estado='activo'; 
         $this->save();
     }

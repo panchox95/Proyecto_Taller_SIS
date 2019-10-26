@@ -121,9 +121,18 @@ class ProductosController extends Controller
             $params_array,[
                 'nombre'=>'required',
             ]);
+        if($validate->fails()){
+                $message='El campo de busqueda no puede estar vacio';
+                $data=array(
+                    'status'=>'ERROR',
+                    'code' => 400,
+                    'message' => $message);
+                $code=400;
+                return response()->json($data,$code);
+            }
         $producto=new ProductoBl;
         $data = $producto->busquedaNombre($params);
-        return $data;
+        return response()->json($data,200);
 
         
     }

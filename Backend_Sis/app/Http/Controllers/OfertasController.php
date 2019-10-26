@@ -17,15 +17,32 @@ class OfertasController extends Controller
             'descripcion'=>'required',
             'descuento'=>'required'
         ]);
-        if($producto->existeProductoID($id_producto) == 1){
-            $data=$oferta->crearOferta($params,$id_producto);
-        }else{
+        if($params->descuento<1){
             $data=array(
-                'message'=>'Producto Inexistente',
-                'code'=>404,
+                'message'=>'El valor debe ser mayor a 1',
+                'code'=>400,
                 'status'=>'ERROR',
             );
         }
+        if(is_int($params->descuento)){
+            if($producto->existeProductoID($id_producto) == 1){
+                $data=$oferta->crearOferta($params,$id_producto);
+            }else{
+                $data=array(
+                    'message'=>'Producto Inexistente',
+                    'code'=>404,
+                    'status'=>'ERROR',
+                );
+            }
+        }
+        else{
+            $data=array(
+                'message'=>'El valor debe ser entero',
+                'code'=>400,
+                'status'=>'ERROR',
+            );
+        }
+        
         return $data;
     }
     public function borrarOferta($id_producto){

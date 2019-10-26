@@ -43,7 +43,5 @@ class Producto extends Model
     public function busquedaNombre($nombre){
         return  Producto::select('*')->where('nombre','like', '%'.$nombre.'%','or','marca','like', '%'. $nombre .'%')->paginate(5);
     }
-    public function busquedaMarca($nombre){
-        return  Producto::select('*')->where('marca','like', '%'. $nombre .'%')->paginate(5);
-    }
+    
 }
