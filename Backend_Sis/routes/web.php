@@ -67,3 +67,12 @@ Route::put('/api/subirfoto','PerfilController@subirFoto')->middleware('Jwt');
 
 //Lista
 Route::get('/api/listacategoria','CategoriaController@listaCategoria');
+
+
+
+//COMENTARIOS
+//CREAR
+Route::post('/api/crearcomentario/{id}','ComentarioController@crearComentario')->middleware('Jwt');
+
+//Lista
+Route::get('/api/listacomentario','ComentarioController@listaComentario');
