@@ -34,7 +34,7 @@ class OfertasBL
         $oferta = new Oferta;
         $lista = $oferta->listaOferta();
         if(\is_object($lista)){
-            $data = array('status' => 'SUCCESS','message'=>'lista de productos','productos'=>$lista);
+            $data = array('status' => 'SUCCESS','message'=>'lista de ofertas','ofertas'=>$lista);
         }
         else{
             $data = array('status' => 'SUCCESS','message'=>'No Hay Datos');

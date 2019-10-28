@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Oferta extends Model
+class OfertaProducto extends Model
 {
     protected $table ="ofertaproducto";
 
@@ -17,18 +17,18 @@ class Oferta extends Model
         $this->save();
     }
     public function borrarOferta($id_producto){
-        return Oferta::where('id_producto',$id_producto)
+        return OfertaProducto::where('id_producto',$id_producto)
         ->update(["estado"=> 'borrado']);
     }
     public function modificarOferta($params,$id){
-        return Oferta::where('id_producto',$id)
+        return OfertaProducto::where('id_producto',$id)
         ->update(["descripcion"=> $params->descripcion,"precio"=>$params->precio]);
     }
     public function listaOferta(){
-        return $ofertas = Oferta::select('*')
-                            ->where('oferta.estado','=','activo'); 
+        return $ofertas = OfertaProducto::select('*')
+                            ->where('ofertaproducto.estado','=','activo')->get(); 
     }
     public function verOferta($id){
-        return  Oferta::select('*')->where('id_producto','=',$id)->first();
+        return  OfertaProducto::select('*')->where('id_producto','=',$id)->first();
     }
 }
