@@ -15,6 +15,7 @@ import { PerfilComponent } from './components/perfil/perfil.component';
 import { PerfilEditComponent } from './components/perfil-edit/perfil-edit.component';
 import { ArticuloBusquedaComponent } from './components/articulo-busqueda/articulo-busqueda.component';
 import { OfertaNewComponent } from './components/oferta-new/oferta-new.component';
+import { ComentarioNewComponent } from './components/comentario-new/comentario-new.component';
 
 const appRoutes: Routes = [
     { path: '', component: DefaultComponent },
@@ -34,6 +35,7 @@ const appRoutes: Routes = [
     { path: 'busqueda-articulo', component: ArticuloBusquedaComponent },
     { path: 'busqueda', component: ArticuloBusquedaComponent },
     { path: 'oferta/:id_producto', component: OfertaNewComponent },
+    { path: 'comentario/:id_producto', component: ComentarioNewComponent },
 
 
     // Este siempre tiene q ser el ultimo

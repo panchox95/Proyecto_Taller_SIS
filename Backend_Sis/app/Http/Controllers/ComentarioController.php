@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Http\BL\ComentarioBL;
 use Illuminate\Http\Request;
+use App\Helpers\JwtAuth;
 
 class ComentarioController extends Controller
 {

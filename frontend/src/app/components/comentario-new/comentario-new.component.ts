@@ -6,41 +6,41 @@ import { identity } from 'rxjs/internal-compatibility';
 import { ArticuloService } from '../../services/articulo.service';
 import { OfertaProducto } from '../../models/ofertaproducto'; 
 import { OfertaService } from '../../services/oferta.service';
+import { ComentarioProducto } from '../../models/comentarioproducto';
+import { ComentarioService } from '../../services/comentario.service';
 
 @Component({
-  selector: 'app-oferta-new',
-  templateUrl: './oferta-new.component.html',
-  styleUrls: ['./oferta-new.component.css'],
-  providers: [UserService, OfertaService]
+  selector: 'app-comentario-new',
+  templateUrl: './comentario-new.component.html',
+  styleUrls: ['./comentario-new.component.css'],
+  providers: [UserService, ArticuloService, ComentarioService]
 })
-export class OfertaNewComponent implements OnInit {
+export class ComentarioNewComponent implements OnInit {
 
   public page_title: string;
   public identity;
   public token;
   public articulo: Articulo;
-  public status_articulo: string;
-  public ofertaproducto: OfertaProducto;
-  public status_oferta: string;
+  public comentarioproducto: ComentarioProducto;
+  public status_comentario: string;
 
   constructor(
     private _route: ActivatedRoute,
     private _router: Router,
     private _userService: UserService,
     private _articuloService: ArticuloService,
-    private _ofertaService: OfertaService,
+    private _comentarioService: ComentarioService,
   ) { 
-    this.page_title='Creacion de una Oferta';
+    this.page_title='Creacion de un Comentario';
     this.identity=this._userService.getIdentity();
     this.token=this._userService.getToken();
   }
 
   ngOnInit() {
-
     if(this.identity==null){
       this._router.navigate(["/login"]);
     }else{
-      this.ofertaproducto=new OfertaProducto(0,0,'',null);
+      this.comentarioproducto=new ComentarioProducto(0,0,0,'',null,'');
     }
 
     this.getArticulo();
@@ -67,54 +67,30 @@ export class OfertaNewComponent implements OnInit {
       );
     });
   }
-  
+
   onSubmit(form){
 
-    this._ofertaService.createOferta(this.token, this.ofertaproducto, this.articulo.id_producto).subscribe(
+    this._comentarioService.createComentario(this.token, this.comentarioproducto, this.articulo.id_producto).subscribe(
       response =>{
         console.log('respuesta: ', response);
         
         if(response.status=='SUCCESS'){
 
           // this.ofertaproducto=response.articulo;
-          this.status_oferta='SUCCESS';
-          console.log('estado: ', this.status_oferta);
+          this.status_comentario='SUCCESS';
           form.reset();
           // this._router.navigate(['/home']);
 
         }else{
-          this.status_oferta='ERROR';
+          this.status_comentario='ERROR';
         }
       },
       error=>{
         console.log(<any>error);
-        this.status_oferta='ERROR';
+        this.status_comentario='ERROR';
       }
     );
 
-    /*this._articuloService.create(this.token,this.articulo).subscribe(
-        response=>{
-
-          if(response.status=='SUCCESS'){
-
-              this.articulo=response.articulo;
-              this.status_articulo='SUCCESS';
-              console.log('estado: ', this.status_articulo);
-              form.reset();
-              // this._router.navigate(['/home']);
-
-          }else{
-
-            this.status_articulo='ERROR';
-
-          }
-
-
-        },error =>{
-          console.log(<any>error);
-          this.status_articulo='ERROR';
-        }
-    );*/
   }
 
 }
