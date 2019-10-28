@@ -8,6 +8,7 @@ class ComentarioController extends Controller
 {
     public function crearComentario(Request $request,$id_producto){
         $json = $request->all('json',null); //Recibimos el JSON enviado por el Frontend
+        $params = json_decode((json_encode($json))); //Parametros para el uso
         $params_array  = json_decode(json_encode( $json), true ); //Parametros para la 
         $comentario=new ComentarioBL;
         $jwt = $request->header('Authorization',null);
