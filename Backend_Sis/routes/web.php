@@ -75,4 +75,4 @@ Route::get('/api/listacategoria','CategoriaController@listaCategoria');
 Route::post('/api/crearcomentario/{id}','ComentarioController@crearComentario')->middleware('Jwt');
 
 //Lista
-Route::get('/api/listacomentario','ComentarioController@listaComentario');
+Route::get('/api/listacomentario/{id}','ComentarioController@listaComentario');
