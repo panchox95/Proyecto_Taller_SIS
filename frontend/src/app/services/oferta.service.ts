@@ -21,6 +21,10 @@ export class OfertaService {
         let headers =new HttpHeaders().set('Content-Type','application/json').set('Authorization',token);
         return this._http.post(this.url+'crearoferta/'+id, json, { headers: headers});
     }
-
+    
+    getOfertas(): Observable<any>{
+        let headers =new HttpHeaders().set('Content-Type','application/json');
+        return this._http.get(this.url+'listaoferta', { headers: headers })
+    }
     
 }

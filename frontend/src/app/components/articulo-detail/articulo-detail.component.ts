@@ -15,6 +15,9 @@ import { ArticuloService } from '../../services/articulo.service';
 export class ArticuloDetailComponent implements OnInit {
 
   public articulo: Articulo;
+  public identity;
+  public token;
+  public rol;
 
   constructor(
     private _route: ActivatedRoute,
@@ -22,11 +25,19 @@ export class ArticuloDetailComponent implements OnInit {
     private _userService: UserService,
     private _articuloService: ArticuloService
 ) {
-
+    this.identity=this._userService.getIdentity();
+    this.token=this._userService.getToken();
+    this.rol=this._userService.getRol();
   }
 
   ngOnInit() {
     this.getArticulo();
+  }
+
+  ngDoCheck() {
+    this.identity=this._userService.getIdentity();
+    this.token=this._userService.getToken();
+    this.rol=this._userService.getRol();
   }
 
   getArticulo(){
