@@ -17,8 +17,9 @@ class ComentarioServicio extends Model
         $this->save();
     }
     public function listaComentario($id_servicio){
-        return $comentarios = ComentarioServicio::select('*')
-                            ->where('comentariooferta.id_servicio','=',$id_servicio)
-                            ->get(); 
+        return $comentarios = ComentarioServicio::join('user', 'comentariooferta.id_user', '=', 'user.id_user')
+                                                ->select('user.first_name','user.last_name','comentariooferta.comentario','comentariooferta.calificacion')
+                                                ->where('comentariooferta.id_servicio','=',$id_servicio)
+                                                ->get(); 
     }
 }

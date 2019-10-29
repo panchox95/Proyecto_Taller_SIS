@@ -17,7 +17,8 @@ class ComentarioProducto extends Model
         $this->save();
     }
     public function listaComentario($id_producto){
-        return $comentarios = ComentarioProducto::select('*')
+        return $comentarios = ComentarioProducto::join('user', 'comentarioproducto.id_user', '=', 'user.id_user')
+                            ->select('user.first_name','user.last_name','comentarioproducto.comentario','comentarioproducto.calificacion')
                             ->where('comentarioproducto.id_producto','=',$id_producto)
                             ->get(); 
     }
