@@ -24,12 +24,24 @@ class ComentarioBL
     }
     public function listaComentario($id_producto){
         $comentario=new ComentarioProducto;
-        $data=$comentario->listaComentario($id_producto);
+        $lista=$comentario->listaComentario($id_producto);
+        if(\is_object($lista)){
+            $data = array('status' => 'SUCCESS','message'=>'lista de comentarios','comentarios'=>$lista);
+        }
+        else{
+            $data = array('status' => 'SUCCESS','message'=>'No Hay Datos');
+        }
         return $data;
     }
     public function listaComentarioservicio($id_producto){
         $comentario=new ComentarioServicio;
-        $data=$comentario->listaComentario($id_producto);
+        $lista=$comentario->listaComentario($id_producto);
+        if(\is_object($lista)){
+            $data = array('status' => 'SUCCESS','message'=>'lista de comentarios','comentarios'=>$lista);
+        }
+        else{
+            $data = array('status' => 'SUCCESS','message'=>'No Hay Datos');
+        }
         return $data;
     }
 }
