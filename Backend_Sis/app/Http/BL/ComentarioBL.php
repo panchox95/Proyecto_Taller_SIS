@@ -1,7 +1,8 @@
 <?php
 namespace App\Http\BL;
 use Illuminate\Database\Eloquent\Model;
-use App\Categoria;
+use App\ComentarioServicio;
+use App\ComentarioProducto;
 use App\Helpers\JwtAuth;
 class ComentarioBL 
 {
