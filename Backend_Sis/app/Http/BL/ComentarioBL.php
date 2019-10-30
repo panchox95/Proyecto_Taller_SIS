@@ -23,7 +23,12 @@ class ComentarioBL
         return array('status' => 'SUCCESS','message'=>'Comentario Creado');
     }
     public function listaComentario($id_producto){
-        $comentario=new Comentario;
+        $comentario=new ComentarioProducto;
+        $data=$comentario->listaComentario($id_producto);
+        return $data;
+    }
+    public function listaComentarioservicio($id_producto){
+        $comentario=new ComentarioServicio;
         $data=$comentario->listaComentario($id_producto);
         return $data;
     }

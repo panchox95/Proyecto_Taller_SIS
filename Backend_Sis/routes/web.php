@@ -76,3 +76,5 @@ Route::post('/api/crearcomentario/{id}','ComentarioController@crearComentario')-
 
 //Lista
 Route::get('/api/listacomentario/{id}','ComentarioController@listaComentario');
+//ListaServicio
+Route::get('/api/listacomentarioservicio/{id}','ComentarioController@listaComentarioservicio');
