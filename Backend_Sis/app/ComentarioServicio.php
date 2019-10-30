@@ -11,7 +11,7 @@ class ComentarioServicio extends Model
     public $timestamps = false;
     public function crearComentario($params,$id_servicio,$id_user){
         $this->id_servicio=$id_servicio;
-        $this->id_user=$params->id_user; 
+        $this->id_user=$id_user; 
         $this->comentario=$params->comentario; 
         $this->calificacion=$params->calificacion;
         $this->save();

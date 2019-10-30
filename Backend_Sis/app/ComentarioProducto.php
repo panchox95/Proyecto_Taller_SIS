@@ -11,7 +11,7 @@ class ComentarioProducto extends Model
     public $timestamps = false;
     public function crearComentario($params,$id_producto,$id_user){
         $this->id_producto=$id_producto;
-        $this->id_user=$params->id_user; 
+        $this->id_user=$id_user; 
         $this->comentario=$params->comentario; 
         $this->calificacion=$params->calificacion;
         $this->save();
