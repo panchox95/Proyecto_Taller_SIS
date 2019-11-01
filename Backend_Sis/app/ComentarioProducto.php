@@ -22,4 +22,10 @@ class ComentarioProducto extends Model
                             ->where('comentarioproducto.id_producto','=',$id_producto)
                             ->get(); 
     }
+    public function puntajeProducto($id){
+        return ComentarioProducto::join('user', 'comentarioproducto.id_user', '=', 'user.id_user')
+                                ->select('comentarioproducto.calificacion')
+                                ->where('comentarioproducto.id_producto','=',$id)
+                                ->avg('comentarioproducto.calificacion'); 
+    }
 }

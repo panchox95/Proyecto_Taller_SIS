@@ -37,4 +37,14 @@ class ComentarioController extends Controller
         $data=$comentario->listaComentarioservicio($id_producto);
         return response()->json($data,200);
     }
+    public function puntajeproducto($id){
+        $comentario=new ComentarioBL;
+        $data=$comentario->puntajeproducto($id);
+        return response()->json($data,200);
+    }
+    public function puntajeServicio($id){
+        $comentario=new ComentarioBL;
+        $data=$comentario->puntajeServicio($id);
+        return response()->json($data,200);
+    }
 }

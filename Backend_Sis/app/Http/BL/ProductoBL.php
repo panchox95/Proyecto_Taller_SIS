@@ -56,9 +56,14 @@ class ProductoBL
 
     public function verProducto($id_producto){
         $producto = new Producto;
-        $data = array('status' => 'SUCCESS','message'=>'Producto','data'=>$producto->verProducto($id_producto));
-
-        return $data;
+        $prod =$producto->verProducto($id_producto);
+        if(is_null($prod)){
+            return array(
+                'message'=>'Producto Inexistente',
+                'code'=>404,
+                'status'=>'ERROR',);
+        }
+        return array('status' => 'SUCCESS','message'=>'Producto','data'=>$prod);
     }
     public function busquedaNombre($params){
         $producto = new Producto;

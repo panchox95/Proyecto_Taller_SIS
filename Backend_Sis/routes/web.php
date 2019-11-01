@@ -30,7 +30,7 @@ Route::post('/api/crearproducto','ProductosController@crearProducto')->middlewar
 Route::put('/api/eliminarproducto/{id}','ProductosController@eliminarProducto')->middleware('Jwt')->middleware('admin');
 
 //modificar un producto 
-Route::put('/api/modificarproducto/{id}','ProductosController@modificarProducto')->middleware('Jwt')->middleware('admin');
+ Route::put('/api/modificarproducto/{id}','ProductosController@modificarProducto')->middleware('Jwt')->middleware('admin');
 
 //Busqueda
 Route::post('/api/busquedanombre','ProductosController@busquedaNombre');
@@ -78,3 +78,7 @@ Route::post('/api/crearcomentario/{id}','ComentarioController@crearComentario')-
 Route::get('/api/listacomentario/{id}','ComentarioController@listaComentario');
 //ListaServicio
 Route::get('/api/listacomentarioservicio/{id}','ComentarioController@listaComentarioservicio');
+//Puntaje
+Route::get('/api/puntajeproducto/{id}','ComentarioController@puntajeProducto');
+//Puntaje Servicio
+Route::get('/api/puntajeservicio/{id}','ComentarioController@puntajeServicio');

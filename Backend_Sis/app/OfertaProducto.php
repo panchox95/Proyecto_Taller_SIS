@@ -18,11 +18,11 @@ class OfertaProducto extends Model
     }
     public function borrarOferta($id_producto){
         return OfertaProducto::where('id_producto',$id_producto)
-        ->update(["estado"=> 'borrado']);
+                            ->update(["estado"=> 'borrado']);
     }
     public function modificarOferta($params,$id){
         return OfertaProducto::where('id_producto',$id)
-        ->update(["descripcion"=> $params->descripcion,"precio"=>$params->precio]);
+        ->update(["descripcion"=> $params->descripcion,"descuento"=>$params->descuento/100]);
     }
     public function listaOferta(){
         return $ofertas = OfertaProducto::select('*')
@@ -30,5 +30,10 @@ class OfertaProducto extends Model
     }
     public function verOferta($id){
         return  OfertaProducto::select('*')->where('id_producto','=',$id)->first();
+    }
+    public function existeOfertaID($id){
+        return $ofertas = OfertaProducto::select('*')
+                            ->where('ofertaproducto.estado','=','activo')
+                            ->where('ofertaproducto.id_producto','=',$id)->count(); 
     }
 }

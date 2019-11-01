@@ -25,6 +25,18 @@ class ComentarioBL
     public function listaComentario($id_producto){
         $comentario=new ComentarioProducto;
         $lista=$comentario->listaComentario($id_producto);
+        if($lista->isEmpty()){
+            $data = array('status' => 'SUCCESS','message'=>'No Hay Ofertas');
+        }
+        else{
+            $data = array('status' => 'SUCCESS','message'=>'lista de ofertas','ofertas'=>$lista);
+        }
+        return $data;
+        return $data;
+    }
+    public function listaComentarioservicio($id){
+        $comentario=new ComentarioServicio;
+        $lista=$comentario->listaComentario($id);
         if(\is_object($lista)){
             $data = array('status' => 'SUCCESS','message'=>'lista de comentarios','comentarios'=>$lista);
         }
@@ -33,15 +45,12 @@ class ComentarioBL
         }
         return $data;
     }
-    public function listaComentarioservicio($id_producto){
+    public function puntajeproducto($id){
+        $comentario=new ComentarioProducto;
+        return array('status' => 'SUCCESS','message'=>'lista de comentarios','comentarios'=>$comentario->puntajeproducto($id));
+    }
+    public function puntajeServicio($id){
         $comentario=new ComentarioServicio;
-        $lista=$comentario->listaComentario($id_producto);
-        if(\is_object($lista)){
-            $data = array('status' => 'SUCCESS','message'=>'lista de comentarios','comentarios'=>$lista);
-        }
-        else{
-            $data = array('status' => 'SUCCESS','message'=>'No Hay Datos');
-        }
-        return $data;
+        return array('status' => 'SUCCESS','message'=>'lista de comentarios','comentarios'=>$comentario->puntajeServicio($id));
     }
 }

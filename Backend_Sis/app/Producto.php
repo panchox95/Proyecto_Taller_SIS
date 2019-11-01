@@ -38,10 +38,14 @@ class Producto extends Model
             ->update(["nombre"=> $params->nombre,"marca"=>$params->marca,"cantidad"=>$params->cantidad,"precio"=> $params->precio,"descripcion"=> $params->descripcion]);
     }
     public function verProducto($id){
-        return  Producto::select('*')->where('id_producto','=',$id)->first();
+        return  Producto::select('*')->where('id_producto','=',$id)
+                        ->where('producto.estado','=','activo')
+                        ->first();
     }
     public function busquedaNombre($nombre){
-        return  Producto::select('*')->where('nombre','like', '%'.$nombre.'%','or','marca','like', '%'. $nombre .'%')->paginate(5);
+        return  Producto::select('*')->where('nombre','like', '%'.$nombre.'%','or','marca','like', '%'. $nombre .'%')
+                        ->where('producto.estado','=','activo')
+                        ->paginate(5);
     }
     
 }

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ComentarioServicio extends Model
 {
-    protected $table ="comentariooferta";
+    protected $table ="comentarioservicio";
 
     public $timestamps = false;
     public function crearComentario($params,$id_servicio,$id_user){
@@ -17,9 +17,15 @@ class ComentarioServicio extends Model
         $this->save();
     }
     public function listaComentario($id_servicio){
-        return $comentarios = ComentarioServicio::join('user', 'comentariooferta.id_user', '=', 'user.id_user')
-                                                ->select('user.first_name','user.last_name','comentariooferta.comentario','comentariooferta.calificacion')
-                                                ->where('comentariooferta.id_servicio','=',$id_servicio)
+        return $comentarios = ComentarioServicio::join('user', 'comentarioservicio.id_user', '=', 'user.id_user')
+                                                ->select('user.first_name','user.last_name','comentarioservicio.comentario','comentarioservicio.calificacion')
+                                                ->where('comentarioservicio.id_servicio','=',$id_servicio)
                                                 ->get(); 
+    }
+    public function puntajeServicio($id){
+        return ComentarioServicio::join('user', 'comentarioservicio.id_user', '=', 'user.id_user')
+                                ->select('average(comentarioservicio.calificacion)')
+                                ->where('comentarioservicio.id_producto','=',$id)
+                                ->get(); 
     }
 }

@@ -15,7 +15,7 @@ class OfertasBL
     }
     public function borrarOferta($id_producto){
         $oferta = new OfertaProducto;
-        $oferta->eliminarOferta($id_producto);
+        $oferta->borrarOferta($id_producto);
         return array('status' => 'SUCCESS','message'=>'Producto Eliminado');
     }
     public function modificarOferta($params,$id){
@@ -33,12 +33,17 @@ class OfertasBL
     public function listaOferta(){
         $oferta = new OfertaProducto;
         $lista = $oferta->listaOferta();
-        if(\is_object($lista)){
-            $data = array('status' => 'SUCCESS','message'=>'lista de ofertas','ofertas'=>$lista);
+        //return gettype($lista);
+        if($lista->isEmpty()){
+            $data = array('status' => 'SUCCESS','message'=>'No Hay Ofertas');
         }
         else{
-            $data = array('status' => 'SUCCESS','message'=>'No Hay Datos');
+            $data = array('status' => 'SUCCESS','message'=>'lista de ofertas','ofertas'=>$lista);
         }
         return $data;
+    }
+    public function existeOfertaID($id){
+        $oferta = new OfertaProducto;
+        return  $oferta->existeOfertaID($id);
     }
 }

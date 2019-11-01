@@ -47,6 +47,7 @@ class OfertasController extends Controller
     }
     public function borrarOferta($id_producto){
         $oferta = new OfertasBL;
+        $producto = new ProductoBL;
         if($producto->existeProductoID($id_producto) == 1){
             $data=$oferta->borrarOferta($id_producto);
         }else{
@@ -68,30 +69,49 @@ class OfertasController extends Controller
         $validate= \Validator::make(
             $params_array,[
                 'descripcion'=>'required',
-                'precio'=>'required'
+                'descuento'=>'required'
             ]);
         if($validate->fails()){
             $data = $validate->errors();
             $code = 400;
         }
+        
         else{
             $oferta = new OfertasBL;
-            if($oferta->existeOfertaID($id) == 1){
-                
-                $code=200;
-                $data=$producto->modificarOferta($params,$id);
-            }
-            else{    
+            if($params->descuento<1){
+                $code=400;
                 $data=array(
-                    'message'=>'El producto no existe',
-                    'code'=>404,
+                    'message'=>'El valor debe ser mayor a 1',
+                    'code'=>400,
                     'status'=>'ERROR',
                 );
-            }    
+            }
+            if(is_int($params->descuento)){
+                if($oferta->existeOfertaID($id) >= 1){
+                    $code=200;
+                    $data=$oferta->modificarOferta($params,$id);
+                }
+                else{    
+                    $code=404;
+                    $data=array(
+                        'message'=>'El producto no existe',
+                        'code'=>404,
+                        'status'=>'ERROR',
+                    );
+                }  
+            }  
+            else{
+                $code=400;
+                    $data=array(
+                        'message'=>'El valor debe ser entero',
+                        'code'=>400,
+                        'status'=>'ERROR',
+                    );
+                }
         }
         return response()->json($data,$code);
     }
-    public function verOferta($id){
+    public function verOferta($id_producto){
         $oferta = new OfertasBL;
         $producto=new ProductoBl;
         if($producto->existeProductoID($id_producto) == 1){
