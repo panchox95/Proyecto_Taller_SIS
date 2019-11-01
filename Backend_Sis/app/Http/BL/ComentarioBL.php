@@ -47,10 +47,10 @@ class ComentarioBL
     }
     public function puntajeproducto($id){
         $comentario=new ComentarioProducto;
-        return array('status' => 'SUCCESS','message'=>'lista de comentarios','comentarios'=>$comentario->puntajeproducto($id));
+        return array('status' => 'SUCCESS','message'=>'puntaje de producto','puntaje'=>$comentario->puntajeproducto($id));
     }
     public function puntajeServicio($id){
         $comentario=new ComentarioServicio;
-        return array('status' => 'SUCCESS','message'=>'lista de comentarios','comentarios'=>$comentario->puntajeServicio($id));
+        return array('status' => 'SUCCESS','message'=>'puntaje de servicio','puntaje'=>$comentario->puntajeServicio($id));
     }
 }
