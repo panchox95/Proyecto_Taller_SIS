@@ -52,7 +52,7 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li *ngIf="rol">
-                            <a [routerLink]="['lista-articulo']" ><span class="glyphicon glyphicon-book"></span> Lista Articulos </a>
+                            <a [routerLink]="['lista-articulo']" ><span class="glyphicon glyphicon-list-alt"></span> Lista Articulos </a>
                         </li>
                         <li *ngIf="identity">
                             <a [routerLink]="['crear-articulo']" ><span class="glyphicon glyphicon-book"></span> Añadir Articulo</a>
@@ -80,6 +80,11 @@
                 <li>
                     <a [routerLink]="['perfil']" >{{first_name}} {{last_name}}</a>
                 </li>
+
+                <li>
+                    <a [routerLink]="['']" ><span class="glyphicon glyphicon-briefcase"></span> Carrito</a>
+                </li>
+
                 <li>
                     <a [routerLink]="['logout',1]">
                         Salir

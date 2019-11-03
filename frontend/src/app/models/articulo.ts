@@ -6,6 +6,7 @@ export class Articulo {
         public cantidad: number,
         public precio: number,
         public descripcion: string,
+        public estado: string,
 
     ){}
 }

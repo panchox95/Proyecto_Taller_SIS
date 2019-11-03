@@ -34,7 +34,7 @@ export class ArticuloNewComponent implements OnInit {
     if(this.identity==null){
       this._router.navigate(["/login"]);
     }else{
-      this.articulo=new Articulo(0,'','',0,0,'');
+      this.articulo=new Articulo(0,'','',0,0,'','');
     }
   }
 
