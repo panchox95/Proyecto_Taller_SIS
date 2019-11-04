@@ -25,7 +25,13 @@ class PromocionesTest extends TestCase
     {
         $response = $this->get('/api/listaoferta');
 
-        $response->assertStatus(200);
+        $response
+        ->assertStatus(200)
+        ->assertJson([
+            'message' => "lista de ofertas"
+        ]) ->assertJson([
+            'status' => "SUCCESS"
+        ]);
     }
 
     public function testAgregarPromocionSinSerADmi(){

@@ -20,12 +20,17 @@ class ProductosTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function test_lista_productos()
+    public function testListaProductos()
     {
         $response = $this->get('/api/listaproducto');
 
-        $response->assertStatus(200);
-        $response->json(200);
+        $response
+        ->assertStatus(200)
+        ->assertJson([
+            'message' => "lista de productos"
+        ]) ->assertJson([
+            'status' => "SUCCESS"
+        ]);
     }
 
 
