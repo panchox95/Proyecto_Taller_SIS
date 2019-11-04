@@ -1,7 +1,7 @@
 <?php
 
 namespace App;
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 
 class OfertaProducto extends Model
@@ -28,8 +28,13 @@ class OfertaProducto extends Model
         return $ofertas = OfertaProducto::select('*')
                             ->where('ofertaproducto.estado','=','activo')->get(); 
     }
-    public function verOferta($id){
-        return  OfertaProducto::select('*')->where('id_producto','=',$id)->first();
+    public function verOferta($id_producto){
+        return  OfertaProducto::join('producto', 'ofertaproducto.id_producto', '=', 'producto.id_producto')
+            ->select('producto.nombre','producto.marca','producto.cantidad','producto.precio',DB::raw('producto.precio*ofertaproducto.descuento AS preciodescuento'),'ofertaproducto.descuento','producto.descripcion')
+            ->where('ofertaproducto.id_producto','=',$id_producto)
+            ->where('producto.estado','=','activo')
+            ->where('ofertaproducto.estado','=','activo')
+            ->get();
     }
     public function existeOfertaID($id){
         return $ofertas = OfertaProducto::select('*')
