@@ -24,8 +24,8 @@ class ComentarioServicio extends Model
     }
     public function puntajeServicio($id){
         return ComentarioServicio::join('user', 'comentarioservicio.id_user', '=', 'user.id_user')
-                                ->select('average(comentarioservicio.calificacion)')
-                                ->where('comentarioservicio.id_producto','=',$id)
-                                ->get(); 
+                                ->select('comentarioservicio.calificacion')
+                                ->where('comentarioservicio.id_servicio','=',$id)
+                                ->avg('comentarioservicio.calificacion');
     }
 }

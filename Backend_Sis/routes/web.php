@@ -19,23 +19,15 @@ Route::post('/api/registro','RegistroController@registro');
 //PRODUCTOS
 //Mostrar todos los productos
 Route::get('/api/listaproducto','ProductosController@listaProductos');
-//Mostrar uhn producto en especifico por el id
-//Route::get('/api/producto','ProductoController@show');
+
 //Agregar producto
 Route::post('/api/crearproducto','ProductosController@crearProducto')->middleware('Jwt')->middleware('admin');
-
-
 //Eliminar un producto (Solo se cambia el estado de activo a borrado)
-
 Route::put('/api/eliminarproducto/{id}','ProductosController@eliminarProducto')->middleware('Jwt')->middleware('admin');
-
 //modificar un producto 
  Route::put('/api/modificarproducto/{id}','ProductosController@modificarProducto')->middleware('Jwt')->middleware('admin');
-
 //Busqueda
 Route::post('/api/busquedanombre','ProductosController@busquedaNombre');
-
-
 //Ver
 Route::get('/api/verproducto/{id}','ProductosController@verProducto');
 
@@ -50,6 +42,19 @@ Route::put('/api/modificaroferta/{id}','OfertasController@modificarOferta')->mid
 Route::get('/api/veroferta/{id}','OfertasController@verOferta');
 //Lista
 Route::get('/api/listaoferta','OfertasController@listaOferta');
+
+
+//OFERTASSERVICIO
+//CREAR OF
+Route::post('/api/crearofertaservicio/{id}','OfertasServiciosController@crearOferta')->middleware('Jwt')->middleware('admin');
+//BORRAR OF
+Route::put('/api/borrarofertaservicio/{id}','OfertasServiciosController@borrarOferta')->middleware('Jwt')->middleware('admin');
+//Modificar OF
+Route::put('/api/modificarofertaservicio/{id}','OfertasServiciosController@modificarOferta')->middleware('Jwt')->middleware('admin');
+//Ver OF
+Route::get('/api/verofertaservicio/{id}','OfertasServiciosController@verOferta');
+//Lista OF
+Route::get('/api/listaofertaservicio','OfertasServiciosController@listaOferta');
 
 //PERFIL
 //Ver
@@ -82,3 +87,15 @@ Route::get('/api/listacomentarioservicio/{id}','ComentarioController@listaComent
 Route::get('/api/puntajeproducto/{id}','ComentarioController@puntajeProducto');
 //Puntaje Servicio
 Route::get('/api/puntajeservicio/{id}','ComentarioController@puntajeServicio');
+
+//SERVICIOS
+//Mostrar todos los servicios
+Route::get('/api/listaservicio','ServiciosController@listaServicios');
+//Agregar producto
+Route::post('/api/crearservicio','ServiciosController@crearServicio')->middleware('Jwt')->middleware('admin');
+//Eliminar un producto (Solo se cambia el estado de activo a borrado)
+Route::put('/api/eliminarservicio/{id}','ServiciosController@eliminarServicio')->middleware('Jwt')->middleware('admin');
+//modificar un producto 
+ Route::put('/api/modificarservicio/{id}','ServiciosController@modificarServicio')->middleware('Jwt')->middleware('admin');
+ //Ver
+Route::get('/api/verservicio/{id}','ServiciosController@verServicio');
