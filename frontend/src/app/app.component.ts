@@ -5,6 +5,8 @@ import { PerfilService } from './services/perfil.service';
 import { Articulo } from './models/articulo';
 import { ArticuloService } from './services/articulo.service';
 import { Router, ActivatedRoute, Params} from '@angular/router';
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+
 
 // @ts-ignore
 @Component({
@@ -18,11 +20,12 @@ export class AppComponent implements OnInit, DoCheck{
   public identity;
   public token;
   public rol;
-  public first_name; 
+  public first_name;
   public last_name;
   public nombre; apellido;
   public articulo: Articulo;
-  
+  faShoppingCart=faShoppingCart;
+
 
   constructor(
     // tslint:disable-next-line:variable-name

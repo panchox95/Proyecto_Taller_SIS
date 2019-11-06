@@ -22,6 +22,8 @@ import { PerfilEditComponent } from './components/perfil-edit/perfil-edit.compon
 import { ArticuloBusquedaComponent } from './components/articulo-busqueda/articulo-busqueda.component';
 import { OfertaNewComponent } from './components/oferta-new/oferta-new.component';
 import { ComentarioNewComponent } from './components/comentario-new/comentario-new.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 
 // @ts-ignore
 @NgModule({
@@ -46,7 +48,8 @@ import { ComentarioNewComponent } from './components/comentario-new/comentario-n
       AppRoutingModule,
       FormsModule,
       routing,
-      HttpClientModule
+      HttpClientModule,
+      FontAwesomeModule
   ],
   providers: [
       appRoutingProviders
