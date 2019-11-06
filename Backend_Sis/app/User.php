@@ -91,4 +91,8 @@ class User extends Authenticatable
         return User::where('id_user',$id)
         ->update(["first_name"=> $params['first_name'],"last_name"=>$params['last_name'],"email"=>$params['email']]);
     }
+
+    public function orders() {
+        return $this->hasMany('App\Order');
+    }
 }

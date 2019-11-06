@@ -30,6 +30,11 @@ Route::group(['middleware'=> 'Jwt'], function () {
     Route::get('/api/mostrarfoto','PerfilController@mostrarFoto');
     //Subir Foto
     Route::put('/api/subirfoto','PerfilController@subirFoto');
+    //Ordenes
+    Route::get('/profile', [
+        'uses'=> 'UserController@getProfile',
+        'as'=> 'user.profile'
+    ]);
 
     //COMENTARIOS
     //Agregar
@@ -110,3 +115,39 @@ Route::get('/api/puntajeservicio/{id}','ComentarioController@puntajeServicio');
 Route::get('/api/listaservicio','ServiciosController@listaServicios');
  //Ver
 Route::get('/api/verservicio/{id}','ServiciosController@verServicio');
+
+//CARRITO
+//anadir
+Route::get('/add-to-cart/{id}', [
+    'uses'=> 'ProductController@getAddToCart',
+    'as'=> 'product.addToCart'
+]);
+//reducir
+Route::get('/reduce/{id}', [
+    'uses'=> 'ProductController@getReduceByOne',
+    'as'=> 'product.reduceByOne'
+]);
+//eliminar
+Route::get('/remove/{id}', [
+    'uses'=> 'ProductController@getRemoveItem',
+    'as'=> 'product.remove'
+]);
+//vista
+Route::get('/shopping-cart', [
+    'uses'=> 'ProductController@getCart',
+    'as'=> 'product.shoppingCart'
+]);
+
+//vista de check out
+Route::get('/checkout', [
+    'uses'=> 'ProductController@getCheckout',
+    'as'=> 'checkout',
+    'middleware'=>'Jwt'
+]);
+
+//comprar
+Route::post('/checkout', [
+    'uses'=> 'ProductController@postCheckout',
+    'as'=> 'checkout',
+    'middleware'=>'Jwt'
+]);
