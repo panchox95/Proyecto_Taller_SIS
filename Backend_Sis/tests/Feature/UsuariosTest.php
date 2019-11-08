@@ -22,6 +22,8 @@ class UsuariosTest extends TestCase
         $response->assertStatus(200);
     }
 
+ 
+
     public function testregistro(){
         $this->post('/api/registro', [
             'first_name'=>'jeffreycito',
@@ -103,17 +105,7 @@ class UsuariosTest extends TestCase
 
     }
 
-    public function testVerPerfil(){
-        $jwt = new JwtAuth();
-        $token1 = $jwt->getToken();
-        $response = $this->withHeaders([
-            'Authorization'=>$token1,
-        ])->json('GET','/api/verperfil');
-        $response->assertStatus(200);
-        $response->assertJson(['status'=>'SUCCESS']);
-        $response->assertJson(['message'=>'Perfil']);
 
-    }
 
 
 
