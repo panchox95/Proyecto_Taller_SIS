@@ -5,7 +5,7 @@ namespace Tests\Feature;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-
+use App\Helpers\JwtAuth;
 class perfil extends TestCase
 {
     /**
@@ -15,7 +15,7 @@ class perfil extends TestCase
      */
     public function testVerPerfil(){
         $jwt = new JwtAuth();
-        $token1 = $jwt->getToken();
+        $token1 = $jwt->getTokenAdmi();
         $response = $this->withHeaders([
             'Authorization'=>$token1,
         ])->json('GET','/api/verperfil');
@@ -27,7 +27,7 @@ class perfil extends TestCase
 
     public function testVerPerfilSinIniciarSesion(){
         $jwt = new JwtAuth();
-        $token1 = $jwt->getToken();
+        $token1 = $jwt->getTokenAdmi();
         $response = $this->withHeaders([
 
         ])->json('GET','/api/verperfil');
@@ -39,7 +39,7 @@ class perfil extends TestCase
     {
 
         $jwt = new JwtAuth();
-        $token1 = $jwt->getToken();
+        $token1 = $jwt->getTokenAdmi();
         $response = $this->withHeaders([
             'Content-Type' => 'application/json',
             'Authorization'=>   $token1,

@@ -22,13 +22,13 @@ class UsuariosTest extends TestCase
         $response->assertStatus(200);
     }
 
- 
+
 
     public function testregistro(){
         $this->post('/api/registro', [
             'first_name'=>'jeffreycito',
             'last_name'=>'lovelacecito',
-            'email'=>'jeff12223@asd.com',
+            'email'=>'asdasd@asd.com',
             'password'=>'12312312s3A',
         ])->assertStatus(200);
 
