@@ -5,7 +5,7 @@ namespace Tests\Feature;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-
+use App\Helpers\JwtAuth;
 class UsuariosTest extends TestCase
 {
 
@@ -102,6 +102,19 @@ class UsuariosTest extends TestCase
         ])->assertStatus(400);
 
     }
+
+    public function testVerPerfil(){
+        $jwt = new JwtAuth();
+        $token1 = $jwt->getToken();
+        $response = $this->withHeaders([
+            'Authorization'=>$token1,
+        ])->json('GET','/api/verperfil');
+        $response->assertStatus(200);
+        $response->assertJson(['status'=>'SUCCESS']);
+        $response->assertJson(['message'=>'Perfil']);
+
+    }
+
 
 
 }

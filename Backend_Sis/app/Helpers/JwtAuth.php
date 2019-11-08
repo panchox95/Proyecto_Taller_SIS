@@ -43,7 +43,7 @@ class JwtAuth{
         return JWT::encode($token,$this->key,'HS256');
     }
     public function decode($jwt){
-        return JWT::decode($jwt,$this->key,array('HS256')); 
+        return JWT::decode($jwt,$this->key,array('HS256'));
     }
 
     public function checkToken($jwt,$getIdentity=false){
@@ -54,7 +54,7 @@ class JwtAuth{
                 //echo $decoded->id_user;
                 $auth=true;
             }
-            
+
         }
         catch(\UnexpectedValueException $e){
             //echo 'Unexpected Value Exception';
@@ -62,8 +62,12 @@ class JwtAuth{
         catch(\DomainException $e){
             //echo 'Domain Exception';
         }
-        
+
         return $auth;
+    }
+
+    public function getToken(){
+        return  'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZF91c2VyIjoxLCJmaXJzdF9uYW1lIjoiYWRtaW4iLCJsYXN0X25hbWUiOiJhZG1pbiIsImVtYWlsIjoiYWRtaW5AYWRtaW4uY29tIiwiaWF0IjoxNTcyNjE4NDA3LCJleHAiOjE4ODc5Nzg0MDd9.VZrYb3nYPuctN6JYF2IICMdyFqPV64u4PGutzf3nhIE';
     }
 }
 
