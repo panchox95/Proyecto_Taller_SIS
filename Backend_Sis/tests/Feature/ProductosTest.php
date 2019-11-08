@@ -225,5 +225,70 @@ class ProductosTest extends TestCase
 
     }
 
+    public function testBuscarProducto()
+    {
+        $jwt = new JwtAuth();
+        $token1 =  $jwt->getTokenAdmi();
+        $response = $this->withHeaders([
+            'Content-Type' => 'application/json',
+            'Authorization'=>$token1,
+        ])->json('POST','/api/busquedanombre',[
+        	"nombre"=>"prod1"
+
+        ]);
+        $response->assertStatus(200);
+        $response->assertJson(['status'=>'SUCCESS']);
+        $response->assertJson(['message'=>'Producto']);
+    }
+
+    public function testBuscarProductoInexistente()
+    {
+        $jwt = new JwtAuth();
+        $token1 =  $jwt->getTokenAdmi();
+        $response = $this->withHeaders([
+            'Content-Type' => 'application/json',
+            'Authorization'=>$token1,
+        ])->json('POST','/api/busquedanombre',[
+        	"nombre"=>"prod12222"
+
+        ]);
+        $response->assertStatus(200);
+        $response->assertJson(['status'=>'ERROR']);
+        $response->assertJson(['message'=>'Producto Inexistente']);
+    }
+
+
+    public function testVErProductoEspecifico()
+    {
+        $jwt = new JwtAuth();
+        $token1 =  $jwt->getTokenAdmi();
+        $response = $this->withHeaders([
+            'Content-Type' => 'application/json',
+            'Authorization'=>$token1,
+        ])->json('GET','/api/verproducto/3',[
+
+
+        ]);
+        $response->assertStatus(200);
+        $response->assertJson(['status'=>'SUCCESS']);
+        $response->assertJson(['message'=>'Producto']);
+
+    }
+
+    public function testVErProductoEspecificoInexistente()
+    {
+        $jwt = new JwtAuth();
+        $token1 =  $jwt->getTokenAdmi();
+        $response = $this->withHeaders([
+            'Content-Type' => 'application/json',
+            'Authorization'=>$token1,
+        ])->json('GET','/api/verproducto/30500',[
+
+
+        ]);
+        $response->assertStatus(500);
+      
+
+    }
 
 }
