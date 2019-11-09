@@ -6,137 +6,116 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Helpers\JwtAuth;
-
-class ServiciosTest extends TestCase
+class OfertasServiciosTest extends TestCase
 {
     /**
      * A basic feature test example.
      *
      * @return void
      */
-
-
-    public function testListaServicios()
+    public function testListaOfertaServicios()
     {
-        $response = $this->get('/api/listaservicio');
+        $response = $this->get('/api/listaofertaservicio');
 
         $response
         ->assertStatus(200)
         ->assertJson([
-            'message' => "lista de servicios"
+            'message' => "lista de ofertas"
         ]) ->assertJson([
             'status' => "SUCCESS"
         ]);
     }
-    /*
-    public function testAgregarServicioComoAdmi()
+
+    public function testAgregarOfertaServicioComoAdmi()
     {
         $jwt = new JwtAuth();
         $token1 = $jwt->getTokenAdmi();
         $response = $this->withHeaders([
             'Content-Type' => 'application/json',
             'Authorization'=>$token1,
-        ])->json('POST','/api/crearservicio',[
-
-          	"nombre"=>"servicioprueba12",
-            "precio"=>"50",
-             "descripcion"=>"un servicio de prueba"
+        ])->json('POST','/api/crearofertaservicio/1',[
+            "descripcion"=>"descripcion serv adsda",
+            "descuento"=>50
             ]);
         $response->assertStatus(200);
         $response->assertJson(['status'=>'SUCCESS']);
 
 
     }
-    */
-    public function testAgregarServicioExistente()
-    {
-        $jwt = new JwtAuth();
-        $token1 = $jwt->getTokenAdmi();
-        $response = $this->withHeaders([
-            'Content-Type' => 'application/json',
-            'Authorization'=>$token1,
-        ])->json('POST','/api/crearservicio',[
-            "nombre"=>"servicioprueba",
-            "precio"=>"50",
-            "descripcion"=>"un servicio de prueba"
-            ]);
-        $response->assertStatus(404);
-        $response->assertJson(['status'=>'ERROR']);
-        $response->assertJson(['message'=>'El servicio ya existe']);
 
-    }
 
-    public function testAgregarServicioSinSerNingunTipoDeUser(){
-        $this->post('/api/crearservicio', [
-            "nombre"=>"servicioprueba",
-            "precio"=>"50",
-            "descripcion"=>"un servicio de prueba"
+
+    public function testAgregarOfertaServicioSinSerNingunTipoDeUser(){
+        $this->post('/api/crearofertaservicio/1', [
+            "descripcion"=>"descripcion serv adsda",
+            "descuento"=>50
         ])->assertStatus(403);
 
     }
 
-  /* public function testEliminarServicioComoAdmi()
+   public function testEliminarOfertaServicioComoAdmi()
     {
         $jwt = new JwtAuth();
         $token1 = $jwt->getTokenAdmi();
         $response = $this->withHeaders([
             'Content-Type' => 'application/json',
             'Authorization'=>$token1,
-        ])->json('POST','/api/eliminarservicio/2');
+        ])->json('PUT','/api/borrarofertaservicio/1');
         $response->assertStatus(200);
         $response->assertJson(['status'=>'SUCCESS']);
+        $response->assertJson(['message'=>'servicio Eliminado']);
 
 
-    }*/
 
-    public function testEliminarServicioComoUsuario()
+    }
+
+    public function testEliminarOfertaServicioComoUsuario()
     {
         $jwt = new JwtAuth();
         $token1 = $jwt->getTokenUser();
         $response = $this->withHeaders([
             'Content-Type' => 'application/json',
             'Authorization'=>$token1,
-        ])->json('POST','/api/eliminarservicio/2');
-        $response->assertStatus(405);
+        ])->json('PUT','/api/borrarofertaservicio/1');
+        $response->assertStatus(500);
 
     }
 
-    public function testEliminarServicioSinSerUsuarioAuth()
+    public function testEliminarOfertaServicioSinSerUsuarioAuth()
     {
         $jwt = new JwtAuth();
         $token1 = '';
         $response = $this->withHeaders([
             'Content-Type' => 'application/json',
             'Authorization'=>$token1,
-        ])->json('POST','/api/eliminarservicio/2');
-        $response->assertStatus(405);
+        ])->json('PUT','/api/borrarofertaservicio/1');
+        $response->assertStatus(403);
 
 
 
     }
 
-    public function testEliminarServicioSinID()
+    public function testOfertaEliminarServicioSinID()
     {
         $jwt = new JwtAuth();
         $token1 = $jwt->getTokenUser();
         $response = $this->withHeaders([
             'Content-Type' => 'application/json',
             'Authorization'=>$token1,
-        ])->json('POST','/api//eliminarservicio/');
+        ])->json('PUT','/api/borrarofertaservicio/');
         $response->assertStatus(404);
     }
 
-    public function testModificarServicioAdmi()
+    public function testModificarOfertaServicioAdmi()
     {
         $jwt = new JwtAuth();
         $token1 = $jwt->getTokenAdmi();
         $response = $this->withHeaders([
             'Content-Type' => 'application/json',
             'Authorization'=>$token1,
-        ])->json('PUT','/api/modificarservicio/1',[
-            "nombre"=>"serv1111",
-            "precio"=>"50",
-            "descripcion"=>"un servicio de prueba modifcado"
+        ])->json('PUT','/api/modificarofertaservicio/2',[
+            "descripcion"=>"Oferta Modificada",
+            "descuento"=>50
 
         ]);
         $response->assertStatus(200);
@@ -145,17 +124,16 @@ class ServiciosTest extends TestCase
 
     }
 
-    public function testModificarServicioUserNormal()
+    public function testOfertaModificarServicioUserNormal()
     {
         $jwt = new JwtAuth();
         $token1 = $jwt->getTokenUser();
         $response = $this->withHeaders([
             'Content-Type' => 'application/json',
             'Authorization'=>$token1,
-        ])->json('PUT','/api/modificarservicio/1',[
-            "nombre"=>"serv1111",
-            "precio"=>"50",
-            "descripcion"=>"un servicio de prueba modifcado"
+        ])->json('PUT','/api/modificarofertaservicio/2',[
+            "descripcion"=>"Oferta Modificada",
+            "descuento"=>50
 
         ]);
         $response->assertStatus(500);
@@ -164,17 +142,16 @@ class ServiciosTest extends TestCase
 
     }
 
-    public function testModificarServicioSinLogear()
+    public function testOfertaModificarServicioSinLogear()
     {
         $jwt = new JwtAuth();
         $token1 = '';
         $response = $this->withHeaders([
             'Content-Type' => 'application/json',
             'Authorization'=>$token1,
-        ])->json('PUT','/api/modificarservicio/1',[
-            "nombre"=>"serv1111",
-            "precio"=>"50",
-            "descripcion"=>"un servicio de prueba modifcado"
+        ])->json('PUT','/api/modificarofertaservicio/2',[
+            "descripcion"=>"Oferta Modificada",
+            "descuento"=>50
 
         ]);
         $response->assertStatus(403);
@@ -185,17 +162,16 @@ class ServiciosTest extends TestCase
 
     }
 
-    public function testModificarServicioSinEspecificar()
+    public function testOfertaModificarServicioSinEspecificar()
     {
         $jwt = new JwtAuth();
         $token1 =  $jwt->getTokenAdmi();
         $response = $this->withHeaders([
             'Content-Type' => 'application/json',
             'Authorization'=>$token1,
-        ])->json('PUT','/api/modificarservicio',[
-            "nombre"=>"serv1111",
-            "precio"=>"50",
-            "descripcion"=>"un servicio de prueba modifcado"
+        ])->json('PUT','/api/modificarofertaservicio',[
+            "descripcion"=>"Oferta Modificada",
+            "descuento"=>50
 
         ]);
         $response->assertStatus(404);
@@ -207,31 +183,30 @@ class ServiciosTest extends TestCase
 
 
 
-    public function testVerServicioEspecifico()
+    public function testVerOfertaServicioEspecifico()
     {
         $jwt = new JwtAuth();
         $token1 =  $jwt->getTokenAdmi();
         $response = $this->withHeaders([
             'Content-Type' => 'application/json',
             'Authorization'=>$token1,
-        ])->json('GET','/api/verservicio/1',[
+        ])->json('GET','/api/verofertaservicio/2',[
 
 
         ]);
         $response->assertStatus(200);
         $response->assertJson(['status'=>'SUCCESS']);
-        $response->assertJson(['message'=>'Servicio']);
 
     }
 
-    public function testVerServicioEspecificoInexistente()
+    public function testVerOfertaServicioEspecificoInexistente()
     {
         $jwt = new JwtAuth();
         $token1 =  $jwt->getTokenAdmi();
         $response = $this->withHeaders([
             'Content-Type' => 'application/json',
             'Authorization'=>$token1,
-        ])->json('GET','/api/verservicio/16565',[
+        ])->json('GET','/api/verofertaservicio/16565',[
 
 
         ]);
