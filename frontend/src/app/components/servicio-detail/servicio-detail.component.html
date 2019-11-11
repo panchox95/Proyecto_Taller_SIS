@@ -32,52 +32,26 @@
                 <thead>
                     <tr>
                         <th scope="col">Nombre</th>
-                        <th scope="col">{{articulo.nombre}}</th>
-                    </tr>
-                    <tr>
-                        <th scope="col">Marca</th>
-                        <th scope="col">{{articulo.marca}}</th>
-                    </tr>
-                    <tr>
-                        <th scope="col">Cantidad</th>
-                        <th scope="col">{{articulo.cantidad}}</th>
+                        <th scope="col">{{servicio.nombre}}</th>
                     </tr>
                     <tr>
                         <th scope="col">Precio</th>
-                        <th scope="col">{{articulo.precio}} $</th>
+                        <th scope="col">{{servicio.precio}} $</th>
                     </tr>
                     <tr>
                         <th scope="col">Descripción</th>
-                        <th scope="col">{{articulo.descripcion}}</th>
+                        <th scope="col">{{servicio.descripcion}}</th>
                     </tr>
                     <tr>
                         <th scope="col">Estado</th>
-                        <th scope="col">{{articulo.estado}}</th>
+                        <th scope="col">{{servicio.estado}}</th>
                     </tr>
                 </thead>
             </table>
-            <div *ngIf="rol">
-                <a [routerLink]="['/oferta', articulo.id_producto]" class="btn btn-info" >Hazlo Oferta</a>
-            </div>
+            
             <br>
             <a [routerLink]="" class="btn btn-primary" >Comprar!!</a>
         </div>
-
-        <br>
-        <h3>Comentarios: <a [routerLink]="['/comentario', articulo.id_producto]" class="btn btn-success" >Nuevo</a></h3>
-
-        <div *ngFor="let comment of comentarioproducto">
-            <div style="float: left; width: 650px;" >
-                <textarea class="form-control">{{comment.comentario}}</textarea>
-                        
-            </div>
-            
-             <div style="float: right; width: 50px;" >
-                <label for="radio1">{{comment.calificacion}}★</label>
-            </div>
-        </div>
-        
-        
 
     </div>
     

@@ -16,6 +16,9 @@ import { PerfilEditComponent } from './components/perfil-edit/perfil-edit.compon
 import { ArticuloBusquedaComponent } from './components/articulo-busqueda/articulo-busqueda.component';
 import { OfertaNewComponent } from './components/oferta-new/oferta-new.component';
 import { ComentarioNewComponent } from './components/comentario-new/comentario-new.component';
+import { ServicioNewComponent } from './components/servicio-new/servicio-new.component';
+import { ServicioListComponent } from './components/servicio-list/servicio-list.component';
+import { ServicioDetailComponent } from './components/servicio-detail/servicio-detail.component';
 
 const appRoutes: Routes = [
     { path: '', component: DefaultComponent },
@@ -36,6 +39,9 @@ const appRoutes: Routes = [
     { path: 'busqueda', component: ArticuloBusquedaComponent },
     { path: 'oferta/:id_producto', component: OfertaNewComponent },
     { path: 'comentario/:id_producto', component: ComentarioNewComponent },
+    { path: 'crear-servicio', component: ServicioNewComponent },
+    { path: 'lista-servicio', component: ServicioListComponent },
+    { path: 'servicio/:id_servicio', component: ServicioDetailComponent },
 
 
     // Este siempre tiene q ser el ultimo

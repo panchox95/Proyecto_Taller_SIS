@@ -1,0 +1,44 @@
+<div class="loading" *ngIf="!title">
+        Cargando...
+</div>
+
+<div class="container">    
+
+    <div class="col-md-12">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">Descripcion</th>
+                    <th scope="col">Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let serv of servicio">
+                <th>{{serv.nombre}}</th>
+                <td>{{serv.precio}}</td>
+                <td>{{serv.descripcion}}</td>
+                <td>
+                    <a [routerLink]="['/servicio', serv.id_servicio]" class="btn btn-info">Ver</a>
+                    <a [routerLink]="['/editar-articulo', serv.id_producto]" class="btn btn-warning">Editar</a>
+                    <a (click)="deleteArticulo(serv.id_producto)" class="btn btn-danger">Eliminar</a>
+                </td>
+                </tr>
+            </tbody>
+        </table>
+        <a type="button"  value="Anterior" [routerLink]="['/listaservicio',current_page-1]" class="btn btn-success" *ngIf="prev_page_url">
+            Anterior
+        </a>
+        <a type="button"  value="Siguiente" [routerLink]="['/listaservicio',current_page+1]" class="btn btn-success" *ngIf="next_page_url">
+            Siguiente
+        </a>
+        <p class="pull-right">
+            {{current_page}}/{{last_page}}
+        </p>
+    </div>
+
+</div>
+
+
+

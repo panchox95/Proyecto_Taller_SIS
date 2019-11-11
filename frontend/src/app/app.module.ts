@@ -23,6 +23,9 @@ import { ArticuloBusquedaComponent } from './components/articulo-busqueda/articu
 import { OfertaNewComponent } from './components/oferta-new/oferta-new.component';
 import { ComentarioNewComponent } from './components/comentario-new/comentario-new.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ServicioNewComponent } from './components/servicio-new/servicio-new.component';
+import { ServicioListComponent } from './components/servicio-list/servicio-list.component';
+import { ServicioDetailComponent } from './components/servicio-detail/servicio-detail.component';
 
 
 // @ts-ignore
@@ -41,7 +44,10 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
       PerfilEditComponent,
       ArticuloBusquedaComponent,
       OfertaNewComponent,
-      ComentarioNewComponent
+      ComentarioNewComponent,
+      ServicioNewComponent,
+      ServicioListComponent,
+      ServicioDetailComponent
   ],
   imports: [
       BrowserModule,
