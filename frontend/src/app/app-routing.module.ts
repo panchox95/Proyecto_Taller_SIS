@@ -19,6 +19,8 @@ import { ComentarioNewComponent } from './components/comentario-new/comentario-n
 import { ServicioNewComponent } from './components/servicio-new/servicio-new.component';
 import { ServicioListComponent } from './components/servicio-list/servicio-list.component';
 import { ServicioDetailComponent } from './components/servicio-detail/servicio-detail.component';
+import { ServicioEditComponent } from './components/servicio-edit/servicio-edit.component';
+import { ComentarioservicioNewComponent } from './components/comentarioservicio-new/comentarioservicio-new.component';
 
 const appRoutes: Routes = [
     { path: '', component: DefaultComponent },
@@ -42,6 +44,8 @@ const appRoutes: Routes = [
     { path: 'crear-servicio', component: ServicioNewComponent },
     { path: 'lista-servicio', component: ServicioListComponent },
     { path: 'servicio/:id_servicio', component: ServicioDetailComponent },
+    { path: 'editar-servicio/:id_servicio',component: ServicioEditComponent },
+    { path: 'comentarioservicio/:id_servicio', component: ComentarioservicioNewComponent },
 
 
     // Este siempre tiene q ser el ultimo

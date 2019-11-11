@@ -38,10 +38,10 @@ export class ServicioService {
         return this._http.post(this.url+'busquedanombre', json, {headers: headers});
     }
 
-    updateArticulo(token, servicio, id): Observable <any>{
+    updateServicio(token, servicio, id): Observable <any>{
         let json=JSON.stringify(servicio);
         let headers =new HttpHeaders().set('Content-Type','application/json').set('Authorization',token);
-        return this._http.put(this.url+'modificarproducto/'+id, json, { headers: headers});
+        return this._http.put(this.url+'modificarservicio/'+id, json, { headers: headers});
     }
 
     deleteArticulo(token, id): Observable <any>{

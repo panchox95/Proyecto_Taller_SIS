@@ -26,6 +26,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ServicioNewComponent } from './components/servicio-new/servicio-new.component';
 import { ServicioListComponent } from './components/servicio-list/servicio-list.component';
 import { ServicioDetailComponent } from './components/servicio-detail/servicio-detail.component';
+import { ServicioEditComponent } from './components/servicio-edit/servicio-edit.component';
+import { ComentarioservicioNewComponent } from './components/comentarioservicio-new/comentarioservicio-new.component';
 
 
 // @ts-ignore
@@ -47,7 +49,9 @@ import { ServicioDetailComponent } from './components/servicio-detail/servicio-d
       ComentarioNewComponent,
       ServicioNewComponent,
       ServicioListComponent,
-      ServicioDetailComponent
+      ServicioDetailComponent,
+      ServicioEditComponent,
+      ComentarioservicioNewComponent
   ],
   imports: [
       BrowserModule,

@@ -5,7 +5,7 @@ import { UserService } from '../../services/user.service';
 import { error } from 'selenium-webdriver';
 import { Servicio } from '../../models/servicio';
 import { ServicioService } from '../../services/servicio.service';
-import { ComentarioProducto } from '../../models/comentarioproducto';
+import { ComentarioServicio } from '../../models/comentarioservicio';
 import { ComentarioService } from '../../services/comentario.service';
 
 @Component({
@@ -20,7 +20,7 @@ export class ServicioDetailComponent implements OnInit {
   public identity;
   public token;
   public rol;
-  public comentarioproducto: ComentarioProducto;
+  public comentarioservicio: ComentarioService;
 
   constructor(
     private _route: ActivatedRoute,
@@ -71,12 +71,12 @@ export class ServicioDetailComponent implements OnInit {
     this._route.params.subscribe(params => {
       let id = +params['id_servicio'];
 
-      this._comentarioService.getComentarios(id).subscribe(
+      this._comentarioService.getComentarioService(id).subscribe(
         response => {
           console.log('Comentarios: ', response.ofertas);
 
           if(response.status =='SUCCESS'){
-            this.comentarioproducto=response.ofertas;
+            this.comentarioservicio=response.ofertas;
           } else{
             this._router.navigate(['home']);
           }

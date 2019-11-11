@@ -53,5 +53,19 @@
             <a [routerLink]="" class="btn btn-primary" >Comprar!!</a>
         </div>
 
+        <br>
+        <h3>Comentarios: <a [routerLink]="['/comentarioservicio', servicio.id_servicio]" class="btn btn-success" >Nuevo</a></h3>
+
+        <div *ngFor="let comment of comentarioproducto">
+            <div style="float: left; width: 650px;" >
+                <textarea class="form-control">{{comment.comentario}}</textarea>
+                        
+            </div>
+            
+             <div style="float: right; width: 50px;" >
+                <label for="radio1">{{comment.calificacion}}★</label>
+            </div>
+        </div>
+
     </div>
     

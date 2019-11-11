@@ -21,8 +21,8 @@
                 <td>{{serv.descripcion}}</td>
                 <td>
                     <a [routerLink]="['/servicio', serv.id_servicio]" class="btn btn-info">Ver</a>
-                    <a [routerLink]="['/editar-articulo', serv.id_producto]" class="btn btn-warning">Editar</a>
-                    <a (click)="deleteArticulo(serv.id_producto)" class="btn btn-danger">Eliminar</a>
+                    <a [routerLink]="['/editar-servicio', serv.id_servicio]" class="btn btn-warning">Editar</a>
+                    <a (click)="deleteServicio(serv.id_servicio)" class="btn btn-danger">Eliminar</a>
                 </td>
                 </tr>
             </tbody>
