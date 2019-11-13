@@ -27,7 +27,7 @@
                 </thead>
             </table>
 
-            <form #comentarioNew="ngForm" (ngSubmit)="onSubmit(comentarioNew)" class="col-md-5">
+            <form #comentarioServicioNew="ngForm" (ngSubmit)="onSubmit(comentarioServicioNew)" class="col-md-5">
                 
                 <p>
                     <label>Comentario:</label>
@@ -61,7 +61,7 @@
                     <label>Tipo:</label>
                     <select name="tipo" #tipo="ngModel" [(ngModel)]="comentarioservicio.tipo" class="form-control" required>
 
-                            <option value="producto">Servicio</option>
+                            <option value="servicio">Servicio</option>
                                 
                     </select>
                     <span *ngIf="!tipo.valid && tipo.touched">
@@ -69,7 +69,7 @@
                     </span>
                 </p>
                     
-                <input type="submit" value="Guardar" class="btn btn-success" [disabled]="!comentarioNew.form.valid">
+                <input type="submit" value="Guardar" class="btn btn-success" [disabled]="!comentarioServicioNew.form.valid">
                     
             </form>
 

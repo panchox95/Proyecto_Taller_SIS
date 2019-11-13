@@ -28,8 +28,8 @@ export class ComentarioService {
         return this._http.get(this.url+'listacomentario/'+id,{ headers: headers})
     }
 
-    createComentarioService(token, comentarioservice, id): Observable<any>{
-        let json=JSON.stringify(comentarioservice);
+    createComentarioService(token, comentarioservicio, id): Observable<any>{
+        let json=JSON.stringify(comentarioservicio);
         let headers =new HttpHeaders().set('Content-Type','application/json').set('Authorization',token);
         return this._http.post(this.url+'crearcomentario/'+id, json, { headers: headers});
     }

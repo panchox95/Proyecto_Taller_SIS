@@ -4,8 +4,6 @@ import { UserService } from '../../services/user.service';
 import { Servicio } from '../../models/servicio';
 import { identity } from 'rxjs/internal-compatibility';
 import { ServicioService } from '../../services/servicio.service';
-import { OfertaProducto } from '../../models/ofertaproducto'; 
-import { OfertaService } from '../../services/oferta.service';
 import { ComentarioServicio } from '../../models/comentarioservicio';
 import { ComentarioService } from '../../services/comentario.service';
 
@@ -43,10 +41,10 @@ export class ComentarioservicioNewComponent implements OnInit {
       this.comentarioservicio=new ComentarioServicio(0,0,0,'',null,'');
     }
 
-    this.getArticulo();
+    this.getServicio();
   }
 
-  getArticulo(){
+  getServicio(){
     this._route.params.subscribe(params => {
       let id = +params['id_servicio'];
 
@@ -69,7 +67,7 @@ export class ComentarioservicioNewComponent implements OnInit {
   }
 
   onSubmit(form){
-
+    
     this._comentarioService.createComentarioService(this.token, this.comentarioservicio, this.servicio.id_servicio).subscribe(
       response =>{
         console.log('respuesta: ', response);
