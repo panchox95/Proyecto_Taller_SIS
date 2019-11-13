@@ -21,6 +21,7 @@ export class ArticuloDetailComponent implements OnInit {
   public token;
   public rol;
   public comentarioproducto: ComentarioProducto;
+  public puntaje;
 
   constructor(
     private _route: ActivatedRoute,
@@ -37,6 +38,7 @@ export class ArticuloDetailComponent implements OnInit {
   ngOnInit() {
     this.getArticulo();
     this.getComentario();
+    this.getPuntaje();
   }
 
   ngDoCheck() {
@@ -55,6 +57,28 @@ export class ArticuloDetailComponent implements OnInit {
 
           if(response.status =='SUCCESS'){
             this.articulo=response.data;
+          } else{
+            this._router.navigate(['home']);
+          }
+          
+        },
+        error => {
+          console.log(<any>error);
+        }
+      );
+    });
+  }
+
+  getPuntaje(){
+    this._route.params.subscribe(params => {
+      let id = +params['id_producto'];
+
+      this._articuloService.getPuntaje(id).subscribe(
+        response => {
+          console.log('Puntaje: ', response.puntaje);
+
+          if(response.status =='SUCCESS'){
+            this.puntaje=Math.round(response.puntaje);
           } else{
             this._router.navigate(['home']);
           }

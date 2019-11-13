@@ -44,6 +44,11 @@ export class ServicioService {
         return this._http.put(this.url+'modificarservicio/'+id, json, { headers: headers});
     }
 
+    getPuntaje(id): Observable<any>{
+        let headers =new HttpHeaders().set('Content-Type','application/json');
+        return this._http.get(this.url+'puntajeservicio/'+id,{ headers: headers})
+    }
+
     deleteArticulo(token, id): Observable <any>{
         let headers =new HttpHeaders().set('Content-Type','application/json').set('Authorization',token);
         return this._http.put(this.url+'eliminarproducto/'+id, { headers: headers});

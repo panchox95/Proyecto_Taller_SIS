@@ -21,6 +21,7 @@ export class ServicioDetailComponent implements OnInit {
   public token;
   public rol;
   public comentarioservicio: ComentarioService;
+  public puntaje;
 
   constructor(
     private _route: ActivatedRoute,
@@ -35,8 +36,9 @@ export class ServicioDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getArticulo();
-    //this.getComentario();
+    this.getServicio();
+    this.getComentario();
+    this.getPuntaje();
   }
 
   ngDoCheck() {
@@ -45,7 +47,7 @@ export class ServicioDetailComponent implements OnInit {
     this.rol=this._userService.getRol();
   }
 
-  getArticulo(){
+  getServicio(){
     this._route.params.subscribe(params => {
       let id = +params['id_servicio'];
 
@@ -67,16 +69,38 @@ export class ServicioDetailComponent implements OnInit {
     });
   }
 
+  getPuntaje(){
+    this._route.params.subscribe(params => {
+      let id = +params['id_servicio'];
+
+      this._servicioService.getPuntaje(id).subscribe(
+        response => {
+          console.log('Puntaje: ', response.puntaje);
+
+          if(response.status =='SUCCESS'){
+            this.puntaje=Math.round(response.puntaje);
+          } else{
+            this._router.navigate(['home']);
+          }
+          
+        },
+        error => {
+          console.log(<any>error);
+        }
+      );
+    });
+  }
+
   getComentario(){
     this._route.params.subscribe(params => {
       let id = +params['id_servicio'];
 
       this._comentarioService.getComentarioService(id).subscribe(
         response => {
-          console.log('Comentarios: ', response.ofertas);
+          console.log('Comentarios-Servicio: ', response.comentarios);
 
           if(response.status =='SUCCESS'){
-            this.comentarioservicio=response.ofertas;
+            this.comentarioservicio=response.comentarios;
           } else{
             this._router.navigate(['home']);
           }

@@ -13,18 +13,21 @@
         <div style="float: right; width: 100px;" >
 
             <h3>Puntuación:</h3><br>
-            <p class="clasificacion">
-                <input id="radio1" type="radio" name="estrellas" value="5">
-                <label for="radio1">★</label>
-                <input id="radio2" type="radio" name="estrellas" value="4">
-                <label for="radio2">★</label>
-                <input id="radio3" type="radio" name="estrellas" value="3">
-                <label for="radio3">★</label>
-                <input id="radio4" type="radio" name="estrellas" value="2">
-                <label for="radio4">★</label>
-                <input id="radio5" type="radio" name="estrellas" value="1">
-                <label for="radio5">★</label>
-            </p>
+            <div *ngIf="puntaje == 1"> 
+                    <label for="radio5">★</label>           
+                </div>
+                <div *ngIf="puntaje == 2"> 
+                    <label for="radio5">★★</label>           
+                </div>
+                <div *ngIf="puntaje == 3"> 
+                    <label for="radio5">★★★</label>           
+                </div>
+                <div *ngIf="puntaje == 4"> 
+                    <label for="radio5">★★★★</label>           
+                </div>
+                <div *ngIf="puntaje == 5"> 
+                    <label for="radio5">★★★★★</label>           
+            </div>
         </div>
         
         <div class="col-md-7">
@@ -56,7 +59,7 @@
         <br>
         <h3>Comentarios: <a [routerLink]="['/comentarioservicio', servicio.id_servicio]" class="btn btn-success" >Nuevo</a></h3>
 
-        <div *ngFor="let comment of comentarioproducto">
+        <div *ngFor="let comment of comentarioservicio">
             <div style="float: left; width: 650px;" >
                 <textarea class="form-control">{{comment.comentario}}</textarea>
                         

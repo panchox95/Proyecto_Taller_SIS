@@ -53,6 +53,11 @@ export class ArticuloService {
     return this._http.put(this.url+'eliminarproducto/'+id, { headers: headers});
   }
 
+  getPuntaje(id): Observable<any>{
+    let headers =new HttpHeaders().set('Content-Type','application/json');
+    return this._http.get(this.url+'puntajeproducto/'+id,{ headers: headers})
+  }
+
   deleteUsuario(id,json): Observable <any>{
     let headers =new HttpHeaders().set('Content-Type','application/json');
     json = '';
