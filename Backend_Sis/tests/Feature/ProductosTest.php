@@ -233,7 +233,7 @@ class ProductosTest extends TestCase
             'Content-Type' => 'application/json',
             'Authorization'=>$token1,
         ])->json('POST','/api/busquedanombre',[
-        	"nombre"=>"prod1"
+        	"nombre"=>"prodprueba"
 
         ]);
         $response->assertStatus(200);
@@ -265,7 +265,7 @@ class ProductosTest extends TestCase
         $response = $this->withHeaders([
             'Content-Type' => 'application/json',
             'Authorization'=>$token1,
-        ])->json('GET','/api/verproducto/3',[
+        ])->json('GET','/api/verproducto/4',[
 
 
         ]);
