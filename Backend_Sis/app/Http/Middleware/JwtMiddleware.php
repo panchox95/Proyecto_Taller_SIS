@@ -28,7 +28,7 @@ class JwtMiddleware
             }else{
                 $data=array(
                     'status'=>'ERROR',
-                    'code' => 400,
+                    'code' => 403,
                     'message' => 'Token Expirado');
                 $code = 403;
            }
@@ -36,7 +36,7 @@ class JwtMiddleware
         else{
             $data=array(
                 'status'=>'ERROR',
-                'code' => 400,
+                'code' => 403,
                 'message' => 'Token Invalido');
             $code = 403;
         }

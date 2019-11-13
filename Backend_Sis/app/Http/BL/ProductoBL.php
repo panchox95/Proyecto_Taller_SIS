@@ -2,6 +2,7 @@
 namespace App\Http\BL;
 use Illuminate\Database\Eloquent\Model;
 use App\Producto;
+use App\Servicio;
 use App\Categoria;
 use App\Helpers\JwtAuth;
 class ProductoBL
@@ -67,17 +68,16 @@ class ProductoBL
     }
     public function busquedaNombre($params){
         $producto = new Producto;
+        $servicio = new Servicio;
         $dataproducto=$producto->busquedaNombre($params->nombre);
+        $dataservicio=$servicio->busquedaNombre($params->nombre);
         if($dataproducto->isEmpty()){
-                $data=array(
-                    'message'=>'Producto Inexistente',
-                    'code'=>404,
-                    'status'=>'ERROR',);    
+                $dataproducto='Producto Inexistente';    
         }
-        else{
-            $data = array('status' => 'SUCCESS','message'=>'Producto','data'=>$dataproducto,'tipo'=>'nombre');
+        if($dataservicio->isEmpty()){
+            $dataservicio='Servicio Inexistente';    
         }
-        
+            $data = array('status' => 'SUCCESS','message'=>'Producto','productos'=>$dataproducto,'servicios'=>$dataservicio,'tipo'=>'nombre');
         return $data;
     }
 }
