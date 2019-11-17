@@ -28,6 +28,8 @@ import { ServicioListComponent } from './components/servicio-list/servicio-list.
 import { ServicioDetailComponent } from './components/servicio-detail/servicio-detail.component';
 import { ServicioEditComponent } from './components/servicio-edit/servicio-edit.component';
 import { ComentarioservicioNewComponent } from './components/comentarioservicio-new/comentarioservicio-new.component';
+import { OfertaservicioNewComponent } from './components/ofertaservicio-new/ofertaservicio-new.component';
+import { OfertaservicioDetailComponent } from './components/ofertaservicio-detail/ofertaservicio-detail.component';
 
 
 // @ts-ignore
@@ -51,7 +53,9 @@ import { ComentarioservicioNewComponent } from './components/comentarioservicio-
       ServicioListComponent,
       ServicioDetailComponent,
       ServicioEditComponent,
-      ComentarioservicioNewComponent
+      ComentarioservicioNewComponent,
+      OfertaservicioNewComponent,
+      OfertaservicioDetailComponent
   ],
   imports: [
       BrowserModule,
