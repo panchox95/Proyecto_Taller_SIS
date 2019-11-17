@@ -13,4 +13,7 @@ class Categoria extends Model
         //return 1;
         return  Categoria::select('*')->get(); 
     }
+    public function vercategoria(){
+        
+    }
 }
