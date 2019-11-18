@@ -21,6 +21,7 @@ import { ServicioListComponent } from './components/servicio-list/servicio-list.
 import { ServicioDetailComponent } from './components/servicio-detail/servicio-detail.component';
 import { ServicioEditComponent } from './components/servicio-edit/servicio-edit.component';
 import { ComentarioservicioNewComponent } from './components/comentarioservicio-new/comentarioservicio-new.component';
+import { OfertaServicioNewComponent } from './components/ofertaservicio-new/ofertaservicio-new.component';
 
 const appRoutes: Routes = [
     { path: '', component: DefaultComponent },
@@ -46,6 +47,7 @@ const appRoutes: Routes = [
     { path: 'servicio/:id_servicio', component: ServicioDetailComponent },
     { path: 'editar-servicio/:id_servicio',component: ServicioEditComponent },
     { path: 'comentarioservicio/:id_servicio', component: ComentarioservicioNewComponent },
+    { path: 'ofertaservicio/:id_servicio', component: OfertaServicioNewComponent },
 
 
     // Este siempre tiene q ser el ultimo

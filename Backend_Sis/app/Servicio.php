@@ -43,6 +43,6 @@ class Servicio extends Model
     public function busquedaNombre($nombre){
         return Servicio::select('*')->where('nombre','like', '%'.$nombre.'%')
                     ->where('servicio.estado','=','activo')
-                    ->paginate(5);
+                    ->get();
     }
 }

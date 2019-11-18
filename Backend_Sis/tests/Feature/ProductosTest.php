@@ -44,7 +44,7 @@ class ProductosTest extends TestCase
         ])->json('POST','/api/crearproducto',[
 
             "nombre"=>"testProducto",
-            "marca"=>"mark1",
+            "marca"=>"mark12",
             "cantidad"=>"100",
             "precio"=>"50",
             "descripcion"=>"un producto de prueba",
@@ -52,7 +52,7 @@ class ProductosTest extends TestCase
             ]);
         $response->assertStatus(200);
         $response->assertJson(['status'=>'SUCCESS']);
-        $response->assertJson(['message'=>'Creado testProducto mark1']);
+        $response->assertJson(['message'=>'Creado testProducto mark12']);
 
     }
     */
@@ -88,19 +88,19 @@ class ProductosTest extends TestCase
 
     }
 
-  /* public function testEliminarProductoComoAdmi()
+   public function testEliminarProductoComoAdmi()
     {
         $jwt = new JwtAuth();
         $token1 = $jwt->getTokenAdmi();
         $response = $this->withHeaders([
             'Content-Type' => 'application/json',
             'Authorization'=>$token1,
-        ])->json('POST','/api/eliminarproducto/9');
+        ])->json('PUT','/api/eliminarproducto/1');
         $response->assertStatus(200);
         $response->assertJson(['status'=>'SUCCESS']);
 
 
-    }*/
+    }
 
     public function testEliminarProductoComoUsuario()
     {
@@ -198,7 +198,6 @@ class ProductosTest extends TestCase
         ]);
         $response->assertStatus(403);
         $response->assertJson(['status'=>'ERROR']);
-        $response->assertJson(['code'=>'400']);
         $response->assertJson(['message'=>'Token Invalido']);
 
 
@@ -249,12 +248,12 @@ class ProductosTest extends TestCase
             'Content-Type' => 'application/json',
             'Authorization'=>$token1,
         ])->json('POST','/api/busquedanombre',[
-        	"nombre"=>"prod12222"
+        	"nombre"=>"noexisteweasd"
 
         ]);
         $response->assertStatus(200);
-        $response->assertJson(['status'=>'ERROR']);
-        $response->assertJson(['message'=>'Producto Inexistente']);
+        $response->assertJson(['status'=>'SUCCESS']);
+        $response->assertJson(['productos'=>'Producto Inexistente']);
     }
 
 
@@ -265,7 +264,7 @@ class ProductosTest extends TestCase
         $response = $this->withHeaders([
             'Content-Type' => 'application/json',
             'Authorization'=>$token1,
-        ])->json('GET','/api/verproducto/4',[
+        ])->json('GET','/api/verproducto/5',[
 
 
         ]);

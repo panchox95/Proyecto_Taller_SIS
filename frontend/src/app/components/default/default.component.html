@@ -63,3 +63,38 @@
       </div>
 
     </div>
+
+    <div class="panel panel-default">
+        <div class="panel-footer">
+    
+            <div class="container-fluid">
+                <div class="title">
+                  <H2>Servicios <span class="label label-success">Ofertas</span></H2>
+                </div>
+    
+                <div class="row">
+    
+  
+                  <div class="col-xs-6 col-md-3" *ngFor="let servicio of ofertaservicio">
+                    <div class="thumbnail">
+                      <img src="../../../assets/img/producto.png" alt="Boats at Phi Phi, Thailand">
+                      <div class="caption">
+                      <p>{{servicio.descripcion}}</p>
+                      <h2><span class="label label-success">{{servicio.descuento*100}} % </span></h2>
+                      <p><a [routerLink]="" class="btn btn-primary" role="button">Ver</a></p>
+                      </div>
+                    </div>
+                  </div>
+      
+    
+    
+                </div>
+    
+                </div>
+        </div>
+    
+      </div>
+  
+
+
+    

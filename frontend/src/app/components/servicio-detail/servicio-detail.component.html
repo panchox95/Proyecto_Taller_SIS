@@ -51,7 +51,9 @@
                     </tr>
                 </thead>
             </table>
-            
+            <div *ngIf="rol">
+                <a [routerLink]="['/ofertaservicio', servicio.id_servicio]" class="btn btn-info" >Hazlo Oferta</a>
+            </div>
             <br>
             <a [routerLink]="" class="btn btn-primary" >Comprar!!</a>
         </div>

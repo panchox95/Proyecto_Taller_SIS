@@ -28,8 +28,8 @@ class ServiciosTest extends TestCase
             'status' => "SUCCESS"
         ]);
     }
-    /*
-    public function testAgregarServicioComoAdmi()
+
+    /*public function testAgregarServicioComoAdmi()
     {
         $jwt = new JwtAuth();
         $token1 = $jwt->getTokenAdmi();
@@ -46,8 +46,8 @@ class ServiciosTest extends TestCase
         $response->assertJson(['status'=>'SUCCESS']);
 
 
-    }
-    */
+    }*/
+
     public function testAgregarServicioExistente()
     {
         $jwt = new JwtAuth();
@@ -75,19 +75,19 @@ class ServiciosTest extends TestCase
 
     }
 
-  /* public function testEliminarServicioComoAdmi()
+   public function testEliminarServicioComoAdmi()
     {
         $jwt = new JwtAuth();
         $token1 = $jwt->getTokenAdmi();
         $response = $this->withHeaders([
             'Content-Type' => 'application/json',
             'Authorization'=>$token1,
-        ])->json('POST','/api/eliminarservicio/2');
+        ])->json('PUT','/api/eliminarservicio/2');
         $response->assertStatus(200);
         $response->assertJson(['status'=>'SUCCESS']);
 
 
-    }*/
+    }
 
     public function testEliminarServicioComoUsuario()
     {
@@ -179,7 +179,6 @@ class ServiciosTest extends TestCase
         ]);
         $response->assertStatus(403);
         $response->assertJson(['status'=>'ERROR']);
-        $response->assertJson(['code'=>'400']);
         $response->assertJson(['message'=>'Token Invalido']);
 
 

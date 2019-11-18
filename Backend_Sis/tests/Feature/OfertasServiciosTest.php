@@ -156,7 +156,7 @@ class OfertasServiciosTest extends TestCase
         ]);
         $response->assertStatus(403);
         $response->assertJson(['status'=>'ERROR']);
-        $response->assertJson(['code'=>'400']);
+
         $response->assertJson(['message'=>'Token Invalido']);
 
 

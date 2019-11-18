@@ -18,7 +18,7 @@ export class ServicioEditComponent implements OnInit {
   public page_title: string;
   public servicio: Servicio;
   public token;
-  public status_articulo;
+  public status_servicio;
 
   constructor(
     private _route: ActivatedRoute,
@@ -63,11 +63,11 @@ export class ServicioEditComponent implements OnInit {
       response => {
         console.log('editado: ', response);
         if(response.status =='SUCCESS'){
-          this.status_articulo='SUCCESS';
+          this.status_servicio='SUCCESS';
           this.servicio=response.articulo;
           //this._router.navigate(['/articulo', this.articulo.id_producto]);
         } else{
-          this.status_articulo='ERROR';
+          this.status_servicio='ERROR';
           //this._router.navigate(['home']);
         }
       },
