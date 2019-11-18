@@ -32,7 +32,7 @@ Route::group(['middleware'=> 'Jwt'], function () {
     Route::put('/api/subirfoto','PerfilController@subirFoto');
     //Ordenes
     Route::get('/profile', [
-        'uses'=> 'UserController@getProfile',
+        'uses'=> 'OrdersController@getProfile',
         'as'=> 'user.profile'
     ]);
 
@@ -118,17 +118,17 @@ Route::get('/api/verservicio/{id}','ServiciosController@verServicio');
 
 //CARRITO
 //anadir
-Route::get('/add-to-cart/{id}', [
+Route::get('/add-to-cart/{id_producto}', [
     'uses'=> 'ProductController@getAddToCart',
     'as'=> 'product.addToCart'
 ]);
 //reducir
-Route::get('/reduce/{id}', [
+Route::get('/reduce/{id_producto}', [
     'uses'=> 'ProductController@getReduceByOne',
     'as'=> 'product.reduceByOne'
 ]);
 //eliminar
-Route::get('/remove/{id}', [
+Route::get('/remove/{id_producto}', [
     'uses'=> 'ProductController@getRemoveItem',
     'as'=> 'product.remove'
 ]);

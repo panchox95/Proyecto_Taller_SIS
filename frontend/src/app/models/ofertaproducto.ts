@@ -4,6 +4,6 @@ export class OfertaProducto {
         public id_producto: number,
         public descripcion: string,
         public descuento: number,
-
+        public imagepath: string
     ){}
 }
