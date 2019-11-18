@@ -83,14 +83,14 @@ class ProductController extends Controller
         if(!Session::has('cart')){
             $code = 401;
             //return view('shop.shopping-cart', ['productos'=> null]);
-            return response()->json(['productos' => null], $code );
+            return response()->json(null,  $code );
         }
         $oldCart = Session::get('cart');
         $cart = new Cart($oldCart);
         $conf=array(
             'status'=>'SUCCESS',
             'code' => 200);
-        return response()->json(['productos' => $cart->items, 'totalPrice' => $cart->totalPrice], $conf );
+        return response()->json($cart->items, $cart->totalPrice , $conf );
         //return view('shop.shopping-cart', ['productos' => $cart->items, 'totalPrice' => $cart->totalPrice]);
     }
 
@@ -109,7 +109,7 @@ class ProductController extends Controller
         $conf=array(
             'status'=>'SUCCESS',
             'code' => 200);
-        return response()->json(['total' => $total], $conf );
+        return response()->json( $total, $conf );
         //return view('shop.checkout', ['total' => $total]);
     }
 
