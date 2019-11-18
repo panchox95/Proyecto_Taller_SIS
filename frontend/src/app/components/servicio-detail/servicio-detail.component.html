@@ -1,76 +1,80 @@
 <div class="container">
-        <h1>Detalle:</h1><br>
-        
-        <div style="float: left; width: 600px;" >
-            <div class="col-xs-6 col-md-3">
-                <div class="thumbnail">
-                    <img src="../../../assets/img/producto.png" alt="Boats at Phi Phi, Thailand">
-                </div>
+    <h1>Detalle:</h1><br>
+    
+    <div class="row">
+
+        <div class="col-xs-6 col-md-3">
+            <div class="thumbnail">
+                <img src="../../../assets/img/producto.png" alt="Boats at Phi Phi, Thailand">
             </div>
         </div>
 
-
-        <div style="float: right; width: 100px;" >
-
+        <div class="col-xs-6 col-md-3">
             <h3>Puntuación:</h3><br>
             <div *ngIf="puntaje == 1"> 
-                    <label for="radio5">★</label>           
-                </div>
-                <div *ngIf="puntaje == 2"> 
-                    <label for="radio5">★★</label>           
-                </div>
-                <div *ngIf="puntaje == 3"> 
-                    <label for="radio5">★★★</label>           
-                </div>
-                <div *ngIf="puntaje == 4"> 
-                    <label for="radio5">★★★★</label>           
-                </div>
-                <div *ngIf="puntaje == 5"> 
-                    <label for="radio5">★★★★★</label>           
+                <label for="radio5">★</label>           
             </div>
-        </div>
-        
-        <div class="col-md-7">
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">{{servicio.nombre}}</th>
-                    </tr>
-                    <tr>
-                        <th scope="col">Precio</th>
-                        <th scope="col">{{servicio.precio}} $</th>
-                    </tr>
-                    <tr>
-                        <th scope="col">Descripción</th>
-                        <th scope="col">{{servicio.descripcion}}</th>
-                    </tr>
-                    <tr>
-                        <th scope="col">Estado</th>
-                        <th scope="col">{{servicio.estado}}</th>
-                    </tr>
-                </thead>
-            </table>
-            <div *ngIf="rol">
-                <a [routerLink]="['/ofertaservicio', servicio.id_servicio]" class="btn btn-info" >Hazlo Oferta</a>
+            <div *ngIf="puntaje == 2"> 
+                <label for="radio5">★★</label>           
             </div>
-            <br>
-            <a [routerLink]="" class="btn btn-primary" >Comprar!!</a>
-        </div>
-
-        <br>
-        <h3>Comentarios: <a [routerLink]="['/comentarioservicio', servicio.id_servicio]" class="btn btn-success" >Nuevo</a></h3>
-
-        <div *ngFor="let comment of comentarioservicio">
-            <div style="float: left; width: 650px;" >
-                <textarea class="form-control">{{comment.comentario}}</textarea>
-                        
+            <div *ngIf="puntaje == 3"> 
+                <label for="radio5">★★★</label>           
             </div>
-            
-             <div style="float: right; width: 50px;" >
-                <label for="radio1">{{comment.calificacion}}★</label>
+            <div *ngIf="puntaje == 4"> 
+                <label for="radio5">★★★★</label>           
+            </div>
+            <div *ngIf="puntaje == 5"> 
+                <label for="radio5">★★★★★</label>           
             </div>
         </div>
 
     </div>
     
+    <div class="col-md-12">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">{{servicio.nombre}}</th>
+                </tr>
+                <tr>
+                    <th scope="col">Precio</th>
+                    <th scope="col">{{servicio.precio}} $</th>
+                </tr>
+                <tr>
+                    <th scope="col">Descripción</th>
+                    <th scope="col">{{servicio.descripcion}}</th>
+                </tr>
+                <tr>
+                    <th scope="col">Estado</th>
+                    <th scope="col">{{servicio.estado}}</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+
+    <div class="row">
+
+        <div class="col-xs-6 col-md-3" *ngIf="rol">
+            <a [routerLink]="['/ofertaservicio', servicio.id_servicio]" class="btn btn-info" >Hazlo Oferta</a>
+        </div>
+
+        <div class="col-xs-6 col-md-3">
+            <a [routerLink]="" class="btn btn-primary" >Comprar!!</a>
+        </div>
+    
+    </div>
+
+    <h3>Comentarios: <a [routerLink]="['/comentarioservicio', servicio.id_servicio]" class="btn btn-success" >Nuevo</a></h3>
+
+    <div class="row" *ngFor="let comment of comentarioservicio">
+        <div class="col-md-10">
+            <textarea class="form-control">{{comment.comentario}}</textarea>
+        </div>
+
+        <div class="col-md-2">
+            <label for="radio1">{{comment.calificacion}}★</label>
+        </div>
+    </div>
+            
+</div>
