@@ -38,8 +38,10 @@ class ProductController extends Controller
         }
         $cart->add($producto, $producto->id_producto);
         Session::put('cart', $cart);
-        $code = 200;
-        return response()->json($code);
+        $conf=array(
+            'status'=>'SUCCESS',
+            'code' => 200);
+        return response()->json($conf);
         //return redirect()->route('product.index');
     }
 
@@ -53,8 +55,10 @@ class ProductController extends Controller
         }else{
             Session::forget('cart');
         }
-        $code = 200;
-        return response()->json($code);
+        $conf=array(
+            'status'=>'SUCCESS',
+            'code' => 200);
+        return response()->json($conf);
        // return redirect()->route('product.shoppingCart');
     }
 
@@ -68,8 +72,10 @@ class ProductController extends Controller
         }else{
             Session::forget('cart');
         }
-        $code = 200;
-        return response()->json($code);
+        $conf=array(
+            'status'=>'SUCCESS',
+            'code' => 200);
+        return response()->json($conf);
        // return redirect()->route('product.shoppingCart');
     }
 
@@ -81,30 +87,39 @@ class ProductController extends Controller
         }
         $oldCart = Session::get('cart');
         $cart = new Cart($oldCart);
-        $code = 200;
-        return response()->json(['productos' => $cart->items, 'totalPrice' => $cart->totalPrice], $code );
+        $conf=array(
+            'status'=>'SUCCESS',
+            'code' => 200);
+        return response()->json(['productos' => $cart->items, 'totalPrice' => $cart->totalPrice], $conf );
         //return view('shop.shopping-cart', ['productos' => $cart->items, 'totalPrice' => $cart->totalPrice]);
     }
 
     public function getCheckout(){
         if(!Session::has('cart')){
            // return view('shop.shopping-cart');
-            $code = 401;
-            return Response()->json($code);
+            $conf=array(
+                'status'=>'FAILURE',
+                'message'=> 'no inicio sesion',
+                'code' => 401);
+            return Response()->json($conf);
         }
         $oldCart = Session::get('cart');
         $cart = new Cart($oldCart);
         $total =$cart->totalPrice;
-        $code = 200;
-        return response()->json(['total' => $total], $code );
+        $conf=array(
+            'status'=>'SUCCESS',
+            'code' => 200);
+        return response()->json(['total' => $total], $conf );
         //return view('shop.checkout', ['total' => $total]);
     }
 
     public function postCheckout(Request $request){
         if(!Session::has('cart')){
-            $code = 201;
+            $conf=array(
+                'status'=>'SUCCESS',
+                'code' => 201);
             //return redirect('shop.shoppingCart');
-            return response($code);
+            return response($conf);
         }
         $oldCart = Session::get('cart');
         $cart = new Cart($oldCart);
@@ -132,7 +147,9 @@ class ProductController extends Controller
 
         Session::forget('cart');
         //return redirect()->route('product.index')->with('success', 'Successfully purchased products!');
-        $code = 200;
+        $conf=array(
+            'status'=>'SUCCESS',
+            'code' => 200);
         return response()->json( $code);
 
     }

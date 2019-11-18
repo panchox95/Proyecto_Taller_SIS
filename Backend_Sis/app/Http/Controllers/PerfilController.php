@@ -128,6 +128,10 @@ class PerfilController extends Controller
             $order->cart =unserialize($order->cart);
             return $order;
         });
-        return view('user.profile', ['orders'=>$orders]);
+        //return view('user.profile', ['orders'=>$orders]);
+        $conf=array(
+            'status'=>'SUCCESS',
+            'code' => 200);
+        return response()->json($orders,$conf);
     }
 }
