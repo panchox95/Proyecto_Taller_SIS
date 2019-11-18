@@ -118,35 +118,35 @@ Route::get('/api/verservicio/{id}','ServiciosController@verServicio');
 
 //CARRITO
 //anadir
-Route::get('/add-to-cart/{id_producto}', [
+Route::get('/api/add-to-cart/{id_producto}', [
     'uses'=> 'ProductController@getAddToCart',
     'as'=> 'product.addToCart'
 ]);
 //reducir
-Route::get('/reduce/{id_producto}', [
+Route::get('/api/reduce/{id_producto}', [
     'uses'=> 'ProductController@getReduceByOne',
     'as'=> 'product.reduceByOne'
 ]);
 //eliminar
-Route::get('/remove/{id_producto}', [
+Route::get('/api/remove/{id_producto}', [
     'uses'=> 'ProductController@getRemoveItem',
     'as'=> 'product.remove'
 ]);
 //vista
-Route::get('/shopping-cart', [
+Route::get('/api/shopping-cart', [
     'uses'=> 'ProductController@getCart',
     'as'=> 'product.shoppingCart'
 ]);
 
 //vista de check out
-Route::get('/checkout', [
+Route::get('/api/checkout', [
     'uses'=> 'ProductController@getCheckout',
     'as'=> 'checkout',
     'middleware'=>'Jwt'
 ]);
 
 //comprar
-Route::post('/checkout', [
+Route::post('/api/checkout', [
     'uses'=> 'ProductController@postCheckout',
     'as'=> 'checkout',
     'middleware'=>'Jwt'

@@ -104,7 +104,7 @@ create table categoriaproducto(
     foreign key(id_producto) references producto (id_producto),
     primary key(id_categoria,id_producto)
 );
-create table categoriaservicio(	
+create table categoriaservicio(
     id_categoria int,
     id_servicio int,
     foreign key(id_categoria) references categoria (id_categoria),
@@ -112,8 +112,20 @@ create table categoriaservicio(
     primary key(id_categoria,id_servicio)
 );
 
+create table orders(
+    id int,
+    created_at timestamp,
+    updated_at timestamp,
+    user_id int(11),
+    cart text,
+    address text,
+    name varchar(255),
+    payment_id varchar(255),
+    primary key(id)
+);
 
-select * 
+
+select *
 from producto a
 where a.nombre like '%prod1%' or a.marca like '%prod1%';
 insert into producto values (default, 'prod212','prod12',4,100,'prod112','activo');
