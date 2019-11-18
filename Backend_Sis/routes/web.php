@@ -31,9 +31,8 @@ Route::group(['middleware'=> 'Jwt'], function () {
     //Subir Foto
     Route::put('/api/subirfoto','PerfilController@subirFoto');
     //Ordenes
-    Route::get('/profile', [
-        'uses'=> 'OrdersController@getProfile',
-        'as'=> 'user.profile'
+    Route::get('/api/profile', [
+        'uses'=> 'PerfilController@getProfile'
     ]);
 
     //COMENTARIOS

@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 use App\Http\BL\PerfilBL;
 use App\Http\BL\LoginBL;
+use App\Http\Middleware\JwtMiddleware;
 use Illuminate\Http\Request;
 use App\Helpers\JwtAuth;
+use Illuminate\Support\Facades\Auth;
 use Image;
 use Illuminate\Http\UploadedFile;
 class PerfilController extends Controller
@@ -51,7 +53,7 @@ class PerfilController extends Controller
 
             ]
         );
-        
+
         $message='';
         if($validate4->fails()){
             $validate=true;
@@ -74,7 +76,7 @@ class PerfilController extends Controller
             $data = $perfil->modificarPerfil($decoded,$params,$user);
             return $data;
         }
-        
+
     }
 
 
@@ -89,7 +91,7 @@ class PerfilController extends Controller
         $user = new LoginBL();
         $name =$user->name($decoded->email);
         $nombre = $name.time();
-        
+
         $path = public_path('uploads/'.$nombre.'.png');
         $url = '/uploads/'.$nombre;
         $image = Image::make( $file->getRealPath() );
@@ -117,6 +119,15 @@ class PerfilController extends Controller
             'message' => $url);
         $code=200;
         return $data;
-        
+
+    }
+
+    public function getProfile(){
+        $orders=JwtMiddleware::user()->orders;
+        $orders->transform(function ($order, $key){
+            $order->cart =unserialize($order->cart);
+            return $order;
+        });
+        return view('user.profile', ['orders'=>$orders]);
     }
 }
