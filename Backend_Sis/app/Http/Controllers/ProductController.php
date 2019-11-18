@@ -150,7 +150,7 @@ class ProductController extends Controller
         $conf=array(
             'status'=>'SUCCESS',
             'code' => 200);
-        return response()->json( $code);
+        return response()->json( $conf);
 
     }
 }
