@@ -20,6 +20,7 @@ class Producto extends Model
         $this->precio=$params->precio;
         $this->descripcion=$params->descripcion;
         $this->estado='activo';
+        $this->tipo='producto';
         $this->save();
     }
     public function existeProducto($nombre,$marca){
@@ -46,15 +47,15 @@ class Producto extends Model
                         ->where('producto.estado','=','activo')
                         ->first();
     }
-    public function busquedaNombre($nombre){
-        return  Producto::select('*')
+    public function busquedaNombre($nombre,$dataservicio){
+        return  Producto::select('producto.id_producto as id','producto.nombre','producto.marca','producto.cantidad','producto.precio','producto.descripcion','producto.tipo')
                         ->where('nombre','like', '%'.$nombre.'%','or','marca','like', '%'. $nombre .'%')
                         ->where('producto.estado','=','activo')
-                        ->get();
+                        ->union($dataservicio)
+                        ->paginate(5);
     }
     public function getIDProducto($nombre){
         return  Producto::select('id_producto')->where('nombre','=',$nombre)
         ->first();
     }
-
 }

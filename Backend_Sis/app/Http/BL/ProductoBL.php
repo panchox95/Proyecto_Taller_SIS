@@ -75,17 +75,14 @@ class ProductoBL
     public function busquedaNombre($params){
         $producto = new Producto;
         $servicio = new Servicio;
-        $dataproducto=$producto->busquedaNombre($params->nombre);
         $dataservicio=$servicio->busquedaNombre($params->nombre);
+        $dataproducto=$producto->busquedaNombre($params->nombre,$dataservicio);
 
         if($dataproducto->isEmpty()){
-                $dataproducto='Producto Inexistente';    
+                $dataproducto='No existen resultados';    
         }
-        if($dataservicio->isEmpty()){
-            $dataservicio='Servicio Inexistente';    
-        }
-       
-        $data = array('status' => 'SUCCESS','message'=>'Producto','productos'=>11,'servicios'=>$dataservicio,'Productos'=>$dataproducto,'tipo'=>'nombre');
+
+        $data = array('status' => 'SUCCESS','message'=>'Resultados','data'=>$dataproducto);
         return $data;
     }
 }

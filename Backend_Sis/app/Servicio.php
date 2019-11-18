@@ -14,6 +14,7 @@ class Servicio extends Model
         $this->precio=$params->precio;
         $this->descripcion=$params->descripcion;
         $this->estado='activo';
+        $this->tipo='servicio';
         $this->save();
     }
     public function existeServicio($nombre){
@@ -41,8 +42,8 @@ class Servicio extends Model
                         ->first();
     }
     public function busquedaNombre($nombre){
-        return Servicio::select('*')->where('nombre','like', '%'.$nombre.'%')
-                    ->where('servicio.estado','=','activo')
-                    ->get();
+        return Servicio::select('servicio.id_servicio as id','servicio.nombre','servicio.marca','servicio.cantidad','servicio.precio','servicio.descripcion','servicio.tipo')
+                    ->where('nombre','like', '%'.$nombre.'%')
+                    ->where('servicio.estado','=','activo');
     }
 }
