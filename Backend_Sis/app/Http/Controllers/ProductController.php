@@ -7,6 +7,7 @@ use App\Helpers\JwtAuth;
 use App\Http\Middleware\JwtMiddleware;
 use App\Producto;
 use App\Order;
+use http\Client\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Session;
@@ -87,7 +88,9 @@ class ProductController extends Controller
 
     public function getCheckout(){
         if(!Session::has('cart')){
-            return view('shop.shopping-cart');
+           // return view('shop.shopping-cart');
+            $code = 401;
+            return Response()->json($code);
         }
         $oldCart = Session::get('cart');
         $cart = new Cart($oldCart);
