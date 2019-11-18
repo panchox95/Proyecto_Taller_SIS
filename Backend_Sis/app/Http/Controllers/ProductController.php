@@ -74,7 +74,9 @@ class ProductController extends Controller
 
     public function getCart(){
         if(!Session::has('cart')){
-            return view('shop.shopping-cart', ['productos'=> null]);
+            $code = 401;
+            //return view('shop.shopping-cart', ['productos'=> null]);
+            return response()->json(['productos' => null], $code );
         }
         $oldCart = Session::get('cart');
         $cart = new Cart($oldCart);
