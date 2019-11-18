@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Session;
 use Stripe\Charge;
 use Stripe\Stripe;
+use App\Http\Requests;
 
 class ProductController extends Controller
 {

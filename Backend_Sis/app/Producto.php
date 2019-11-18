@@ -7,8 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class Producto extends Model
 {
     protected $table ="producto";
+    protected $fillable = ['nombre', 'marca', 'cantidad', 'precio','descripcion','estado'];
+    protected $primaryKey = 'id_producto';
 
     public $timestamps = false;
+
+
     public function saveProducto($params){
         $this->nombre=$params->nombre;
         $this->marca=$params->marca;
@@ -52,5 +56,5 @@ class Producto extends Model
         return  Producto::select('id_producto')->where('nombre','=',$nombre)
         ->first();
     }
-    
+
 }
