@@ -30,6 +30,7 @@ import { ServicioEditComponent } from './components/servicio-edit/servicio-edit.
 import { ComentarioservicioNewComponent } from './components/comentarioservicio-new/comentarioservicio-new.component';
 import { OfertaServicioNewComponent } from './components/ofertaservicio-new/ofertaservicio-new.component';
 import { OfertaservicioDetailComponent } from './components/ofertaservicio-detail/ofertaservicio-detail.component';
+import { CarritoListComponent } from './components/carrito-list/carrito-list.component';
 import {
   SocialLoginModule,
   AuthServiceConfig,
@@ -75,7 +76,8 @@ export function getAuthServiceConfigs() {
       ServicioEditComponent,
       ComentarioservicioNewComponent,
       OfertaServicioNewComponent,
-      OfertaservicioDetailComponent
+      OfertaservicioDetailComponent,
+      CarritoListComponent
   ],
   imports: [
       BrowserModule,

@@ -1,5 +1,13 @@
 <div class="container">
     <h1>Detalle:</h1><br>
+
+    <div class="alert alert-success" *ngIf="status_compra=='SUCCESS'">
+        El servicio se añadio a tu carrito de compras
+    </div>
+                
+    <div class="alert alert-danger" *ngIf="status_compra=='ERROR'">
+        El servicio no se añadio, vuelve a intentarlo
+    </div>
     
     <div class="row">
 
@@ -60,7 +68,7 @@
         </div>
 
         <div class="col-xs-6 col-md-3">
-            <a [routerLink]="" class="btn btn-primary" >Comprar!!</a>
+            <a (click)="buyServicio(servicio.id_servicio)" class="btn btn-primary" >Comprar!!</a>
         </div>
     
     </div>

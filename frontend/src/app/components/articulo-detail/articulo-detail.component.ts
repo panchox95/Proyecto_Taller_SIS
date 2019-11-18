@@ -22,6 +22,7 @@ export class ArticuloDetailComponent implements OnInit {
   public rol;
   public comentarioproducto: ComentarioProducto;
   public puntaje;
+  public status_compra: string;
 
   constructor(
     private _route: ActivatedRoute,
@@ -111,6 +112,25 @@ export class ArticuloDetailComponent implements OnInit {
         }
       );
     });
+  }
+
+  buyArticulo(id){
+    this._articuloService.buyArticulo(id).subscribe(
+      response => {
+        console.log('compra: ', response);
+        if(response.status =='SUCCESS'){
+
+          this.status_compra='SUCCESS';
+          
+        } else{
+          this.status_compra='ERROR';
+          //this._router.navigate(['home']);
+        }
+      },
+      error => {
+        console.log(<any>error);
+      }
+    );
   }
 
 }

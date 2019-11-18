@@ -22,6 +22,7 @@ export class ServicioDetailComponent implements OnInit {
   public rol;
   public comentarioservicio: ComentarioService;
   public puntaje;
+  public status_compra: string;
 
   constructor(
     private _route: ActivatedRoute,
@@ -111,6 +112,25 @@ export class ServicioDetailComponent implements OnInit {
         }
       );
     });
+  }
+
+  buyServicio(id){
+    this._servicioService.buyServicio(id).subscribe(
+      response => {
+        console.log('compra: ', response);
+        if(response.status =='SUCCESS'){
+
+          this.status_compra='SUCCESS';
+          
+        } else{
+          this.status_compra='ERROR';
+          //this._router.navigate(['home']);
+        }
+      },
+      error => {
+        console.log(<any>error);
+      }
+    );
   }
 
 }

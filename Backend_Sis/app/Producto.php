@@ -54,6 +54,14 @@ class Producto extends Model
                         ->union($dataservicio)
                         ->paginate(5);
     }
+    public function busquedaPrecio($minimo,$maximo,$dataservicio){
+        return  Producto::select('producto.id_producto as id','producto.nombre','producto.marca','producto.cantidad','producto.precio','producto.descripcion','producto.tipo')
+                        ->where('producto.precio','<=', $maximo)
+                        ->where('producto.precio','>=', $minimo)
+                        ->where('producto.estado','=','activo')
+                        ->union($dataservicio)
+                        ->paginate(5);
+    }
     public function getIDProducto($nombre){
         return  Producto::select('id_producto')->where('nombre','=',$nombre)
         ->first();

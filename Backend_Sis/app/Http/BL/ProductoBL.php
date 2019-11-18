@@ -85,5 +85,18 @@ class ProductoBL
         $data = array('status' => 'SUCCESS','message'=>'Resultados','data'=>$dataproducto);
         return $data;
     }
+    public function busquedaPrecio($params){
+        $producto = new Producto;
+        $servicio = new Servicio;
+        $dataservicio=$servicio->busquedaPrecio($params->minimo,$params->maximo);
+        $dataproducto=$producto->busquedaPrecio($params->minimo,$params->maximo,$dataservicio);
+
+        if($dataproducto->isEmpty()){
+                $dataproducto='No existen resultados';    
+        }
+
+        $data = array('status' => 'SUCCESS','message'=>'Resultados','data'=>$dataproducto);
+        return $data;
+    }
 }
 
