@@ -31,7 +31,7 @@ export class ArticuloBusquedaComponent implements OnInit {
   onSubmit(form){
     this._articuloService.findArticulo(this.articulo).subscribe(
       response =>{
-        console.log('busqueda: ', response.data.data);
+        console.log('busqueda: ', response);
         if(response.status =='SUCCESS'){
           // this.articulo=response.data;
             this.articulo = response.data.data;

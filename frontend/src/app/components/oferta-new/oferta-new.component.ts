@@ -41,7 +41,7 @@ export class OfertaNewComponent implements OnInit {
     if(this.identity==null){
       this._router.navigate(["/login"]);
     }else{
-      this.ofertaproducto=new OfertaProducto(0,0,'',null, 'https://www.whats-on-netflix.com/wp-content/uploads/2018/09/naruto-on-netflix.jpg' );
+      this.ofertaproducto=new OfertaProducto(0,0,'',null, '../../../assets/img/producto.png' );
     }
 
     this.getArticulo();

@@ -56,6 +56,8 @@ create table ofertaproducto(
 create table servicio(
 	id_servicio int auto_increment,
     nombre varchar(255),
+    marca varchar(255),
+    cantidad int,
     precio int,
     descripcion varchar(255),
     estado varchar(255),
