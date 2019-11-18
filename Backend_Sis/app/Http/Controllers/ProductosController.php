@@ -136,4 +136,55 @@ class ProductosController extends Controller
 
         
     }
+    public function busquedaPrecio(Request $request){
+        $json=$request->all('json',null);
+        $params_array  = json_decode(json_encode( $json), true );
+        
+        $params=json_decode((json_encode($json)));
+        //Validamos
+        $validate= \Validator::make(
+            $params_array,[
+                'minimo'=>'required|numeric',
+                'maximo'=>'required|numeric',
+            ]);
+        $bool=false;
+        if($validate->fails()){
+            if(is_null($params->minimo)){
+                $params->minimo=0;
+            }
+            else{
+                if(is_numeric($params->minimo)){
+                    $bool = false;
+                }
+                else{
+                    $message='El rango de busqueda es para numeros solamente';
+                    $bool = true;
+                }  
+            }
+            if(is_null($params->maximo)){
+                $params->maximo=10000000;
+            }
+            else{
+                if(is_numeric($params->maximo) && $bool==false){
+                    $bool = false;
+                }
+                else{
+                    $message='El rango de busqueda es para numeros solamente';
+                    $bool = true;
+                }  
+            }
+            if($bool){
+                $data=array(
+                    'status'=>'ERROR',
+                    'code' => 400,
+                    'message' => $message);
+                $code=400;
+                return response()->json($data,$code);
+            }
+        }
+        //return array('data'=>$params);
+        $producto=new ProductoBl;
+        $data = $producto->busquedaPrecio($params);
+        return response()->json($data,200);
+    }
 }

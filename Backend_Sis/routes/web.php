@@ -80,6 +80,8 @@ Route::group(['middleware'=> 'Jwt'], function () {
 Route::post('/api/busquedanombre','ProductosController@busquedaNombre');
 //Ver
 Route::get('/api/verproducto/{id}','ProductosController@verProducto');
+//Precios 
+Route::post('/api/busquedaprecio','ProductosController@busquedaPrecio');
 
 //OFERTAS
 //Ver

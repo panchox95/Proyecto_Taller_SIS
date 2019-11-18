@@ -46,4 +46,10 @@ class Servicio extends Model
                     ->where('nombre','like', '%'.$nombre.'%')
                     ->where('servicio.estado','=','activo');
     }
+    public function busquedaPrecio($minimo,$maximo){
+        return Servicio::select('servicio.id_servicio as id','servicio.nombre','servicio.marca','servicio.cantidad','servicio.precio','servicio.descripcion','servicio.tipo')
+                    ->where('servicio.precio','<=', $maximo)
+                    ->where('servicio.precio','>=', $minimo)
+                    ->where('servicio.estado','=','activo');
+    }
 }
