@@ -4,7 +4,7 @@ import { UserService } from '../../services/user.service';
 import { Articulo } from '../../models/articulo';
 import { identity } from 'rxjs/internal-compatibility';
 import { ArticuloService } from '../../services/articulo.service';
-import { OfertaProducto } from '../../models/ofertaproducto'; 
+import { OfertaProducto } from '../../models/ofertaproducto';
 import { OfertaService } from '../../services/oferta.service';
 
 @Component({
@@ -22,6 +22,7 @@ export class OfertaNewComponent implements OnInit {
   public status_articulo: string;
   public ofertaproducto: OfertaProducto;
   public status_oferta: string;
+  public imagepath: string;
 
   constructor(
     private _route: ActivatedRoute,
@@ -29,7 +30,7 @@ export class OfertaNewComponent implements OnInit {
     private _userService: UserService,
     private _articuloService: ArticuloService,
     private _ofertaService: OfertaService,
-  ) { 
+  ) {
     this.page_title='Creacion de una Oferta';
     this.identity=this._userService.getIdentity();
     this.token=this._userService.getToken();
@@ -40,7 +41,7 @@ export class OfertaNewComponent implements OnInit {
     if(this.identity==null){
       this._router.navigate(["/login"]);
     }else{
-      this.ofertaproducto=new OfertaProducto(0,0,'',null);
+      this.ofertaproducto=new OfertaProducto(0,0,'',null, 'https://www.whats-on-netflix.com/wp-content/uploads/2018/09/naruto-on-netflix.jpg' );
     }
 
     this.getArticulo();
@@ -59,7 +60,7 @@ export class OfertaNewComponent implements OnInit {
           } else{
             this._router.navigate(['home']);
           }
-          
+
         },
         error => {
           console.log(<any>error);
@@ -67,13 +68,13 @@ export class OfertaNewComponent implements OnInit {
       );
     });
   }
-  
+
   onSubmit(form){
 
     this._ofertaService.createOferta(this.token, this.ofertaproducto, this.articulo.id_producto).subscribe(
       response =>{
         console.log('respuesta: ', response);
-        
+
         if(response.status=='SUCCESS'){
 
           // this.ofertaproducto=response.articulo;
