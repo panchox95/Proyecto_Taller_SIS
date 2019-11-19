@@ -21,13 +21,15 @@ class AdminMiddleware
         $jwt = $request->header('Authorization',null);
         $decoded = $jwtAuth->decode($jwt);
         $rol=$user->getrol($decoded->email);
+        
         if($rol=='Admin'){
             return $next($request);
         }else{
-            return array(
+            return response(array(
                 'mensaje'=>'El usuario no es administrador',
                 'code'=>404,
-                'status'=>'ERROR');
+                'status'=>'ERROR',
+                'rol'=>$rol));
         }
     }
 }

@@ -19,8 +19,8 @@ class CreateUserTable extends Migration
             $table->string('last_name');
             $table->string('email')->unique();
             $table->string('password');
-            $table->integer('intento');
-            $table->integer('ultimo_intento');
+            $table->integer('intento')->nullable(true);
+            $table->integer('ultimo_intento')->nullable(true);
             $table->string('rol');
         });
     }

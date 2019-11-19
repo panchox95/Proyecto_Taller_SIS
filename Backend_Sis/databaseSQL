@@ -31,6 +31,7 @@ create table producto(
     precio int,
     descripcion varchar(255),
     estado varchar(255),
+    tipo varchar(255),
     primary key(id_producto)
 );
 create table comentarioproducto(
@@ -61,6 +62,7 @@ create table servicio(
     precio int,
     descripcion varchar(255),
     estado varchar(255),
+    tipo varchar(255),
     primary key(id_servicio)
 );
 create table ofertaservicio(
@@ -101,6 +103,19 @@ create table categoriaservicio(
     foreign key(id_servicio) references servicio (id_servicio),
     primary key(id_categoria,id_servicio)
 );
+
+create table orders(
+    id int,
+    created_at timestamp,
+    updated_at timestamp,
+    user_id int(11),
+    cart text,
+    address text,
+    name varchar(255),
+    payment_id varchar(255),
+    primary key(id)
+);
+
 insert into categoria values(default,'Equipo'),
 (default,'Modulo'),
 (default,'Hogar'),

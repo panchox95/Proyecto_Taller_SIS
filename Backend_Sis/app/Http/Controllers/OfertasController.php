@@ -118,6 +118,7 @@ class OfertasController extends Controller
             $data=$oferta->verOferta($id_producto);
             $code=200;
         }else{
+            $code=404;
             $data=array(
                 'message'=>'Producto Inexistente',
                 'code'=>404,

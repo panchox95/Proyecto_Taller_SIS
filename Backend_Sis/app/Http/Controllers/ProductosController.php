@@ -25,9 +25,11 @@ class ProductosController extends Controller
         else{ //Si la validacion es exitosa
             $producto = new ProductoBL;
             if($producto->existeProducto($params->nombre,$params->marca) == 0){
-                $data = $producto->crearProducto($params);    
+                $data = $producto->crearProducto($params);   
+                $code =200; 
             }
             else{    
+                $code =404;
                 $data=array(
                     'message'=>'El producto ya existe',
                     'code'=>404,
@@ -35,7 +37,8 @@ class ProductosController extends Controller
                 );
             }        
         }
-        return $data;
+
+        return response()->json($data,$code);
     }
 
     public function listaProductos(){
@@ -88,6 +91,7 @@ class ProductosController extends Controller
                 $data=$producto->modificarProducto($params,$id);
             }
             else{    
+                $code=404;
                 $data=array(
                     'mensaje'=>'El producto no existe',
                     'code'=>404,
@@ -108,6 +112,7 @@ class ProductosController extends Controller
                 'code'=>404,
                 'status'=>'ERROR',
             );
+            $code=404;
         }
         return response()->json($data,$code);
     }
@@ -149,6 +154,7 @@ class ProductosController extends Controller
             ]);
         $bool=false;
         if($validate->fails()){
+            //return gettype($params_array[0]);
             if(is_null($params->minimo)){
                 $params->minimo=0;
             }
