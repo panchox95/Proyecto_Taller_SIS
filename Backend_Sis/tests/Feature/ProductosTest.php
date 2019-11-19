@@ -33,8 +33,8 @@ class ProductosTest extends TestCase
             'status' => "SUCCESS"
         ]);
     }
-    /*
-    public function testAgregarProductoComoAdmi()
+
+    /*public function testAgregarProductoComoAdmi()
     {
         $jwt = new JwtAuth();
         $token1 = $jwt->getTokenAdmi();
@@ -44,7 +44,7 @@ class ProductosTest extends TestCase
         ])->json('POST','/api/crearproducto',[
 
             "nombre"=>"testProducto",
-            "marca"=>"mark12",
+            "marca"=>"mark1",
             "cantidad"=>"100",
             "precio"=>"50",
             "descripcion"=>"un producto de prueba",
@@ -52,10 +52,10 @@ class ProductosTest extends TestCase
             ]);
         $response->assertStatus(200);
         $response->assertJson(['status'=>'SUCCESS']);
-        $response->assertJson(['message'=>'Creado testProducto mark12']);
+        $response->assertJson(['message'=>'Creado testProducto mark1']);
 
-    }
-    */
+    }*/
+
     public function testAgregarProductoExistente()
     {
         $jwt = new JwtAuth();
@@ -71,7 +71,7 @@ class ProductosTest extends TestCase
             "descripcion"=>"un producto de prueba",
             "categoria"=>"1"
             ]);
-        $response->assertStatus(200);
+        $response->assertStatus(404);
         $response->assertJson(['status'=>'ERROR']);
         $response->assertJson(['message'=>'El producto ya existe']);
 
@@ -175,7 +175,9 @@ class ProductosTest extends TestCase
             "descripcion"=>"un producto de prueba modifcado"
 
         ]);
-        $response->assertStatus(500);
+        $response->assertStatus(200);
+        $response->assertJson(['code'=>'404']);
+        $response->assertJson(['status'=>'ERROR']);
 
 
 
@@ -237,7 +239,7 @@ class ProductosTest extends TestCase
         ]);
         $response->assertStatus(200);
         $response->assertJson(['status'=>'SUCCESS']);
-        $response->assertJson(['message'=>'Producto']);
+        $response->assertJson(['message'=>'Resultados']);
     }
 
     public function testBuscarProductoInexistente()
@@ -253,7 +255,7 @@ class ProductosTest extends TestCase
         ]);
         $response->assertStatus(200);
         $response->assertJson(['status'=>'SUCCESS']);
-        $response->assertJson(['productos'=>'Producto Inexistente']);
+        $response->assertJson(['data'=>'No existen resultados']);
     }
 
 
@@ -285,7 +287,7 @@ class ProductosTest extends TestCase
 
 
         ]);
-        $response->assertStatus(500);
+        $response->assertStatus(404);
 
 
     }
