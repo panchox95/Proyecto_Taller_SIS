@@ -37,8 +37,7 @@ export class ArticuloListComponent implements OnInit {
     }
 
     ngOnInit() {
-        console.log('default.component cargado satisfactoriamente');
-        this.getArticulos();
+      this.getArticulos();
     }
 
     getArticulos(){
