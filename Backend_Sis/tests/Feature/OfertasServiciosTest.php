@@ -77,7 +77,11 @@ class OfertasServiciosTest extends TestCase
             'Content-Type' => 'application/json',
             'Authorization'=>$token1,
         ])->json('PUT','/api/borrarofertaservicio/1');
-        $response->assertStatus(500);
+        $response->assertStatus(200);
+        $response->assertJson(['code'=>'404']);
+        $response->assertJson(['status'=>'ERROR']);
+
+
 
     }
 
@@ -136,7 +140,9 @@ class OfertasServiciosTest extends TestCase
             "descuento"=>50
 
         ]);
-        $response->assertStatus(500);
+        $response->assertStatus(200);
+        $response->assertJson(['code'=>'404']);
+        $response->assertJson(['status'=>'ERROR']);
 
 
 
