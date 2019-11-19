@@ -41,7 +41,9 @@ class PromocionesTest extends TestCase
             "descripcion"=>"descripcion adsda",
             "descuento"=>50
             ]);
-        $response->assertStatus(500);
+            $response->assertStatus(200);
+            $response->assertJson(['code'=>'404']);
+            $response->assertJson(['status'=>'ERROR']);
 
 
     }
@@ -97,7 +99,9 @@ class PromocionesTest extends TestCase
             'Content-Type' => 'application/json',
             'Authorization'=>$token1,
         ])->json('PUT','/api/borraroferta/3');
-        $response->assertStatus(500);
+        $response->assertStatus(200);
+        $response->assertJson(['code'=>'404']);
+        $response->assertJson(['status'=>'ERROR']);
 
     }
 
@@ -156,7 +160,9 @@ class PromocionesTest extends TestCase
             "descuento"=>50
 
         ]);
-        $response->assertStatus(500);
+        $response->assertStatus(200);
+        $response->assertJson(['code'=>'404']);
+        $response->assertJson(['status'=>'ERROR']);
 
 
 
