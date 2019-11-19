@@ -230,6 +230,6 @@ class PromocionesTest extends TestCase
 
 
         ]);
-        $response->assertStatus(500);
+        $response->assertStatus(404);
     }
 }
