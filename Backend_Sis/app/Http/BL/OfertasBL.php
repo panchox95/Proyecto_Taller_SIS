@@ -26,21 +26,17 @@ class OfertasBL
     }
     public function verOferta($id){
         $oferta = new OfertaProducto;
-        $data =  array('status' => 'SUCCESS','message'=>'Oferta '.$id,'data'=>$oferta->verOferta($id));
-
-        return $data;
+        return  array('status' => 'SUCCESS','message'=>'Oferta '.$id,'data'=>$oferta->verOferta($id));
     }
     public function listaOferta(){
         $oferta = new OfertaProducto;
         $lista = $oferta->listaOferta();
         //return gettype($lista);
         if($lista->isEmpty()){
-            $data = array('status' => 'SUCCESS','message'=>'No Hay Ofertas');
+            return array('status' => 'SUCCESS','message'=>'No Hay Ofertas');
         }
-        else{
-            $data = array('status' => 'SUCCESS','message'=>'lista de ofertas','ofertas'=>$lista);
-        }
-        return $data;
+        return array('status' => 'SUCCESS','message'=>'lista de ofertas','ofertas'=>$lista);
+
     }
     public function existeOfertaID($id){
         $oferta = new OfertaProducto;

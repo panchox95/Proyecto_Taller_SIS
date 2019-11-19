@@ -22,25 +22,17 @@ class JwtMiddleware
             $checkToken = $jwtAuth->checkToken($jwt);
             //return $checkToken;
             if($checkToken){
-            $decoded = $jwtAuth->decode($jwt);
-            if($decoded->exp > time()){
-              return $next($request);
-            }else{
-                $data=array(
-                    'status'=>'ERROR',
-                    'code' => 403,
-                    'message' => 'Token Expirado');
+                $decoded = $jwtAuth->decode($jwt);
+                if($decoded->exp > time()){
+                    return $next($request);
+                }
+                $data=array('status'=>'ERROR','code' => 403,'message' => 'Token Expirado');
                 $code = 403;
-           }
-        }
-        else{
-            $data=array(
-                'status'=>'ERROR',
-                'code' => 403,
-                'message' => 'Token Invalido');
+                return response()->json($data,$code);
+            }
+            $data=array('status'=>'ERROR','code' => 403,'message' => 'Token Invalido');
             $code = 403;
-        }
-        return response()->json($data,$code);
+            return response()->json($data,$code);
         }
         catch(\ErrorException $e){
             $data=array(

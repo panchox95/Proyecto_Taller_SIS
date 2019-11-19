@@ -24,12 +24,8 @@ class AdminMiddleware
         
         if($rol=='Admin'){
             return $next($request);
-        }else{
-            return response(array(
-                'mensaje'=>'El usuario no es administrador',
-                'code'=>404,
-                'status'=>'ERROR',
-                'rol'=>$rol));
         }
+        return response(array('mensaje'=>'El usuario no es administrador','code'=>404,'status'=>'ERROR','rol'=>$rol),404);
+        
     }
 }

@@ -35,12 +35,11 @@ class OfertasServiciosBL
         $lista = $oferta->listaOferta();
         //return gettype($lista);
         if($lista->isEmpty()){
-            $data = array('status' => 'SUCCESS','message'=>'No Hay Ofertas');
+            return array('status' => 'SUCCESS','message'=>'No Hay Ofertas');
         }
-        else{
-            $data = array('status' => 'SUCCESS','message'=>'lista de ofertas','ofertas'=>$lista);
-        }
-        return $data;
+        return array('status' => 'SUCCESS','message'=>'lista de ofertas','ofertas'=>$lista);
+        
+        
     }
     public function existeOfertaID($id){
         $oferta = new OfertaServicio;

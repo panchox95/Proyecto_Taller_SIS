@@ -11,39 +11,33 @@ class ComentarioBL
         $comentariop=new ComentarioProducto;
         $id_user = $decoded->id_user;
         if($params->tipo=='servicio'){
-            $data=$comentarios->crearComentario($params,$id_producto,$id_user);
-        }else{
-            if($params->tipo=='producto'){
-                $comentariop->crearComentario($params,$id_producto,$id_user);
-            }
-            else{
-                return array('status' => 'ERROR','message'=>'tipo erroneo');
-            }
+            $comentarios->crearComentario($params,$id_producto,$id_user);
+            return array('status' => 'SUCCESS','message'=>'Comentario Creado');
         }
-        return array('status' => 'SUCCESS','message'=>'Comentario Creado');
+        if($params->tipo=='producto'){
+            $comentariop->crearComentario($params,$id_producto,$id_user);
+            return array('status' => 'SUCCESS','message'=>'Comentario Creado');
+        }
+        return array('status' => 'ERROR','message'=>'tipo erroneo');
+        
+        
     }
     public function listaComentario($id_producto){
         $comentario=new ComentarioProducto;
         $lista=$comentario->listaComentario($id_producto);
         if($lista->isEmpty()){
-            $data = array('status' => 'SUCCESS','message'=>'No Hay Ofertas');
+            return array('status' => 'SUCCESS','message'=>'No Hay Ofertas');
         }
-        else{
-            $data = array('status' => 'SUCCESS','message'=>'lista de ofertas','ofertas'=>$lista);
-        }
-        return $data;
-        return $data;
+        return array('status' => 'SUCCESS','message'=>'lista de ofertas','ofertas'=>$lista);
     }
     public function listaComentarioservicio($id){
         $comentario=new ComentarioServicio;
         $lista=$comentario->listaComentario($id);
         if(\is_object($lista)){
-            $data = array('status' => 'SUCCESS','message'=>'lista de comentarios','comentarios'=>$lista);
+            return array('status' => 'SUCCESS','message'=>'lista de comentarios','comentarios'=>$lista);
         }
-        else{
-            $data = array('status' => 'SUCCESS','message'=>'No Hay Datos');
-        }
-        return $data;
+            return array('status' => 'SUCCESS','message'=>'No Hay Datos');
+        
     }
     public function puntajeproducto($id){
         $comentario=new ComentarioProducto;
