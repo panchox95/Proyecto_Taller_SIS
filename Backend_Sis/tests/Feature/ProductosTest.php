@@ -175,7 +175,7 @@ class ProductosTest extends TestCase
             "descripcion"=>"un producto de prueba modifcado"
 
         ]);
-        $response->assertStatus(200);
+        $response->assertStatus(404);
         $response->assertJson(['code'=>'404']);
         $response->assertJson(['status'=>'ERROR']);
 
