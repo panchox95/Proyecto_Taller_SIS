@@ -87,10 +87,8 @@ class ProductController extends Controller
         }
         $oldCart = Session::get('cart');
         $cart = new Cart($oldCart);
-        $conf=array(
-            'status'=>'SUCCESS',
-            'code' => 200);
-        return response()->json($cart->items, $cart->totalPrice , $conf );
+        return json_encode(['productos'=>$cart->items, 'totalPrice' => $cart->totalPrice]);
+
         //return view('shop.shopping-cart', ['productos' => $cart->items, 'totalPrice' => $cart->totalPrice]);
     }
 

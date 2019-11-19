@@ -17,34 +17,34 @@ class Cart
         }
     }
 
-    public function add($item, $id){
-        $storedItem = ['qty'=>0, 'price' => $item->price, 'item'=> $item];
+    public function add($item, $id_producto){
+        $storedItem = ['qty'=>0, 'price' => 10, 'item'=> $item];
         if ($this->items){
-            if (array_key_exists($id, $this->items)){
-                $storedItem= $this->items[$id];
+            if (array_key_exists($id_producto, $this->items)){
+                $storedItem= $this->items[$id_producto];
             }
         }
         $storedItem['qty']++;
-        $storedItem['price']=  $item->price * $storedItem['qty'];
-        $this->items[$id] = $storedItem;
+        $storedItem['price']=  $item->precio * $storedItem['qty'];
+        $this->items[$id_producto] = $storedItem;
         $this->totalQty++;
-        $this->totalPrice += $item->price;
+        $this->totalPrice += $item->precio;
     }
 
-    public function reduceByOne($id){
-        $this->items[$id]['qty']--;
-        $this->items[$id]['price']-=$this ->items[$id]['item']['price'];
+    public function reduceByOne($id_producto){
+        $this->items[$id_producto]['qty']--;
+        $this->items[$id_producto]['price']-=$this ->items[$id_producto]['item']['price'];
         $this->totalQty--;
-        $this->totalPrice-=$this->items[$id]['item']['price'];
+        $this->totalPrice-=$this->items[$id_producto]['item']['price'];
 
-        if ($this->items[$id]['qty']<= 0){
-            unset($this->items[$id]);
+        if ($this->items[$id_producto]['qty']<= 0){
+            unset($this->items[$id_producto]);
         }
     }
 
-    public function removeItem($id){
-        $this->totalQty-= $this->items[$id]['qty'];
-        $this->totalPrice-=$this->items[$id]['price'];
-        unset($this->items[$id]);
+    public function removeItem($id_producto){
+        $this->totalQty-= $this->items[$id_producto]['qty'];
+        $this->totalPrice-=$this->items[$id_producto]['price'];
+        unset($this->items[$id_producto]);
     }
 }
