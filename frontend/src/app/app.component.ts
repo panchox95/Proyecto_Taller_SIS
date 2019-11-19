@@ -37,7 +37,7 @@ export class AppComponent implements OnInit, DoCheck{
     this.identity=this._userService.getIdentity();
     this.token=this._userService.getToken();
     this.rol=this._userService.getRol();
-    this.articulo = new Articulo(0,'','',0,0,'','');
+    this.articulo = new Articulo(0,'','',0, 0,0,'','');
   }
 
   ngOnInit(){

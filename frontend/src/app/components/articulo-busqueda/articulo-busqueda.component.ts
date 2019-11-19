@@ -22,7 +22,7 @@ export class ArticuloBusquedaComponent implements OnInit {
     private _route: ActivatedRoute,
     private _router: Router,
   ) { 
-    this.articulo = new Articulo(0,'','',0,0,'','');
+    this.articulo = new Articulo(0,'','',0, 0, 0,'','');
   }
 
   ngOnInit() {
