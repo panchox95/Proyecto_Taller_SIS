@@ -1,10 +1,12 @@
+
+<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular-cookies.js'></script>
 <div class="container">
         <h1>Detalle:</h1><br>
 
         <div class="alert alert-success" *ngIf="status_compra=='SUCCESS'">
             El articulo se añadio a tu carrito de compras
         </div>
-                
+
         <div class="alert alert-danger" *ngIf="status_compra=='ERROR'">
             El articulo no se añadio, vuelve a intentarlo
         </div>
@@ -19,25 +21,25 @@
 
             <div class="col-xs-6 col-md-3">
                 <h3>Puntuación:</h3><br>
-                <div *ngIf="puntaje == 1"> 
-                    <label for="radio5">★</label>           
+                <div *ngIf="puntaje == 1">
+                    <label for="radio5">★</label>
                 </div>
-                <div *ngIf="puntaje == 2"> 
-                    <label for="radio5">★★</label>           
+                <div *ngIf="puntaje == 2">
+                    <label for="radio5">★★</label>
                  </div>
-                <div *ngIf="puntaje == 3"> 
-                    <label for="radio5">★★★</label>           
+                <div *ngIf="puntaje == 3">
+                    <label for="radio5">★★★</label>
                 </div>
-                <div *ngIf="puntaje == 4"> 
-                    <label for="radio5">★★★★</label>           
+                <div *ngIf="puntaje == 4">
+                    <label for="radio5">★★★★</label>
                 </div>
-                <div *ngIf="puntaje == 5"> 
-                    <label for="radio5">★★★★★</label>           
+                <div *ngIf="puntaje == 5">
+                    <label for="radio5">★★★★★</label>
                 </div>
             </div>
 
         </div>
-        
+
         <div class="col-md-12">
             <table class="table table-striped">
                 <thead>
@@ -78,7 +80,7 @@
             <div class="col-xs-6 col-md-3">
                 <a (click)="buyArticulo(articulo.id_producto)" class="btn btn-primary" >Comprar!!</a>
             </div>
-        
+
         </div>
 
         <h3>Comentarios: <a [routerLink]="['/comentario', articulo.id_producto]" class="btn btn-success" >Nuevo</a></h3>
@@ -92,6 +94,5 @@
                 <label for="radio1">{{comment.calificacion}}★</label>
             </div>
         </div>
-                
+
     </div>
-    

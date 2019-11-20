@@ -15,9 +15,8 @@ class CarritoController extends Controller
         $productos = new Producto;
         $producto = $productos::find($id_producto);
         $carrodecompras = new carrodecompras;
-        $cart= $carrodecompras::add(
+        $cart= $carrodecompras::carritoProductos(
             $id_user,
-
             );
         $session = Session;
         $cart = $session::has('cart') ? $session::get('cart') : null;

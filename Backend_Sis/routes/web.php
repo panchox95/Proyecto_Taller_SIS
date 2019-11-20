@@ -80,7 +80,7 @@ Route::group(['middleware'=> 'Jwt'], function () {
 Route::post('/api/busquedanombre','ProductosController@busquedaNombre');
 //Ver
 Route::get('/api/verproducto/{id}','ProductosController@verProducto');
-//Precios 
+//Precios
 Route::post('/api/busquedaprecio','ProductosController@busquedaPrecio');
 
 //OFERTAS
@@ -117,27 +117,7 @@ Route::get('/api/listaservicio','ServiciosController@listaServicios');
  //Ver
 Route::get('/api/verservicio/{id}','ServiciosController@verServicio');
 
-//CARRITO
-//anadir
-Route::get('/api/add-to-cart/{id_producto}', [
-    'uses'=> 'ProductController@getAddToCart',
-    'as'=> 'product.addToCart'
-]);
-//reducir
-Route::get('/api/reduce/{id_producto}', [
-    'uses'=> 'ProductController@getReduceByOne',
-    'as'=> 'product.reduceByOne'
-]);
-//eliminar
-Route::get('/api/remove/{id_producto}', [
-    'uses'=> 'ProductController@getRemoveItem',
-    'as'=> 'product.remove'
-]);
-//vista
-Route::get('/api/shopping-cart', [
-    'uses'=> 'ProductController@getCart',
-    'as'=> 'product.shoppingCart'
-]);
+
 
 //vista de check out
 Route::get('/api/checkout', [
@@ -152,3 +132,27 @@ Route::post('/api/checkout', [
     'as'=> 'checkout',
     'middleware'=>'Jwt'
 ]);
+
+
+    //CARRITO
+    //anadir
+    Route::get('/api/add-to-cart/{id_producto}', [
+        'uses'=> 'ProductController@getAddToCart',
+        'as'=> 'product.addToCart'
+    ]);
+    //reducir
+    Route::get('/api/reduce/{id_producto}', [
+        'uses'=> 'ProductController@getReduceByOne',
+        'as'=> 'product.reduceByOne'
+    ]);
+    //eliminar
+    Route::get('/api/remove/{id_producto}', [
+        'uses'=> 'ProductController@getRemoveItem',
+        'as'=> 'product.remove'
+    ]);
+    //vista
+    Route::get('/api/shopping-cart', [
+        'uses'=> 'ProductController@getCart',
+        'as'=> 'product.shoppingCart'
+    ]);
+

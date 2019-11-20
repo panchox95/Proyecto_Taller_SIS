@@ -20,7 +20,7 @@ export class CarritoListComponent implements OnInit {
     private _route: ActivatedRoute,
     private _router: Router,
     private _userService: UserService,
-  ) { 
+  ) {
     this.page_title='Tu carrito de compras';
     this.token=_userService.getToken();
   }
@@ -30,7 +30,7 @@ export class CarritoListComponent implements OnInit {
   }
 
   getShop(){
-    this._userService.checkCarrito().subscribe(
+    this._userService.checkCarrito(this.token).subscribe(
       response => {
         console.log('carrito: ', response);
       },
