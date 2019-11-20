@@ -1,0 +1,6 @@
+cd Backend_Sis
+call composer install
+call php artisan migrate:fresh --seed
+call ./vendor/bin/phpmd app text phpmd_rules.xml
+call ./vendor/bin/phpcpd app --min-lines=40
+call ./vendor/bin/phpunit
