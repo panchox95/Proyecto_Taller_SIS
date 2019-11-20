@@ -50,7 +50,7 @@ export class ArticuloService {
 
   deleteArticulo(token, id): Observable <any>{
     let headers =new HttpHeaders().set('Content-Type','application/json').set('Authorization',token);
-    return this._http.put(this.url+'eliminarproducto/'+id, { headers: headers});
+    return this._http.delete(this.url+'BorrarProductoAlaMala/'+id, { headers: headers});
   }
 
   buyArticulo(id): Observable <any>{

@@ -47,7 +47,8 @@ Route::group(['middleware'=> 'Jwt'], function () {
         Route::put('/api/eliminarproducto/{id}','ProductosController@eliminarProducto');
         //modificar
         Route::put('/api/modificarproducto/{id}','ProductosController@modificarProducto');
-
+        //Delete Jeff a la mala
+         Route::delete('/api/BorrarProductoAlaMala/{id}','ProductosController@BorrarProductoAlaMala');
         //OFERTAS
         //Agregar
         Route::post('/api/crearoferta/{id}','OfertasController@crearOferta');
@@ -80,7 +81,7 @@ Route::group(['middleware'=> 'Jwt'], function () {
 Route::post('/api/busquedanombre','ProductosController@busquedaNombre');
 //Ver
 Route::get('/api/verproducto/{id}','ProductosController@verProducto');
-//Precios 
+//Precios
 Route::post('/api/busquedaprecio','ProductosController@busquedaPrecio');
 
 //OFERTAS

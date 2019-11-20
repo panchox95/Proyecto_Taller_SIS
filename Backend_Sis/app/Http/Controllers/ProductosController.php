@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\BL\ProductoBL;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Validator;
+use App\Producto;
 class ProductosController extends Controller
 {
     public function crearProducto(Request $request){
@@ -27,12 +28,12 @@ class ProductosController extends Controller
         //Si la validacion es exitosa
         $producto = new ProductoBL;
         if($producto->existeProducto($params->nombre,$params->marca) == 0){
-            $data = $producto->crearProducto($params);   
-            $code =200; 
+            $data = $producto->crearProducto($params);
+            $code =200;
             return response()->json($data,$code);
-        }  
+        }
         $code =404;
-        $data=array('message'=>'El producto ya existe','code'=>404,'status'=>'ERROR',);       
+        $data=array('message'=>'El producto ya existe','code'=>404,'status'=>'ERROR',);
         return response()->json($data,$code);
     }
 
@@ -48,17 +49,17 @@ class ProductosController extends Controller
         if($producto->existeProductoID($id) == 1){
             $code=200;
             $data = $producto->eliminarProducto($id);
-            return response()->json($data,$code);  
-        }  
+            return response()->json($data,$code);
+        }
         $code=404;
-        $data=array('mensaje'=>'El producto no existe','code'=>404,'status'=>'ERROR',);   
+        $data=array('mensaje'=>'El producto no existe','code'=>404,'status'=>'ERROR',);
         return response()->json($data,$code);
     }
 
     public function modificarProducto($id,Request $request){
         $json=$request->all('json',null);
         $params_array  = json_decode(json_encode( $json), true );
-        
+
         $params=json_decode((json_encode($json)));
         //return $params_array;
         //Validamos
@@ -81,7 +82,7 @@ class ProductosController extends Controller
             $code=200;
             $data=$producto->modificarProducto($params,$id);
             return response()->json($data,$code);
-        }   
+        }
         $code=404;
         $data=array('mensaje'=>'El producto no existe','code'=>404,'status'=>'ERROR',);
         return response()->json($data,$code);
@@ -100,7 +101,7 @@ class ProductosController extends Controller
     public function busquedaNombre(Request $request){
         $json=$request->all('json',null);
         $params_array  = json_decode(json_encode( $json), true );
-        
+
         $params=json_decode((json_encode($json)));
         //Validamos
         $validates = new Validator;
@@ -121,12 +122,12 @@ class ProductosController extends Controller
         $data = $producto->busquedaNombre($params);
         return response()->json($data,200);
 
-        
+
     }
     public function busquedaPrecio(Request $request){
         $json=$request->all('json',null);
         $params_array  = json_decode(json_encode( $json), true );
-        
+
         $params=json_decode((json_encode($json)));
         //Validamos
         $validates = new Validator;
@@ -152,6 +153,17 @@ class ProductosController extends Controller
         //return array('data'=>$params);
         $producto=new ProductoBl;
         $data = $producto->busquedaPrecio($params);
+        return response()->json($data,200);
+    }
+
+    public function BorrarProductoAlaMala($id){
+
+        $producto=Producto::find($id);
+
+        $producto->delete();
+
+        $data=array('status'=>'Succes','code' => 200);
+
         return response()->json($data,200);
     }
 }
