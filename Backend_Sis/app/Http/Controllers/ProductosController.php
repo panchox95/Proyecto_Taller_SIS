@@ -157,8 +157,8 @@ class ProductosController extends Controller
     }
 
     public function BorrarProductoAlaMala($id){
-
-        $producto=Producto::find($id);
+        $producto = new Producto;
+        $producto=$producto::find($id);
 
         $producto->delete();
 
