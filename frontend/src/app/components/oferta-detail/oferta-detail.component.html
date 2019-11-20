@@ -1,13 +1,92 @@
-<div class="row">
-        <div class="col-sm-12 col-md-8">
-          <div class="thumbnail">
-            <img src="..." alt="...">
-            <div class="caption">
-              <h3>Detalle</h3>
-              <p>...</p>
-              <p><a href="#" class="btn btn-primary" role="button"></a> <a href="#" class="btn btn-default" role="button">Comprar</a></p>
-            </div>
+<div class="container">
+    <h1>Detalle:</h1><br>
+
+    <div class="alert alert-success" *ngIf="status_compra=='SUCCESS'">
+        El articulo se añadio a tu carrito de compras
+    </div>
             
-          </div>
+    <div class="alert alert-danger" *ngIf="status_compra=='ERROR'">
+        El articulo no se añadio, vuelve a intentarlo
+    </div>
+
+    <div class="row">
+
+        <div class="col-xs-6 col-md-3">
+            <div class="thumbnail">
+                <img src="../../../assets/img/producto.png" alt="Boats at Phi Phi, Thailand">
+            </div>
         </div>
-      </div>
+
+        <div class="col-xs-6 col-md-3">
+            <h3>Puntuación:</h3><br>
+            <div *ngIf="puntaje == 1"> 
+                <label for="radio5">★</label>           
+            </div>
+            <div *ngIf="puntaje == 2"> 
+                <label for="radio5">★★</label>           
+             </div>
+            <div *ngIf="puntaje == 3"> 
+                <label for="radio5">★★★</label>           
+            </div>
+            <div *ngIf="puntaje == 4"> 
+                <label for="radio5">★★★★</label>           
+            </div>
+            <div *ngIf="puntaje == 5"> 
+                <label for="radio5">★★★★★</label>           
+            </div>
+        </div>
+
+    </div>
+    
+    <div class="col-md-12">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">{{articulo.nombre}}</th>
+                </tr>
+                <tr>
+                    <th scope="col">Marca</th>
+                    <th scope="col">{{articulo.marca}}</th>
+                </tr>
+                <tr>
+                    <th scope="col">Cantidad</th>
+                    <th scope="col">{{articulo.cantidad}}</th>
+                </tr>
+                <tr>
+                    <th scope="col">Precio</th>
+                    <th scope="col">{{articulo.precio}} $</th>
+                </tr>
+                <tr>
+                    <th scope="col">Descripción</th>
+                    <th scope="col">{{articulo.descripcion}}</th>
+                </tr>
+                <tr>
+                    <th scope="col">Estado</th>
+                    <th scope="col">{{articulo.estado}}</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+
+    <div class="row">
+
+        <div class="col-xs-6 col-md-3">
+            <a (click)="buyArticulo(articulo.id_producto)" class="btn btn-primary" >Comprar!!</a>
+        </div>
+    
+    </div>
+
+    <h3>Comentarios: <a [routerLink]="['/comentario', articulo.id_producto]" class="btn btn-success" >Nuevo</a></h3>
+
+    <div class="row" *ngFor="let comment of comentarioproducto">
+        <div class="col-md-10">
+            <textarea class="form-control">{{comment.comentario}}</textarea>
+        </div>
+
+        <div class="col-md-2">
+            <label for="radio1">{{comment.calificacion}}★</label>
+        </div>
+    </div>
+            
+</div>

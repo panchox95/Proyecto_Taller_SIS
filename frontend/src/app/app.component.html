@@ -74,8 +74,20 @@
                     </ul>
                 </li>
 
-                <li *ngIf="identity">
-                    <a [routerLink]="['busqueda-articulo']" ><span class="glyphicon glyphicon-search"></span> Busqueda </a>
+
+                <li class="dropdown" *ngIf="identity">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button">
+                        <span class="nav-label">Busquedas</span>
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li *ngIf="rol">
+                            <a [routerLink]="['rango']" ><span class="glyphicon glyphicon-list-alt"></span> Rango de Precios </a>
+                        </li>
+                        <li *ngIf="identity">
+                            <a [routerLink]="['busqueda-articulo']" ><span class="glyphicon glyphicon-search"></span> Busqueda </a>
+                        </li>
+                    </ul>
                 </li>
 
             </ul>
