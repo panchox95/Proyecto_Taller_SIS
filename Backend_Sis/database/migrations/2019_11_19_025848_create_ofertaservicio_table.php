@@ -19,6 +19,7 @@ class CreateOfertaservicioTable extends Migration
             $table->string('descripcion');
             $table->double('descuento');
             $table->string('estado');
+            $table->string('imagepath')->nullable(true);
         });
     }
 
