@@ -33,6 +33,7 @@ export class CarritoListComponent implements OnInit {
     this._userService.checkCarrito().subscribe(
       response => {
         console.log('carrito: ', response);
+        this.articulo=response.data;
       },
       error => {
         console.log(<any>error);

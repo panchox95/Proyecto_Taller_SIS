@@ -2,5 +2,35 @@
     <div class="col-md-12" *ngIf="page_title">
         <h2>{{page_title}}</h2>
         
+        <div class="col-md-12" *ngFor="let art of articulo">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">{{art.nombre}}</th>
+                    </tr>
+                    <tr>
+                        <th scope="col">Marca</th>
+                        <th scope="col">{{art.marca}}</th>
+                    </tr>
+                    <tr>
+                        <th scope="col">Cantidad</th>
+                        <th scope="col">{{art.cantidad}}</th>
+                    </tr>
+                    <tr>
+                        <th scope="col">Precio</th>
+                        <th scope="col">{{art.precio}} $</th>
+                    </tr>
+                    <tr>
+                        <th scope="col">Descripción</th>
+                        <th scope="col">{{art.descripcion}}</th>
+                    </tr>
+                    <tr>
+                        <th scope="col">Estado</th>
+                        <th scope="col">{{art.estado}}</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
     </div>
 </div>
