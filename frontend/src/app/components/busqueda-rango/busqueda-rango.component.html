@@ -1,0 +1,76 @@
+<div class="container">
+    <div class="col-md-12" *ngIf="page_title">
+        <h2>{{page_title}}</h2>
+
+        <div class="alert alert-danger" *ngIf="status_rango=='ERROR'">
+            El rango no se guardo, intentalo de nuevo
+        </div>
+
+
+        <form #busquedaRangoNew="ngForm" (ngSubmit)="onSubmit(busquedaRangoNew)" class="col-md-5">
+                
+            <div class="row">
+                <div class="col-md-4">
+                        <p>
+                            <label>Maximo</label>
+                            <input type="number" name="maximo" #maximo="ngModel" [(ngModel)]="busqueda.maximo" class="form-control" required/>
+                            <span *ngIf="!maximo.valid && maximo.touched">
+                                El nombre no es valido
+                            </span>
+                        </p>
+                </div>
+                <div class="col-md-4">
+                        <p>
+                            <label>Minimo</label>
+                            <input type="number" name="minimo" #minimo="ngModel" [(ngModel)]="busqueda.minimo" class="form-control" required/>
+                            <span *ngIf="!minimo.valid && minimo.touched">
+                                La marca no es valido
+                            </span>
+                        </p>
+                </div>
+
+                <div class="col-md-4" style="margin-top: 5%;">
+                    <input type="submit" value="Guardar" class="btn btn-success" [disabled]="!busquedaRangoNew.form.valid">
+                </div>
+            </div>
+            
+            
+            
+            
+            
+            
+                
+        </form>
+
+        <div class="col-md-12">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Marca</th>
+                            <th scope="col">Precio</th>
+                            <th scope="col">Cantidad</th>
+                            <th scope="col">Descripcion</th>
+                            <th scope="col">Tipo</th>
+                            <th scope="col">Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let art of articulo">
+                        <th>{{art.nombre}}</th>
+                        <th>{{art.marca}}</th>
+                        <td>{{art.precio}}</td>
+                        <th>{{art.cantidad}}</th>
+                        <td>{{art.descripcion}}</td>
+                        <th>{{art.tipo}}</th>
+                        <td>
+                            <a [routerLink]="['/articulo', art.id]" class="btn btn-info" *ngIf="art.tipo == 'producto'">Ver Producto</a>
+                            <a [routerLink]="['/servicio', art.id]" class="btn btn-info" *ngIf="art.tipo == 'servicio'">Ver Servicio</a>
+                        </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+    </div>
+</div>

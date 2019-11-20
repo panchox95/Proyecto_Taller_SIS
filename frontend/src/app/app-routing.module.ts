@@ -21,8 +21,11 @@ import { ServicioListComponent } from './components/servicio-list/servicio-list.
 import { ServicioDetailComponent } from './components/servicio-detail/servicio-detail.component';
 import { ServicioEditComponent } from './components/servicio-edit/servicio-edit.component';
 import { ComentarioservicioNewComponent } from './components/comentarioservicio-new/comentarioservicio-new.component';
+import { OfertaservicioDetailComponent } from './components/ofertaservicio-detail/ofertaservicio-detail.component';
+import { OfertaDetailComponent } from './components/oferta-detail/oferta-detail.component';
 import { OfertaServicioNewComponent } from './components/ofertaservicio-new/ofertaservicio-new.component';
 import { CarritoListComponent } from './components/carrito-list/carrito-list.component';
+import { BusquedaRangoComponent } from './components/busqueda-rango/busqueda-rango.component';
 
 const appRoutes: Routes = [
     { path: '', component: DefaultComponent },
@@ -49,7 +52,10 @@ const appRoutes: Routes = [
     { path: 'editar-servicio/:id_servicio',component: ServicioEditComponent },
     { path: 'comentarioservicio/:id_servicio', component: ComentarioservicioNewComponent },
     { path: 'ofertaservicio/:id_servicio', component: OfertaServicioNewComponent },
+    { path: 'ofertaservicio-detail/:id_servicio', component: OfertaservicioDetailComponent },
+    { path: 'ofertaproducto-detail/:id_producto', component: OfertaDetailComponent },
     { path: 'carrito', component: CarritoListComponent },
+    { path: 'rango', component: BusquedaRangoComponent },
 
 
     // Este siempre tiene q ser el ultimo

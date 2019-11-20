@@ -24,7 +24,7 @@ export class ArticuloListComponent implements OnInit {
   public prev_page_url;
   public rol;
   public token;
-
+  public aux: string;
 
   constructor(
         private _route: ActivatedRoute,
@@ -32,11 +32,12 @@ export class ArticuloListComponent implements OnInit {
         private _userService: UserService,
         private _articuloService: ArticuloService
     ) {
-        this.title='Inicio';
-        this.token=_userService.getToken();
+      this.token=this._userService.getToken();  
+      this.title='Inicio';
     }
 
     ngOnInit() {
+      this.aux='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZF91c2VyIjoxLCJmaXJzdF9uYW1lIjoiYWRtaW4iLCJsYXN0X25hbWUiOiJhZG1pbiIsImVtYWlsIjoiYWRtaW5AYWRtaW4uY29tIiwiaWF0IjoxNTcyNjE4NDA3LCJleHAiOjE4ODc5Nzg0MDd9.VZrYb3nYPuctN6JYF2IICMdyFqPV64u4PGutzf3nhIE';
       this.getArticulos();
     }
 
@@ -76,15 +77,14 @@ export class ArticuloListComponent implements OnInit {
       );
     }
 
-    deleteArticulo(id){
-      this._articuloService.deleteArticulo(this.token, id).subscribe(
-        response =>{
-          // this._router.navigate['home'];
+    borrarArticulo(id){
+      this._articuloService.deleteArticulo(this.aux, id).subscribe(
+        response => {
+          console.log('borrado: ', response);
           this.getArticulos();
         },
-        error =>{
+        error => {
           console.log(<any>error);
-          
         }
       );
     }

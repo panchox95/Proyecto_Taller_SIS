@@ -19,7 +19,7 @@ class CreateOfertaproductoTable extends Migration
             $table->string('descripcion');
             $table->double('descuento');
             $table->string('estado');
-            $table->string('imagepath');
+            $table->string('imagepath')->nullable(true);
         });
     }
 

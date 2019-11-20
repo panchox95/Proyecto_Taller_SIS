@@ -47,7 +47,8 @@ Route::group(['middleware'=> 'Jwt'], function () {
         Route::put('/api/eliminarproducto/{id}','ProductosController@eliminarProducto');
         //modificar
         Route::put('/api/modificarproducto/{id}','ProductosController@modificarProducto');
-
+        //Delete Jeff a la mala
+         Route::delete('/api/BorrarProductoAlaMala/{id}','ProductosController@BorrarProductoAlaMala');
         //OFERTAS
         //Agregar
         Route::post('/api/crearoferta/{id}','OfertasController@crearOferta');

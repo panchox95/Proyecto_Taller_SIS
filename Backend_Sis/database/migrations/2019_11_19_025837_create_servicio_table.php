@@ -22,6 +22,7 @@ class CreateServicioTable extends Migration
             $table->string('descripcion');
             $table->string('estado');
             $table->string('tipo');
+            $table->string('imagepath')->nullable(true);
 
             
         });

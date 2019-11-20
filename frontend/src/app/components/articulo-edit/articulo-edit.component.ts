@@ -58,7 +58,6 @@ export class ArticuloEditComponent implements OnInit {
   }
 
   onSubmit(form){
-    console.log('ide: ', this.articulo.id_producto);
     this._articuloService.updateArticulo(this.token, this.articulo, this.articulo.id_producto).subscribe(
       response => {
         console.log('editado: ', response);
