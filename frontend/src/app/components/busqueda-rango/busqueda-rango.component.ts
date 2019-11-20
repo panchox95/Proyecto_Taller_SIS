@@ -4,6 +4,7 @@ import { User } from '../../models/user';
 import { UserService } from '../../services/user.service';
 import { error } from 'selenium-webdriver';
 import { Articulo } from '../../models/articulo';
+import { Busqueda } from '../../models/busqueda';
 import { ArticuloService } from '../../services/articulo.service';
 
 @Component({
@@ -17,6 +18,9 @@ export class BusquedaRangoComponent implements OnInit {
   public page_title: string;
   public articulo: Articulo;
   public status_rango: string;
+  public busqueda: Busqueda;
+  public identity;
+  public token;
 
   constructor(
     private _userService: UserService,
@@ -25,14 +29,20 @@ export class BusquedaRangoComponent implements OnInit {
     private _router: Router,
   ) { 
     this.page_title='Busqueda por precios';
-    this.articulo = new Articulo(0,'','',0, 0, 0,'','');
+    this.identity=this._userService.getIdentity();
+    this.token=this._userService.getToken();
   }
 
   ngOnInit() {
+    if(this.identity==null){
+      this._router.navigate(["/login"]);
+    }else{
+      this.busqueda=new Busqueda(0,0);
+    }
   }
 
   onSubmit(form){
-    this._articuloService.getPrice(this.articulo).subscribe(
+    this._articuloService.getPrice(this.busqueda).subscribe(
       response =>{
         console.log('rango: ', response);
         if(response.status =='SUCCESS'){

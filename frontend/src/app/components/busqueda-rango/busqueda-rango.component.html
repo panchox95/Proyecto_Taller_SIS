@@ -12,10 +12,10 @@
                 <div class="input-group">
                     <div class="row">
                         <div class="col-md-4">
-                            Precio Maximo<input type="number" class="form-control" name="maximo" #maximo="ngModel" [(ngModel)]="articulo.precio" placeholder="Maximo...">
+                            Precio Maximo<input type="number" class="form-control" name="maximo" #maximo="ngModel" [(ngModel)]="busqueda.maximo" placeholder="Maximo...">
                         </div>
                         <div class="col-md-4">
-                            Precio Minimo<input type="number" class="form-control" name="minimo" #minimo="ngModel" [(ngModel)]="articulo.cantidad" placeholder="Minimo...">
+                            Precio Minimo<input type="number" class="form-control" name="minimo" #minimo="ngModel" [(ngModel)]="busqueda.minimo" placeholder="Minimo...">
                         </div>
                     </div>
                     <span class="input-group-btn"><button type="submit" class="btn btn-primary" data-balloon-length="medium" data-balloon="Búsqueda por precios" data-balloon-pos="right">Buscar</button></span>
