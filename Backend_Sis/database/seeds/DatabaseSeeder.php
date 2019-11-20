@@ -11,6 +11,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $this->call(MercaderiasTableSeeder::class);
         if(App::environment() === 'production'){
             exit('No bro... No');
         }
@@ -49,4 +50,5 @@ class DatabaseSeeder extends Seeder
         $this->call('CategoriaservicioTableSeeder');
         $this->call('OrdersTableSeeder');
     }
+
 }

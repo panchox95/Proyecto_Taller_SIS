@@ -18,6 +18,7 @@ class OfertaproductoTableSeeder extends Seeder
                 'descripcion' => $faker->text(200),
                 'descuento' => $faker->numberBetween(1,50),
                 'estado' => 'Activo',
+                'imagepath'=>'https://images-na.ssl-images-amazon.com/images/I/51U13vbq%2BvL._SX425_.jpg',
             ]);
         }
     }

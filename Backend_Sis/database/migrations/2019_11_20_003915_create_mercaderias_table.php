@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateOfertaproductoTable extends Migration
+class CreateMercaderiasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,17 @@ class CreateOfertaproductoTable extends Migration
      */
     public function up()
     {
-        Schema::create('ofertaproducto', function (Blueprint $table) {
-            $table->bigIncrements('id_oferta');
-            $table->bigInteger('id_producto');
+        Schema::create('mercaderias', function (Blueprint $table) {
+            $table->increments('id_mercaderia');
+            $table->timestamps();
+            $table->string('nombre');
+            $table->integer('stock');
             $table->string('descripcion');
-            $table->double('descuento');
+            $table->integer('precio');
             $table->string('estado');
             $table->string('imagepath');
+            $table->integer('descuento');
+            $table->string('tipo');
         });
     }
 
@@ -30,6 +34,6 @@ class CreateOfertaproductoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ofertaproducto');
+        Schema::dropIfExists('mercaderias');
     }
 }

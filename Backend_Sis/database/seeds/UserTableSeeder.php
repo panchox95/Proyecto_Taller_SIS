@@ -15,13 +15,6 @@ class UserTableSeeder extends Seeder
     public function run()
     {
         $faker = Faker\Factory::create();
-        DB::table('user')->insert([
-            'first_name' => 'admin',
-            'last_name' => 'admin',
-            'email' => 'admin@admin.com',
-            'password' => hash('sha256','Admin123'),
-            'rol' => 'Admin',
-        ]);
         for ($i = 0; $i <= 10; $i++) {
             DB::table('user')->insert([
                 'first_name' =>$faker->firstname,
@@ -31,5 +24,13 @@ class UserTableSeeder extends Seeder
                 'rol' => 'Usuario',
             ]);
         }
+        DB::table('user')->insert([
+            'first_name' => 'admin',
+            'last_name' => 'admin',
+            'email' => 'admin@admin.com',
+            'password' => hash('sha256','Admin123'),
+            'rol' => 'Admin',
+        ]);
+
     }
 }

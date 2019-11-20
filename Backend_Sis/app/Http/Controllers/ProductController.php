@@ -30,16 +30,14 @@ class ProductController extends Controller
 //    }
     public function getAddToCart(Request $request, $id_producto)
     {
-        $productos = new Producto;
-        $producto = $productos->find($id_producto);
-        $session = new Session;
-        $cart = $session->has('cart') ? $session->get('cart') : null;
+        $producto = Producto::find($id_producto);
+        $cart = Session::has('cart') ? Session::get('cart') : null;
         if(!$cart)
         {
             $cart = new Cart($cart);
         }
         $cart->add($producto, $producto->id_producto);
-        $session->put('cart', $cart);
+        Session::put('cart', $cart);
         $conf=array(
             'status'=>'SUCCESS',
             'code' => 200);
