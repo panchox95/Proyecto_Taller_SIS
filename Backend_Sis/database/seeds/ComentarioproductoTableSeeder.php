@@ -20,5 +20,11 @@ class ComentarioproductoTableSeeder extends Seeder
                 'calificacion' => $faker->numberBetween(1,5),
             ]);
         }
+        DB::table('comentarioproducto')->insert([
+            'id_producto' => 3,
+            'id_user' => $faker->numberBetween(1,11),
+            'comentario' => $faker->text(200),
+            'calificacion' => $faker->numberBetween(1,5),
+        ]);
     }
 }
