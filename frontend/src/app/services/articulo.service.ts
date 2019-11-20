@@ -63,10 +63,10 @@ export class ArticuloService {
     return this._http.get(this.url+'puntajeproducto/'+id,{ headers: headers})
   }
 
-  getPrice(articulo): Observable <any>{
-    let json=JSON.stringify(articulo);
+  getPrice(busqueda): Observable <any>{
+    let json=JSON.stringify(busqueda);
     let headers =new HttpHeaders().set('Content-Type','application/json');
-    return this._http.put(this.url+'modificarproducto/', json, { headers: headers});
+    return this._http.post(this.url+'busquedaprecio/', json, { headers: headers});
   }
 
   deleteUsuario(id,json): Observable <any>{

@@ -5,30 +5,30 @@ import { UserService } from '../../services/user.service';
 import { error } from 'selenium-webdriver';
 import { Articulo } from '../../models/articulo';
 import { Busqueda } from '../../models/busqueda';
-import { ArticuloService } from '../../services/articulo.service';
+import { BusquedaService } from '../../services/busqueda.service';
 
 @Component({
   selector: 'app-busqueda-rango',
   templateUrl: './busqueda-rango.component.html',
   styleUrls: ['./busqueda-rango.component.css'],
-  providers: [UserService, ArticuloService]
+  providers: [UserService, BusquedaService]
 })
 export class BusquedaRangoComponent implements OnInit {
 
   public page_title: string;
+  public identity;
+  public token;
   public articulo: Articulo;
   public status_rango: string;
   public busqueda: Busqueda;
-  public identity;
-  public token;
 
   constructor(
-    private _userService: UserService,
-    private _articuloService: ArticuloService,
-    private _route: ActivatedRoute,
-    private _router: Router,
-  ) { 
-    this.page_title='Busqueda por precios';
+      private _route: ActivatedRoute,
+      private _router: Router,
+      private _userService: UserService,
+      private _busquedaService: BusquedaService,
+  ) {
+    this.page_title='Busqueda de precio';
     this.identity=this._userService.getIdentity();
     this.token=this._userService.getToken();
   }
@@ -37,27 +37,30 @@ export class BusquedaRangoComponent implements OnInit {
     if(this.identity==null){
       this._router.navigate(["/login"]);
     }else{
-      this.busqueda=new Busqueda(0,0);
+      this.busqueda=new Busqueda(null,null);
     }
   }
 
   onSubmit(form){
-    this._articuloService.getPrice(this.busqueda).subscribe(
-      response =>{
-        console.log('rango: ', response);
-        if(response.status =='SUCCESS'){
-          
-          
-        } else{
-          this.status_rango='ERROR';
-          form.reset();
-        }
-      },
-      error =>{
-        this.status_rango='ERROR';
-        console.log(<any> error);
-      }
+    this._busquedaService.getPrice(this.busqueda).subscribe(
+        response=>{
 
+          console.log('Rango: ',response.data.data);
+          
+          if(response.status=='SUCCESS'){
+
+            this.articulo=response.data.data;
+            this.status_rango='SUCCESS';
+            form.reset();
+
+          }else{
+            this.status_rango='ERROR';
+          }
+
+        },error =>{
+          console.log(<any>error);
+          this.status_rango='ERROR';
+        }
     );
   }
 
