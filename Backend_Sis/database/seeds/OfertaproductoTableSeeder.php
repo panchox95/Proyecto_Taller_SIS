@@ -16,7 +16,7 @@ class OfertaproductoTableSeeder extends Seeder
             DB::table('ofertaproducto')->insert([
                 'id_producto' => $i*2,
                 'descripcion' => $faker->text(200),
-                'descuento' => $faker->numberBetween(1,50),
+                'descuento' => $faker->numberBetween(1,9),
                 'estado' => 'Activo',
                 'imagepath'=>'https://images-na.ssl-images-amazon.com/images/I/51U13vbq%2BvL._SX425_.jpg',
             ]);
