@@ -30,26 +30,27 @@ class JwtAuth{
             if(is_null($getToken)){
                 return $jwt;
             }
-            else{
-                return $jwtdecoded;
-            }
+            return $jwtdecoded;
         }
-        else{
-            return array('status'=>'error','message'=>'Login a Fallado');
-        }
+        return array('status'=>'error','message'=>'Login a Fallado');
 
     }
     public function encode($token){
-        return JWT::encode($token,$this->key,'HS256');
+        $jwt = new JWT;
+        $encode = $jwt::encode($token,$this->key,'HS256');
+        return $encode;
     }
     public function decode($jwt){
-        return JWT::decode($jwt,$this->key,array('HS256'));
+        $jwts = new JWT;
+        $decode = $jwts::decode($jwt,$this->key,array('HS256'));
+        return $decode;
     }
 
-    public function checkToken($jwt,$getIdentity=false){
+    public function checkToken($jwt){
         $auth = false;
         try{
-            $decoded=JWT::decode($jwt,$this->key,array('HS256'));
+            $jwts = new JWT;
+            $decoded = $jwts::decode($jwt,$this->key,array('HS256'));
             if(is_object($decoded) && isset($decoded->id_user)){
                 //echo $decoded->id_user;
                 $auth=true;

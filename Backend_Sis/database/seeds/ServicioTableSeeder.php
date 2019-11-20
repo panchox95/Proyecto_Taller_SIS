@@ -21,5 +21,12 @@ class ServicioTableSeeder extends Seeder
                 'tipo' => 'Servicio'
             ]);
         }
+        DB::table('servicio')->insert([
+            'nombre' => 'servicioprueba',
+            'precio' => 50,
+            'descripcion' => 'un servicio de prueba',
+            'estado' => 'Activo',
+            'tipo' => 'Servicio'
+        ]);
     }
 }

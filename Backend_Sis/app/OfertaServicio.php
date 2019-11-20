@@ -29,9 +29,10 @@ class OfertaServicio extends Model
                             ->where('ofertaservicio.estado','=','activo')->get(); 
     }
     public function verOferta($id_servicio){
+        $db = new DB;
         return  OfertaServicio::join('servicio', 'ofertaservicio.id_servicio', '=', 'servicio.id_servicio')
             ->select('servicio.nombre','servicio.precio',
-                        DB::raw('servicio.precio*ofertaservicio.descuento AS preciodescuento'),
+                        $db::raw('servicio.precio*ofertaservicio.descuento AS preciodescuento'),
                         'ofertaservicio.descuento',
                         'servicio.descripcion')
             ->where('ofertaservicio.id_servicio','=',$id_servicio)

@@ -21,10 +21,10 @@ class Authenticate
         if (Auth::guard($guard)->guest()) {
             if ($request->ajax() || $request->wantsJson()) {
                 return response('Unauthorized.', 401);
-            } else {
-                Session::put('oldUrl', $request->url());
+            } 
+            $session = new Session;
+                $session->put('oldUrl', $request->url());
                 return redirect()->route('user.signin');
-            }
         }
 
         return $next($request);

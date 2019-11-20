@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use App\Http\BL\ComentarioBL;
 use Illuminate\Http\Request;
 use App\Helpers\JwtAuth;
-
+use Illuminate\Support\Facades\Validator;
 class ComentarioController extends Controller
 {
     public function crearComentario(Request $request,$id_producto){
@@ -15,7 +15,8 @@ class ComentarioController extends Controller
         $jwt = $request->header('Authorization',null);
         $jwtAuth = new JwtAuth();
         $decoded = $jwtAuth->decode($jwt);
-        $validate = \Validator::make($params_array,[ // Validacion
+        $validates = new Validator;
+        $validate= $validates::make($params_array,[ // Validacion
             'comentario'=>'required',
             'calificacion'=>'required',
             'tipo'=>'required'

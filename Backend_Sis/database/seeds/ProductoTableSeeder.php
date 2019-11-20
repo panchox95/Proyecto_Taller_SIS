@@ -24,5 +24,14 @@ class ProductoTableSeeder extends Seeder
                 'tipo' => 'Producto'
             ]);
         }
+        DB::table('producto')->insert([
+            'nombre' => 'prodprueba',
+            'marca'=>'mark1',
+            'cantidad'=>100,
+            'precio' => 50,
+            'descripcion' => 'un producto de prueba',
+            'estado' => 'Activo',
+            'tipo' => 'Servicio'
+        ]);
     }
 }

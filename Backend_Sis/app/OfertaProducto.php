@@ -29,12 +29,13 @@ class OfertaProducto extends Model
                             ->where('ofertaproducto.estado','=','activo')->get(); 
     }
     public function verOferta($id_producto){
+        $db = new DB;
         return  OfertaProducto::join('producto', 'ofertaproducto.id_producto', '=', 'producto.id_producto')
             ->select('producto.nombre',
                         'producto.marca',
                         'producto.cantidad',
                         'producto.precio',
-                        DB::raw('producto.precio*ofertaproducto.descuento AS preciodescuento'),
+                        $db::raw('producto.precio*ofertaproducto.descuento AS preciodescuento'),
                         'ofertaproducto.descuento',
                         'producto.descripcion')
             ->where('ofertaproducto.id_producto','=',$id_producto)

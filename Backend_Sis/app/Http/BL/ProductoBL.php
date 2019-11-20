@@ -35,15 +35,14 @@ class ProductoBL
         $producto = new Producto;
         $lista = $producto->listadoProductos();
         if(\is_object($lista)){
-            $data = array('status' => 'SUCCESS','message'=>'lista de productos','productos'=>$lista);
+            return array('status' => 'SUCCESS','message'=>'lista de productos','productos'=>$lista);
         }
-        else{
-            $data=array(
+        
+            return array(
                 'message'=>'Producto Inexistente',
                 'code'=>404,
                 'status'=>'ERROR',);
-        }
-        return $data;
+        
     }
 
     public function eliminarProducto($id){

@@ -158,7 +158,9 @@ class ServiciosTest extends TestCase
             "descripcion"=>"un servicio de prueba modifcado"
 
         ]);
-        $response->assertStatus(500);
+        $response->assertStatus(404);
+        $response->assertJson(['code'=>'404']);
+        $response->assertJson(['status'=>'ERROR']);
 
 
 
@@ -234,6 +236,6 @@ class ServiciosTest extends TestCase
 
 
         ]);
-        $response->assertStatus(500);
+        $response->assertStatus(404);
     }
 }

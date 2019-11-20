@@ -23,14 +23,12 @@ class RegistroBL
                 'message' => 'Usuario Creado Correctamente'
             );
         }
-        else{
-            //No Guardar No Existe
-            return array(
-                'status'=>'ERROR',
-                'code' => 400,
-                'message' => 'Usuario Duplicado, no puede Registrarse'
-            );
-        }
+//No Guardar No Existe
+        return array(
+            'status'=>'ERROR',
+            'code' => 400,
+            'message' => 'Usuario Duplicado, no puede Registrarse'
+        );
     }
 
 }

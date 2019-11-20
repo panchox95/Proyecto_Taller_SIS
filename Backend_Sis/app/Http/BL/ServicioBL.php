@@ -28,15 +28,12 @@ class ServicioBL
         $servicio = new Servicio;
         $lista = $servicio->listadoServicios();
         if(\is_object($lista)){
-            $data = array('status' => 'SUCCESS','message'=>'lista de servicios','servicios'=>$lista);
+            return array('status' => 'SUCCESS','message'=>'lista de servicios','servicios'=>$lista);
         }
-        else{
-            $data=array(
+            return array(
                 'message'=>'Servicio Inexistente',
                 'code'=>404,
                 'status'=>'ERROR',);
-        }
-        return $data;
     }
 
     public function eliminarServicio($id){
