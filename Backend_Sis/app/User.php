@@ -13,14 +13,7 @@ class User extends Authenticatable
 
     protected $table= 'user';
     public $timestamps = false;
-    public function saveUsuario($params,$pwd){
-        $this->first_name=$params->first_name;
-        $this->last_name=$params->last_name;
-        $this->email=$params->email;
-        $this->password=$pwd;
-        $this->rol='Usuario';
-        $this->save();
-    }
+    
     public function existeUsuario($email,$pwd){
         return  User::where(array('email'=>$email,'password'=>$pwd))->count();
     }
