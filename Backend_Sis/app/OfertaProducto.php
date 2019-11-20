@@ -11,9 +11,10 @@ class OfertaProducto extends Model
     public $timestamps = false;
     public function saveOferta($params,$id_producto){
         $this->id_producto=$id_producto;
-        $this->descripcion=$params->descripcion; 
+        $this->descripcion=$params->descripcion;
         $this->descuento=$params->descuento/100;
-        $this->estado='activo'; 
+        $this->estado='activo';
+        $this->imagepath='https://images-na.ssl-images-amazon.com/images/I/714-YyZL0IL._SX466_.jpg';
         $this->save();
     }
     public function borrarOferta($id_producto){
@@ -26,7 +27,7 @@ class OfertaProducto extends Model
     }
     public function listaOferta(){
         return $ofertas = OfertaProducto::select('*')
-                            ->where('ofertaproducto.estado','=','activo')->get(); 
+                            ->where('ofertaproducto.estado','=','activo')->get();
     }
     public function verOferta($id_producto){
         $db = new DB;
@@ -37,7 +38,8 @@ class OfertaProducto extends Model
                         'producto.precio',
                         $db::raw('producto.precio*ofertaproducto.descuento AS preciodescuento'),
                         'ofertaproducto.descuento',
-                        'producto.descripcion')
+                        'producto.descripcion',
+                        'ofertaproducto.imagepath')
             ->where('ofertaproducto.id_producto','=',$id_producto)
             ->where('producto.estado','=','activo')
             ->where('ofertaproducto.estado','=','activo')
@@ -46,6 +48,6 @@ class OfertaProducto extends Model
     public function existeOfertaID($id){
         return $ofertas = OfertaProducto::select('*')
                             ->where('ofertaproducto.estado','=','activo')
-                            ->where('ofertaproducto.id_producto','=',$id)->count(); 
+                            ->where('ofertaproducto.id_producto','=',$id)->count();
     }
 }

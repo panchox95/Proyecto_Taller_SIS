@@ -21,25 +21,27 @@ class ProductController extends Controller
 //    public function getAddToCart(Request $request, $id)
 //    {
 //        $product = Product::find($id);
-//        $oldCart = $session->has('cart') ? $session->get('cart') : null;
+//        $oldCart = $session::has('cart') ? $session::get('cart') : null;
 //        $cart = new Cart($oldCart);
 //        $cart->add($product, $product->id);
-//        $session->put('cart', $cart);
-//        $session->save();
+//        $session::put('cart', $cart);
+//        $session::save();
 //        return redirect()->route('product.index');
 //    }
     public function getAddToCart(Request $request, $id_producto)
     {
+
         $productos = new Producto;
-        $producto = $productos->find($id_producto);
-        $session = new Session;
-        $cart = $session->has('cart') ? $session->get('cart') : null;
+        $producto = $productos::find($id_producto);
+
+        $session = Session;
+        $cart = $session::has('cart') ? $session::get('cart') : null;
         if(!$cart)
         {
             $cart = new Cart($cart);
         }
         $cart->add($producto, $producto->id_producto);
-        $session->put('cart', $cart);
+        $session::put('cart', $cart);
         $conf=array(
             'status'=>'SUCCESS',
             'code' => 200);
@@ -49,15 +51,15 @@ class ProductController extends Controller
 
     public function getReduceByOne($id_producto){
         $session = new Session;
-        $oldCart=$session->has('cart') ? $session->get('cart'):null;
+        $oldCart=$session::has('cart') ? $session::get('cart'):null;
         $cart= new Cart($oldCart);
         $cart->reduceByOne($id_producto);
 
         if (count($cart->items)>0){
-            $session->put('cart', $cart);
+            $session::put('cart', $cart);
         }
         if (count($cart->items)<=0){
-            $session->forget('cart');
+            $session::forget('cart');
         }
         $conf=array(
             'status'=>'SUCCESS',
@@ -68,15 +70,15 @@ class ProductController extends Controller
 
     public function getRemoveItem($id_producto){
         $session = new Session;
-        $oldCart=$session->has('cart') ? $session->get('cart'):null;
+        $oldCart=$session::has('cart') ? $session::get('cart'):null;
         $cart= new Cart($oldCart);
         $cart->removeItem($id_producto);
 
         if (count($cart->items)>0){
-            $session->put('cart', $cart);
+            $session::put('cart', $cart);
         }
         if (count($cart->items)<=0){
-            $session->forget('cart');
+            $session::forget('cart');
         }
         $conf=array(
             'status'=>'SUCCESS',
@@ -87,12 +89,12 @@ class ProductController extends Controller
 
     public function getCart(){
         $session = new Session;
-        if(!$session->has('cart')){
+        if(!$session::has('cart')){
             $code = 401;
             //return view('shop.shopping-cart', ['productos'=> null]);
             return response()->json(null,  $code );
         }
-        $oldCart = $session->get('cart');
+        $oldCart = $session::get('cart');
         $cart = new Cart($oldCart);
         return json_encode(['productos'=>$cart->items, 'totalPrice' => $cart->totalPrice]);
 
@@ -101,7 +103,7 @@ class ProductController extends Controller
 
     public function getCheckout(){
         $session = new Session;
-        if(!$session->has('cart')){
+        if(!$session::has('cart')){
            // return view('shop.shopping-cart');
             $conf=array(
                 'status'=>'FAILURE',
@@ -109,7 +111,7 @@ class ProductController extends Controller
                 'code' => 401);
             return Response()->json($conf);
         }
-        $oldCart = $session->get('cart');
+        $oldCart = $session::get('cart');
         $cart = new Cart($oldCart);
         $total =$cart->totalPrice;
         $conf=array(
@@ -121,20 +123,20 @@ class ProductController extends Controller
 
     public function postCheckout(Request $request){
         $session = new Session;
-        if(!$session->has('cart')){
+        if(!$session::has('cart')){
             $conf=array(
                 'status'=>'SUCCESS',
                 'code' => 201);
             //return redirect('shop.shoppingCart');
             return response($conf);
         }
-        $oldCart = $session->get('cart');
+        $oldCart = $session::get('cart');
         $cart = new Cart($oldCart);
         $stripe = new Stripe;
-        $stripe->setApiKey('sk_test_5UoFetG19hEmgxJQ21vKT47k00bwx3yrDl');
+        $stripe::setApiKey('sk_test_5UoFetG19hEmgxJQ21vKT47k00bwx3yrDl');
         try{
             $charge = new Charge;
-            $charge = $charge->create(array(
+            $charge = $charge::create(array(
                 "amount" => $cart->totalPrice * 100,
                 "currency" => "usd",
                 "source" => $request->input('stripeToken'), // obtained with Stripe.js
@@ -153,7 +155,7 @@ class ProductController extends Controller
             return response()->json($e->getMessage(), $code);
         }
 
-        $session->forget('cart');
+        $session::forget('cart');
         //return redirect()->route('product.index')->with('success', 'Successfully purchased products!');
         $conf=array(
             'status'=>'SUCCESS',
