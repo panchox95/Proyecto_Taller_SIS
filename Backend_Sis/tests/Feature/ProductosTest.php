@@ -28,7 +28,7 @@ class ProductosTest extends TestCase
         $response
         ->assertStatus(200)
         ->assertJson([
-            'message' => "lizta de productos"
+            'message' => "lista de productos"
         ]) ->assertJson([
             'status' => "SUCCESS"
         ]);

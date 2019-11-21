@@ -112,7 +112,7 @@ class ProductController extends Controller
                 'message'=> 'no inicio sesion',
                 'code' => 401);
             return Response()->json($conf);
-        }else{}
+        }
         $oldCart = $session::get('cart');
         $cart = new Cart($oldCart);
         $total =$cart->totalPrice;
