@@ -84,7 +84,7 @@ class RegistroController extends Controller
                     $data=$registro->registro($params);
                     return response()->json($data,$code);
                 }
-                else{}
+                //else{}
                 $code=400;
                 $data=array('status'=>'ERROR','code' => 400,'message' => 'La contraseña necesita por lo menos una letra mayuscula');
                 return response()->json($data,$code);

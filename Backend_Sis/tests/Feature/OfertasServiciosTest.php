@@ -109,7 +109,7 @@ class OfertasServiciosTest extends TestCase
         ])->json('PUT','/api/borrarofertaservicio/');
         $response->assertStatus(404);
     }
-/*
+
     public function testModificarOfertaServicioAdmi()
     {
         $jwt = new JwtAuth();
@@ -127,7 +127,7 @@ class OfertasServiciosTest extends TestCase
         $response->assertJson(['message'=>'Modificacion Exitosa']);
 
     }
-    */
+    /*
     
      public function testModificarOfertaServicioAdmi()
     {
@@ -146,7 +146,7 @@ class OfertasServiciosTest extends TestCase
         $response->assertJson(['message'=>'Buenos dias Exitosa']);
 
     }
-    
+    */
     
     
 
