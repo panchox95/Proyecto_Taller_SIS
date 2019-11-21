@@ -109,7 +109,7 @@ class OfertasServiciosTest extends TestCase
         ])->json('PUT','/api/borrarofertaservicio/');
         $response->assertStatus(404);
     }
-
+/*
     public function testModificarOfertaServicioAdmi()
     {
         $jwt = new JwtAuth();
@@ -127,6 +127,28 @@ class OfertasServiciosTest extends TestCase
         $response->assertJson(['message'=>'Modificacion Exitosa']);
 
     }
+    */
+    
+     public function testModificarOfertaServicioAdmi()
+    {
+        $jwt = new JwtAuth();
+        $token1 = $jwt->getTokenAdmi();
+        $response = $this->withHeaders([
+            'Content-Type' => 'application/json',
+            'Authorization'=>$token1,
+        ])->json('PUT','/api/modificarofertaservicio/2',[
+            "descripcion"=>"Oferta Modificada",
+            "descuento"=>50
+
+        ]);
+        $response->assertStatus(300);
+        $response->assertJson(['status'=>'SUCCESSs']);
+        $response->assertJson(['message'=>'Buenos dias Exitosa']);
+
+    }
+    
+    
+    
 
     public function testOfertaModificarServicioUserNormal()
     {
