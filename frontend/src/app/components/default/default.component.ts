@@ -5,23 +5,21 @@ import { UserService } from '../../services/user.service';
 import { error } from 'selenium-webdriver';
 import { Articulo } from '../../models/articulo';
 import { ArticuloService } from '../../services/articulo.service';
+import { OfertaProducto } from '../../models/ofertaproducto';
+import { OfertaService } from '../../services/oferta.service';
+import { OfertaServicio } from '../../models/ofertaservicio';
 
 @Component({
     selector: 'app-default',
     templateUrl: './default.component.html',
-    //styleUrls: ['./default.component.css'],
-    providers: [UserService, ArticuloService]
+    styleUrls: ['./default.component.css'],
+    providers: [UserService, OfertaService]
 })
 export class DefaultComponent implements OnInit {
 
     public title: string;
-    public articulo: Array<Articulo>;
-    public total;
-    public per_page;
-    public current_page;
-    public last_page;
-    public next_page_url;
-    public prev_page_url;
+    public ofertaproducto: OfertaProducto;
+    public ofertaservicio: OfertaServicio;
     public rol;
 
 
@@ -29,60 +27,35 @@ export class DefaultComponent implements OnInit {
         private _route: ActivatedRoute,
         private _router: Router,
         private _userService: UserService,
-        private _articuloService: ArticuloService
+        private _ofertaService: OfertaService,
     ) {
         this.title='Inicio';
 
     }
 
     ngOnInit() {
-        console.log('default.component cargado satisfactoriamente');
-        this._route.params.subscribe(
-          params =>{
-            let page = +params['page'];
+      
+      this._ofertaService.getOfertas().subscribe(
+        response => {
+          console.log('listado producto: ',response.ofertas);
+          this.ofertaproducto=response.ofertas;
+          
+        },
+        error => {
+          console.log(<any>error);
+        }
+      );
 
-            // console.log(this.rol);
-            this._articuloService.getArticulos(page).subscribe(
-              response =>{
-                //console.log(response.users);
-                //  console.log(this.rol)
+      this._ofertaService.getOfertasServicio().subscribe(
+        response => {
+          console.log('listado servicio: ',response.ofertas);
+          this.ofertaservicio=response.ofertas;
+        },
+        error => {
+          console.log(<any>error);
+        }
+      );
 
-
-                this.total = response.productos.total;
-                this.per_page = response.productos.per_page;
-                this.current_page = response.productos.current_page;
-                this.last_page = response.productos.last_page;
-                this.next_page_url = response.productos.next_page_url;
-                this.prev_page_url = response.productos.prev_page_url;
-                this.articulo = response.productos.data;
-
-                if(page>this.last_page){
-                  console.log(page);
-                  console.log(this.last_page);
-                  this._router.navigate(['listaproducto',this.last_page]);
-                }
-              },
-              error => {
-                console.log(<any>error);
-              }
-            );
-
-          }
-
-        );
-
-        /*
-        this._articuloService.getArticulos().subscribe(
-          response=>{
-              if(response.status=='SUCCESS'){
-                  this.articulo=response.articulo;
-              }
-              console.log(response);
-          },
-            error=>{
-              console.log(error);
-            }
-        );*/
     }
 
 

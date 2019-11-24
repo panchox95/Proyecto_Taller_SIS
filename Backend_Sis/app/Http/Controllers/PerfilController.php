@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 use App\Http\BL\PerfilBL;
 use App\Http\BL\LoginBL;
+use App\Http\Middleware\JwtMiddleware;
 use Illuminate\Http\Request;
 use App\Helpers\JwtAuth;
+use Illuminate\Support\Facades\Auth;
 use Image;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Validator;
 class PerfilController extends Controller
 {
     public function verPerfil(Request $request){
@@ -32,18 +35,19 @@ class PerfilController extends Controller
        $user = $params['user'];
         //return $user['first_name'];
         $validate=false;
-        $validate4= \Validator::make(
+        $validates = new Validator;
+        $validate4 = $validates::make(
             $params,[
                 'telfono'=>'number',
             ]
         );
-        $validate5= \Validator::make(
+        $validate5 = $validates::make(
             $params,[
                 'telefono'=>'required',
                 'direccion'=>'required',
             ]
         );
-        $validate6= \Validator::make(
+        $validate6= $validates::make(
             $user,[
                 'first_name'=>'required',
                 'last_name'=>'required',
@@ -51,7 +55,7 @@ class PerfilController extends Controller
 
             ]
         );
-        
+
         $message='';
         if($validate4->fails()){
             $validate=true;
@@ -69,12 +73,10 @@ class PerfilController extends Controller
             $code=400;
             return response()->json($data,$code);
         }
-        else{
-            $decoded = $jwtAuth->decode($jwt);
-            $data = $perfil->modificarPerfil($decoded,$params,$user);
-            return $data;
-        }
-        
+        $decoded = $jwtAuth->decode($jwt);
+        $data = $perfil->modificarPerfil($decoded,$params,$user);
+        return $data;
+
     }
 
 
@@ -89,10 +91,11 @@ class PerfilController extends Controller
         $user = new LoginBL();
         $name =$user->name($decoded->email);
         $nombre = $name.time();
-        
+
         $path = public_path('uploads/'.$nombre.'.png');
         $url = '/uploads/'.$nombre;
-        $image = Image::make( $file->getRealPath() );
+        $images = new Image;
+        $image = $images->make( $file->getRealPath() );
         $image->save($path);
         $perfil = new PerfilBL;
         $data=$perfil->subirFoto($decoded,$url);
@@ -117,6 +120,19 @@ class PerfilController extends Controller
             'message' => $url);
         $code=200;
         return $data;
-        
+
+    }
+
+    public function getProfile(){
+        $orders=JwtMiddleware::user()->orders;
+        $orders->transform(function ($order, $key){
+            $order->cart =unserialize($order->cart);
+            return $order;
+        });
+        //return view('user.profile', ['orders'=>$orders]);
+        $conf=array(
+            'status'=>'SUCCESS',
+            'code' => 200);
+        return response()->json($orders,$conf);
     }
 }

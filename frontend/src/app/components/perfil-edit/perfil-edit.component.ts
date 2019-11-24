@@ -48,6 +48,9 @@ export class PerfilEditComponent implements OnInit {
           this.perfil.direccion=response.data.direccion;
           this.perfil.telefono=response.data.telefono;
 
+          console.log('datos: ',this.perfil);
+          
+
         } else{
           this.status = 'ERROR';
         }

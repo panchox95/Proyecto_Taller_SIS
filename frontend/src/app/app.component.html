@@ -44,39 +44,118 @@
                 <li>
                     <a [routerLink]="['']" ><span class="glyphicon glyphicon-home"></span> Inicio</a>
                 </li>
-                <li *ngIf="identity">
-                    <a [routerLink]="['crear-articulo']" ><span class="glyphicon glyphicon-book"></span> Añadir Articulo</a>
-                </li>
-                <li *ngIf="rol">
-                    <a [routerLink]="['lista-articulo']" ><span class="glyphicon glyphicon-book"></span> Articulos </a>
-                </li>
-                <li *ngIf="identity">
-                    <a [routerLink]="['busqueda-articulo']" ><span class="glyphicon glyphicon-search"></span> Busqueda </a>
-                </li>
-            </ul>
 
-
-            <ul class="nav navbar-nav navbar-right" *ngIf="!identity">
-                <li>
-                    <a [routerLink]="['register']" ><span class="glyphicon glyphicon-user glyphicon"></span> Registro</a>
-                </li>
-                <li>
-                    <a [routerLink]="['login']" ><span class="glyphicon glyphicon-log-in"></span> Iniciar sesión</a>
-                </li>
-            </ul>
-
-            <ul class="nav navbar-nav navbar-right" *ngIf="identity">
-                <li>
-                    <a [routerLink]="['perfil']" >{{first_name}} {{last_name}}</a>
-                </li>
-                <li>
-                    <a [routerLink]="['logout',1]">
-                        Salir
-                        <span class="glyphicon glyphicon-log-out"></span>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button">
+                        <span class="nav-label">Articulos</span>
+                        <span class="caret"></span>
                     </a>
+                    <ul class="dropdown-menu">
+                        <li *ngIf="rol">
+                            <a [routerLink]="['lista-articulo']" ><span class="glyphicon glyphicon-list-alt"></span> Lista Articulos </a>
+                        </li>
+                        <li *ngIf="identity">
+                            <a [routerLink]="['crear-articulo']" ><span class="glyphicon glyphicon-book"></span> Añadir Articulo</a>
+                        </li>
+                    </ul>
                 </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button">
+                        <span class="nav-label">Servicios</span>
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li *ngIf="rol">
+                            <a [routerLink]="['lista-servicio']" ><span class="glyphicon glyphicon-list-alt"></span> Lista Servicios </a>
+                        </li>
+                        <li *ngIf="identity">
+                            <a [routerLink]="['crear-servicio']" ><span class="glyphicon glyphicon-book"></span> Añadir Servicio</a>
+                        </li>
+                    </ul>
+                </li>
+
+
+                <li class="dropdown" *ngIf="identity">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button">
+                        <span class="nav-label">Busquedas</span>
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li *ngIf="rol">
+                            <a [routerLink]="['rango']" ><span class="glyphicon glyphicon-list-alt"></span> Rango de Precios </a>
+                        </li>
+                        <li *ngIf="identity">
+                            <a [routerLink]="['busqueda-articulo']" ><span class="glyphicon glyphicon-search"></span> Busqueda </a>
+                        </li>
+                    </ul>
+                </li>
+
             </ul>
 
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <a [routerLink]="['carrito']" ><fa-icon [icon]="faShoppingCart"></fa-icon> Carro de Compras</a>
+            </li>
+              <li class="dropdown" *ngIf="!identity">
+              <a class="dropdown-toggle" data-toggle="dropdown" role="button">
+                <span class="nav-label">Usuario</span>
+                <span class="caret"></span>
+              </a>
+                <ul class="dropdown-menu" >
+                  <li>
+                    <a [routerLink]="['register']" ><span class="glyphicon glyphicon-user"></span> Registro</a>
+                  </li>
+                  <li>
+                    <a [routerLink]="['login']" ><span class="glyphicon glyphicon-log-in"></span> Iniciar sesión</a>
+                  </li>
+                </ul>
+            </li>
+            <li class="dropdown" *ngIf="identity">
+              <a class="dropdown-toggle" data-toggle="dropdown" role="button">
+                <span class="nav-label">{{first_name}} {{last_name}}</span>
+                <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu" >
+                <li>
+                  <a [routerLink]="['']" ><span class="glyphicon glyphicon-user"></span> Ordenes</a>
+                </li>
+                <li>
+                  <a [routerLink]="['perfil']" ><span class="glyphicon glyphicon-user"></span> Perfil</a>
+                </li>
+                <li>
+                  <a [routerLink]="['logout',1]" ><span class="glyphicon glyphicon-log-out"></span> Log Out </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+
+<!--            <ul class="nav navbar-nav navbar-right" *ngIf="!identity">-->
+<!--                <li>-->
+<!--                  <a [routerLink]="['']" ><fa-icon [icon]="faShoppingCart"></fa-icon> Carro de Compras</a>-->
+<!--                </li>-->
+<!--                <li>-->
+<!--                    <a [routerLink]="['register']" ><span class="glyphicon glyphicon-user glyphicon"></span> Registro</a>-->
+<!--                </li>-->
+<!--                <li>-->
+<!--                    <a [routerLink]="['login']" ><span class="glyphicon glyphicon-log-in"></span> Iniciar sesión</a>-->
+<!--                </li>-->
+<!--            </ul>-->
+
+<!--            <ul class="nav navbar-nav navbar-right" *ngIf="identity">-->
+<!--                <li>-->
+<!--                    <a [routerLink]="['perfil']" >{{first_name}} {{last_name}}</a>-->
+<!--                </li>-->
+
+<!--                <li>-->
+<!--                    <a [routerLink]="['']" ><fa-icon [icon]="faShoppingCart"></fa-icon> Carro de Compras</a>-->
+<!--                </li>-->
+
+<!--                <li>-->
+<!--                    <a [routerLink]="['logout',1]"><span class="glyphicon glyphicon-log-out"></span>-->
+<!--                        Salir-->
+<!--                    </a>-->
+<!--                </li>-->
+<!--            </ul>-->
         </div>
     </div>
 </header>

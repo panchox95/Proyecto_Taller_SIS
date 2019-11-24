@@ -1,7 +1,46 @@
+
+<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular-cookies.js'></script>
 <div class="container">
         <h1>Detalle:</h1><br>
-        
-        <div class="col-md-7">
+
+        <div class="alert alert-success" *ngIf="status_compra=='SUCCESS'">
+            El articulo se añadio a tu carrito de compras
+        </div>
+
+        <div class="alert alert-danger" *ngIf="status_compra=='ERROR'">
+            El articulo no se añadio, vuelve a intentarlo
+        </div>
+
+        <div class="row">
+
+            <div class="col-xs-6 col-md-3">
+                <div class="thumbnail">
+                    <img src="../../../assets/img/producto.png" alt="Boats at Phi Phi, Thailand">
+                </div>
+            </div>
+
+            <div class="col-xs-6 col-md-3">
+                <h3>Puntuación:</h3><br>
+                <div *ngIf="puntaje == 1">
+                    <label for="radio5">★</label>
+                </div>
+                <div *ngIf="puntaje == 2">
+                    <label for="radio5">★★</label>
+                 </div>
+                <div *ngIf="puntaje == 3">
+                    <label for="radio5">★★★</label>
+                </div>
+                <div *ngIf="puntaje == 4">
+                    <label for="radio5">★★★★</label>
+                </div>
+                <div *ngIf="puntaje == 5">
+                    <label for="radio5">★★★★★</label>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-md-12">
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -31,5 +70,29 @@
                 </thead>
             </table>
         </div>
+
+        <div class="row">
+
+            <div class="col-xs-6 col-md-3" *ngIf="rol">
+                <a [routerLink]="['/oferta', articulo.id_producto]" class="btn btn-info" >Hazlo Oferta</a>
+            </div>
+
+            <div class="col-xs-6 col-md-3">
+                <a (click)="buyArticulo(articulo.id_producto)" class="btn btn-primary" >Comprar!!</a>
+            </div>
+
+        </div>
+
+        <h3>Comentarios: <a [routerLink]="['/comentario', articulo.id_producto]" class="btn btn-success" >Nuevo</a></h3>
+
+        <div class="row" *ngFor="let comment of comentarioproducto">
+            <div class="col-md-10">
+                <textarea class="form-control">{{comment.comentario}}</textarea>
+            </div>
+
+            <div class="col-md-2">
+                <label for="radio1">{{comment.calificacion}}★</label>
+            </div>
+        </div>
+
     </div>
-    

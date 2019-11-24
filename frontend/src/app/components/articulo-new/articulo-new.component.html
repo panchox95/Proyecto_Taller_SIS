@@ -37,12 +37,26 @@
                 </p>
 
                 <p>
-                        <label>Categoria</label>
-                        <input type="number" name="categoria" #categoria="ngModel" [(ngModel)]="articulo.categoria" class="form-control" required/>
-                        <span *ngIf="!categoria.valid && categoria.touched">
-                            La categoria no es valido
-                        </span>
-                    </p>
+                    <label>Categoria</label>
+                    <select name="categoria" #categoria="ngModel" [(ngModel)]="articulo.categoria" class="form-control" required>
+                        <option value="1">Arte y Artesanias</option>
+                        <option value="2">Automotriz</option>
+                        <option value="3">Deportes</option>
+                        <option value="4">Electrónicos</option>
+                        <option value="5">Hombres</option>
+                        <option value="6">Mujeres</option>
+                        <option value="7">Niños</option>
+                        <option value="8">Bebés</option>
+                        <option value="9">Herramientas</option>
+                        <option value="10">Libros</option>
+                        <option value="11">Hogar y Cocina</option>
+                        <option value="12">Juguetes</option>
+                        <option value="13">Salud y Bienestar</option>
+                    </select>
+                    <span *ngIf="!categoria.valid && categoria.touched">
+                        La categoria no es valido
+                    </span>
+                </p>
                 
                 <p>
                     <label>Precio</label>

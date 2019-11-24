@@ -20,6 +20,39 @@ import { OfertaDetailComponent } from './components/oferta-detail/oferta-detail.
 import { ArticuloListComponent } from './components/articulo-list/articulo-list.component';
 import { PerfilEditComponent } from './components/perfil-edit/perfil-edit.component';
 import { ArticuloBusquedaComponent } from './components/articulo-busqueda/articulo-busqueda.component';
+import { OfertaNewComponent } from './components/oferta-new/oferta-new.component';
+import { ComentarioNewComponent } from './components/comentario-new/comentario-new.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ServicioNewComponent } from './components/servicio-new/servicio-new.component';
+import { ServicioListComponent } from './components/servicio-list/servicio-list.component';
+import { ServicioDetailComponent } from './components/servicio-detail/servicio-detail.component';
+import { ServicioEditComponent } from './components/servicio-edit/servicio-edit.component';
+import { ComentarioservicioNewComponent } from './components/comentarioservicio-new/comentarioservicio-new.component';
+import { OfertaServicioNewComponent } from './components/ofertaservicio-new/ofertaservicio-new.component';
+import { OfertaservicioDetailComponent } from './components/ofertaservicio-detail/ofertaservicio-detail.component';
+import { CarritoListComponent } from './components/carrito-list/carrito-list.component';
+import {
+  SocialLoginModule,
+  AuthServiceConfig,
+  GoogleLoginProvider,
+  FacebookLoginProvider,
+} from "angular-6-social-login";
+import { BusquedaRangoComponent } from './components/busqueda-rango/busqueda-rango.component';
+
+export function getAuthServiceConfigs() {
+  let config = new AuthServiceConfig(
+    [
+      {
+        id: FacebookLoginProvider.PROVIDER_ID,
+        provider: new FacebookLoginProvider("581488765929996")
+      },
+      {
+        id: GoogleLoginProvider.PROVIDER_ID,
+        provider: new GoogleLoginProvider("961539498024-cdvjqn6lk2en4k3e405ihbk2k6c2l1th.apps.googleusercontent.com")
+      }]
+);
+  return config;
+}
 
 // @ts-ignore
 @NgModule({
@@ -35,17 +68,34 @@ import { ArticuloBusquedaComponent } from './components/articulo-busqueda/articu
       OfertaDetailComponent,
       ArticuloListComponent,
       PerfilEditComponent,
-      ArticuloBusquedaComponent
+      ArticuloBusquedaComponent,
+      OfertaNewComponent,
+      ComentarioNewComponent,
+      ServicioNewComponent,
+      ServicioListComponent,
+      ServicioDetailComponent,
+      ServicioEditComponent,
+      ComentarioservicioNewComponent,
+      OfertaServicioNewComponent,
+      OfertaservicioDetailComponent,
+      CarritoListComponent,
+      BusquedaRangoComponent
   ],
   imports: [
       BrowserModule,
       AppRoutingModule,
       FormsModule,
       routing,
-      HttpClientModule
+      HttpClientModule,
+      FontAwesomeModule,
+      SocialLoginModule
   ],
   providers: [
-      appRoutingProviders
+      appRoutingProviders,
+    {
+      provide: AuthServiceConfig,
+      useFactory: getAuthServiceConfigs
+    },
   ],
   bootstrap: [AppComponent]
 })

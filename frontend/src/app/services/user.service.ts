@@ -82,4 +82,9 @@ export class UserService {
         .set('Authorization',token);
         return this._http.get(this.url+'verperfil',{headers: headers})
     }
+
+    checkCarrito(token): Observable<any>{
+        let headers =new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded').set('Authorization',token);
+      return this._http.get(this.url+'shopping-cart', { headers: headers});
+    }
 }

@@ -1,3 +1,4 @@
+<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular-cookies.js'></script>
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">
@@ -5,22 +6,22 @@
       <li data-target="#myCarousel" data-slide-to="1"></li>
       <li data-target="#myCarousel" data-slide-to="2"></li>
     </ol>
-  
+
     <!-- Wrapper for slides -->
-    <div class="carousel-inner">
+    <div class="carousel-inner" style="height: 350px;">
       <div class="item active">
-        <img  src="../../../assets/img/3.png" alt="Los Angeles">
+        <img  src="../../../assets/img/primero.jpg" alt="Los Angeles">
       </div>
-  
+
       <div class="item">
-        <img src="../../../assets/img/3.png" alt="Chicago">
+        <img src="../../../assets/img/segundo.jpg" alt="Chicago">
       </div>
-  
+
       <div class="item">
-        <img src="../../../assets/img/3.png" alt="New York">
+        <img src="../../../assets/img/tercero.jpg" alt="New York">
       </div>
     </div>
-  
+
     <!-- Left and right controls -->
     <a class="left carousel-control" href="#myCarousel" data-slide="prev">
       <span class="glyphicon glyphicon-chevron-left"></span>
@@ -33,59 +34,112 @@
   </div>
   <div class="panel panel-default">
       <div class="panel-footer">
-  
+
           <div class="container-fluid">
               <div class="title">
-              <H2>Productos <span class="label label-success">Ofertas</span></H2>
+                <H2>Productos <span class="label label-success">Ofertas</span></H2>
               </div>
-  
+
               <div class="row">
-  
-              <div class="col-xs-6 col-md-3">
-              <div class="thumbnail">
-              <img src="../../../assets/img/producto.png" alt="Boats at Phi Phi, Thailand">
-              <div class="caption">
-              <p>Prueba de subida al servidor.</p>
-              <p><a [routerLink]="['oferta-detail']" class="btn btn-primary" role="button">Ver</a></p>
-              </div>
-              </div>
-              </div>
-  
-              <div class="col-xs-6 col-md-3">
-              <div class="thumbnail">
-              <img src="../../../assets/img/producto.png" alt="Resort at Boracay, Philippines">
-              <div class="caption">
-              <p>Cargado de datos en el servidor del mateo</p>
-              <p><a href="#" class="btn btn-primary" role="button">Ver</a></p>
-              </div>
-              </div>
-              </div>
-  
-              <div class="col-xs-6 col-md-3">
-              <div class="thumbnail">
-              <img src="../../../assets/img/producto.png" alt="Rob Roy Glacier near Wanaka, New Zealand">
-              <div class="caption">
-              <p>Prueba prueba de subida para ver la correctitud de los datos al almacenaje de datos para asi ver correcioness.</p>
-              <p><a href="#" class="btn btn-primary" role="button">Ver</a></p>
-              </div>
-              </div>
-              </div>
-  
-              <div class="col-xs-6 col-md-3">
-              <div class="thumbnail">
-              <img src="../../../assets/img/producto.png" alt="Views near Rob Roy Glacier">
-              <div class="caption">
-              <p>Mas pruebas de subida asadadasdas asdasdad sadsdasdsd  asd sd ads a sd asdasdas dasd asdasdasd asd.</p>
-              <p><a href="#" class="btn btn-primary" role="button">Ver</a></p>
-              </div>
-              </div>
-              </div>
-  
-  
-              </div>
-  
-              </div>
+
+
+                <div class="col-xs-6 col-md-3" *ngFor="let oferta of ofertaproducto">
+                  <div class="thumbnail">
+                    <img src='{{oferta.imagepath}}'>
+                    <div class="caption">
+
+                      <div class="row">
+
+                          <div class="col-md-8">
+                            <p style="font-size: 120%; padding-top: 15%;">
+                                {{oferta.descripcion}}
+                            </p>
+                          </div>
+                          <div class="col-md-4" >
+                              <h2>
+                                <span class="label label-warning">{{oferta.descuento*10}} %</span>
+                              </h2>
+                          </div>
+
+                      </div>
+
+                      <div class="row">
+
+                        <div class="col-md-8">
+                            <a [routerLink]="['/ofertaproducto-detail', oferta.id_producto]" class="btn btn-info" role="button">Ver Oferta </a>
+                        </div>
+                        <div class="col-md-4">
+                            <a [routerLink]="['/articulo', oferta.id_producto]" class="btn btn-success" role="button">Comprar</a>
+                        </div>
+
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+
+
+
+            </div>
+
+          </div>
       </div>
-  
+
     </div>
-  
+
+    <div class="panel panel-default">
+        <div class="panel-footer">
+            <div class="container-fluid">
+                <div class="title">
+                  <H2>Servicios <span class="label label-success">Ofertas</span></H2>
+                </div>
+
+                <div class="row">
+
+
+                  <div class="col-xs-6 col-md-3" *ngFor="let oferta of ofertaservicio">
+                    <div class="thumbnail">
+                      <img src='{{oferta.imagepath}}'>
+                      <div class="caption">
+
+                        <div class="row">
+
+                            <div class="col-md-8">
+                              <p style="font-size: 120%; padding-top: 15%;">
+                                  {{oferta.descripcion}}
+                              </p>
+                            </div>
+                            <div class="col-md-4" >
+                                <h2>
+                                  <span class="label label-warning">{{oferta.descuento*100}} %</span>
+                                </h2>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+
+                          <div class="col-md-8">
+                              <a [routerLink]="['/ofertaservicio-detail', oferta.id_servicio]" class="btn btn-info" role="button">Ver Servicio </a>
+                          </div>
+                          <div class="col-md-4">
+                              <a [routerLink]="['/articulo', oferta.id_producto]" class="btn btn-success" role="button">Comprar</a>
+                          </div>
+
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+
+
+
+              </div>
+
+            </div>
+        </div>
+
+      </div>
+
+
+

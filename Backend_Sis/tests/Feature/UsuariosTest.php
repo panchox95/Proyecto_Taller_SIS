@@ -5,7 +5,7 @@ namespace Tests\Feature;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-
+use App\Helpers\JwtAuth;
 class UsuariosTest extends TestCase
 {
 
@@ -22,11 +22,13 @@ class UsuariosTest extends TestCase
         $response->assertStatus(200);
     }
 
+
+
     public function testregistro(){
         $this->post('/api/registro', [
             'first_name'=>'jeffreycito',
             'last_name'=>'lovelacecito',
-            'email'=>'jeff12223@asd.com',
+            'email'=>'asdasd@asd.com',
             'password'=>'12312312s3A',
         ])->assertStatus(200);
 
@@ -38,7 +40,7 @@ class UsuariosTest extends TestCase
             'last_name'=>'lovelacecito',
             'email'=>'jeff12223@asd.com',
             'password'=>'12312312s3A',
-        ])->assertStatus(400);
+        ])->assertStatus(500);
 
     }
 
@@ -48,7 +50,7 @@ class UsuariosTest extends TestCase
             'last_name'=>'lovelacecito',
             'email'=>'',
             'password'=>'12312312s3A',
-        ])->assertStatus(400);
+        ])->assertStatus(500);
 
     }
 
@@ -58,7 +60,7 @@ class UsuariosTest extends TestCase
             'last_name'=>'lovelacecito',
             'email'=>'jeff12223@asd.com',
             'password'=>'',
-        ])->assertStatus(400);
+        ])->assertStatus(500);
 
     }
 
@@ -68,7 +70,7 @@ class UsuariosTest extends TestCase
             'last_name'=>'lovelacecito',
             'email'=>'jeff12223@asd.com',
             'password'=>'1231233',
-        ])->assertStatus(400);
+        ])->assertStatus(500);
 
     }
 
@@ -79,7 +81,7 @@ class UsuariosTest extends TestCase
             'last_name'=>'lovelacecito',
             'email'=>'jeff12223@asd.com',
             'password'=>'1231233ss',
-        ])->assertStatus(400);
+        ])->assertStatus(500);
 
     }
 
@@ -89,7 +91,7 @@ class UsuariosTest extends TestCase
             'last_name'=>'lovelacecito',
             'email'=>'jeff12223@asd.com',
             'password'=>'12312312s3A',
-        ])->assertStatus(400);
+        ])->assertStatus(500);
 
     }
 
@@ -99,9 +101,12 @@ class UsuariosTest extends TestCase
             'last_name'=>'',
             'email'=>'jeff12223@asd.com',
             'password'=>'12312312s3A',
-        ])->assertStatus(400);
+        ])->assertStatus(500);
 
     }
+
+
+
 
 
 }

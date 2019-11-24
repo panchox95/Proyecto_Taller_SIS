@@ -1,3 +1,4 @@
+
 <div class="container">
 
     <div class="title-login">
@@ -12,27 +13,67 @@
     <div class="alert alert-danger" *ngIf="status == 'FALTAN'">
       Llenar Todos Los Campos,
     </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)" class="col-md-5">
+            <p>
+              <label>Email:</label>
+              <input type="email" name="email" #email="ngModel" [(ngModel)]="user.email" class="form-control" placeholder="example@email.com" required/>
+              <span *ngIf="!email.valid && email.touched">
+                El email no es valido
+              </span>
+            </p>
+
+            <p>
+              <label>Contraseña:</label>
+              <input type="password" name="password" #password="ngModel" [(ngModel)]="user.password" class="form-control" placeholder="*********" required/>
+              <span *ngIf="!password.valid && password.touched">
+                La contraseña no es valida
+              </span>
+            </p>
+
+            <input type="submit" value="Entrar" class="btn btn-primary" [disabled]="!loginForm.form.valid" />
+
+        </form>
+      </div>
+
+      <div class="row onl_row-sm-offset-3 onl_socialButtons">
+        <div class="col-xs-2 col-sm-2" id="face">
+          <a (click)="socialSignIn('facebook')" class="btn btn-lg btn-block onl_btn-facebook" data-toggle="tooltip" data-placement="top" title="Facebook">
+            <i class="fa fa-facebook fa-2x"></i>
+            <span class="hidden-xs"></span>
+          </a>
+        </div>
+    
+        <div class="col-xs-2 col-sm-2">
+          <a (click)="socialSignIn('google')" class="btn btn-lg btn-block onl_btn-google-plus" data-toggle="tooltip" data-placement="top" title="Google Plus">
+            <i class="fa fa-google-plus fa-2x"></i>
+            <span class="hidden-xs"></span>
+          </a>
+        </div>  
+      </div>
+
+      <!--<button (click)="socialSignIn('facebook')">Sign in with Facebook</button>
+      <button (click)="socialSignIn('google')">Sign in with Google</button>-->
+
+      <div class="col-md-12">
+        <p>
+          Aun no tienes una cuenta?
+          <a [routerLink]="['/register']">Registrate! </a>
+        </p>
+      </div>
+    </div>
+
+    
+
+
+
+    
   
-    <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)" class="col-md-5">
-      <p>
-        <label>Email:</label>
-        <input type="email" name="email" #email="ngModel" [(ngModel)]="user.email" class="form-control" placeholder="example@email.com" required/>
-        <span *ngIf="!email.valid && email.touched">
-          El email no es valido
-        </span>
-      </p>
   
-      <p>
-        <label>Contraseña:</label>
-        <input type="password" name="password" #password="ngModel" [(ngModel)]="user.password" class="form-control" placeholder="*********" required/>
-        <span *ngIf="!password.valid && password.touched">
-          La contraseña no es valida
-        </span>
-      </p>
-  
-      <input type="submit" value="Entrar" class="btn btn-primary" [disabled]="!loginForm.form.valid" />
-      
-      </form>
-  
-  </div>
-  
+
+
+
+</div>
+

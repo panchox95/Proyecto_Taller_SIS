@@ -1,0 +1,45 @@
+<div class="container">
+        <div class="col-md-12" *ngIf="page_title">
+            <h2>{{page_title}}</h2>
+                
+            <div class="alert alert-success" *ngIf="status_servicio=='SUCCESS'">
+                El Servicio se guardo correctamente
+            </div>
+                
+            <div class="alert alert-danger" *ngIf="status_servicio=='ERROR'">
+                El Servicio no se guardo, intentalo de nuevo
+            </div>
+                
+            <form #servicioNew="ngForm" (ngSubmit)="onSubmit(servicioNew)" class="col-md-5">
+                
+                <p>
+                    <label>Nombre</label>
+                    <input type="text" name="nombre" #nombre="ngModel" [(ngModel)]="servicio.nombre" class="form-control" required/>
+                    <span *ngIf="!nombre.valid && nombre.touched">
+                        El nombre no es valido
+                    </span>
+                </p>
+                
+                <p>
+                    <label>Precio</label>
+                    <input type="number" name="precio" #precio="ngModel" [(ngModel)]="servicio.precio" class="form-control" required/>
+                    <span *ngIf="!precio.valid && precio.touched">
+                        El precio no es valido
+                    </span>
+                </p>
+                
+                <p>
+                    <label>Descripcion</label>
+                    <textarea name="descripcion" #descripcion="ngModel" [(ngModel)]="servicio.descripcion" class="form-control" required></textarea>
+                    <span *ngIf="!descripcion.valid && descripcion.touched">
+                        La descripcion no es valida
+                    </span>
+                </p>
+                
+                <input type="submit" value="Guardar" class="btn btn-success" [disabled]="!servicioNew.form.valid">
+                
+            </form>
+        </div>
+    </div>
+    
+    

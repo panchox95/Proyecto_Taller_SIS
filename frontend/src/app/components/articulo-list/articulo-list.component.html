@@ -26,7 +26,7 @@
                 <td>
                     <a [routerLink]="['/articulo', art.id_producto]" class="btn btn-info">Ver</a>
                     <a [routerLink]="['/editar-articulo', art.id_producto]" class="btn btn-warning">Editar</a>
-                    <a (click)="deleteArticulo(art.id_producto)" class="btn btn-danger">Eliminar</a>
+                    <a (click)="borrarArticulo(art.id_producto)" class="btn btn-danger">Eliminar</a>
                 </td>
                 </tr>
             </tbody>

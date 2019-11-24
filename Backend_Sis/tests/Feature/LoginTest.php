@@ -15,11 +15,11 @@ class LoginTest extends TestCase
      *
      * @return void
      */
-   public function LoginTEst()
+   public function testCargarSesion()
     {
-        $response = $this->get('api/verperfil');
-
-        $response->assertStatus(200);
+        $response = $this->withSession(['foo' => 'bar'])
+                         ->get('/api/login');
+        $response->assertStatus(405);
     }
 
     public function testLoginCompleto(){
@@ -56,6 +56,17 @@ class LoginTest extends TestCase
         ])->assertStatus(400);
 
     }
+
+
+    public function testDatosAdmin(){
+        $this->post('/api/login', [
+
+            'email'=>'admin@admin.com',
+            'password'=>'Admin123',
+        ])->assertStatus(200);
+
+    }
+
 
 
 }

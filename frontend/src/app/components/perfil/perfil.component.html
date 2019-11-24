@@ -3,15 +3,36 @@
   <div class="col-md-7">
         <p class="pull-right">
                 <tr>
-                    <th><img src="../../../../../Backend_Sis/databaseSCHEMA.png" ></th>
-                        <th><form #imageForm="ngForm" (ngSubmit)="onSubmit(photo)" class="col-md-12" enctype="multipart/form-data">
+                    <th>
+                        <img src="../../../../../Backend_Sis/databaseSCHEMA.png" ></th>
+                        <th>
+                            <div class="card">
+                                 <img  class="img-circle" src="../../../assets/img/producto.png" width="300px" height="300px">        
+                            </div>
+                        </th>
+                        <th>
+                            <form #imageForm="ngForm" (ngSubmit)="onSubmit(photo)" class="col-md-12" enctype="multipart/form-data">
                             <input type="file" (change)="onFileSelected($event)" name="photo" id="photo" accept="photo/png" />
                             <input type="submit" value="Subir" />
-                        </form></th>
+                            </form>
+                        </th>
                 </tr>
  </p>
+ 
       <table class="table table-striped">
           <thead>
+            <tr>
+                <th scope="col">Nombre: </th>
+                <th scope="col">{{user.first_name}}</th>
+            </tr>
+            <tr>
+                <th scope="col">Apellido: </th>
+                <th scope="col">{{user.last_name}}</th>
+            </tr>
+            <tr>
+                <th scope="col">Correo: </th>
+                <th scope="col">{{user.email}}</th>
+            </tr>
               <tr>
                   <th scope="col">Telefono</th>
                   <th scope="col">{{perfil.telefono}}</th>

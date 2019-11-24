@@ -8,7 +8,7 @@ import { UserService } from '../../services/user.service';
 import { error } from 'selenium-webdriver';
 
 @Component({
- selector: 'app-usuario-edit',
+  selector: 'app-usuario-edit',
   templateUrl: '../articulo-new/articulo-new.component.html',
   styleUrls: ['../articulo-new/articulo-new.component.css'],
   providers: [UserService, ArticuloService]
@@ -58,7 +58,6 @@ export class ArticuloEditComponent implements OnInit {
   }
 
   onSubmit(form){
-    console.log('ide: ', this.articulo.id_producto);
     this._articuloService.updateArticulo(this.token, this.articulo, this.articulo.id_producto).subscribe(
       response => {
         console.log('editado: ', response);

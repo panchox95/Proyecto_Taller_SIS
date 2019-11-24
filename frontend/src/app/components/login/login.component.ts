@@ -5,6 +5,11 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { User } from '../../models/user';
 import { UserService } from '../../services/user.service';
 import { stringify } from 'querystring';
+import {
+  AuthService,
+  FacebookLoginProvider,
+  GoogleLoginProvider
+} from 'angular-6-social-login';
 
 // @ts-ignore
 @Component({
@@ -27,9 +32,12 @@ export class LoginComponent implements OnInit {
     private _userService: UserService,
     private _route: ActivatedRoute,
     private _router: Router,
+    private socialAuthService: AuthService
   ) {
       this.user = new User('','','','','');
   }
+
+
 
   ngOnInit() {
     console.log('login.component cargado correctamente!!');
@@ -59,7 +67,7 @@ export class LoginComponent implements OnInit {
         if(response.status != 'ERROR'){
           this.status = 'SUCCESS';
           this.token = response.token;
-          
+
           console.log ('message: ', this.message);
           localStorage.setItem('token', this.token);
           sessionStorage.setItem('token', this.token);
@@ -67,21 +75,21 @@ export class LoginComponent implements OnInit {
           //objeto usuario identificado
           this._userService.signup(this.user, true).subscribe(
             response => {
-  
+
               this.identity=response;
               localStorage.setItem('identity', JSON.stringify(this.identity));
-  
+
             },
             error => {
               console.log(<any> error);
-  
+
             }
           );
           this._router.navigate(['']);
         } else{
           this.status = 'ERROR';
         }
-        
+
         /*
         this.token=response;
         console.log('estadossss: ', response.status);
@@ -94,7 +102,7 @@ export class LoginComponent implements OnInit {
           this._router.navigate(['']);
         } else{
           this.status = 'ERROR';
-          
+
         }
         //objeto usuario identificado
         this._userService.signup(this.user, true).subscribe(
@@ -149,6 +157,23 @@ export class LoginComponent implements OnInit {
 
       })
 
+  }
+
+  public socialSignIn(socialPlatform : string) {
+    let socialPlatformProvider;
+    if(socialPlatform == "facebook"){
+      socialPlatformProvider = FacebookLoginProvider.PROVIDER_ID;
+    }else if(socialPlatform == "google"){
+      socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
+    }
+    this.socialAuthService.signIn(socialPlatformProvider).then(
+      (userData) => {
+        console.log(socialPlatform+" sign in data : " , userData);
+        // Now sign-in with userData
+        // ...
+
+      }
+    );
   }
 
 }

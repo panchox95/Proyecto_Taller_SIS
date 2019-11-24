@@ -1,0 +1,79 @@
+<div class="container">
+        <div class="col-md-12" >
+            <h2>{{page_title}}</h2>
+
+            <div class="alert alert-success" *ngIf="status_comentario=='SUCCESS'">
+                El comentario se guardo correctamente
+            </div>
+                    
+            <div class="alert alert-danger" *ngIf="status_comentario=='ERROR'">
+                El comentario no se guardo, intentalo de nuevo
+            </div>
+                
+            <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">Nombre:</th>
+                        <th scope="col">{{servicio.nombre}}</th>
+                    </tr>
+                    <tr>
+                        <th scope="col">Precio:</th>
+                        <th scope="col">{{servicio.precio}} $</th>
+                    </tr>
+                    <tr>
+                        <th scope="col">Descripcion:</th>
+                        <th scope="col">{{servicio.descripcion}}</th>
+                    </tr>
+                </thead>
+            </table>
+
+            <form #comentarioServicioNew="ngForm" (ngSubmit)="onSubmit(comentarioServicioNew)" class="col-md-5">
+                
+                <p>
+                    <label>Comentario:</label>
+                    <textarea name="comentario" #comentario="ngModel" [(ngModel)]="comentarioservicio.comentario" class="form-control" required></textarea>
+                    <span *ngIf="!comentario.valid && comentario.touched">
+                        La comentario no es valida
+                    </span>
+                </p>
+
+                <p>
+                    <label>Puntaje:</label>
+                    <select name="calificacion" #calificacion="ngModel" [(ngModel)]="comentarioservicio.calificacion" class="form-control" required>
+
+                        <option value="1">★</option>
+                        
+                        <option value="2">★★</option>
+                            
+                        <option value="3">★★★</option>
+
+                        <option value="4">★★★★</option>
+
+                        <option value="5">★★★★★</option>
+                            
+                    </select>
+                    <span *ngIf="!calificacion.valid && calificacion.touched">
+                        El calificacion no es valido
+                    </span>
+                </p>
+
+                <p>
+                    <label>Tipo:</label>
+                    <select name="tipo" #tipo="ngModel" [(ngModel)]="comentarioservicio.tipo" class="form-control" required>
+
+                            <option value="servicio">Servicio</option>
+                                
+                    </select>
+                    <span *ngIf="!tipo.valid && tipo.touched">
+                        El calificacion no es valido
+                    </span>
+                </p>
+                    
+                <input type="submit" value="Guardar" class="btn btn-success" [disabled]="!comentarioServicioNew.form.valid">
+                    
+            </form>
+
+        </div>
+    </div>
+    
+    
