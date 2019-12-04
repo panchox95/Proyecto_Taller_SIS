@@ -20,9 +20,12 @@
                 <td>{{serv.precio}}</td>
                 <td>{{serv.descripcion}}</td>
                 <td>
-                    <a [routerLink]="['/servicio', serv.id_servicio]" class="btn btn-info">Ver</a>
-                    <a [routerLink]="['/editar-servicio', serv.id_servicio]" class="btn btn-warning">Editar</a>
-                    <a (click)="buyServicio(serv.id_servicio)" class="btn btn-danger">Eliminar</a>
+                    <div class="btn-group">
+                        <a [routerLink]="['/servicio', serv.id_servicio]" class="btn btn-info">Ver</a>
+                        <a [routerLink]="['/editar-servicio', serv.id_servicio]" class="btn btn-warning">Editar</a>
+                        <a (click)="buyServicio(serv.id_servicio)" class="btn btn-danger">Eliminar</a>
+                    </div>
+                    
                 </td>
                 </tr>
             </tbody>

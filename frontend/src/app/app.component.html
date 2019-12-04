@@ -46,46 +46,46 @@
                 </li>
 
                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" role="button">
+                    <a id="item" class="dropdown-toggle" data-toggle="dropdown" role="button">
                         <span class="nav-label">Articulos</span>
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
                         <li *ngIf="rol">
-                            <a [routerLink]="['lista-articulo']" ><span class="glyphicon glyphicon-list-alt"></span> Lista Articulos </a>
+                            <a id="articulo-list" [routerLink]="['lista-articulo']" ><span class="glyphicon glyphicon-list-alt"></span> Lista Articulos </a>
                         </li>
                         <li *ngIf="identity">
-                            <a [routerLink]="['crear-articulo']" ><span class="glyphicon glyphicon-book"></span> Añadir Articulo</a>
+                            <a id="articulo-new" [routerLink]="['crear-articulo']" ><span class="glyphicon glyphicon-book"></span> Añadir Articulo</a>
                         </li>
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" role="button">
+                    <a id="item-servicio" class="dropdown-toggle" data-toggle="dropdown" role="button">
                         <span class="nav-label">Servicios</span>
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
                         <li *ngIf="rol">
-                            <a [routerLink]="['lista-servicio']" ><span class="glyphicon glyphicon-list-alt"></span> Lista Servicios </a>
+                            <a id="servicio-list" [routerLink]="['lista-servicio']" ><span class="glyphicon glyphicon-list-alt"></span> Lista Servicios </a>
                         </li>
                         <li *ngIf="identity">
-                            <a [routerLink]="['crear-servicio']" ><span class="glyphicon glyphicon-book"></span> Añadir Servicio</a>
+                            <a id="servicio-new" [routerLink]="['crear-servicio']" ><span class="glyphicon glyphicon-book"></span> Añadir Servicio</a>
                         </li>
                     </ul>
                 </li>
 
 
                 <li class="dropdown" *ngIf="identity">
-                    <a class="dropdown-toggle" data-toggle="dropdown" role="button">
+                    <a id="item-busqueda" class="dropdown-toggle" data-toggle="dropdown" role="button">
                         <span class="nav-label">Busquedas</span>
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
                         <li *ngIf="rol">
-                            <a [routerLink]="['rango']" ><span class="glyphicon glyphicon-list-alt"></span> Rango de Precios </a>
+                            <a id="busqueda-rango" [routerLink]="['rango']" ><span class="glyphicon glyphicon-list-alt"></span> Rango de Precios </a>
                         </li>
                         <li *ngIf="identity">
-                            <a [routerLink]="['busqueda-articulo']" ><span class="glyphicon glyphicon-search"></span> Busqueda </a>
+                            <a id="busqueda-item" [routerLink]="['busqueda-articulo']" ><span class="glyphicon glyphicon-search"></span> Busqueda </a>
                         </li>
                     </ul>
                 </li>
@@ -94,19 +94,19 @@
 
           <ul class="nav navbar-nav navbar-right">
             <li>
-              <a [routerLink]="['carrito']" ><fa-icon [icon]="faShoppingCart"></fa-icon> Carro de Compras</a>
+              <a id="shopcar" [routerLink]="['carrito']" ><fa-icon [icon]="faShoppingCart"></fa-icon> Carro de Compras</a>
             </li>
               <li class="dropdown" *ngIf="!identity">
-              <a class="dropdown-toggle" data-toggle="dropdown" role="button">
+              <a id="userSelector" class="dropdown-toggle" data-toggle="dropdown" role="button">
                 <span class="nav-label">Usuario</span>
                 <span class="caret"></span>
               </a>
                 <ul class="dropdown-menu" >
                   <li>
-                    <a [routerLink]="['register']" ><span class="glyphicon glyphicon-user"></span> Registro</a>
+                    <a id="register" [routerLink]="['register']" ><span class="glyphicon glyphicon-user"></span> Registro</a>
                   </li>
                   <li>
-                    <a [routerLink]="['login']" ><span class="glyphicon glyphicon-log-in"></span> Iniciar sesión</a>
+                    <a id="login" [routerLink]="['login']" ><span class="glyphicon glyphicon-log-in"></span> Iniciar sesión</a>
                   </li>
                 </ul>
             </li>

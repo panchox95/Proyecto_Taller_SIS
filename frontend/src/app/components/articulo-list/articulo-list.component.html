@@ -24,9 +24,11 @@
                 <td>{{art.precio}}</td>
                 <td>{{art.descripcion}}</td>
                 <td>
-                    <a [routerLink]="['/articulo', art.id_producto]" class="btn btn-info">Ver</a>
-                    <a [routerLink]="['/editar-articulo', art.id_producto]" class="btn btn-warning">Editar</a>
-                    <a (click)="borrarArticulo(art.id_producto)" class="btn btn-danger">Eliminar</a>
+                    <div class="btn-group">
+                        <a [routerLink]="['/articulo', art.id_producto]" class="btn btn-info">Ver</a>
+                        <a [routerLink]="['/editar-articulo', art.id_producto]" class="btn btn-warning">Editar</a>
+                        <a (click)="borrarArticulo(art.id_producto)" class="btn btn-danger">Eliminar</a>
+                    </div>
                 </td>
                 </tr>
             </tbody>
