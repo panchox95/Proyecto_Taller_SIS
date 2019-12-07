@@ -126,6 +126,7 @@ class ProductController extends Controller
         $carro=DB::table('carrodecompras')
             ->where('id_user', $id_user)
             ->where('estado', 'espera')
+            ->where('cantidad','>',0)
             ->get();
         $total=DB::table('carrodecompras')
             ->where('id_user', $id_user)
