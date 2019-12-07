@@ -137,22 +137,22 @@ Route::post('/api/checkout', [
 
     //CARRITO
     //anadir
-    Route::get('/api/add-to-cart/{id_producto}', [
-        'uses'=> 'ProductController@getAddToCart',
+    Route::post('/api/add-to-cart/', [
+        'uses'=> 'ProductController@postAddToCart',
         'as'=> 'product.addToCart'
     ]);
     //reducir
-    Route::get('/api/reduce/{id_producto}', [
+    Route::post('/api/reduce/', [
         'uses'=> 'ProductController@getReduceByOne',
         'as'=> 'product.reduceByOne'
     ]);
     //eliminar
-    Route::get('/api/remove/{id_producto}', [
+    Route::post('/api/remove/', [
         'uses'=> 'ProductController@getRemoveItem',
         'as'=> 'product.remove'
     ]);
     //vista
-    Route::get('/api/shopping-cart', [
+    Route::get('/api/shopping-cart/{id_user}', [
         'uses'=> 'ProductController@getCart',
         'as'=> 'product.shoppingCart'
     ]);
