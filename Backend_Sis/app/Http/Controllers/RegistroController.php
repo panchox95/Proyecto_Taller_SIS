@@ -34,26 +34,26 @@ class RegistroController extends Controller
         );
         $message='';
         if(strlen ( $params->password )<7 || strlen ( $params->password )>26){
-            $validate=true;
+
             $message=$message.' La clave debe tener entre 8 y 25 caracteres';
         }
         if($validate2->fails()){
-            $validate=true;
+
             $message=$message.' El campo correo debe ser un correo';
         }
         if($validate3->fails()){
-            $validate=true;
+
             $message=$message.' El campo nombre debe tener solo letras';
         }
         if($validate4->fails()){
-            $validate=true;
+
             $message=$message.' El campo apellido debe tener solo letras';
         }
         if($validate5->fails()){
-            $validate=true;
+
             $message=$message.' Se deben llenar todos los campos';
         }
-        return $validate;
+        return $message;
     }
 
     public function registro(Request $request){
@@ -68,9 +68,9 @@ class RegistroController extends Controller
         //Validamos
         $validate=false;
         $validates = new Validator;
-        $bool=$this->func($validates,$params_array,$params);
-       
-        if($bool){
+        $message=$this->func($validates,$params_array,$params);
+       //return($array);
+        if($message != ''){
             $data=array('status'=>'ERROR','code' => 400,'message' => $message);
             $code=400;
             return response()->json($data,$code);
@@ -84,7 +84,6 @@ class RegistroController extends Controller
                     $data=$registro->registro($params);
                     return response()->json($data,$code);
                 }
-                else{}
                 $code=400;
                 $data=array('status'=>'ERROR','code' => 400,'message' => 'La contraseña necesita por lo menos una letra mayuscula');
                 return response()->json($data,$code);
