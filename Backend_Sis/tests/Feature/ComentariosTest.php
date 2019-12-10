@@ -20,7 +20,7 @@ class ComentariosTest extends TestCase
         $response
         ->assertStatus(200)
         ->assertJson([
-            'message' => "lizta de ofertas"
+            'message' => "lista de ofertas"
         ]) ->assertJson([
             'status' => "SUCCESS"
         ]);

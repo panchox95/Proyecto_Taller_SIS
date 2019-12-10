@@ -18,10 +18,11 @@ class CreateCarrodecomprasTable extends Migration
             $table->timestamps();
             $table->integer('id_user');
             $table->integer('id_mercaderia');
-            $table->string('nombre');
-            $table->integer('cantidad');
+            $table->string('nombre')->nullable(true);
+            $table->integer('cantidad')->nullable(true);
             $table->string('descripcion');
             $table->integer('precio');
+            $table->string('estado');
         });
     }
 

@@ -2,103 +2,142 @@
 
 namespace App\Http\Controllers;
 
+use App\carrodecompras;
 use App\Cart;
 use App\Helpers\JwtAuth;
+use App\Http\BL\ProductsBL;
 use App\Http\Middleware\JwtMiddleware;
 use App\Producto;
 use App\Order;
 use http\Client\Response;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
-use Session;
+use Illuminate\Support\Facades\DB;
 use Stripe\Charge;
 use Stripe\Stripe;
 use App\Http\Requests;
+use function Sodium\increment;
+use Illuminate\Support\Facades\Validator;
 
 class ProductController extends Controller
 {
 
-//    public function getAddToCart(Request $request, $id)
-//    {
-//        $product = Product::find($id);
-//        $oldCart = $$session::has('cart') ? $$session::get('cart') : null;
-//        $cart = new Cart($oldCart);
-//        $cart->add($product, $product->id);
-//        $$session::put('cart', $cart);
-//        $$session::save();
-//        return redirect()->route('product.index');
-//    }
-    public function getAddToCart(Request $request, $id_producto)
+    public function postAddToCart(Request $request)
     {
-        $session = new Session;
+        $json = $request->all('json',null); //Recibimos el JSON enviado por el Frontend
+        $params_array  = json_decode(json_encode( $json), true ); //Parametros para la validacion
+        $params = json_decode((json_encode($json))); //Parametros para el uso
+        $validates = new Validator;
+        $validate= $validates::make($params_array,[ // Validacion
+            'id_usuario'=>'required',
+            'id_producto'=>'required'
+        ]);
+        if($validate->fails()){  //Si la validacion falla
+            return response()-> json($validate->errors(),400);
+        }
+
         $productos = new Producto;
-        $producto = $productos::find($id_producto);
-
-        $cart = $session::has('cart') ? $session::get('cart') : null;
-        if(!$cart)
-        {
-            $cart = new Cart($cart);
-        }
-        $cart->add($producto, $producto->id_producto);
-        $session::put('cart', $cart);
-        $conf=array(
-            'status'=>'SUCCESS',
-            'code' => 200);
-        $session::save();
-        return response()->json($conf);
-        //return Response::json_encode($cart);
-
-        //return redirect()->route('product.index');
-    }
-
-    public function getReduceByOne($id_producto){
-        $session = new Session;
-        $oldCart=$session::has('cart') ? $session::get('cart'):null;
-        $cart= new Cart($oldCart);
-        $cart->reduceByOne($id_producto);
-
-        if (count($cart->items)>0){
-            $session::put('cart', $cart);
-        }
-        if (count($cart->items)<=0){
-            $session::forget('cart');
-        }
+        $producto =$productos->verProducto($params->id_producto);
+        $carro= DB::table('carrodecompras')
+            ->updateOrInsert(
+                ['id_user' => $params->id_usuario, 'id_mercaderia' => $params->id_producto, 'estado'=>'espera'],
+                [
+                    'nombre' => $producto->nombre,
+                    'cantidad' => \DB::raw('cantidad + 1'),
+                    'descripcion' => $producto->nombre,
+                    'precio' => $producto->precio,
+                ]
+            );
+       // return($producto);
+//        $carrodecompras = new carrodecompras();
+//        $carrodecompras->saveCarro($params, $producto);
         $conf=array(
             'status'=>'SUCCESS',
             'code' => 200);
         return response()->json($conf);
-       // return redirect()->route('product.shoppingCart');
     }
 
-    public function getRemoveItem($id_producto){
-        $session = new Session;
-        $oldCart=$session::has('cart') ? $session::get('cart'):null;
-        $cart= new Cart($oldCart);
-        $cart->removeItem($id_producto);
+    public function getReduceByOne(Request $request){
+        $json = $request->all('json',null); //Recibimos el JSON enviado por el Frontend
+        $params_array  = json_decode(json_encode( $json), true ); //Parametros para la validacion
+        $params = json_decode((json_encode($json))); //Parametros para el uso
+        $validates = new Validator;
+        $validate= $validates::make($params_array,[ // Validacion
+            'id_usuario'=>'required',
+            'id_producto'=>'required'
+        ]);
+        if($validate->fails()){  //Si la validacion falla
+            return response()-> json($validate->errors(),400);
+        }
 
-        if (count($cart->items)>0){
-            $session::put('cart', $cart);
-        }
-        if (count($cart->items)<=0){
-            $session::forget('cart');
-        }
+        $productos = new Producto;
+        $producto =$productos->verProducto($params->id_producto);
+        $carro= DB::table('carrodecompras')
+            ->updateOrInsert(
+                ['id_user' => $params->id_usuario, 'id_mercaderia' => $params->id_producto, 'estado'=>'espera'],
+                [
+                    'nombre' => $producto->nombre,
+                    'cantidad' => \DB::raw('cantidad - 1'),
+                    'descripcion' => $producto->nombre,
+                    'precio' => $producto->precio,
+                ]
+            );
+        // return($producto);
+//        $carrodecompras = new carrodecompras();
+//        $carrodecompras->saveCarro($params, $producto);
         $conf=array(
             'status'=>'SUCCESS',
             'code' => 200);
         return response()->json($conf);
-       // return redirect()->route('product.shoppingCart');
     }
 
-    public function getCart(){
-        $session = new Session;
-        if(!$session::has('cart')){
-            $code = 404;
-            //return view('shop.shopping-cart', ['productos'=> null]);
-            return response()->json(null,  $code );
+    public function getRemoveItem(Request $request){
+        $json = $request->all('json',null); //Recibimos el JSON enviado por el Frontend
+        $params_array  = json_decode(json_encode( $json), true ); //Parametros para la validacion
+        $params = json_decode((json_encode($json))); //Parametros para el uso
+        $validates = new Validator;
+        $validate= $validates::make($params_array,[ // Validacion
+            'id_usuario'=>'required',
+            'id_producto'=>'required'
+        ]);
+        if($validate->fails()){  //Si la validacion falla
+            return response()-> json($validate->errors(),400);
         }
-        $oldCart = $session::get('cart');
-        $cart = new Cart($oldCart);
-        return response()->json(['productos'=>$cart->items, 'totalPrice' => $cart->totalPrice]);
+
+        $productos = new Producto;
+        $producto =$productos->verProducto($params->id_producto);
+        $carro= DB::table('carrodecompras')
+            ->where('id_user','=', $params->id_usuario )
+            ->where('id_mercaderia','=', $params->id_producto )
+            ->where('estado','=', 'espera' )
+            ->delete();
+        // return($producto);
+//        $carrodecompras = new carrodecompras();
+//        $carrodecompras->saveCarro($params, $producto);
+        $conf=array(
+            'status'=>'SUCCESS',
+            'code' => 200);
+        return response()->json($conf);
+    }
+
+    public function getCart($id_user){
+
+        $carro=DB::table('carrodecompras')
+            ->where('id_user', $id_user)
+            ->where('estado', 'espera')
+            ->where('cantidad','>',0)
+            ->get();
+        $total=DB::table('carrodecompras')
+            ->where('id_user', $id_user)
+            ->where('estado', 'espera')
+            ->sum(DB::raw('carrodecompras.cantidad * carrodecompras.precio'));
+        $conf=array(
+            'status'=>'SUCCESS',
+            'code' => 200);
+        //return response()->json($conf);
+
+        return response()->json(['productos'=>$carro, 'totalPrice' => $total]);
 
         //return view('shop.shopping-cart', ['productos' => $cart->items, 'totalPrice' => $cart->totalPrice]);
     }
