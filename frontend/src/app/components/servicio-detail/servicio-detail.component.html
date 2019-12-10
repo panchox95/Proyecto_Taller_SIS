@@ -73,7 +73,7 @@
     
     </div>
 
-    <h3>Comentarios: <a [routerLink]="['/comentarioservicio', servicio.id_servicio]" class="btn btn-success" >Nuevo</a></h3>
+    <h3>Comentarios: <a id="commentNew" [routerLink]="['/comentarioservicio', servicio.id_servicio]" class="btn btn-success" >Nuevo</a></h3>
 
     <div class="row" *ngFor="let comment of comentarioservicio">
         <div class="col-md-10">

@@ -7,7 +7,7 @@
     <div class="alert alert-success" *ngIf="status == 'SUCCESS'">
       Usuario Aceptado
     </div>
-    <div class="alert alert-danger" *ngIf="status == 'ERROR'">
+    <div id="badLogin" class="alert alert-danger" *ngIf="status == 'ERROR'">
       {{message}}
     </div>
     <div class="alert alert-danger" *ngIf="status == 'FALTAN'">

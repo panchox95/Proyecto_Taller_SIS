@@ -64,8 +64,8 @@
                         <td>{{art.descripcion}}</td>
                         <th>{{art.tipo}}</th>
                         <td>
-                            <a [routerLink]="['/articulo', art.id]" class="btn btn-info" *ngIf="art.tipo == 'producto'">Ver Producto</a>
-                            <a [routerLink]="['/servicio', art.id]" class="btn btn-info" *ngIf="art.tipo == 'servicio'">Ver Servicio</a>
+                            <a id="viewProducto" [routerLink]="['/articulo', art.id]" class="btn btn-info" *ngIf="art.tipo == 'producto'">Ver Producto</a>
+                            <a id="viewServicio" [routerLink]="['/servicio', art.id]" class="btn btn-info" *ngIf="art.tipo == 'servicio'">Ver Servicio</a>
                         </td>
                         </tr>
                     </tbody>

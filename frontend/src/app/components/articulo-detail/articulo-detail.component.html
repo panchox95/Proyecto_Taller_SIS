@@ -1,7 +1,7 @@
 
 <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular-cookies.js'></script>
 <div class="container">
-        <h1>Detalle:</h1><br>
+        <h1 id="titileDetail" >Detalle:</h1><br>
 
         <div class="alert alert-success" *ngIf="status_compra=='SUCCESS'">
             El articulo se añadio a tu carrito de compras
@@ -83,7 +83,7 @@
 
         </div>
 
-        <h3>Comentarios: <a [routerLink]="['/comentario', articulo.id_producto]" class="btn btn-success" >Nuevo</a></h3>
+        <h3>Comentarios: <a id="articuloNew" [routerLink]="['/comentario', articulo.id_producto]" class="btn btn-success" >Nuevo</a></h3>
 
         <div class="row" *ngFor="let comment of comentarioproducto">
             <div class="col-md-10">
