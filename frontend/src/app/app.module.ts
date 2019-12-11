@@ -38,6 +38,7 @@ import {
   FacebookLoginProvider,
 } from "angular-6-social-login";
 import { BusquedaRangoComponent } from './components/busqueda-rango/busqueda-rango.component';
+import { CheckoutComponent } from './components/checkout/checkout.component';
 
 export function getAuthServiceConfigs() {
   let config = new AuthServiceConfig(
@@ -79,7 +80,8 @@ export function getAuthServiceConfigs() {
       OfertaServicioNewComponent,
       OfertaservicioDetailComponent,
       CarritoListComponent,
-      BusquedaRangoComponent
+      BusquedaRangoComponent,
+      CheckoutComponent
   ],
   imports: [
       BrowserModule,

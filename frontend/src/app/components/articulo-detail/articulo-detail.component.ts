@@ -7,6 +7,8 @@ import { Articulo } from '../../models/articulo';
 import { ArticuloService } from '../../services/articulo.service';
 import { ComentarioProducto } from '../../models/comentarioproducto';
 import { ComentarioService } from '../../services/comentario.service';
+import {Carrito} from '../../models/carrito';
+import * as jwt_decode from "jwt-decode";
 
 @Component({
   selector: 'app-articulo-detail',
@@ -61,7 +63,7 @@ export class ArticuloDetailComponent implements OnInit {
           } else{
             this._router.navigate(['home']);
           }
-          
+
         },
         error => {
           console.log(<any>error);
@@ -83,7 +85,7 @@ export class ArticuloDetailComponent implements OnInit {
           } else{
             this._router.navigate(['home']);
           }
-          
+
         },
         error => {
           console.log(<any>error);
@@ -105,7 +107,7 @@ export class ArticuloDetailComponent implements OnInit {
           } else{
             this._router.navigate(['home']);
           }
-          
+
         },
         error => {
           console.log(<any>error);
@@ -114,14 +116,20 @@ export class ArticuloDetailComponent implements OnInit {
     });
   }
 
-  buyArticulo(id){
-    this._articuloService.buyArticulo(id).subscribe(
+  buyArticulo(id_producto) {
+    let id_usuario: string;
+    const datos=jwt_decode(localStorage.getItem('token'));
+    id_usuario = datos.id_user;
+    console.log('jp funciona');
+    console.log(id_usuario, id_producto);
+    const a = new Carrito(parseInt(id_usuario), id_producto);
+    this._articuloService.buyArticulo(a).subscribe(
       response => {
         console.log('compra: ', response);
         if(response.status =='SUCCESS'){
 
           this.status_compra='SUCCESS';
-          
+
         } else{
           this.status_compra='ERROR';
           //this._router.navigate(['home']);

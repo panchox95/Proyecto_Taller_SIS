@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/internal/Observable';
 import { GLOBAL } from './global';
 import { Articulo } from '../models/articulo';
 import { headersToString } from 'selenium-webdriver/http';
+import {Carrito} from '../models/carrito';
 
 
 @Injectable()
@@ -53,9 +54,21 @@ export class ArticuloService {
     return this._http.delete(this.url+'BorrarProductoAlaMala/'+id, { headers: headers});
   }
 
-  buyArticulo(id): Observable <any>{
+  buyArticulo(data: Carrito): Observable <any>{
+      let json=JSON.stringify(data);
     let headers =new HttpHeaders().set('Content-Type','application/json');
-    return this._http.get(this.url+'add-to-cart/'+id, { headers: headers});
+    return this._http.post(this.url+'add-to-cart/', json, { headers: headers});
+  }
+
+  delete1Articulo(data: Carrito): Observable <any>{
+    let json=JSON.stringify(data);
+    let headers =new HttpHeaders().set('Content-Type','application/json');
+    return this._http.post(this.url+'reduce/', json, { headers: headers});
+  }
+  deleteallArticulo(data: Carrito): Observable <any>{
+    let json=JSON.stringify(data);
+    let headers =new HttpHeaders().set('Content-Type','application/json');
+    return this._http.post(this.url+'remove/', json, { headers: headers});
   }
 
   getPuntaje(id): Observable<any>{

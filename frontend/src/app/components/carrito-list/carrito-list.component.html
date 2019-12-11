@@ -1,29 +1,45 @@
 <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular-cookies.js'></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <div class="container">
     <div class="col-md-12" *ngIf="page_title">
         <h2>{{page_title}}</h2>
-        
+
         <div class="col-md-12">
             <table class="table table-striped">
                 <thead>
                     <tr>
                         <th scope="col">Nombre</th>
-                        <th scope="col">Marca</th>
+                        <th scope="col">Descripcion</th>
                         <th scope="col">Cantidad</th>
                         <th scope="col">Precio</th>
-                        <th scope="col">Descripcion</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let art of articulo">
-                        <th>{{art.nombre}}</th>
-                        <td>{{art.marca}}</td>
-                        <td>{{art.cantidad}}</td>
-                        <td>{{art.precio}}</td>
-                        <td>{{art.descripcion}}</td>
+                    <tr *ngFor="let carrito of carritolista">
+                        <td>{{carrito.nombre}}</td>
+                        <td>{{carrito.descripcion}}</td>
+                        <td>{{carrito.cantidad}}</td>
+                        <td>{{carrito.precio}}</td>
+                      <div class="btn-group">
+                        <button type="button" class="btn btn-primary float-sm-left dropdown-toogle" data-toggle="dropdown">
+                          Opciones <span class="caret"></span>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          <a class="dropdown-item" (click)="eliminar1articulo(carrito.id_mercaderia)">Reducir 1 </a>
+                          <a class="dropdown-item" (click)="deleteallArticulo(carrito.id_mercaderia)">Eliminar Producto</a>
+                        </div>
+                      </div>
                     </tr>
+                <tr>
+                  <th>Precio Total: {{PrecioTotal}} Bs</th>
+                </tr>
                 </tbody>
             </table>
         </div>
+      <div class="col-md-4 float-right">
+        <a [routerLink]="['/checkout']" class="btn btn-success" role="button">Comprar</a>
+      </div>
     </div>
 </div>

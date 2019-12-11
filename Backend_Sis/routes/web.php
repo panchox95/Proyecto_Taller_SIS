@@ -121,17 +121,15 @@ Route::get('/api/verservicio/{id}','ServiciosController@verServicio');
 
 
 //vista de check out
-Route::get('/api/checkout', [
+Route::get('/api/checkout/{id_user}', [
     'uses'=> 'ProductController@getCheckout',
     'as'=> 'checkout',
-    'middleware'=>'Jwt'
 ]);
 
 //comprar
 Route::post('/api/checkout', [
     'uses'=> 'ProductController@postCheckout',
     'as'=> 'checkout',
-    'middleware'=>'Jwt'
 ]);
 
 

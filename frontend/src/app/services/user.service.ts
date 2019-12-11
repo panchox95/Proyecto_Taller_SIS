@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
 import { GLOBAL } from './global';
 import { User } from '../models/user';
+import {Carrito} from '../models/carrito';
 
 
 @Injectable()
@@ -83,8 +84,19 @@ export class UserService {
         return this._http.get(this.url+'verperfil',{headers: headers})
     }
 
-    checkCarrito(token): Observable<any>{
-        let headers =new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded').set('Authorization',token);
-      return this._http.get(this.url+'shopping-cart', { headers: headers});
+    checkCarrito(id_usuario): Observable<any>{
+        let headers =new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
+      return this._http.get(this.url+'shopping-cart/'+id_usuario, { headers: headers});
+    }
+
+    getCheckout(id_usuario): Observable<any>{
+      let headers =new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
+      return this._http.get(this.url+'checkout/'+id_usuario, { headers: headers});
+    }
+
+    postCheckout(form): Observable <any>{
+      let json=JSON.stringify(form);
+      let headers =new HttpHeaders().set('Content-Type','application/json');
+      return this._http.post(this.url+'checkout/', json, { headers: headers});
     }
 }

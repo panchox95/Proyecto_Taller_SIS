@@ -20,17 +20,7 @@ class carrodecompras extends Model
 //        $this->estado=$params->estado;
 //        $this->save();
     }
-    /*$carro=DB::table('carrodecompras')
 
-            ->updateOrInsert(
-            ['id_user' => $params->id_usuario, 'id_mercaderia' => $producto->id_producto, 'estado'=>'espera'],
-            [
-                'nombre' => $producto->nombre,
-                'cantidad' => \DB::raw('cantidad + 1'),
-                'descripcion' => $producto->descripcion,
-                'precio'=> $producto->precio
-            ]
-        );*/
     public function saveCarro($params, $producto){
         $this->id_mercaderia=$params->id_producto;
         $this->id_user=$params->id_usuario;

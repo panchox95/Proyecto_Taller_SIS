@@ -26,6 +26,7 @@ import { OfertaDetailComponent } from './components/oferta-detail/oferta-detail.
 import { OfertaServicioNewComponent } from './components/ofertaservicio-new/ofertaservicio-new.component';
 import { CarritoListComponent } from './components/carrito-list/carrito-list.component';
 import { BusquedaRangoComponent } from './components/busqueda-rango/busqueda-rango.component';
+import {CheckoutComponent} from './components/checkout/checkout.component';
 
 const appRoutes: Routes = [
     { path: '', component: DefaultComponent },
@@ -56,11 +57,11 @@ const appRoutes: Routes = [
     { path: 'ofertaproducto-detail/:id_producto', component: OfertaDetailComponent },
     { path: 'carrito', component: CarritoListComponent },
     { path: 'rango', component: BusquedaRangoComponent },
-
+    { path: 'checkout', component: CheckoutComponent },
 
     // Este siempre tiene q ser el ultimo
     { path: '**', component: DefaultComponent },
-    
+
 ];
 
 export const appRoutingProviders: any[] = [];

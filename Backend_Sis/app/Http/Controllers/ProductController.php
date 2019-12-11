@@ -49,9 +49,6 @@ class ProductController extends Controller
                     'precio' => $producto->precio,
                 ]
             );
-       // return($producto);
-//        $carrodecompras = new carrodecompras();
-//        $carrodecompras->saveCarro($params, $producto);
         $conf=array(
             'status'=>'SUCCESS',
             'code' => 200);
@@ -135,50 +132,39 @@ class ProductController extends Controller
         $conf=array(
             'status'=>'SUCCESS',
             'code' => 200);
-        //return response()->json($conf);
 
         return response()->json(['productos'=>$carro, 'totalPrice' => $total]);
-
         //return view('shop.shopping-cart', ['productos' => $cart->items, 'totalPrice' => $cart->totalPrice]);
     }
 
-    public function getCheckout(){
-        $session = new Session;
-        if(!$session::has('cart')){
-           // return view('shop.shopping-cart');
-            $conf=array(
-                'status'=>'FAILURE',
-                'message'=> 'no inicio sesion',
-                'code' => 401);
-            return Response()->json($conf);
-        }
-        $oldCart = $session::get('cart');
-        $cart = new Cart($oldCart);
-        $total =$cart->totalPrice;
+    public function getCheckout($id_user){
+        $total=DB::table('carrodecompras')
+            ->where('id_user', $id_user)
+            ->where('estado', 'espera')
+            ->sum(DB::raw('carrodecompras.cantidad * carrodecompras.precio'));
         $conf=array(
             'status'=>'SUCCESS',
             'code' => 200);
-        return response()->json( $total, $conf );
+        return response()->json( $total );
         //return view('shop.checkout', ['total' => $total]);
     }
 
     public function postCheckout(Request $request){
-        $session = new Session;
-        if(!$session::has('cart')){
-            $conf=array(
-                'status'=>'SUCCESS',
-                'code' => 201);
-            //return redirect('shop.shoppingCart');
-            return response($conf);
-        }
-        $oldCart = $session::get('cart');
-        $cart = new Cart($oldCart);
+        $cart = DB::table('carrodecompras')
+            ->where('id_user',$request->id_user)
+            ->where('estado', 'espera')
+            ->where('cantidad','>',0)
+            ->get();
+        $total=DB::table('carrodecompras')
+            ->where('id_user', $request->id_user)
+            ->where('estado', 'espera')
+            ->sum(DB::raw('carrodecompras.cantidad * carrodecompras.precio'));
         $stripe = new Stripe;
         $stripe::setApiKey('sk_test_5UoFetG19hEmgxJQ21vKT47k00bwx3yrDl');
         try{
             $charge = new Charge;
             $charge = $charge::create(array(
-                "amount" => $cart->totalPrice * 100,
+                "amount" => $total * 100,
                 "currency" => "usd",
                 "source" => $request->input('stripeToken'), // obtained with Stripe.js
                 "description" => "Test Charge"
@@ -196,7 +182,12 @@ class ProductController extends Controller
             return response()->json($e->getMessage(), $code);
         }
 
-        $session::forget('cart');
+        $deletecart = DB::table('carrodecompras')
+            ->where('id_user',$request->id_user)
+            ->where('estado', 'espera')
+            ->where('cantidad','>',0)
+            ->delete();
+
         //return redirect()->route('product.index')->with('success', 'Successfully purchased products!');
         $conf=array(
             'status'=>'SUCCESS',
