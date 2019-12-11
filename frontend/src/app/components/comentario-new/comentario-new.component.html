@@ -2,11 +2,11 @@
         <div class="col-md-12" >
             <h2>{{page_title}}</h2>
 
-            <div class="alert alert-success" *ngIf="status_comentario=='SUCCESS'">
+            <div id="goodComment" class="alert alert-success" *ngIf="status_comentario=='SUCCESS'">
                 El comentario se guardo correctamente
             </div>
                     
-            <div class="alert alert-danger" *ngIf="status_comentario=='ERROR'">
+            <div id="badComment" class="alert alert-danger" *ngIf="status_comentario=='ERROR'">
                 El comentario no se guardo, intentalo de nuevo
             </div>
                 
@@ -73,7 +73,7 @@
                     </span>
                 </p>
                     
-                <input type="submit" value="Guardar" class="btn btn-success" [disabled]="!comentarioNew.form.valid">
+                <input id="sendComment" type="submit" value="Guardar" class="btn btn-success" [disabled]="!comentarioNew.form.valid">
                     
             </form>
 

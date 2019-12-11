@@ -4,12 +4,12 @@
             <h1>Registro</h1>
         </div>
     
-        <div class="alert alert-success" *ngIf="status == 'SUCCESS' ">
+        <div id="goodRegister" class="alert alert-success" *ngIf="status == 'SUCCESS' ">
             El registro se ha completado satisfactoriamente,
           <a [routerLink]="['/login']">Identificate aquí</a>
         </div>
     
-        <div class="alert alert-danger" *ngIf="status == 'ERROR' ">
+        <div id="badRegister" class="alert alert-danger" *ngIf="status == 'ERROR' ">
             {{message}}
         </div>
     
