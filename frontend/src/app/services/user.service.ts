@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/internal/Observable';
 import { GLOBAL } from './global';
 import { User } from '../models/user';
 import {Carrito} from '../models/carrito';
+import {Checkout} from '../models/checkout';
 
 
 @Injectable()
@@ -94,9 +95,11 @@ export class UserService {
       return this._http.get(this.url+'checkout/'+id_usuario, { headers: headers});
     }
 
-    postCheckout(form): Observable <any>{
-      let json=JSON.stringify(form);
-      let headers =new HttpHeaders().set('Content-Type','application/json');
-      return this._http.post(this.url+'checkout/', json, { headers: headers});
-    }
+  postcheckout(token): Observable <any>{
+    let json=JSON.stringify(token);
+    console.log(json);
+    let headers =new HttpHeaders().set('Content-Type','application/json');
+    return this._http.post(this.url+'checkout', json, { headers: headers});
+  }
+
 }

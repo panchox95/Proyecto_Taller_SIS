@@ -33,7 +33,7 @@ export class CarritoListComponent implements OnInit {
   constructor(
     private _route: ActivatedRoute,
     private _router: Router,
-    private _userService: UserService,
+    public _userService: UserService,
     private _articuloService: ArticuloService,
     private _comentarioService: ComentarioService
   ) {
@@ -43,6 +43,7 @@ export class CarritoListComponent implements OnInit {
 
   ngOnInit() {
     this.getShop();
+    this.loadStripe();
   }
 
   getShop(){
@@ -110,6 +111,49 @@ export class CarritoListComponent implements OnInit {
         console.log(<any>error);
       }
     );
+  }
+
+  loadStripe() {
+
+    if(!window.document.getElementById('stripe-script')) {
+      var s = window.document.createElement("script");
+      s.id = "stripe-script";
+      s.type = "text/javascript";
+      s.src = "https://checkout.stripe.com/checkout.js";
+      window.document.body.appendChild(s);
+    }
+  }
+
+  pay(amount) {
+
+    let id_usuario: string;
+    const datos=jwt_decode(localStorage.getItem('token'));
+    id_usuario = datos.id_user;
+    var handler = (<any>window).StripeCheckout.configure({
+      key: 'pk_test_JSjGYK2ckIyzVDkKwLc342Qj00g36Ffq9E',
+      locale: 'auto',
+      token: function (token: any) {
+        // You can access the token ID with `token.id`.
+        // Get the token ID to your server-side code for use.
+        console.log(token);
+
+        alert('Compra Realizada con Exito');
+        this._userService.getCheckout(id_usuario).subscribe(
+          response => {
+            console.log('respuesta: ', response);
+          },
+          error => {
+            console.log('la putisima: ', <any>error);
+          }
+        );
+
+      }
+    });
+    handler.open({
+      name: 'Checkout',
+      description: 'Pago de la compra ',
+      amount: amount * 100
+    });
   }
 
 }

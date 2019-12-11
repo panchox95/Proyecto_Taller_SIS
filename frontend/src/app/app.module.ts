@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 // @ts-ignore
 import { NgModule } from '@angular/core';
 // @ts-ignore
-import { FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -84,13 +84,14 @@ export function getAuthServiceConfigs() {
       CheckoutComponent
   ],
   imports: [
-      BrowserModule,
-      AppRoutingModule,
-      FormsModule,
-      routing,
-      HttpClientModule,
-      FontAwesomeModule,
-      SocialLoginModule
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    routing,
+    HttpClientModule,
+    FontAwesomeModule,
+    SocialLoginModule,
+    ReactiveFormsModule
   ],
   providers: [
       appRoutingProviders,

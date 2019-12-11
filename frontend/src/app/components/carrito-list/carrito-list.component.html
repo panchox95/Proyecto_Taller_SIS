@@ -33,13 +33,13 @@
                       </div>
                     </tr>
                 <tr>
-                  <th>Precio Total: {{PrecioTotal}} Bs</th>
+                  <th>Precio Total: {{PrecioTotal}} $</th>
                 </tr>
                 </tbody>
             </table>
         </div>
-      <div class="col-md-4 float-right">
-        <a [routerLink]="['/checkout']" class="btn btn-success" role="button">Comprar</a>
+      <div class="col-md-4">
+        <button (click)="pay(PrecioTotal)" class="btn btn-info btn-block">Comprar</button>
       </div>
     </div>
 </div>

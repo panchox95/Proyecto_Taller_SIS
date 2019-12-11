@@ -5,6 +5,7 @@ import { GLOBAL } from './global';
 import { Articulo } from '../models/articulo';
 import { headersToString } from 'selenium-webdriver/http';
 import {Carrito} from '../models/carrito';
+import {Checkout} from '../models/checkout';
 
 
 @Injectable()

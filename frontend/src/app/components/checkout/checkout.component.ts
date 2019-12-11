@@ -52,9 +52,10 @@ export class CheckoutComponent implements OnInit {
         this.PrecioTotal=response;
       },
       error => {
-        console.log(<any>error);
+        console.log('jp', <any>error);
       }
     );
+    console.log('jp funciona mierda');
   }
 
   // postCheckout(CheckoutForm: NgForm){
@@ -72,7 +73,6 @@ export class CheckoutComponent implements OnInit {
   //     }
   //   );
   // }
-
   loadStripe() {
 
     if(!window.document.getElementById('stripe-script')) {

@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Stripe\Charge;
+use Stripe\Customer;
 use Stripe\Stripe;
 use App\Http\Requests;
 use function Sodium\increment;
@@ -151,44 +152,49 @@ class ProductController extends Controller
 
     public function postCheckout(Request $request){
         $cart = DB::table('carrodecompras')
-            ->where('id_user',$request->id_user)
+            ->where('id_user',12)
             ->where('estado', 'espera')
             ->where('cantidad','>',0)
             ->get();
         $total=DB::table('carrodecompras')
-            ->where('id_user', $request->id_user)
+            ->where('id_user', 12)
             ->where('estado', 'espera')
             ->sum(DB::raw('carrodecompras.cantidad * carrodecompras.precio'));
         $stripe = new Stripe;
         $stripe::setApiKey('sk_test_5UoFetG19hEmgxJQ21vKT47k00bwx3yrDl');
         try{
-            $charge = new Charge;
-            $charge = $charge::create(array(
-                "amount" => $total * 100,
-                "currency" => "usd",
-                "source" => $request->input('stripeToken'), // obtained with Stripe.js
-                "description" => "Test Charge"
+//            $charge = new Charge;
+//            $charge = $charge::create(array(
+//                "amount" => $total * 100,
+//                "currency" => "usd",
+//                "source" => $request->token, // obtained with Stripe.js
+//                "description" => "Test Charge"
+//            ));
+            $customer = Customer::create(array(
+                'email' => $request->stripeEmail,
+                'source' => $request->stripeToken
             ));
-            $order= new Order();
-            $order->cart = serialize($cart);
-            $order->address = $request->input('address');
-            $order->name = $request->input('name');
-            $order->payment_id = $charge->id;
-            $jwt = new JwtMiddleware;
-            $jwt->user()->orders()->save($order);
+
+            $charge = Charge::create(array(
+                'customer' => $customer->id,
+                'amount' => 1999,
+                'currency' => 'usd'
+            ));
+
+            return 'Charge successful, you get the course!';
         }catch (\Exception $e){
             //return redirect()->route('checkout')->with('error', $e->getMessage());
             $code = 400;
             return response()->json($e->getMessage(), $code);
         }
 
-        $deletecart = DB::table('carrodecompras')
-            ->where('id_user',$request->id_user)
-            ->where('estado', 'espera')
-            ->where('cantidad','>',0)
-            ->delete();
+//        $deletecart = DB::table('carrodecompras')
+//            ->where('id_user',12)
+//            ->where('estado', 'espera')
+//            ->where('cantidad','>',0)
+//            ->delete();
 
-        //return redirect()->route('product.index')->with('success', 'Successfully purchased products!');
+        //return redirect()->route('product.index')->wits('success', 'Successfully purchased products!');
         $conf=array(
             'status'=>'SUCCESS',
             'code' => 200);
