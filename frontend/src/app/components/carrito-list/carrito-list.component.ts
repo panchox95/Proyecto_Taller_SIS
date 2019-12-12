@@ -33,7 +33,7 @@ export class CarritoListComponent implements OnInit {
   constructor(
     private _route: ActivatedRoute,
     private _router: Router,
-    public _userService: UserService,
+    private _userService: UserService,
     private _articuloService: ArticuloService,
     private _comentarioService: ComentarioService
   ) {
@@ -129,16 +129,20 @@ export class CarritoListComponent implements OnInit {
     let id_usuario: string;
     const datos=jwt_decode(localStorage.getItem('token'));
     id_usuario = datos.id_user;
-    var handler = (<any>window).StripeCheckout.configure({
+    let id_token;
+    let a: UserService;
+    a = this._userService;
+    let handler = (<any>window).StripeCheckout.configure({
       key: 'pk_test_JSjGYK2ckIyzVDkKwLc342Qj00g36Ffq9E',
       locale: 'auto',
       token: function (token: any) {
         // You can access the token ID with `token.id`.
         // Get the token ID to your server-side code for use.
         console.log(token);
-
-        alert('Compra Realizada con Exito');
-        this._userService.getCheckout(id_usuario).subscribe(
+        id_token = token;
+         alert('Compra Realizada con Exito');
+        console.log('Pruebas Jawar' ,id_token);
+        a.postcheckout(token).subscribe(
           response => {
             console.log('respuesta: ', response);
           },
@@ -146,14 +150,15 @@ export class CarritoListComponent implements OnInit {
             console.log('la putisima: ', <any>error);
           }
         );
-
-      }
+             }
     });
+
     handler.open({
       name: 'Checkout',
       description: 'Pago de la compra ',
       amount: amount * 100
     });
+
   }
 
 }
