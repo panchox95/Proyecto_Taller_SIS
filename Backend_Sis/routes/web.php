@@ -127,10 +127,12 @@ Route::get('/api/checkout/{id_user}', [
 ]);
 
 //comprar
-Route::post('/api/checkout', [
-    'uses'=> 'ProductController@postCheckout',
+Route::get('/api/checkoutcompra/{id_user}', [
+    'uses'=> 'ProductController@postCheckoutOrder',
     'as'=> 'checkout',
 ]);
+
+
 
 
     //CARRITO
@@ -154,4 +156,9 @@ Route::post('/api/checkout', [
         'uses'=> 'ProductController@getCart',
         'as'=> 'product.shoppingCart'
     ]);
-
+//Orders
+//vista
+Route::get('/api/orders/{id_user}', [
+    'uses'=> 'ProductController@getOrders',
+    'as'=> 'product.orders'
+]);

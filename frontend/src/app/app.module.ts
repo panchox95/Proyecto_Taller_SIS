@@ -39,6 +39,7 @@ import {
 } from "angular-6-social-login";
 import { BusquedaRangoComponent } from './components/busqueda-rango/busqueda-rango.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
+import { OrdenesComponent } from './components/ordenes/ordenes.component';
 
 export function getAuthServiceConfigs() {
   let config = new AuthServiceConfig(
@@ -81,7 +82,8 @@ export function getAuthServiceConfigs() {
       OfertaservicioDetailComponent,
       CarritoListComponent,
       BusquedaRangoComponent,
-      CheckoutComponent
+      CheckoutComponent,
+      OrdenesComponent
   ],
   imports: [
     BrowserModule,

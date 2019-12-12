@@ -95,11 +95,14 @@ export class UserService {
       return this._http.get(this.url+'checkout/'+id_usuario, { headers: headers});
     }
 
-  postcheckout(token): Observable <any>{
-    let json=JSON.stringify(token);
-    console.log(json);
+  postcheckout(id_usuario): Observable <any>{
     let headers =new HttpHeaders().set('Content-Type','application/json');
-    return this._http.post(this.url+'checkout', json, { headers: headers});
+    return this._http.get(this.url+'checkoutcompra/'+id_usuario, { headers: headers});
+  }
+
+  checkOrdenes(id_usuario): Observable<any>{
+    let headers =new HttpHeaders().set('Content-Type','application/x-www-form-urlencoded');
+    return this._http.get(this.url+'orders/'+id_usuario, { headers: headers});
   }
 
 }

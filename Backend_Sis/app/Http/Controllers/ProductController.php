@@ -46,7 +46,7 @@ class ProductController extends Controller
                 [
                     'nombre' => $producto->nombre,
                     'cantidad' => \DB::raw('cantidad + 1'),
-                    'descripcion' => $producto->nombre,
+                    'descripcion' => $producto->descripcion,
                     'precio' => $producto->precio,
                 ]
             );
@@ -77,7 +77,7 @@ class ProductController extends Controller
                 [
                     'nombre' => $producto->nombre,
                     'cantidad' => \DB::raw('cantidad - 1'),
-                    'descripcion' => $producto->nombre,
+                    'descripcion' => $producto->descripcion,
                     'precio' => $producto->precio,
                 ]
             );
@@ -201,5 +201,39 @@ class ProductController extends Controller
 
         return response()->json( $conf);
 
+    }
+
+    public function postCheckoutOrder($id_user){
+        $carro= DB::table('carrodecompras')
+            ->updateOrInsert(
+                ['id_user' => $id_user],
+                [
+                     'estado'=>'vendido',
+                ]
+            );
+        $conf=array(
+            'status'=>'SUCCESS',
+            'code' => 200);
+        return response()->json( $conf );
+        //return view('shop.checkout', ['total' => $total]);
+    }
+
+    public function getOrders($id_user){
+
+        $carro=DB::table('carrodecompras')
+            ->where('id_user', $id_user)
+            ->where('estado', 'vendido')
+            ->where('cantidad','>',0)
+            ->get();
+        $total=DB::table('carrodecompras')
+            ->where('id_user', $id_user)
+            ->where('estado', 'vendido')
+            ->sum(DB::raw('carrodecompras.cantidad * carrodecompras.precio'));
+        $conf=array(
+            'status'=>'SUCCESS',
+            'code' => 200);
+
+        return response()->json(['productos'=>$carro, 'totalPrice' => $total]);
+        //return view('shop.shopping-cart', ['productos' => $cart->items, 'totalPrice' => $cart->totalPrice]);
     }
 }

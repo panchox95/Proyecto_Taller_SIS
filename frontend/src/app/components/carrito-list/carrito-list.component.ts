@@ -11,6 +11,16 @@ import { ArticuloService } from '../../services/articulo.service';
 import { ComentarioProducto } from '../../models/comentarioproducto';
 import { ComentarioService } from '../../services/comentario.service';
 
+function stripeTokenHandler(token: any) {
+  var form = document.getElementById('payment-form');
+  var hiddenInput = document.createElement('input');
+  hiddenInput.setAttribute('type', 'hidden');
+  hiddenInput.setAttribute('name', 'stripeToken');
+  hiddenInput.setAttribute('value', token.id);
+  form.appendChild(hiddenInput);
+  // Submit the form
+}
+
 @Component({
   selector: 'app-carrito-list',
   templateUrl: './carrito-list.component.html',
@@ -142,7 +152,8 @@ export class CarritoListComponent implements OnInit {
         id_token = token;
          alert('Compra Realizada con Exito');
         console.log('Pruebas Jawar' ,id_token);
-        a.postcheckout(token).subscribe(
+       // stripeTokenHandler(token);
+        a.postcheckout(id_usuario).subscribe(
           response => {
             console.log('respuesta: ', response);
           },
@@ -160,5 +171,7 @@ export class CarritoListComponent implements OnInit {
     });
 
   }
+
+
 
 }

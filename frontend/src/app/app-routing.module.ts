@@ -27,6 +27,7 @@ import { OfertaServicioNewComponent } from './components/ofertaservicio-new/ofer
 import { CarritoListComponent } from './components/carrito-list/carrito-list.component';
 import { BusquedaRangoComponent } from './components/busqueda-rango/busqueda-rango.component';
 import {CheckoutComponent} from './components/checkout/checkout.component';
+import {OrdenesComponent} from './components/ordenes/ordenes.component';
 
 const appRoutes: Routes = [
     { path: '', component: DefaultComponent },
@@ -58,6 +59,7 @@ const appRoutes: Routes = [
     { path: 'carrito', component: CarritoListComponent },
     { path: 'rango', component: BusquedaRangoComponent },
     { path: 'checkout', component: CheckoutComponent },
+    { path: 'ordenes', component: OrdenesComponent },
 
     // Este siempre tiene q ser el ultimo
     { path: '**', component: DefaultComponent },
