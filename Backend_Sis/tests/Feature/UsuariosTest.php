@@ -40,7 +40,7 @@ class UsuariosTest extends TestCase
             'last_name'=>'lovelacecito',
             'email'=>'jeff12223@asd.com',
             'password'=>'12312312s3A',
-        ])->assertStatus(500);
+        ])->assertStatus(400);
 
     }
 
@@ -50,7 +50,7 @@ class UsuariosTest extends TestCase
             'last_name'=>'lovelacecito',
             'email'=>'',
             'password'=>'12312312s3A',
-        ])->assertStatus(500);
+        ])->assertStatus(400);
 
     }
 
@@ -60,7 +60,7 @@ class UsuariosTest extends TestCase
             'last_name'=>'lovelacecito',
             'email'=>'jeff12223@asd.com',
             'password'=>'',
-        ])->assertStatus(500);
+        ])->assertStatus(400);
 
     }
 
@@ -70,7 +70,7 @@ class UsuariosTest extends TestCase
             'last_name'=>'lovelacecito',
             'email'=>'jeff12223@asd.com',
             'password'=>'1231233',
-        ])->assertStatus(500);
+        ])->assertStatus(400);
 
     }
 
@@ -81,7 +81,7 @@ class UsuariosTest extends TestCase
             'last_name'=>'lovelacecito',
             'email'=>'jeff12223@asd.com',
             'password'=>'1231233ss',
-        ])->assertStatus(500);
+        ])->assertStatus(400);
 
     }
 
@@ -91,7 +91,7 @@ class UsuariosTest extends TestCase
             'last_name'=>'lovelacecito',
             'email'=>'jeff12223@asd.com',
             'password'=>'12312312s3A',
-        ])->assertStatus(500);
+        ])->assertStatus(400);
 
     }
 
@@ -101,7 +101,7 @@ class UsuariosTest extends TestCase
             'last_name'=>'',
             'email'=>'jeff12223@asd.com',
             'password'=>'12312312s3A',
-        ])->assertStatus(500);
+        ])->assertStatus(400);
 
     }
 
